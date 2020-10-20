@@ -1,6 +1,6 @@
 ﻿using System;
-using TariffConstructor.Domain.Abstractions;
 using TariffConstructor.Domain.ValueObjects;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.TariffAggregate
 {

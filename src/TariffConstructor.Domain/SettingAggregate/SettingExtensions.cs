@@ -1,4 +1,4 @@
-using Billing.Services.Ordering.Domain.Subscriptions.Settings;
+using TariffConstructor.Domain.Settings;
 
 namespace TariffConstructor.Domain.SettingAggregate
 {

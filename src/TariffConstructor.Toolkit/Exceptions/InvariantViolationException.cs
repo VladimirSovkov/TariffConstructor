@@ -8,5 +8,10 @@ namespace TariffConstructor.Toolkit.Exceptions
             : base(message)
         { 
         }
+
+        public InvariantViolationException(string message, string code)
+    : base(message + ". Code: " + code)
+        {
+        }
     }
 }

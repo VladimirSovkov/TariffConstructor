@@ -1,7 +1,6 @@
-using TariffConstructor.Domain.Abstractions;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
 
-namespace Billing.Services.Ordering.Domain.Marketing.TermsOfUseAggregate
+namespace TariffConstructor.Domain.TermsOfUseAggregate
 {
     public class TermsOfUse : Entity, IAggregateRoot
     {

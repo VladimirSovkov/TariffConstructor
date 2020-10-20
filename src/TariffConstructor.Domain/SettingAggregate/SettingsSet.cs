@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.Domain.Abstractions;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Domain.BillingSettingAggregate;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Exceptions;
 
 namespace TariffConstructor.Domain.SettingAggregate
 {

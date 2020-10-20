@@ -1,7 +1,6 @@
 ﻿using System;
-using TariffConstructor.Domain.Abstractions;
-using TariffConstructor.Domain.ValueObjects;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Domain.ProductOptionKindAggregate;
 
 namespace TariffConstructor.Domain.ProductAggregate
 {
@@ -9,12 +8,12 @@ namespace TariffConstructor.Domain.ProductAggregate
     {
         public Product(
             string name,
-            ProductSettlementKinds productSettlementKinds,
+            //ProductSettlementKinds productSettlementKinds,
             string publicId = null,
             string shortName = null )
         {
             Name = name;
-            ProductSettlementKinds = productSettlementKinds;
+            //ProductSettlementKinds = productSettlementKinds;
             ShortName = String.IsNullOrWhiteSpace( shortName ) ? name : shortName;
             PublicId = String.IsNullOrEmpty( publicId ) ? Guid.NewGuid().ToString() : publicId;
         }
@@ -27,7 +26,7 @@ namespace TariffConstructor.Domain.ProductAggregate
 
         public string ShortName { get; private set; }
 
-        public ProductSettlementKinds ProductSettlementKinds { get; private set; }
+       // public ProductSettlementKinds ProductSettlementKinds { get; private set; }
 
         public DateTime CreationDate { get; private set; }
 

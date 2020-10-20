@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Billing.Services.Ordering.Domain.Subscriptions.Settings;
-using TariffConstructor.Domain.Abstractions;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Domain.BillingSettingAggregate;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Domain.Settings;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Exceptions;
 
 namespace TariffConstructor.Domain.SettingAggregate
 {

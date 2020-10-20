@@ -1,4 +1,5 @@
 namespace TariffConstructor.Domain.SettingAggregate
+{ 
     public enum SettingType
     {
         Unknown = 0,

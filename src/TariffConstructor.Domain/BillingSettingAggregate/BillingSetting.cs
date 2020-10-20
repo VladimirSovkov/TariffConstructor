@@ -1,7 +1,6 @@
 using System;
-using TariffConstructor.Domain.Abstractions;
-using TariffConstructor.Toolkit.Aggregate;
-using Billing.Services.Ordering.Domain.Subscriptions.SettingAggregate;
+using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.BillingSettingAggregate
 {

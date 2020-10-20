@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.Domain.Abstractions;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Exceptions;
 
 namespace TariffConstructor.Domain.SettingAggregate
 {

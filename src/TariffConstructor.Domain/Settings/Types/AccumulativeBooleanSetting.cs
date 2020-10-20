@@ -1,6 +1,6 @@
 using TariffConstructor.Domain.SettingAggregate;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings.Types
+namespace TariffConstructor.Domain.Settings.Types
 {
     internal class AccumulativeBooleanSetting : BaseBooleanSetting
     {

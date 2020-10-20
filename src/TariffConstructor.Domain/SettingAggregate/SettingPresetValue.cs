@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Billing.Library.Domain.ValueObjects;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.SettingAggregate
 {

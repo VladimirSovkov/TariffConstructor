@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ValueObjects
 {
@@ -128,10 +129,10 @@ namespace TariffConstructor.Domain.ValueObjects
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public static implicit operator Amount( Price amount )
-        {
-            return new Amount( amount.Value, amount.Currency );
-        }
+        //public static implicit operator Amount(Price amount)
+        //{
+        //    return new Amount(amount.Value, amount.Currency);
+        //}
 
         public Price Copy()
         {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     public interface ISettingsContainer
     {

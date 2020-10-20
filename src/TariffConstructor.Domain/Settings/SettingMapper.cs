@@ -1,6 +1,6 @@
-using Billing.Services.Ordering.Domain.Subscriptions.ApplicationSettingAggregate;
+using TariffConstructor.Domain.ApplicationSettingAggregate;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     public static class SettingMapper
     {

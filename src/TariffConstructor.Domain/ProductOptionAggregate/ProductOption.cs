@@ -1,7 +1,7 @@
 ﻿using System;
-using Billing.Services.Ordering.Domain.Marketing.ProductOptionKindAggregate;
-using TariffConstructor.Toolkit.Aggregate;
 using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Domain.ProductOptionKindAggregate;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ProductOptionAggregate
 {

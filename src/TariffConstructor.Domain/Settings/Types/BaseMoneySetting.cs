@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Billing.Library.Domain.ValueObjects;
-using Billing.Services.Ordering.Domain.Subscriptions.SettingAggregate;
+using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.ValueObjects;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings.Types
+namespace TariffConstructor.Domain.Settings.Types
 {
     internal abstract class BaseMoneySetting : BaseSetting
     {

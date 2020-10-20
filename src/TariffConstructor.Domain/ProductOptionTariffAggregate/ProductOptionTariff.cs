@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.Domain.ProductOptionAggregate;
 using TariffConstructor.Domain.ValueObjects;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Exceptions;
 
 namespace TariffConstructor.Domain.ProductOptionTariffAggregate
 {

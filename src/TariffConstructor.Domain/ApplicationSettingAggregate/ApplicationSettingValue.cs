@@ -1,5 +1,5 @@
 ﻿using System;
-using TariffConstructor.Domain.Abstractions;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ApplicationSettingAggregate
 {

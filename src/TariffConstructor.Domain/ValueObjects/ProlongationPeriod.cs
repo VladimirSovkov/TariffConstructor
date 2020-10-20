@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ValueObjects
 {

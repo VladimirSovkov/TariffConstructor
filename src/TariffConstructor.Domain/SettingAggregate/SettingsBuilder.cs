@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Billing.Services.Ordering.Domain.Subscriptions.Settings;
+using TariffConstructor.Domain.Settings;
 
 namespace TariffConstructor.Domain.SettingAggregate
 { 

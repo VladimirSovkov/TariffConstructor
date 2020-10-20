@@ -1,5 +1,5 @@
 ﻿using System;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ProductOptionKindAggregate
 {

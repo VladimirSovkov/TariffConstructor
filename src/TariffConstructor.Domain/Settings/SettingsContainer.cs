@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     public class SettingsContainer : ISettingsContainer
     {

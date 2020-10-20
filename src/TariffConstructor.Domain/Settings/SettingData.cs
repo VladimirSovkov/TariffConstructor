@@ -1,6 +1,6 @@
-using Billing.Services.Ordering.Domain.Subscriptions.SettingAggregate;
+using TariffConstructor.Domain.SettingAggregate;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     public class SettingData
     {

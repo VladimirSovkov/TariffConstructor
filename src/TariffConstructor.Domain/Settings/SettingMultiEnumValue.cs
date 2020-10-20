@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     internal class SettingMultiEnumValue
     {

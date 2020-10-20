@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Billing.Library.Domain.Abstractions;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.ProductOptionAggregate
 {

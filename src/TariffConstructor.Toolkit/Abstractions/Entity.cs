@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace TariffConstructor.Domain.Abstractions
+namespace TariffConstructor.Toolkit.Abstractions
 {
     public abstract class Entity
     {

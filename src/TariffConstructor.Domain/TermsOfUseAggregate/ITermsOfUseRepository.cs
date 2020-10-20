@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Billing.Services.Ordering.Domain.Marketing.TermsOfUseAggregate
+namespace TariffConstructor.Domain.TermsOfUseAggregate
 {
     public interface ITermsOfUseRepository
     {

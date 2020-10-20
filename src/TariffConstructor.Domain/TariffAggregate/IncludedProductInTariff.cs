@@ -1,6 +1,6 @@
-﻿using TariffConstructor.Domain.Abstractions;
-using TariffConstructor.Toolkit.Exceptions;
+﻿using TariffConstructor.Toolkit.Exceptions;
 using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.Domain.TariffAggregate
 {

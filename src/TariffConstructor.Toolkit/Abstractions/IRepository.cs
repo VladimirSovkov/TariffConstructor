@@ -1,6 +1,4 @@
-﻿using TariffConstructor.Toolkit.Aggregate;
-
-namespace TariffConstructor.Domain.Abstractions
+﻿namespace TariffConstructor.Toolkit.Abstractions
 {
     public interface IRepository<TAggregate> where TAggregate : Entity, IAggregateRoot
     {

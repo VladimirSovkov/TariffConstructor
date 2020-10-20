@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.Domain.Abstractions;
 using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Domain.ProductAggregate;
 using TariffConstructor.Domain.ProductOptionAggregate;
-using TariffConstructor.Toolkit.Aggregate;
+using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Exceptions;
 
 namespace TariffConstructor.Domain.TariffAggregate
 {

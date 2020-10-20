@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel;
-using Billing.Services.Ordering.Domain.Subscriptions.SettingAggregate;
-using Billing.Services.Ordering.Domain.Subscriptions.Settings.Types;
+using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.Settings.Types;
 
-namespace Billing.Services.Ordering.Domain.Subscriptions.Settings
+namespace TariffConstructor.Domain.Settings
 {
     public class SettingImplement : ISetting
     {
