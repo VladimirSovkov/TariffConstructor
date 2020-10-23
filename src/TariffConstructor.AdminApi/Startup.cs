@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
 using TariffConstructor.Infrastructure.Startup;
+using TariffConstructor.Infrastructure.Data;
 
 namespace TariffConstructor.AdminApi
 {
@@ -21,7 +22,7 @@ namespace TariffConstructor.AdminApi
         public void Configure(IApplicationBuilder app)
         {
             app.UseCors(b => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            //app.UseMvcWithDefaultRoute();
+            app.UseMvcWithDefaultRoute();
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -33,12 +34,18 @@ namespace TariffConstructor.AdminApi
 
         public void AddServices(IServiceCollection services)
         {
+            ConfigureDatabase(services);
             services.AddControllers();
             services
                 .AddBaseServices()
                 .AddMvcCore(options => options.EnableEndpointRouting = false)
                 .AddApplicationPart(Assembly.Load(new AssemblyName("TariffConstructor.AdminApi")))
                 .AddCors();
+        }
+
+        public virtual void ConfigureDatabase(IServiceCollection services)
+        {
+            services.AddDatabase<TariffConstructorContext>(Configuration.GetConnectionString("DefaultConnection"));
         }
     }
 }

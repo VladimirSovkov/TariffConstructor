@@ -20,7 +20,7 @@ namespace TariffConstructor.Domain.ProductAggregate
 
         public string PublicId { get; private set; }
 
-        public string NomenclatureId { get; private set; }
+        public string NomenclatureId { get;  set; }
 
         public string Name { get; private set; }
 
@@ -28,7 +28,7 @@ namespace TariffConstructor.Domain.ProductAggregate
 
        // public ProductSettlementKinds ProductSettlementKinds { get; private set; }
 
-        public DateTime CreationDate { get; private set; }
+        public DateTime CreationDate { get;  set; }
 
         public void SetNomenclatureId( string nomeclatureId )
         {

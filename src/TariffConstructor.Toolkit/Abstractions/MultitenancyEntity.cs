@@ -2,6 +2,6 @@
 {
     public abstract class MultitenancyEntity : Entity
     {
-        public int TenantId { get; protected set; }
+        public int TenantId { get; set; }
     }
 }

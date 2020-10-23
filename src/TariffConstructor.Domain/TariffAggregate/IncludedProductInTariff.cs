@@ -16,9 +16,9 @@ namespace TariffConstructor.Domain.TariffAggregate
             ValidateAndThrowRelativeWeight( relativeWeight );
         }
 
-        public int TariffId { get; private set; }
-        public virtual Tariff Tariff { get; private set; }
-        public int ProductId { get; private set; }
+        public int TariffId { get; set; }
+        //public virtual Tariff Tariff { get; private set; }
+        public int ProductId { get; set; }
         public virtual Product Product { get; private set; }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         /// Пример 3: если Продукт "А" имеет вес 2, а продукт "Б" имеет вес 1, то это означает что Продукт "А" "тяжелее" Продукта "Б" в два раза, в процентах 66,66% на 33,33%.
         /// Пример 4: если Продукт "А" имеет вес 3, а продукт "Б" имеет вес 1, то это означает что Продукт "А" "тяжелее" Продукта "Б" в три раза, в процентах 75% на 25%.
         /// </summary>
-        public int RelativeWeight { get; private set; }
+        public int RelativeWeight { get; set; }
 
         public void SetRelativeWeight( int relativeWeight )
         {
