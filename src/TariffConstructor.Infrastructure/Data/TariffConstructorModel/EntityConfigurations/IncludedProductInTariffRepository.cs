@@ -20,7 +20,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             includedProductInTariff.TariffId = 1;
             includedProductInTariff.RelativeWeight = 1;
             includedProductInTariff.Id = 1;
-            _DbContext.IncludedProductInTariff.AddRange(includedProductInTariff);
+            //_DbContext.IncludedProductInTariff.AddRange(includedProductInTariff);
             _DbContext.SaveChanges();
         }
     }

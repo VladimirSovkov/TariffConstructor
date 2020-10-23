@@ -19,6 +19,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             Product product = new Product("name", "1", "name" );
             product.NomenclatureId = "1";
+            product.Id = 1;
             product.TenantId = 1;
             product.CreationDate = new DateTime(2020, 10, 22);
             _DbContext.Products.AddRange(product);

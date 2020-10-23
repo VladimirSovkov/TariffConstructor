@@ -14,15 +14,15 @@ namespace TariffConstructor.Infrastructure.Data
         { 
         }
 
-        public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
+        //public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
         public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder )
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IncludedProductInTariff>().ToTable("test", schema: "dbo");
-            builder.ApplyConfiguration( new IncludedProductInTariffMap() );
+            //builder.Entity<IncludedProductInTariff>().ToTable("test", schema: "dbo");
+            //builder.ApplyConfiguration( new IncludedProductInTariffMap() );
             builder.ApplyConfiguration(new ProductMap());
         }
     }

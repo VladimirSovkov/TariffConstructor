@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using TariffConstructor.Infrastructure.Startup;
 using TariffConstructor.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace TariffConstructor.AdminApi
 {
@@ -41,6 +42,7 @@ namespace TariffConstructor.AdminApi
                 .AddMvcCore(options => options.EnableEndpointRouting = false)
                 .AddApplicationPart(Assembly.Load(new AssemblyName("TariffConstructor.AdminApi")))
                 .AddCors();
+            services.AddDbContext<TariffConstructorContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public virtual void ConfigureDatabase(IServiceCollection services)

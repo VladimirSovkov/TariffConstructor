@@ -9,25 +9,25 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 
 namespace TariffConstructor.AdminApi.Controllers
 {
-    [Route("tariff")]
+    [Route("test")]
     public class TestController : Controller
     {
-        private readonly IIncludedProductInTariff _include;
+        //private readonly IIncludedProductInTariff _include;
         private readonly IProduct _product;
         public TestController(
             IProduct product
-            , IIncludedProductInTariff include
+            //, IIncludedProductInTariff include
             )
         {
             _product = product;
-            _include = include;
+            //_include = include;
         }
 
         [HttpGet("test")]
         public void GetSource()
         {
-           // _product.AddElement();
-            _include.AddElement();
+            _product.AddElement();
+           // _include.AddElement();
         }
     }
 }
