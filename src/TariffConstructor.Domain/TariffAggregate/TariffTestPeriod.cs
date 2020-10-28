@@ -9,22 +9,24 @@ namespace TariffConstructor.Domain.TariffAggregate
     {
         public int Value { get; private set; }
 
-        public TariffTestPeriodUnit Unit { get; private set; }
+        //public TariffTestPeriodUnit Unit { get; private set; }
 
-        public TariffTestPeriod( int value, TariffTestPeriodUnit unit )
+        public TariffTestPeriod( int value
+            //, TariffTestPeriodUnit unit 
+            )
         {
             if ( value == 0 )
             {
                 throw new InvalidOperationException( "Must specify period value" );
             }
             Value = value;
-            Unit = unit;
+            //Unit = unit;
         }
 
-        public bool IsEmpty()
-        {
-            return Value == default(int) && Unit == default(TariffTestPeriodUnit);
-        }
+        //public bool IsEmpty()
+        //{
+        //    return Value == default(int) && Unit == default(TariffTestPeriodUnit);
+        //}
 
         public static TariffTestPeriod Empty()
         {
@@ -34,7 +36,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
-            yield return Unit;
+            //yield return Unit;
         }
 
         protected TariffTestPeriod()

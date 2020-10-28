@@ -19,7 +19,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         public int TariffId { get; set; }
         //public virtual Tariff Tariff { get; private set; }
         public int ProductId { get; set; }
-        public virtual Product Product { get; private set; }
+        public virtual Product Product { get; set; }
 
         /// <summary>
         /// Относительный "вес" продукта в тарифе. Может принимать целые значения. По умолчанию равен 1.

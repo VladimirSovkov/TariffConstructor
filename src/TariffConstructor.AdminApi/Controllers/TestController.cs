@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.Interface;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ObjectTests.Interface;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Interface;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -13,21 +15,34 @@ namespace TariffConstructor.AdminApi.Controllers
     public class TestController : Controller
     {
         //private readonly IIncludedProductInTariff _include;
-        private readonly IProduct _product;
+        //private readonly IProduct _product;
+        //private readonly ITariffRepostitory _tariff;
+        //private readonly ITariffTestPeriod _tariffTestPeriod;
+        private readonly IClassWithEnum _classWithEnum;
+
         public TestController(
-            IProduct product
+            //IProduct product
             //, IIncludedProductInTariff include
+            //, ITariffRepostitory tariff
+            //, ITariffTestPeriod tariffTestPeriod
+            IClassWithEnum classWithEnum
             )
         {
-            _product = product;
+            //_product = product;
             //_include = include;
+            //_tariff = tariff;
+            //_tariffTestPeriod = tariffTestPeriod;
+            _classWithEnum = classWithEnum;
         }
 
         [HttpGet("test")]
         public void GetSource()
         {
-            _product.AddElement();
-           // _include.AddElement();
+            // _product.AddElement();
+            //_include.AddElement();
+            //_tariff.AddElement();
+            //_tariffTestPeriod.AddElement();
+            _classWithEnum.AddElement();
         }
     }
 }
