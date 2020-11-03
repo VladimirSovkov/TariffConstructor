@@ -15,7 +15,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public void AddElement()
         {
             ClassWithEnum classWithEnum = new ClassWithEnum(1, "value", TimesOfDay.day);
-            _DbContext.classWithEnums.AddRange(classWithEnum);
+            //_DbContext.classWithEnums.AddRange(classWithEnum);
             _DbContext.SaveChanges();
         }
     }

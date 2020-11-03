@@ -16,17 +16,17 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         }
         public void AddElement()
         {
-            Tariff tariff = new Tariff("name", "publicId");
-            tariff.CreationDate = DateTime.Now;
-            tariff.Archive();
-            tariff.SetAwaitingPaymentStrategy("strategy");
-            tariff.SetAccountingTariffId("tariff id");
-            tariff.SetSettingsPresetId(1);
-            tariff.SetTermsOfUseId(1);
-            tariff.IsAcceptanceRequired = true;
-            tariff.IsGradualFinishAvailable = false;
-            //_DbContext.Tariff.AddRange(tariff);
-            //_DbContext.SaveChanges();
+            //Tariff tariff = new Tariff("name", "publicId");
+            //tariff.CreationDate = DateTime.Now;
+            //tariff.Archive();
+            //tariff.SetAwaitingPaymentStrategy("strategy");
+            //tariff.SetAccountingTariffId("tariff id");
+            //tariff.SetSettingsPresetId(1);
+            //tariff.SetTermsOfUseId(1);
+            //tariff.IsAcceptanceRequired = true;
+            //tariff.IsGradualFinishAvailable = false;
+            ////_DbContext.Tariff.AddRange(tariff);
+            ////_DbContext.SaveChanges();
         }
     }
 }

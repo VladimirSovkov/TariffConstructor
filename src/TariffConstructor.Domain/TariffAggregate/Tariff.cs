@@ -13,12 +13,12 @@ namespace TariffConstructor.Domain.TariffAggregate
     {
         public Tariff(
             string name,
-            //PaymentType paymentType,
+            PaymentType paymentType,
             string publicId = null )
         {
             Name = name;
-            //PaymentType = paymentType;
-            //TestPeriod = TariffTestPeriod.Empty();
+            PaymentType = paymentType;
+            TestPeriod = TariffTestPeriod.Empty();
             PublicId = String.IsNullOrEmpty( publicId ) ? Guid.NewGuid().ToString() : publicId;
             AccountingName = name;
         }
@@ -34,7 +34,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         /// <summary>
         /// Тестовый период
         /// </summary>
-        //public virtual TariffTestPeriod TestPeriod { get; private set; }
+        public virtual TariffTestPeriod TestPeriod { get; private set; }
 
         /// <summary>
         /// Бухгалтерское наименование тарифа (обычно используется в бухгалтерских документах)
@@ -44,7 +44,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         /// <summary>
         /// Тип оплаты тарифа
         /// </summary>
-        //public PaymentType PaymentType { get; private set; }
+        public PaymentType PaymentType { get; private set; }
 
         /// <summary>
         /// Тип оплаты тарифа
@@ -143,19 +143,19 @@ namespace TariffConstructor.Domain.TariffAggregate
         /// <param name="prolongationPeriod"></param>
         /// <param name="currency"></param>
         /// <returns></returns>
-        //public Price GetFeeForThePeriod( ProlongationPeriod prolongationPeriod, string currency )
-        //{
-        //    switch ( PaymentType )
-        //    {
-        //        case PaymentType.Prepaid:
-        //        case PaymentType.Postpaid:
-        //            return GetPrice( prolongationPeriod, currency );
-        //        case PaymentType.Commission:
-        //            return new Price( 0, currency );
-        //        default:
-        //            throw new InvalidOperationException();
-        //    }
-        //}
+        public Price GetFeeForThePeriod(ProlongationPeriod prolongationPeriod, string currency)
+        {
+            switch (PaymentType)
+            {
+                case PaymentType.Prepaid:
+                case PaymentType.Postpaid:
+                    return GetPrice(prolongationPeriod, currency);
+                case PaymentType.Commission:
+                    return new Price(0, currency);
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
 
         public IReadOnlyList<string> CanAddPriceItem( Price price, ProlongationPeriod period )
         {
@@ -300,10 +300,10 @@ namespace TariffConstructor.Domain.TariffAggregate
             _includedProductOptions.Add( new IncludedProductOptionInTariff( productOption.Id, quantity ) );
         }
 
-        //public void AddTestPeriod( TariffTestPeriod testPeriod )
-        //{
-        //    TestPeriod = testPeriod;
-        //}
+        public void AddTestPeriod(TariffTestPeriod testPeriod)
+        {
+            TestPeriod = testPeriod;
+        }
 
         public void AddAvailableContractKind( int contractKindId )
         {
@@ -315,10 +315,10 @@ namespace TariffConstructor.Domain.TariffAggregate
             _contractKindBindings.Add( new TariffToContractKindBinding( contractKindId ) );
         }
 
-        //public bool HasTestPeriod()
-        //{
-        //    return TestPeriod.Value > 0;
-        //}
+        public bool HasTestPeriod()
+        {
+            return TestPeriod.Value > 0;
+        }
 
         public bool IsAvailableForUpdate()
         {

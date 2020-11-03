@@ -13,27 +13,34 @@ namespace TariffConstructor.Infrastructure.Data
     public class TariffConstructorContext : DbContext
     {
         public TariffConstructorContext(DbContextOptions<TariffConstructorContext> options)
-            : base (options)
-        { 
+            : base(options)
+        {
         }
 
         public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
         public DbSet<Product> Products { get; set; }
         //public DbSet<Tariff> Tariff { get; set; }
-        public DbSet<TariffTestPeriod> TariffTestPeriods { get; set; }
+        //public DbSet<TariffTestPeriod> TariffTestPeriods { get; set; }
         //сделано для тестов работы разных вариантов Fluent Api
-        public DbSet<ClassWithEnum> classWithEnums { get; set; }
+        //public DbSet<ClassWithEnum> classWithEnums { get; set; }
+        public DbSet<TariffPrice> TariffPrices {get; set;}
+        public DbSet<Tariff> Tariffs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder )
         {
             base.OnModelCreating(builder);
+            
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice).StartsAt(1)
+                .IncrementsBy(1);
 
             //builder.Entity<IncludedProductInTariff>().ToTable("test", schema: "dbo");
             builder.ApplyConfiguration( new IncludedProductInTariffMap() );
             builder.ApplyConfiguration(new ProductMap());
-            //builder.ApplyConfiguration(new TariffMap());
-            builder.ApplyConfiguration(new TariffTestPeriodMap());
-            builder.ApplyConfiguration(new ClassWithEnumMap());
+            builder.ApplyConfiguration(new TariffAdvancePriceMap());
+            builder.ApplyConfiguration(new TariffMap());
+            //builder.ApplyConfiguration(new TariffTestPeriodMap());
+            //builder.ApplyConfiguration(new ClassWithEnumMap());
+            builder.ApplyConfiguration(new TariffPriceMap());
         }
     }
 }

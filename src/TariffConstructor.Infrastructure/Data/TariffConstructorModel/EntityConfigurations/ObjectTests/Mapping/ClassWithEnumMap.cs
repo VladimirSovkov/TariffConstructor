@@ -13,7 +13,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Value).HasMaxLength(40);
 
-            builder.Property(x => x.Time).HasConversion<int>();
+            //builder.Property(x => x.Time).HasConversion<int>();
             //builder.Property(x => x.Time).HasDefaultValue(TimesOfDay.day);
             
         }

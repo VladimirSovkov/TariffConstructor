@@ -12,6 +12,10 @@
             Time = times;
         }
 
+        protected ClassWithEnum()
+        { 
+        }
+
         public int Id { get; private set; }
         public string Value { get; private set; }
 

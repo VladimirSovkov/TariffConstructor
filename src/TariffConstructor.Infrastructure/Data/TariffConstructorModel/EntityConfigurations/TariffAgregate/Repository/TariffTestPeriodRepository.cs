@@ -13,9 +13,9 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         }
         public void AddElement()
         {
-            TariffTestPeriod tariffTestPeriod = new TariffTestPeriod(1);
-            _DbContext.AddRange(tariffTestPeriod);
-            _DbContext.SaveChanges();
+            //TariffTestPeriod tariffTestPeriod = new TariffTestPeriod(1);
+            //_DbContext.AddRange(tariffTestPeriod);
+            //_DbContext.SaveChanges();
         }
     }
 }
