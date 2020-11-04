@@ -8,15 +8,17 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
     {
         public void Configure(EntityTypeBuilder<IncludedProductInTariff> builder)
         {
+            builder.ToTable("IncludedProductInTariff");
+
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
+
+            builder.HasOne(x => x.Tariff).WithMany(x => x.IncludedProducts).HasForeignKey(x => x.TariffId);
+            builder.HasOne(x => x.Product).WithMany().HasForeignKey(x => x.ProductId);
+
+            builder.Property(x => x.RelativeWeight).IsRequired();
 
             //builder.Ignore(x => x.DomainEvents);
-            //builder.Property(x => x.Id)
-            //    .ForSqlServerUseSequenceHiLo(HiLoSequence.DBSequenceHiLoForIncludedProductInTariff);
-            //
-
-            //builder.HasOne(x => x.Tariff).WithMany(x => x.IncludedProducts).HasForeignKey(x => x.TariffId);
-            builder.HasOne(x => x.Product).WithMany().HasForeignKey(x => x.ProductId);
         }
     }
 }
