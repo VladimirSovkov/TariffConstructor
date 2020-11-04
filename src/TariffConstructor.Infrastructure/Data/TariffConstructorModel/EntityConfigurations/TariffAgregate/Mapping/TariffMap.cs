@@ -9,6 +9,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public void Configure(EntityTypeBuilder<Tariff> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
             builder.HasIndex(x => x.TenantId);
 
             var pricesNavigation = builder.Metadata.FindNavigation(nameof(Tariff.Prices));
