@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Security.Cryptography.X509Certificates;
 using TariffConstructor.Domain.TariffAggregate;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Mapping
@@ -9,7 +8,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
     {
         public void Configure(EntityTypeBuilder<TariffToContractKindBinding> builder)
         {
+            builder.ToTable("TariffToContractKindBinding");
+            
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
+
             builder.Property(x => x.ContractKindId).IsRequired();
         }
     }
