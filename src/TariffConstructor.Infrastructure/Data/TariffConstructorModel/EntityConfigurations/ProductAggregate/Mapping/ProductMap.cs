@@ -13,13 +13,17 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.HasAlternateKey(x => x.PublicId);
             builder.HasIndex(x => x.TenantId);
 
-            //builder.Ignore(x => x.DomainEvents);
-            //builder.Property(x => x.Id).ForSqlServerUseSequenceHiLo(HiLoSequence.DBSequenceHiLoForProduct);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
 
+            builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
+            
             builder.Property(x => x.PublicId).HasMaxLength(68);
             builder.Property(x => x.NomenclatureId).HasMaxLength(50);
-            builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.ShortName).HasMaxLength(100);
+
             builder.Property(x => x.CreationDate).ValueGeneratedOnAdd();
+
+            //builder.Ignore(x => x.DomainEvents);
         }
     }
 }
