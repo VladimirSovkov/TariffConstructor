@@ -20,13 +20,10 @@ namespace TariffConstructor.Infrastructure.Data
         {
         }
 
-        public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
         public DbSet<Product> Products { get; set; }
         //public DbSet<TariffTestPeriod> TariffTestPeriods { get; set; }
         //сделано для тестов работы разных вариантов Fluent Api
         //public DbSet<ClassWithEnum> classWithEnums { get; set; }
-        public DbSet<TariffPrice> TariffPrices { get; set; }
-        public DbSet<Tariff> Tariffs { get; set; }
 
         //ProductOptionAggregate
         public DbSet<ProductOption> ProductOptions { get; set; }
@@ -38,6 +35,12 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<ProductOptionTariffPrice> ProductOptionTariffPrices { get; set; }
         public DbSet<ProductOptionTariff> ProductOptionTariffs { get; set; }
 
+        //TariffAgregate
+        public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
+        public DbSet<TariffPrice> TariffPrices { get; set; }
+        public DbSet<Tariff> Tariffs { get; set; }
+        public DbSet<AvailableProductOptionTariffInTariff> AvailableProductOptionTariffInTariffs { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder )
         {
@@ -46,6 +49,7 @@ namespace TariffConstructor.Infrastructure.Data
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice).StartsAt(1)
                 .IncrementsBy(1);
             //TariffAgregate
+            builder.ApplyConfiguration(new AvailableProductOptionTariffInTariffMap());
             builder.ApplyConfiguration(new TariffMap());
             builder.ApplyConfiguration(new TariffAdvancePriceMap());
             builder.ApplyConfiguration(new TariffPriceMap());
