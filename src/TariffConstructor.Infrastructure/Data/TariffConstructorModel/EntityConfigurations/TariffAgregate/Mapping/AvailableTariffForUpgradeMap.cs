@@ -9,12 +9,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public void Configure(EntityTypeBuilder<AvailableTariffForUpgrade> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
+            
             builder.HasIndex(x => x.TenantId);
+            
             builder.Property(x => x.ToTariffId).IsRequired();
             builder.Property(x => x.FromTariffId).IsRequired();
-            //builder.Property(x => x.Id)
-            //    .ForSqlServerUseSequenceHiLo(HiLoSequence.DBSequenceHiLoForIncludedProductInTariff);
-            //
         }
     }
 }
