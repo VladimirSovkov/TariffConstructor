@@ -29,4 +29,10 @@
     <ProjectReference Include="..\TariffConstructor.Domain\TariffConstructor.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\TariffConstructorModel\EntityConfigurations\ProductOptionAggregate\Mapping\" />
+    <Folder Include="Data\TariffConstructorModel\EntityConfigurations\ProductOptionKindAggregate\Mapping\" />
+    <Folder Include="Data\TariffConstructorModel\EntityConfigurations\ProductOptionTariffAggregate\Mapping\" />
+  </ItemGroup>
+
 </Project>
