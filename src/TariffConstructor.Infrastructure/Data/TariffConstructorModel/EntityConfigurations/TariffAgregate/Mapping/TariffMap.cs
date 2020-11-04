@@ -1,9 +1,6 @@
 ﻿using TariffConstructor.Domain.TariffAggregate;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TariffConstructor.Domain.ValueObjects;
-using Nest;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations
 {
