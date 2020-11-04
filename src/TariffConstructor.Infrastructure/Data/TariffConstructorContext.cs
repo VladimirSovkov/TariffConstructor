@@ -42,6 +42,7 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<IncludedProductOptionInTariff> IncludedProductOptionInTariffs { get; set; }
         public DbSet<TariffPrice> TariffPrices { get; set; }
         public DbSet<Tariff> Tariffs { get; set; }
+        public DbSet<TariffAdvancePrice> tariffAdvancePrices { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder )
