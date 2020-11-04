@@ -20,10 +20,8 @@ namespace TariffConstructor.Infrastructure.Data
         {
         }
 
+        //ProductAggregate
         public DbSet<Product> Products { get; set; }
-        //public DbSet<TariffTestPeriod> TariffTestPeriods { get; set; }
-        //сделано для тестов работы разных вариантов Fluent Api
-        //public DbSet<ClassWithEnum> classWithEnums { get; set; }
 
         //ProductOptionAggregate
         public DbSet<ProductOption> ProductOptions { get; set; }
@@ -42,7 +40,8 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<IncludedProductOptionInTariff> IncludedProductOptionInTariffs { get; set; }
         public DbSet<TariffPrice> TariffPrices { get; set; }
         public DbSet<Tariff> Tariffs { get; set; }
-        public DbSet<TariffAdvancePrice> tariffAdvancePrices { get; set; }
+        public DbSet<TariffAdvancePrice> TariffAdvancePrices { get; set; }
+        public DbSet<TariffToContractKindBinding> TariffToContractKindBindings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder )
@@ -51,6 +50,7 @@ namespace TariffConstructor.Infrastructure.Data
             
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice).StartsAt(1)
                 .IncrementsBy(1);
+            
             //TariffAgregate
             builder.ApplyConfiguration(new AvailableProductOptionTariffInTariffMap());
             builder.ApplyConfiguration(new AvailableTariffForUpgradeMap());
@@ -59,6 +59,7 @@ namespace TariffConstructor.Infrastructure.Data
             builder.ApplyConfiguration(new TariffMap());
             builder.ApplyConfiguration(new TariffAdvancePriceMap());
             builder.ApplyConfiguration(new TariffPriceMap());
+            builder.ApplyConfiguration(new TariffToContractKindBindingMap());
 
             //ProductAggregate
             builder.ApplyConfiguration(new ProductMap());
@@ -73,11 +74,6 @@ namespace TariffConstructor.Infrastructure.Data
             builder.ApplyConfiguration(new ProductOptionTariffPriceMap());
             builder.ApplyConfiguration(new ProductOptionTariffMap());
 
-
-
-            //builder.Entity<IncludedProductInTariff>().ToTable("test", schema: "dbo");
-            //builder.ApplyConfiguration(new TariffTestPeriodMap());
-            //builder.ApplyConfiguration(new ClassWithEnumMap());
         }
     }
 }

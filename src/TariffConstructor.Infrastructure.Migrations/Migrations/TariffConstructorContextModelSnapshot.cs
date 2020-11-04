@@ -202,12 +202,70 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ProductOptionTariffPrice");
                 });
 
+            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableProductOptionTariffInTariff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MaxCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductOptionTariffId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TariffId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductOptionTariffId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("AvailableProductOptionTariffInTariff");
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableTariffForUpgrade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<int>("FromTariffId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToTariffId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("AvailableTariffForUpgrade");
+                });
+
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -232,9 +290,11 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProductOptionId")
@@ -252,7 +312,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                     b.HasIndex("TariffId");
 
-                    b.ToTable("IncludedProductOptionInTariff");
+                    b.ToTable("IncludedProductOptionInTariffs");
                 });
 
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.Tariff", b =>
@@ -260,7 +320,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<string>("AccountingName")
                         .HasColumnType("nvarchar(100)")
@@ -344,7 +405,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
@@ -357,7 +419,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                     b.HasIndex("TariffId");
 
-                    b.ToTable("TariffPrices");
+                    b.ToTable("TariffPrice");
                 });
 
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffToContractKindBinding", b =>
@@ -365,7 +427,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<int>("ContractKindId")
                         .HasColumnType("int");
@@ -450,6 +513,15 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableProductOptionTariffInTariff", b =>
+                {
+                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", "ProductOptionTariff")
+                        .WithMany()
+                        .HasForeignKey("ProductOptionTariffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
                 {
                     b.HasOne("TariffConstructor.Domain.ProductAggregate.Product", "Product")
@@ -458,7 +530,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", null)
+                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
                         .WithMany("IncludedProducts")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -485,9 +557,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.OwnsOne("TariffConstructor.Domain.TariffAggregate.TariffTestPeriod", "TestPeriod", b1 =>
                         {
                             b1.Property<int>("TariffId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .HasColumnType("int");
 
                             b1.Property<int>("Unit")
                                 .HasColumnType("int");
@@ -554,7 +624,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffPrice", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", null)
+                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
                         .WithMany("Prices")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -563,9 +633,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.OwnsOne("TariffConstructor.Domain.ValueObjects.Price", "Price", b1 =>
                         {
                             b1.Property<int>("TariffPriceId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .HasColumnType("int");
 
                             b1.Property<string>("Currency")
                                 .HasColumnType("nvarchar(3)")
@@ -576,7 +644,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                             b1.HasKey("TariffPriceId");
 
-                            b1.ToTable("TariffPrices");
+                            b1.ToTable("TariffPrice");
 
                             b1.WithOwner()
                                 .HasForeignKey("TariffPriceId");
@@ -585,9 +653,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.OwnsOne("TariffConstructor.Domain.ValueObjects.ProlongationPeriod", "Period", b1 =>
                         {
                             b1.Property<int>("TariffPriceId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                .HasColumnType("int");
 
                             b1.Property<int>("Unit")
                                 .HasColumnType("int");
@@ -597,7 +663,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                             b1.HasKey("TariffPriceId");
 
-                            b1.ToTable("TariffPrices");
+                            b1.ToTable("TariffPrice");
 
                             b1.WithOwner()
                                 .HasForeignKey("TariffPriceId");

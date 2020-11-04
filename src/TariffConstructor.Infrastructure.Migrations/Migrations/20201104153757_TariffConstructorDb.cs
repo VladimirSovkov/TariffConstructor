@@ -11,6 +11,20 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "DBSequenceHiLoForTariffAdvancePrice");
 
             migrationBuilder.CreateTable(
+                name: "AvailableTariffForUpgrade",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    TenantId = table.Column<int>(nullable: false),
+                    FromTariffId = table.Column<int>(nullable: false),
+                    ToTariffId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AvailableTariffForUpgrade", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
                 {
@@ -48,8 +62,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "Tariffs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     TenantId = table.Column<int>(nullable: false),
                     PublicId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
@@ -108,8 +121,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "IncludedProductInTariff",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     TariffId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
                     RelativeWeight = table.Column<int>(nullable: false)
@@ -155,11 +167,10 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TariffPrices",
+                name: "TariffPrice",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     Price_Value = table.Column<decimal>(nullable: true),
                     Price_Currency = table.Column<string>(maxLength: 3, nullable: true),
                     Period_Value = table.Column<int>(nullable: true),
@@ -169,9 +180,9 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TariffPrices", x => x.Id);
+                    table.PrimaryKey("PK_TariffPrice", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TariffPrices_Tariffs_TariffId",
+                        name: "FK_TariffPrice_Tariffs_TariffId",
                         column: x => x.TariffId,
                         principalTable: "Tariffs",
                         principalColumn: "Id",
@@ -182,8 +193,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "TariffToContractKindBinding",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     TariffId = table.Column<int>(nullable: false),
                     ContractKindId = table.Column<int>(nullable: false)
                 },
@@ -199,11 +209,10 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IncludedProductOptionInTariff",
+                name: "IncludedProductOptionInTariffs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     TariffId = table.Column<int>(nullable: false),
                     ProductOptionId = table.Column<int>(nullable: false),
@@ -211,15 +220,15 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IncludedProductOptionInTariff", x => x.Id);
+                    table.PrimaryKey("PK_IncludedProductOptionInTariffs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IncludedProductOptionInTariff_ProductOption_ProductOptionId",
+                        name: "FK_IncludedProductOptionInTariffs_ProductOption_ProductOptionId",
                         column: x => x.ProductOptionId,
                         principalTable: "ProductOption",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_IncludedProductOptionInTariff_Tariffs_TariffId",
+                        name: "FK_IncludedProductOptionInTariffs_Tariffs_TariffId",
                         column: x => x.TariffId,
                         principalTable: "Tariffs",
                         principalColumn: "Id",
@@ -249,6 +258,28 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AvailableProductOptionTariffInTariff",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    TenantId = table.Column<int>(nullable: false),
+                    TariffId = table.Column<int>(nullable: false),
+                    ProductOptionTariffId = table.Column<int>(nullable: false),
+                    MaxCount = table.Column<int>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AvailableProductOptionTariffInTariff", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AvailableProductOptionTariffInTariff_ProductOptionTariff_ProductOptionTariffId",
+                        column: x => x.ProductOptionTariffId,
+                        principalTable: "ProductOptionTariff",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductOptionTariffPrice",
                 columns: table => new
                 {
@@ -272,6 +303,21 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AvailableProductOptionTariffInTariff_ProductOptionTariffId",
+                table: "AvailableProductOptionTariffInTariff",
+                column: "ProductOptionTariffId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AvailableProductOptionTariffInTariff_TenantId",
+                table: "AvailableProductOptionTariffInTariff",
+                column: "TenantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AvailableTariffForUpgrade_TenantId",
+                table: "AvailableTariffForUpgrade",
+                column: "TenantId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_IncludedProductInTariff_ProductId",
                 table: "IncludedProductInTariff",
                 column: "ProductId");
@@ -282,13 +328,13 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 column: "TariffId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IncludedProductOptionInTariff_ProductOptionId",
-                table: "IncludedProductOptionInTariff",
+                name: "IX_IncludedProductOptionInTariffs_ProductOptionId",
+                table: "IncludedProductOptionInTariffs",
                 column: "ProductOptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IncludedProductOptionInTariff_TariffId",
-                table: "IncludedProductOptionInTariff",
+                name: "IX_IncludedProductOptionInTariffs_TariffId",
+                table: "IncludedProductOptionInTariffs",
                 column: "TariffId");
 
             migrationBuilder.CreateIndex(
@@ -337,8 +383,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 column: "TariffId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TariffPrices_TariffId",
-                table: "TariffPrices",
+                name: "IX_TariffPrice_TariffId",
+                table: "TariffPrice",
                 column: "TariffId");
 
             migrationBuilder.CreateIndex(
@@ -355,10 +401,16 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AvailableProductOptionTariffInTariff");
+
+            migrationBuilder.DropTable(
+                name: "AvailableTariffForUpgrade");
+
+            migrationBuilder.DropTable(
                 name: "IncludedProductInTariff");
 
             migrationBuilder.DropTable(
-                name: "IncludedProductOptionInTariff");
+                name: "IncludedProductOptionInTariffs");
 
             migrationBuilder.DropTable(
                 name: "ProductOptionTariffPrice");
@@ -367,7 +419,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "TariffAdvancePrice");
 
             migrationBuilder.DropTable(
-                name: "TariffPrices");
+                name: "TariffPrice");
 
             migrationBuilder.DropTable(
                 name: "TariffToContractKindBinding");
