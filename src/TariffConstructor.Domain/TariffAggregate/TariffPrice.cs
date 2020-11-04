@@ -20,7 +20,7 @@ namespace TariffConstructor.Domain.TariffAggregate
         public DateTime CreationDate { get; private set; }
 
         public int TariffId { get; private set; }
-        //public virtual Tariff Tariff { get; private set; }
+        public virtual Tariff Tariff { get; private set; }
 
         protected TariffPrice()
         {
