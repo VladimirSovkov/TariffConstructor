@@ -8,6 +8,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
     {
         public void Configure(EntityTypeBuilder<AvailableTariffForUpgrade> builder)
         {
+            builder.ToTable("AvailableTariffForUpgrade");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
             

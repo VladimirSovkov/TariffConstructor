@@ -36,10 +36,11 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<ProductOptionTariff> ProductOptionTariffs { get; set; }
 
         //TariffAgregate
+        public DbSet<AvailableProductOptionTariffInTariff> AvailableProductOptionTariffInTariffs { get; set; }
+        public DbSet<AvailableTariffForUpgrade> AvailableTariffForUpgrades { get; set; }
         public DbSet<IncludedProductInTariff> IncludedProductInTariff { get; set; }
         public DbSet<TariffPrice> TariffPrices { get; set; }
         public DbSet<Tariff> Tariffs { get; set; }
-        public DbSet<AvailableProductOptionTariffInTariff> AvailableProductOptionTariffInTariffs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder )
@@ -50,6 +51,7 @@ namespace TariffConstructor.Infrastructure.Data
                 .IncrementsBy(1);
             //TariffAgregate
             builder.ApplyConfiguration(new AvailableProductOptionTariffInTariffMap());
+            builder.ApplyConfiguration(new AvailableTariffForUpgradeMap());
             builder.ApplyConfiguration(new TariffMap());
             builder.ApplyConfiguration(new TariffAdvancePriceMap());
             builder.ApplyConfiguration(new TariffPriceMap());
