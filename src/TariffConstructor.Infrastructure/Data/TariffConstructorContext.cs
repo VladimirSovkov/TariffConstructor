@@ -35,8 +35,8 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<ProductOptionKind> ProductOptionKinds { get; set; }
 
         //ProductOptionTariffAggregate
-        public DbSet<ProductOptionTariffPrice> productOptionTariffPrices { get; set; }
-
+        public DbSet<ProductOptionTariffPrice> ProductOptionTariffPrices { get; set; }
+        public DbSet<ProductOptionTariff> ProductOptionTariffs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder )
@@ -62,7 +62,7 @@ namespace TariffConstructor.Infrastructure.Data
 
             //ProductOptionTariffAggregate
             builder.ApplyConfiguration(new ProductOptionTariffPriceMap());
-            //builder.ApplyConfiguration(new ProductOptionTariffMap());
+            builder.ApplyConfiguration(new ProductOptionTariffMap());
 
 
 

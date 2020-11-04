@@ -10,7 +10,7 @@ using TariffConstructor.Infrastructure.Data;
 namespace TariffConstructor.Infrastructure.Migrations.Migrations
 {
     [DbContext(typeof(TariffConstructorContext))]
-    [Migration("20201103205753_TariffConstructorDb")]
+    [Migration("20201104131933_TariffConstructorDb")]
     partial class TariffConstructorDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
@@ -48,7 +49,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasMaxLength(68);
 
                     b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
@@ -67,12 +69,15 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
                     b.Property<string>("AccountingName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsMultiple")
@@ -82,16 +87,20 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("NomenclatureId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
@@ -101,6 +110,8 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.HasIndex("KindId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("ProductOption");
                 });
@@ -113,20 +124,84 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TenantId");
+
                     b.ToTable("ProductOptionKind");
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("ProductOptionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductOptionId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("ProductOptionTariff");
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariffPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTariffAdvancePrice")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductOptionTariffId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductOptionTariffId");
+
+                    b.ToTable("ProductOptionTariffPrice");
                 });
 
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
@@ -318,6 +393,63 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", b =>
+                {
+                    b.HasOne("TariffConstructor.Domain.ProductOptionAggregate.ProductOption", "ProductOption")
+                        .WithMany()
+                        .HasForeignKey("ProductOptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariffPrice", b =>
+                {
+                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", "ProductOptionTariff")
+                        .WithMany("Prices")
+                        .HasForeignKey("ProductOptionTariffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("TariffConstructor.Domain.ValueObjects.Price", "Price", b1 =>
+                        {
+                            b1.Property<int>("ProductOptionTariffPriceId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Currency")
+                                .HasColumnType("nvarchar(3)")
+                                .HasMaxLength(3);
+
+                            b1.Property<decimal>("Value")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.HasKey("ProductOptionTariffPriceId");
+
+                            b1.ToTable("ProductOptionTariffPrice");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProductOptionTariffPriceId");
+                        });
+
+                    b.OwnsOne("TariffConstructor.Domain.ValueObjects.ProlongationPeriod", "Period", b1 =>
+                        {
+                            b1.Property<int>("ProductOptionTariffPriceId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Unit")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Value")
+                                .HasColumnType("int");
+
+                            b1.HasKey("ProductOptionTariffPriceId");
+
+                            b1.ToTable("ProductOptionTariffPrice");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProductOptionTariffPriceId");
+                        });
                 });
 
             modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
