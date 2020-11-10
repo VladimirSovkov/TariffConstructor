@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.Interface;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ObjectTests.Interface;
-using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Interface;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -17,32 +18,30 @@ namespace TariffConstructor.AdminApi.Controllers
         //private readonly IIncludedProductInTariff _include;
         //private readonly IProduct _product;
         //private readonly ITariffRepostitory _tariff;
-        //private readonly ITariffTestPeriod _tariffTestPeriod;
-        private readonly IClassWithEnum _classWithEnum;
+        private readonly ITariffRepository _tariffTestPeriod;
+        //private readonly IClassWithEnum _classWithEnum;
 
         public TestController(
+            ITariffRepository tariffRepository
             //IProduct product
             //, IIncludedProductInTariff include
             //, ITariffRepostitory tariff
             //, ITariffTestPeriod tariffTestPeriod
-            IClassWithEnum classWithEnum
+            //IClassWithEnum classWithEnum
             )
         {
+            _tariffTestPeriod = tariffRepository;
             //_product = product;
             //_include = include;
             //_tariff = tariff;
             //_tariffTestPeriod = tariffTestPeriod;
-            _classWithEnum = classWithEnum;
+            //_classWithEnum = classWithEnum;
         }
 
         [HttpGet("test")]
         public void GetSource()
         {
-            // _product.AddElement();
-            //_include.AddElement();
-            //_tariff.AddElement();
-            //_tariffTestPeriod.AddElement();
-            _classWithEnum.AddElement();
+            _tariffTestPeriod.AddTariff(/*new Tariff("test", PaymentType.Commission)*/);
         }
     }
 }

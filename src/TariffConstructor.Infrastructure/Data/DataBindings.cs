@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using TariffConstructor.Domain.TariffAggregate;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.Interface;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ObjectTests.Interface;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ObjectTests.Repository;
-using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Interface;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Repository;
 
 namespace TariffConstructor.Infrastructure.Data
@@ -14,11 +14,7 @@ namespace TariffConstructor.Infrastructure.Data
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IIncludedProductInTariff, IncludedProductInTariffRepository>();
-            services.AddScoped<IProduct, ProductRepository>();
-            services.AddScoped<ITariffRepostitory, TariffRepository>();
-            services.AddScoped<ITariffTestPeriod, TariffTestPeriodRepository>();
-            services.AddScoped<IClassWithEnum, ClassWithEnumRepository>();
+            services.AddScoped<ITariffRepository, TariffRepository>();
             return services;
         }
 

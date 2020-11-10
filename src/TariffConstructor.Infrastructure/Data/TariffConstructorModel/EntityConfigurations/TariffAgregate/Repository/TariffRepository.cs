@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TariffConstructor.Domain.TariffAggregate;
 using TariffConstructor.Domain.ValueObjects;
-using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Interface;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Repository
 {
-    class TariffRepository : ITariffRepostitory
+    class TariffRepository : ITariffRepository
     {
 
         private readonly TariffConstructorContext _DbContext;
@@ -14,19 +15,49 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             _DbContext = appDbContext;
         }
-        public void AddElement()
+
+        public void AddTariff(/*Tariff element*/)
         {
-            //Tariff tariff = new Tariff("name", "publicId");
-            //tariff.CreationDate = DateTime.Now;
-            //tariff.Archive();
-            //tariff.SetAwaitingPaymentStrategy("strategy");
-            //tariff.SetAccountingTariffId("tariff id");
-            //tariff.SetSettingsPresetId(1);
-            //tariff.SetTermsOfUseId(1);
-            //tariff.IsAcceptanceRequired = true;
-            //tariff.IsGradualFinishAvailable = false;
-            ////_DbContext.Tariff.AddRange(tariff);
-            ////_DbContext.SaveChanges();
+            Tariff tariff = new Tariff("name", PaymentType.Commission, "1");
+            tariff.Archive();
+            tariff.SetAwaitingPaymentStrategy("pyment strategy");
+            tariff.SetSettingsPresetId(1);
+            tariff.SetTermsOfUseId(1);
+            tariff.SetAccountingTariffId("tariffId");
+            TariffTestPeriod tariffTestPeriod = new TariffTestPeriod(1, TariffTestPeriodUnit.Day);
+            tariff.AddTestPeriod(tariffTestPeriod);
+            _DbContext.AddAsync(tariff);
+            _DbContext.SaveChanges();
+        }
+
+        public Task<Dictionary<int, List<int>>> GetAllProductIdsGroupByTariffId(params int[] tariffIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int[]> GetIncludedProductIdsInProductOptionTariffs(params int[] productOptionTariffIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int[]> GetIncludedProductIdsInTariffs(params int[] tariffIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tariff> GetTariff(int tariffId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Tariff>> GetTariffs(params int[] tariffIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Tariff>> GetTariffsWithAcceptanceRequired()
+        {
+            throw new NotImplementedException();
         }
     }
 }

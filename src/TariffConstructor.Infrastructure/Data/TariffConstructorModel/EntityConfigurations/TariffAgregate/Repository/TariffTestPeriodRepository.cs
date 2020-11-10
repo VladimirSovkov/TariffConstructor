@@ -1,9 +1,8 @@
 ﻿using TariffConstructor.Domain.TariffAggregate;
-using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Interface;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Repository
 {
-    public class TariffTestPeriodRepository : ITariffTestPeriod
+    public class TariffTestPeriodRepository 
     {
         private readonly TariffConstructorContext _DbContext;
 

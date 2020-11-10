@@ -7,7 +7,7 @@ using TariffConstructor.Domain.ValueObjects;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations
 {
-    public class IncludedProductInTariffRepository : IIncludedProductInTariff
+    public class IncludedProductInTariffRepository 
     {
         private readonly TariffConstructorContext _DbContext;
 

@@ -73,7 +73,6 @@ namespace TariffConstructor.Infrastructure.Data
             //ProductOptionTariffAggregate
             builder.ApplyConfiguration(new ProductOptionTariffPriceMap());
             builder.ApplyConfiguration(new ProductOptionTariffMap());
-
         }
     }
 }
