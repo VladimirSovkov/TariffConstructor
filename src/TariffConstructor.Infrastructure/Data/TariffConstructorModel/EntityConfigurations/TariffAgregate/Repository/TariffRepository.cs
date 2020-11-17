@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.TariffAggregate;
 using TariffConstructor.Domain.ValueObjects;
@@ -16,7 +18,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _DbContext = appDbContext;
         }
 
-        public void AddTariff(/*Tariff element*/)
+        public Task<Tariff> AddTariff(Tariff entity)
         {
             Tariff tariff = new Tariff("name", PaymentType.Commission, "1");
             tariff.Archive();
@@ -28,6 +30,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             tariff.AddTestPeriod(tariffTestPeriod);
             _DbContext.AddAsync(tariff);
             _DbContext.SaveChanges();
+
+            return Task.FromResult<Tariff>(tariff);
         }
 
         public Task<Dictionary<int, List<int>>> GetAllProductIdsGroupByTariffId(params int[] tariffIds)
@@ -57,7 +61,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
 
         public Task<List<Tariff>> GetTariffsWithAcceptanceRequired()
         {
-            throw new NotImplementedException();
+            var abc = _DbContext.Tariffs.ToListAsync();
+            return abc;
         }
     }
 }

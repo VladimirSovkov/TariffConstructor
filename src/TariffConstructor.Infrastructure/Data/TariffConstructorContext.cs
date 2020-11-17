@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
+using System.Linq;
 using TariffConstructor.Domain.ProductAggregate;
 using TariffConstructor.Domain.ProductOptionAggregate;
 using TariffConstructor.Domain.ProductOptionKindAggregate;
@@ -73,6 +77,27 @@ namespace TariffConstructor.Infrastructure.Data
             //ProductOptionTariffAggregate
             builder.ApplyConfiguration(new ProductOptionTariffPriceMap());
             builder.ApplyConfiguration(new ProductOptionTariffMap());
+
+            foreach (var property in builder.Model.GetEntityTypes()
+                .SelectMany(t => t.GetProperties()))
+            {
+                if (property.ClrType == typeof(decimal) || property.ClrType == typeof(decimal?))
+                {
+                    //property.Relational().ColumnType = "decimal(19, 4)";
+                }
+                else if (property.ClrType == typeof(DateTime) || property.ClrType == typeof(DateTime?))
+                {
+                    property.SetValueConverter(
+                        new ValueConverter<DateTime, DateTime>(
+                            v => v,
+                            v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
+
+                    if (property.ValueGenerated != ValueGenerated.Never)
+                    {
+                        property.SetValueGeneratorFactory((_, __) => new DateTimeNowGenerator());
+                    }
+                }
+            }
         }
     }
 }

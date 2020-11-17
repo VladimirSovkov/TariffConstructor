@@ -41,7 +41,7 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("test")]
         public void GetSource()
         {
-            _tariffTestPeriod.AddTariff(/*new Tariff("test", PaymentType.Commission)*/);
+            _tariffTestPeriod.AddTariff(new Tariff("name", PaymentType.Commission));
         }
     }
 }

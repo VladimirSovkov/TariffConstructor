@@ -23,7 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TariffConstructor.Domain\TariffConstructor.Domain.csproj" />
     <ProjectReference Include="..\TariffConstructor.Infrastructure\TariffConstructor.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AdminApi\" />
   </ItemGroup>
 
 </Project>
