@@ -27,9 +27,9 @@ namespace TariffConstructor.Domain.TariffAggregate
 
         public string Name { get; private set; }
 
-        public DateTime CreationDate { get;  set; } //private set
+        public DateTime CreationDate { get; private set; } 
 
-        public bool IsArchived { get; set; }//private set
+        public bool IsArchived { get; private set; }
 
         /// <summary>
         /// Тестовый период

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AddTariffComponent } from './Tariff/add-tariff/add-tariff.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,16 +26,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DeleteMeComponent } from './delete-me/delete-me.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
       AppComponent,
-    AddTariffComponent,
     NavMenuComponent,
     TariffTableComponent,
     ProductTableComponent,
     ProductOptionTableComponent,
     AddingTariffComponent,
+    DeleteMeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,15 +56,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
     HttpClientModule,
     AppRoutingModel,
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [
-    NavMenuComponent
+    NavMenuComponent,
+    AddingTariffComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

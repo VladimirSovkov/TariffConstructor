@@ -1,5 +1,21 @@
 .form_input
 {
   margin: 0 auto;
-  width: 500px;
+  width: 420px;
+  display: block;
+}
+
+mat-form-field
+{
+  width: 100%;
+}
+
+.TariffTestPeriodForm
+{
+  background-color: aquamarine;
+}
+
+.MatHintSelect
+{
+  margin-left: -10px;
 }

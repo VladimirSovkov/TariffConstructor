@@ -1,18 +1,33 @@
 <div class="form_input">
-<p>
   <mat-form-field appearance="standard">
     <mat-label>Name</mat-label>
-    <input matInput placeholder="Placeholder">
+    <input matInput placeholder="Placeholder" [ngModel]="Name">
     <mat-hint>Name</mat-hint>
   </mat-form-field>
-</p>
   <p>
-    <mat-form-field appearance="standard">
-      <mat-label>Payment Type</mat-label>
-      <input matInput placeholder="Placeholder">
-      <mat-hint>paymentType</mat-hint>
-    </mat-form-field>
+    <mat-checkbox class="checkbox" [(ngModel)]="IsArchived" [color]="$any('primary')">IsArchived</mat-checkbox>
   </p>
+  <div class="TariffTestPeriodForm">
+    <h4>Test Period</h4>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Value</mat-label>
+        <input matInput placeholder="Placeholder" type="number">
+        <mat-hint>Name</mat-hint>
+      </mat-form-field>
+    </p>
+    <p class="TariffTestPeriodUintForm">
+      <mat-form-field appearance="fill">
+        <mat-label>TariffTestPeriodUnit</mat-label>
+        <mat-select [disabled]="TariffTestPeriodUnit.value">
+          <mat-option value="0">Day</mat-option>
+          <mat-option value="1">Week</mat-option>
+          <mat-option value="2">Month</mat-option>
+        </mat-select>
+        <mat-hint class="MatHintSelect">TariffTestPeriodUnit</mat-hint>
+      </mat-form-field>
+    </p>
+  </div>
   <p>
     <mat-form-field appearance="standard">
       <mat-label>AccountingName</mat-label>
@@ -20,10 +35,17 @@
       <mat-hint>PublicId</mat-hint>
     </mat-form-field>
   </p>
-
-<p>
-  Здесь должен быть check box для IsArchived
-</p>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Payment Type</mat-label>
+      <mat-select [disabled]="disableSelect.value">
+        <mat-option value="0">Prepaid</mat-option>
+        <mat-option value="1">Postpaid</mat-option>
+        <mat-option value="2">Commission</mat-option>
+      </mat-select>
+      <mat-hint class="MatHintSelect">Payment Type</mat-hint>
+    </mat-form-field>
+  </div>
   <p>
     <mat-form-field appearance="standard">
       <mat-label>AwaitingPaymentStrategy</mat-label>
@@ -31,7 +53,6 @@
       <mat-hint>PublicId</mat-hint>
     </mat-form-field>
   </p>
-
   <p>
     <mat-form-field appearance="standard">
       <mat-label>Accounting Tariff Id</mat-label>
@@ -39,29 +60,27 @@
       <mat-hint>PublicId</mat-hint>
     </mat-form-field>
   </p>
-
   <p>
     <mat-form-field appearance="standard">
-      <mat-label>Accounting Tariff Id</mat-label>
+      <mat-label>SettingsPresetId (Select)</mat-label>
       <input matInput placeholder="Placeholder">
-      <mat-hint>PublicId</mat-hint>
+      <mat-hint>SettingsPresetId</mat-hint>
     </mat-form-field>
   </p>
-
-<p>
-  <mat-form-field appearance="fill">
-    <mat-label>Fill form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>TermsOfUseId (Select)</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-hint>TermsOfUseId</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-checkbox class="checkbox" [(ngModel)]="IsAcceptanceRequired" [color]="$any('primary')">IsAcceptanceRequired
+    </mat-checkbox>
+  </p>
+  <p>
+    <mat-checkbox class="checkbox" [(ngModel)]="IsGradualFinishAvailable" [color]="$any('primary')">
+      IsGradualFinishAvailable
+    </mat-checkbox>
+  </p>
 </div>
