@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {Tariff} from '../../shared/model/tariff.model';
 
 export interface PeriodicElement {
   name: string;
@@ -21,14 +23,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
-export interface Tariff{
-  id: number;
-  tenantId: number;
-  publicId: string;
-  name: string;
-  paymentType: number;
-}
-
 @Component({
   selector: 'app-tariff-table',
   templateUrl: './tariff-table.component.html',
@@ -41,12 +35,16 @@ export class TariffTableComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   tariff: Tariff[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.http.get<Tariff[]>('http://localhost:4401/tariff/getTariffs').subscribe(response => {
       this.tariff = response;
     });
+  }
+
+  goAdd(): void{
+    this.router.navigate(['addingTariff']);
   }
 
 }

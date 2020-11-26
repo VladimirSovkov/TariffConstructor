@@ -27,58 +27,59 @@ namespace TariffConstructor.Domain.TariffAggregate
 
         public string Name { get; private set; }
 
-        public DateTime CreationDate { get;  set; }
+        public DateTime CreationDate { get;  set; } //private set
 
-        public bool IsArchived { get; set; }
+        public bool IsArchived { get; set; }//private set
 
         /// <summary>
         /// Тестовый период
         /// </summary>
-        public virtual TariffTestPeriod TestPeriod { get; private set; }
+        public virtual TariffTestPeriod TestPeriod { get; private set; } //для добавления нужно будет
 
         /// <summary>
         /// Бухгалтерское наименование тарифа (обычно используется в бухгалтерских документах)
         /// </summary>
-        public string AccountingName { get; private set; }
+        public string AccountingName { get; private set; }//для добавления нужно будет
 
         /// <summary>
         /// Тип оплаты тарифа
         /// </summary>
-        public PaymentType PaymentType { get; private set; }
+        public PaymentType PaymentType { get; private set; }//для добавления нужно будет
 
         /// <summary>
         /// Тип оплаты тарифа
         /// </summary>
-        public string AwaitingPaymentStrategy { get; private set; }
+        public string AwaitingPaymentStrategy { get; private set; }//пока не надо 
 
         /// <summary>
         /// Идентификатор тарифа в бухгалтерской системе
         /// </summary>
-        public string AccountingTariffId { get; private set; }
+        public string AccountingTariffId { get; private set; }//для добавления нужно будет
 
         /// <summary>
         /// Идентификатор предустановок для приложений и других сервисов
         /// </summary>
-        public int? SettingsPresetId { get; private set; }
+        public int? SettingsPresetId { get; private set; }// выпадающий список. По умолчанию = 0
 
         /// <summary>
         /// Условия использования тарифа
         /// </summary>
-        public int? TermsOfUseId { get; private set; }
+        public int? TermsOfUseId { get; private set; }// выпадающий список. По умолчанию = 0
 
         /// <summary>
         /// Показывает требуется ли акцепт для использования данного тарифа
         /// </summary>
-        public bool IsAcceptanceRequired { get; set; }
+        public bool IsAcceptanceRequired { get; set; }//check box
 
 
         /// <summary>
         /// Показывает доступен ли для плавного завершения
         /// </summary>
-        public bool IsGradualFinishAvailable { get; set; }
+        public bool IsGradualFinishAvailable { get; set; }//check box
 
         /// <summary>
         /// Прайс-лист тарифа по периодам
+        /// нужно будет для добавления тарифа
         /// </summary>
         private readonly List<TariffPrice> _prices = new List<TariffPrice>();
 

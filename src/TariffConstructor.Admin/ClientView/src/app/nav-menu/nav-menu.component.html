@@ -9,12 +9,13 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let nav of nameItem">{{nav}}</a>
+        <a mat-list-item [routerLink]="['/']">Tariff</a>
+        <a mat-list-item [routerLink]="['/product']">Product</a>
+        <a mat-list-item [routerLink]="['/productOption']">Prodict option</a>
       </mat-nav-list>
     </mat-sidenav>
-
     <mat-sidenav-content>
-     <app-tariff-table></app-tariff-table>
+     <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

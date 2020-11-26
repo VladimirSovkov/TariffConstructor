@@ -24,9 +24,11 @@ namespace TariffConstructor.Domain.ProductAggregate
 
         public string Name { get; private set; }
 
+        //в таблицу можно не выводить
+        //нужно будет для изменения 
         public string ShortName { get; private set; }
 
-       // public ProductSettlementKinds ProductSettlementKinds { get; private set; }
+        //public ProductSettlementKinds ProductSettlementKinds { get; private set; }
 
         public DateTime CreationDate { get; set; }
 

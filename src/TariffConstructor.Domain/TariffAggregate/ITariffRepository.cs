@@ -16,6 +16,8 @@ namespace TariffConstructor.Domain.TariffAggregate
 
         Task<List<Tariff>> GetTariffs( params int[] tariffIds );
 
+        //Task<List<Tariff>> GetTariffs(int countTariff);
+
         Task<List<Tariff>> GetTariffsWithAcceptanceRequired();
 
     }

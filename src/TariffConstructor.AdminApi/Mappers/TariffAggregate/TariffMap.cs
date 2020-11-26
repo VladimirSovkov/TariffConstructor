@@ -19,17 +19,16 @@ namespace TariffConstructor.AdminApi.Mappers.TariffAggregate
                 {
                     Id = tariff.Id,
                     TenantId = tariff.TenantId,
-                    PublicId = tariff.PublicId,
                     Name = tariff.Name,
-                    PaymentType = (int)tariff.PaymentType
-                    //ContractKindBindings = tariff.ContractKindBindings.ToList()
+                    PaymentType = (int)tariff.PaymentType,
+                    ContractKindBindings = tariff.ContractKindBindings.ToList()
                 };
             }
         }
 
-        public static List<TariffDto> Map(this IEnumerable<Tariff> tariff)
+        public static IReadOnlyList<TariffDto> Map(this IEnumerable<Tariff> tariffs)
         {
-            return tariff == null ? new List<TariffDto>() : tariff.ToList().ConvertAll(Map);
+            return tariffs == null ? new List<TariffDto>() : tariffs.Select(Map).ToList();
         }
     }
 }

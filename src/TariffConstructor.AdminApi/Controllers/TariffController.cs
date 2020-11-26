@@ -3,10 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.Domain.TariffAggregate;
-using TariffConstructor.AdminApi.Mappers;
 using TariffConstructor.AdminApi.Mappers.TariffAggregate;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -14,19 +11,20 @@ namespace TariffConstructor.AdminApi.Controllers
     public class TariffController : ControllerBase
     {
 
-        private readonly ITariffRepository _tariff;
+        private readonly ITariffRepository tariffRepository; 
 
         public TariffController(
-            ITariffRepository tariff)
+            ITariffRepository tariffRepository)
         {
-            _tariff = tariff;
+            this.tariffRepository = tariffRepository;
         }
 
         // GET: tariff/getTariffs
+        //передовать IReadOnly or IReadOnlyCollection
         [HttpGet("getTariffs")]
-        public async Task<List<TariffDto>> Get()
+        public async Task<IReadOnlyList<TariffDto>> Get()
         {
-            List<Tariff> tariff = await _tariff.GetTariffsWithAcceptanceRequired();
+            List<Tariff> tariff = await tariffRepository.GetTariffsWithAcceptanceRequired();
             return tariff.Map();
         }
 
