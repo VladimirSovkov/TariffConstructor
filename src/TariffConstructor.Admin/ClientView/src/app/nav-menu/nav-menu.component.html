@@ -1,6 +1,8 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
-  <mat-toolbar  class="example-toolbar">
-    <button class="menu-button" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="example-toolbar">
+    <button class="menu-button" mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="example-app-name">Tariff Constructor</h1>
   </mat-toolbar>
 
@@ -15,7 +17,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-     <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

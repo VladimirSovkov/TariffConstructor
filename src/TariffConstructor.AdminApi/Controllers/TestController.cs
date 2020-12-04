@@ -4,44 +4,74 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TariffConstructor.AdminApi.Dto;
+using TariffConstructor.AdminApi.Mappers.TariffAggregate;
+using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.TariffAggregate.Toolkit;
 using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.Interface;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ObjectTests.Interface;
+using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
     [Route("test")]
     public class TestController : Controller
     {
-        //private readonly IIncludedProductInTariff _include;
-        //private readonly IProduct _product;
-        //private readonly ITariffRepostitory _tariff;
         private readonly ITariffRepository _tariffTestPeriod;
-        //private readonly IClassWithEnum _classWithEnum;
 
         public TestController(
             ITariffRepository tariffRepository
-            //IProduct product
-            //, IIncludedProductInTariff include
-            //, ITariffRepostitory tariff
-            //, ITariffTestPeriod tariffTestPeriod
-            //IClassWithEnum classWithEnum
             )
         {
             _tariffTestPeriod = tariffRepository;
-            //_product = product;
-            //_include = include;
-            //_tariff = tariff;
-            //_tariffTestPeriod = tariffTestPeriod;
-            //_classWithEnum = classWithEnum;
         }
 
-        [HttpGet("test")]
-        public void GetSource()
+        [HttpPost("post")]
+        public void AddTariff([FromBody]TariffLoadParameters parameters) 
         {
-            _tariffTestPeriod.AddTariff(new Tariff("name", PaymentType.Commission));
+            var abc = parameters;
+            PaymentType py = (PaymentType)Convert.ToInt32(parameters.PaymentType);
+            Tariff tariff = new Tariff(parameters.Name, py);
+            tariff.SetAccountingTariffId(parameters.AccountingTariffId);
+            tariff.SetAwaitingPaymentStrategy(parameters.AwaitingPaymentStrategy);
+            tariff.SetSettingsPresetId(parameters.SettingsPresetId);
+            tariff.SetTermsOfUseId(parameters.TermsOfUseId);
+            if (parameters.IsArchived)
+            {
+                tariff.Archive();
+            }
+
+            tariff.AddTestPeriod(new TariffTestPeriod(parameters.Value, (TariffTestPeriodUnit)Convert.ToInt32(parameters.Unit)));
+            _tariffTestPeriod.AddTariff(tariff);
+        }
+
+        [HttpGet("paginator")]
+        public async Task<IReadOnlyList<TariffDto>> GetTariffs()
+        {
+            TariffPaginator abc = await _tariffTestPeriod.GetTariffs(5, 2);
+            IReadOnlyList<TariffDto> tariffs = abc.Tariffs.Map();
+            return tariffs;
+        }
+
+        [HttpGet("search")]
+        [ProducesResponseType(typeof(SearchResult<TariffDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get(int pageNumber, int onPage, string searchString)
+        {
+            var abc = new ContractSearchPattern();
+            abc.PageNumber = pageNumber;
+            abc.OnPage = onPage;
+            abc.SearchString = searchString;
+            SearchResult<Tariff> searchResult = await _tariffTestPeriod.GetFoundRates(abc);
+
+            return Ok(new SearchResult<TariffDto>
+            {
+                Items = searchResult.Items.Map(),
+                TotalCount = searchResult.TotalCount,
+                FilteredCount = searchResult.FilteredCount
+            }); 
         }
     }
 }

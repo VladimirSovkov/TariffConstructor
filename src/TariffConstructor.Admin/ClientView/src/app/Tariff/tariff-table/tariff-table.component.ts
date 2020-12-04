@@ -1,27 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Tariff} from '../../shared/model/tariff.model';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import {TariffService} from '../../shared/service/tariff.service';
+import {TariffSearchPattern} from '../../shared/tariff-search-pattern.model';
+import {SearchResult} from '../../shared/search-result.model';
+import { Pagination} from '../../shared/pagination.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tariff-table',
@@ -32,14 +17,38 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class TariffTableComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'paymentType'];
-  dataSource = ELEMENT_DATA;
-  tariff: Tariff[];
+  tariffs: Tariff[];
+  // вместо него использую pageEvent
+  pagination: Pagination;
+  filter = '';
+  searchPattern: TariffSearchPattern;
+  pageEvent: PageEvent;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private tariffService: TariffService)
+  {
+    this.searchPattern = new TariffSearchPattern();
+    this.pagination = new Pagination();
+    this.pageEvent = new PageEvent();
+    this.pageEvent.pageIndex = 0;
+    this.pageEvent.pageSize = 5;
+  }
 
-  ngOnInit(): void {
-    this.http.get<Tariff[]>('http://localhost:4401/tariff/getTariffs').subscribe(response => {
-      this.tariff = response;
+   ngOnInit(): void {
+     // this.http.get<Tariff[]>('http://localhost:4401/tariff/getTariffs').subscribe(response => {
+     //   this.tariff = response;
+     // });
+     this.load();
+   }
+
+  load(): void{
+    console.log('strFilter: ', this.filter);
+    this.searchPattern.onPage = this.pageEvent.pageSize;
+    this.searchPattern.pageNumber = this.pageEvent.pageIndex + 1;
+    this.searchPattern.searchString = this.filter;
+    this.tariffService.getData(this.searchPattern).subscribe( (searchResult: SearchResult<Tariff>) => {
+      this.tariffs = searchResult.items;
+      this.pageEvent.length = searchResult.totalCount;
     });
   }
 
@@ -47,4 +56,9 @@ export class TariffTableComponent implements OnInit {
     this.router.navigate(['addingTariff']);
   }
 
+  applyFilter(event: Event): void  {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filter = filterValue.trim().toLowerCase();
+    this.load();
+  }
 }

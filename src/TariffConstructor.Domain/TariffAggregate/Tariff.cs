@@ -69,13 +69,13 @@ namespace TariffConstructor.Domain.TariffAggregate
         /// <summary>
         /// Показывает требуется ли акцепт для использования данного тарифа
         /// </summary>
-        public bool IsAcceptanceRequired { get; set; }//check box
+        public bool IsAcceptanceRequired { get; private set; }//check box
 
 
         /// <summary>
         /// Показывает доступен ли для плавного завершения
         /// </summary>
-        public bool IsGradualFinishAvailable { get; set; }//check box
+        public bool IsGradualFinishAvailable { get; private set; }//check box
 
         /// <summary>
         /// Прайс-лист тарифа по периодам

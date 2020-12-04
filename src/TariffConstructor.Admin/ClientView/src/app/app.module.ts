@@ -25,11 +25,12 @@ import { AddingTariffComponent } from './Tariff/adding-tariff/adding-tariff.comp
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteMeComponent } from './delete-me/delete-me.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { TariffService } from './shared/service/tariff.service';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NavMenuComponent,
     AddingTariffComponent
   ],
-  providers: [],
+  providers: [TariffService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

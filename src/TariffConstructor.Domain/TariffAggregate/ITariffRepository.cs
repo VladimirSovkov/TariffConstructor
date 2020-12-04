@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
+using TariffConstructor.Domain.ContractModel;
+using TariffConstructor.Domain.TariffAggregate.Toolkit;
 using TariffConstructor.Toolkit.Abstractions;
+using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.Domain.TariffAggregate
 {
@@ -16,9 +20,10 @@ namespace TariffConstructor.Domain.TariffAggregate
 
         Task<List<Tariff>> GetTariffs( params int[] tariffIds );
 
-        //Task<List<Tariff>> GetTariffs(int countTariff);
+        Task<TariffPaginator> GetTariffs(int countElementInPage, int page = 1);
+
+        Task<SearchResult<Tariff>> GetFoundRates(ContractSearchPattern searchPattern);
 
         Task<List<Tariff>> GetTariffsWithAcceptanceRequired();
-
     }
 }
