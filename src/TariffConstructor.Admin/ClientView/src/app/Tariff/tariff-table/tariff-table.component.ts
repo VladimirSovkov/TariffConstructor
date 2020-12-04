@@ -35,14 +35,10 @@ export class TariffTableComponent implements OnInit {
   }
 
    ngOnInit(): void {
-     // this.http.get<Tariff[]>('http://localhost:4401/tariff/getTariffs').subscribe(response => {
-     //   this.tariff = response;
-     // });
      this.load();
    }
 
   load(): void{
-    console.log('strFilter: ', this.filter);
     this.searchPattern.onPage = this.pageEvent.pageSize;
     this.searchPattern.pageNumber = this.pageEvent.pageIndex + 1;
     this.searchPattern.searchString = this.filter;

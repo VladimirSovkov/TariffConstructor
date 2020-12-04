@@ -30,6 +30,8 @@ import { DeleteMeComponent } from './delete-me/delete-me.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { TariffService } from './shared/service/tariff.service';
+import { ProductService } from './shared/service/product/product.service';
+import { ProductOptionService } from './shared/service/product-option/product-option.service';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { TariffService } from './shared/service/tariff.service';
     NavMenuComponent,
     AddingTariffComponent
   ],
-  providers: [TariffService],
+  providers: [TariffService,
+    ProductService,
+    ProductOptionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

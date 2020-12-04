@@ -39,6 +39,6 @@ export class AddingTariffComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['/tariff']);
   }
 }

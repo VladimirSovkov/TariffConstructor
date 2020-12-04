@@ -1,2 +1,46 @@
-<p>product-option-table works!</p>
-<h1>Product option</h1>
+<div class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="productOptions" matSort>
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <!-- nomenclatureId Column -->
+    <ng-container matColumnDef="nomenclatureId">
+      <th mat-header-cell *matHeaderCellDef> NomenclatureId </th>
+      <td mat-cell *matCellDef="let element"> {{element.nomenclatureId}} </td>
+    </ng-container>
+    <!-- productId Column -->
+    <ng-container matColumnDef="productId">
+      <th mat-header-cell *matHeaderCellDef> productId </th>
+      <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+    </ng-container>
+    <!-- isMultiple Column -->
+    <ng-container matColumnDef="isMultiple">
+      <th mat-header-cell *matHeaderCellDef> isMultiple </th>
+      <td mat-cell *matCellDef="let element"> {{element.isMultiple}} </td>
+    </ng-container>
+    <!-- accountingName Column -->
+    <ng-container matColumnDef="accountingName">
+      <th mat-header-cell *matHeaderCellDef> accountingName </th>
+      <td mat-cell *matCellDef="let element"> {{element.accountingName}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [length]="pageEvent.length"
+                 [pageSize]="pageEvent.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = $event; load()">
+  </mat-paginator>
+</div>
