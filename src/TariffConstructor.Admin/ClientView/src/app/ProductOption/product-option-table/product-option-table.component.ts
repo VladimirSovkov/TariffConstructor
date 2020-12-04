@@ -4,6 +4,7 @@ import {ProductOptionSearchPattern} from '../../shared/model/ProductOption/produ
 import {PageEvent} from '@angular/material/paginator';
 import {ProductOptionService} from '../../shared/service/product-option/product-option.service';
 import {SearchResult} from '../../shared/search-result.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-option-table',
@@ -17,7 +18,7 @@ export class ProductOptionTableComponent implements OnInit {
   searchPattern: ProductOptionSearchPattern;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  constructor(private productOptionService: ProductOptionService) {
+  constructor(private productOptionService: ProductOptionService, private router: Router) {
     this.searchPattern = new ProductOptionSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
@@ -42,5 +43,9 @@ export class ProductOptionTableComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filter = filterValue.trim().toLowerCase();
     this.load();
+  }
+
+  goAdd(): void {
+    this.router.navigate(['addProductOption']);
   }
 }

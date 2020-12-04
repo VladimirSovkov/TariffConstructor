@@ -45,4 +45,7 @@ export class ProductTableComponent implements OnInit {
     this.load();
   }
 
+  goAdd(): void{
+    this.router.navigate(['addProduct']);
+  }
 }

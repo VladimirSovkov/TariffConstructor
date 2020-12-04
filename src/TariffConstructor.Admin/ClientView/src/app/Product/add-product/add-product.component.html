@@ -1,0 +1,23 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" (click)="goBack()">Назад</button>
+</div>
+<div class="form_input">
+  <form class="add_product">
+    <p> Имя продукта:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true">
+      </mat-form-field>
+    </p>
+    <p> Номенклатурный идентификатор:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true">
+      </mat-form-field>
+    </p>
+    <p> Короткое имя продукта:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true">
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit">Добавить</button>
+  </form>
+</div>

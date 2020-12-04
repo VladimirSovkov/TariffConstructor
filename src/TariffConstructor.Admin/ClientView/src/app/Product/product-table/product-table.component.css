@@ -1,3 +1,13 @@
 table {
   width: 100%;
 }
+
+.input-filter-product
+{
+  margin-left: 15px;
+}
+
+.btn-add-product
+{
+  margin: 15px;
+}

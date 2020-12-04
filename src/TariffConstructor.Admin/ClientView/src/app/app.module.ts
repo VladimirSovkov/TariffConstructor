@@ -32,6 +32,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { TariffService } from './shared/service/tariff.service';
 import { ProductService } from './shared/service/product/product.service';
 import { ProductOptionService } from './shared/service/product-option/product-option.service';
+import { AddProductComponent } from './Product/add-product/add-product.component';
+import { AddProductOptionComponent } from './ProductOption/add-product-option/add-product-option.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ProductOptionService } from './shared/service/product-option/product-op
     ProductTableComponent,
     ProductOptionTableComponent,
     AddingTariffComponent,
-    DeleteMeComponent
+    DeleteMeComponent,
+    AddProductComponent,
+    AddProductOptionComponent
   ],
   imports: [
     BrowserModule,
