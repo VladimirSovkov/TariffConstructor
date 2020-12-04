@@ -33,7 +33,6 @@
   <mat-paginator [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
                  [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event"
-                 (page)="load()">
+                 (page)="pageEvent = $event; load()">
   </mat-paginator>
 </div>

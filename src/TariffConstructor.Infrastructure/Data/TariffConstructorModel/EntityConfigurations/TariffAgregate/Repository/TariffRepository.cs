@@ -76,7 +76,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return abc;
         }
 
-        public async Task<SearchResult<Tariff>> GetFoundRates(ContractSearchPattern searchPattern)
+        public async Task<SearchResult<Tariff>> GetFoundRates(TarifftSearchPattern searchPattern)
         {
             IQueryable<Tariff> query = _DbContext.Tariffs.AsQueryable();
 

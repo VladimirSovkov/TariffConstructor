@@ -22,7 +22,8 @@ namespace TariffConstructor.Domain.TariffAggregate
 
         Task<TariffPaginator> GetTariffs(int countElementInPage, int page = 1);
 
-        Task<SearchResult<Tariff>> GetFoundRates(ContractSearchPattern searchPattern);
+        //search
+        Task<SearchResult<Tariff>> GetFoundRates(TarifftSearchPattern searchPattern);
 
         Task<List<Tariff>> GetTariffsWithAcceptanceRequired();
     }

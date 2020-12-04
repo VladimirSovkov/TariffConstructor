@@ -3,29 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Domain.ProductOptionAggregate;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations
+namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionAggregate.Repository
 {
-    public class ProductRepository : IProductRepository
+    public class ProductOptionRepository : IProductOptionRepository
     {
         private readonly TariffConstructorContext _ctx;
 
-        public ProductRepository(TariffConstructorContext appDbContext)
+        public ProductOptionRepository(TariffConstructorContext appDbContext)
         {
             _ctx = appDbContext;
         }
 
-        public Task<Product> AddTariff(Product entity)
+        public Task<ProductOption> AddTariff(ProductOption entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<SearchResult<Product>> Search(ProductSearchPattern searchPattern)
+        public Task<ProductOption> GetProductOption(int productOptionId)
         {
-            IQueryable<Product> query = _ctx.Products.AsQueryable();
+            throw new System.NotImplementedException();
+        }
+
+        public Task<List<ProductOption>> GetProductOptions(int[] productOptionIds)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<SearchResult<ProductOption>> Search(ProductOptionSearchPattern searchPattern)
+        {
+            IQueryable<ProductOption> query = _ctx.ProductOptions.AsQueryable();
             int totalCount = query.Count();
 
             // filters
@@ -44,28 +54,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             // taking
             query = query.Skip(searchPattern.Skip()).Take(searchPattern.Take());
 
-            return new SearchResult<Product>
+            return new SearchResult<ProductOption>
             {
                 Items = await query.ToListAsync(),
                 TotalCount = totalCount,
                 FilteredCount = filteredCount
             };
-        }
-
-        public Task<Product> GetProduct(int productId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<List<Product>> GetProducts(IEnumerable<int> productIds)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<List<Product>> GetProducts()
-        {
-            List<Product> products = await _ctx.Products.ToListAsync();
-            return products;
         }
     }
 }
