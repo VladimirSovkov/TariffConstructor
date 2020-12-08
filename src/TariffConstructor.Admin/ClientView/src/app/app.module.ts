@@ -34,6 +34,7 @@ import { ProductService } from './shared/service/product/product.service';
 import { ProductOptionService } from './shared/service/product-option/product-option.service';
 import { AddProductComponent } from './Product/add-product/add-product.component';
 import { AddProductOptionComponent } from './ProductOption/add-product-option/add-product-option.component';
+import { ChangeTariffComponent } from './Tariff/change-tariff/change-tariff.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AddProductOptionComponent } from './ProductOption/add-product-option/ad
     AddingTariffComponent,
     DeleteMeComponent,
     AddProductComponent,
-    AddProductOptionComponent
+    AddProductOptionComponent,
+    ChangeTariffComponent
   ],
   imports: [
     BrowserModule,

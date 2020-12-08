@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Tariff} from '../../shared/model/tariff.model';
 import {TariffService} from '../../shared/service/tariff.service';
-import {TariffSearchPattern} from '../../shared/tariff-search-pattern.model';
+import { TariffSearchPattern } from '../../shared/tariff-search-pattern.model';
 import {SearchResult} from '../../shared/search-result.model';
 import { Pagination} from '../../shared/pagination.model';
 import { PageEvent } from '@angular/material/paginator';
@@ -16,7 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 
 export class TariffTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'paymentType'];
+  displayedColumns: string[] = ['id', 'name', 'paymentType', 'action'];
   tariffs: Tariff[];
   // вместо него использую pageEvent
   pagination: Pagination;
@@ -50,6 +50,10 @@ export class TariffTableComponent implements OnInit {
 
   goAdd(): void{
     this.router.navigate(['addingTariff']);
+  }
+
+  goChange(id): void {
+    this.router.navigate(['changeTariff', id]);
   }
 
   applyFilter(event: Event): void  {
