@@ -22,6 +22,7 @@ namespace TariffConstructor.Domain.BillingSettingAggregate
         public virtual BillingSetting BillingSetting { get; private set; }
 
         public string SettingPublicId => BillingSetting.PublicId;
+
         public Setting Setting => BillingSetting.Setting;
         public string Value { get; private set; }
 

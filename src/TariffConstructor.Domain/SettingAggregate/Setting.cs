@@ -47,6 +47,30 @@ namespace TariffConstructor.Domain.SettingAggregate
             _enumValues.Add( new SettingEnumValue( valueCode, valueName ) );
         }
 
+        public void SetType(SettingType type)
+        {
+            Type = type;
+        }
+        public void SetCode(string code)
+        {
+            Code = code;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public void SetDescription(string description)
+        {
+            Description = description;
+        }
+
+        public void SetIsComputing(bool isComputing)
+        {
+            IsComputing = isComputing;
+        }
+
         protected Setting()
         {
         }

@@ -3,12 +3,75 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TariffConstructor.Infrastructure.Migrations.Migrations
 {
-    public partial class TariffConstructorDb : Migration
+    public partial class TariffConstructorMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoFor");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForApplicationSetting");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForApplicationSettingPreset");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForApplicationSettingSet");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForApplicationSettingValue");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForAvailableProductOptionTariffInTariff");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForAvailableTariffForUpgrade");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForBillingSetting");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForBillingSettingPreset");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForBillingSettingSet");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForIncludedProductInTariff");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForIncludedProductOptionInTariff");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForProduct");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForProductOption");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForProductOptionKind");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForProductOptionTariff");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForSetting");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForSettingEnumValue");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForTariff");
+
+            migrationBuilder.CreateSequence<int>(
                 name: "DBSequenceHiLoForTariffAdvancePrice");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForTariffPrice");
+
+            migrationBuilder.CreateSequence<int>(
+                name: "DBSequenceHiLoForTariffToContractKindBinding");
 
             migrationBuilder.CreateTable(
                 name: "AvailableTariffForUpgrade",
@@ -56,6 +119,46 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductOptionKind", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Setting",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Type = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(maxLength: 50, nullable: true),
+                    Name = table.Column<string>(maxLength: 255, nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    IsComputing = table.Column<bool>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Setting", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SettingsPreset",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 255, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SettingsPreset", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SettingsSet",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SettingsSet", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +216,69 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         name: "FK_ProductOption_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicationSetting",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    ApplicationId = table.Column<int>(nullable: false),
+                    SettingId = table.Column<int>(nullable: false),
+                    DefaultValue = table.Column<string>(maxLength: 50, nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    PublicId = table.Column<string>(maxLength: 68, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationSetting", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationSetting_ApplicationId_SettingId", x => new { x.ApplicationId, x.SettingId });
+                    table.ForeignKey(
+                        name: "FK_ApplicationSetting_Setting_SettingId",
+                        column: x => x.SettingId,
+                        principalTable: "Setting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BillingSetting",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    SettingId = table.Column<int>(nullable: false),
+                    PublicId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BillingSetting", x => x.Id);
+                    table.UniqueConstraint("AK_BillingSetting_SettingId_PublicId", x => new { x.SettingId, x.PublicId });
+                    table.ForeignKey(
+                        name: "FK_BillingSetting_Setting_SettingId",
+                        column: x => x.SettingId,
+                        principalTable: "Setting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SettingEnumValue",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    SettingId = table.Column<int>(nullable: false),
+                    Code = table.Column<string>(maxLength: 100, nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SettingEnumValue", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SettingEnumValue_Setting_SettingId",
+                        column: x => x.SettingId,
+                        principalTable: "Setting",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -258,6 +424,152 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ApplicationSettingPreset",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    SettingsPresetId = table.Column<int>(nullable: false),
+                    ApplicationSettingId = table.Column<int>(nullable: false),
+                    Value_DefaultValue = table.Column<string>(nullable: true),
+                    Value_MinValue = table.Column<string>(nullable: true),
+                    Value_MaxValue = table.Column<string>(nullable: true),
+                    IsRequired = table.Column<bool>(nullable: false),
+                    IsReadOnly = table.Column<bool>(nullable: false),
+                    IsHidden = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationSettingPreset", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationSettingPreset_ApplicationSettingId_SettingsPresetId", x => new { x.ApplicationSettingId, x.SettingsPresetId });
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingPreset_ApplicationSetting_ApplicationSettingId",
+                        column: x => x.ApplicationSettingId,
+                        principalTable: "ApplicationSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingPreset_SettingsPreset_SettingsPresetId",
+                        column: x => x.SettingsPresetId,
+                        principalTable: "SettingsPreset",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicationSettingSet",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    ApplicationSettingId = table.Column<int>(nullable: false),
+                    SettingsSetId = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationSettingSet", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationSettingSet_ApplicationSettingId_SettingsSetId", x => new { x.ApplicationSettingId, x.SettingsSetId });
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingSet_ApplicationSetting_ApplicationSettingId",
+                        column: x => x.ApplicationSettingId,
+                        principalTable: "ApplicationSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingSet_SettingsSet_SettingsSetId",
+                        column: x => x.SettingsSetId,
+                        principalTable: "SettingsSet",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicationSettingValue",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    ApplicationSettingId = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(maxLength: 100, nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    ApplicationSettingId2 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationSettingValue", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationSettingValue_ApplicationSettingId", x => x.ApplicationSettingId);
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingValue_ApplicationSetting_ApplicationSettingId",
+                        column: x => x.ApplicationSettingId,
+                        principalTable: "ApplicationSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ApplicationSettingValue_ApplicationSetting_ApplicationSettingId2",
+                        column: x => x.ApplicationSettingId2,
+                        principalTable: "ApplicationSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BillingSettingPreset",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    SettingsPresetId = table.Column<int>(nullable: false),
+                    BillingSettingId = table.Column<int>(nullable: false),
+                    Value_DefaultValue = table.Column<string>(nullable: true),
+                    Value_MinValue = table.Column<string>(nullable: true),
+                    Value_MaxValue = table.Column<string>(nullable: true),
+                    IsRequired = table.Column<bool>(nullable: false),
+                    IsReadOnly = table.Column<bool>(nullable: false),
+                    IsHidden = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BillingSettingPreset", x => x.Id);
+                    table.UniqueConstraint("AK_BillingSettingPreset_BillingSettingId_SettingsPresetId", x => new { x.BillingSettingId, x.SettingsPresetId });
+                    table.ForeignKey(
+                        name: "FK_BillingSettingPreset_BillingSetting_BillingSettingId",
+                        column: x => x.BillingSettingId,
+                        principalTable: "BillingSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BillingSettingPreset_SettingsPreset_SettingsPresetId",
+                        column: x => x.SettingsPresetId,
+                        principalTable: "SettingsPreset",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BillingSettingSet",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    SettingsSetId = table.Column<int>(nullable: false),
+                    BillingSettingId = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(maxLength: 150, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BillingSettingSet", x => x.Id);
+                    table.UniqueConstraint("AK_BillingSettingSet_SettingsSetId_BillingSettingId", x => new { x.SettingsSetId, x.BillingSettingId });
+                    table.ForeignKey(
+                        name: "FK_BillingSettingSet_BillingSetting_BillingSettingId",
+                        column: x => x.BillingSettingId,
+                        principalTable: "BillingSetting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BillingSettingSet_SettingsSet_SettingsSetId",
+                        column: x => x.SettingsSetId,
+                        principalTable: "SettingsSet",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AvailableProductOptionTariffInTariff",
                 columns: table => new
                 {
@@ -303,6 +615,26 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ApplicationSetting_SettingId",
+                table: "ApplicationSetting",
+                column: "SettingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationSettingPreset_SettingsPresetId",
+                table: "ApplicationSettingPreset",
+                column: "SettingsPresetId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationSettingSet_SettingsSetId",
+                table: "ApplicationSettingSet",
+                column: "SettingsSetId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationSettingValue_ApplicationSettingId2",
+                table: "ApplicationSettingValue",
+                column: "ApplicationSettingId2");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AvailableProductOptionTariffInTariff_ProductOptionTariffId",
                 table: "AvailableProductOptionTariffInTariff",
                 column: "ProductOptionTariffId");
@@ -316,6 +648,16 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "IX_AvailableTariffForUpgrade_TenantId",
                 table: "AvailableTariffForUpgrade",
                 column: "TenantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BillingSettingPreset_SettingsPresetId",
+                table: "BillingSettingPreset",
+                column: "SettingsPresetId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BillingSettingSet_BillingSettingId",
+                table: "BillingSettingSet",
+                column: "BillingSettingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IncludedProductInTariff_ProductId",
@@ -378,6 +720,11 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 column: "ProductOptionTariffId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SettingEnumValue_SettingId",
+                table: "SettingEnumValue",
+                column: "SettingId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TariffAdvancePrice_TariffId",
                 table: "TariffAdvancePrice",
                 column: "TariffId");
@@ -401,10 +748,25 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ApplicationSettingPreset");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationSettingSet");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationSettingValue");
+
+            migrationBuilder.DropTable(
                 name: "AvailableProductOptionTariffInTariff");
 
             migrationBuilder.DropTable(
                 name: "AvailableTariffForUpgrade");
+
+            migrationBuilder.DropTable(
+                name: "BillingSettingPreset");
+
+            migrationBuilder.DropTable(
+                name: "BillingSettingSet");
 
             migrationBuilder.DropTable(
                 name: "IncludedProductInTariff");
@@ -416,6 +778,9 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "ProductOptionTariffPrice");
 
             migrationBuilder.DropTable(
+                name: "SettingEnumValue");
+
+            migrationBuilder.DropTable(
                 name: "TariffAdvancePrice");
 
             migrationBuilder.DropTable(
@@ -425,10 +790,25 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "TariffToContractKindBinding");
 
             migrationBuilder.DropTable(
+                name: "ApplicationSetting");
+
+            migrationBuilder.DropTable(
+                name: "SettingsPreset");
+
+            migrationBuilder.DropTable(
+                name: "BillingSetting");
+
+            migrationBuilder.DropTable(
+                name: "SettingsSet");
+
+            migrationBuilder.DropTable(
                 name: "ProductOptionTariff");
 
             migrationBuilder.DropTable(
                 name: "Tariffs");
+
+            migrationBuilder.DropTable(
+                name: "Setting");
 
             migrationBuilder.DropTable(
                 name: "ProductOption");
@@ -440,7 +820,70 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 name: "Product");
 
             migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoFor");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForApplicationSetting");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForApplicationSettingPreset");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForApplicationSettingSet");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForApplicationSettingValue");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForAvailableProductOptionTariffInTariff");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForAvailableTariffForUpgrade");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForBillingSetting");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForBillingSettingPreset");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForBillingSettingSet");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForIncludedProductInTariff");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForIncludedProductOptionInTariff");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForProduct");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForProductOption");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForProductOptionKind");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForProductOptionTariff");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForSetting");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForSettingEnumValue");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForTariff");
+
+            migrationBuilder.DropSequence(
                 name: "DBSequenceHiLoForTariffAdvancePrice");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForTariffPrice");
+
+            migrationBuilder.DropSequence(
+                name: "DBSequenceHiLoForTariffToContractKindBinding");
         }
     }
 }

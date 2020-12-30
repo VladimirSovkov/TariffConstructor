@@ -18,19 +18,37 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<ProductOption> AddTariff(ProductOption entity)
+        public Task<ProductOption> Add(ProductOption entity)
         {
-            throw new System.NotImplementedException();
+            _ctx.AddAsync(entity);
+            _ctx.SaveChanges();
+
+            return Task.FromResult<ProductOption>(entity);
+        }
+
+        public async Task Delete(int id)
+        {
+            ProductOption productOption = await _ctx.ProductOptions.FirstOrDefaultAsync(x => x.Id == id);
+            if (productOption != null)
+            {
+                _ctx.ProductOptions.Remove(productOption);
+                await _ctx.SaveChangesAsync();
+            }
         }
 
         public Task<ProductOption> GetProductOption(int productOptionId)
         {
-            throw new System.NotImplementedException();
+            return _ctx.ProductOptions.FirstOrDefaultAsync(x => x.Id == productOptionId);
         }
 
         public Task<List<ProductOption>> GetProductOptions(int[] productOptionIds)
         {
             throw new System.NotImplementedException();
+        }
+
+        public Task<List<ProductOption>> GetProductOptions()
+        {
+            return _ctx.ProductOptions.ToListAsync();
         }
 
         public async Task<SearchResult<ProductOption>> Search(ProductOptionSearchPattern searchPattern)
@@ -60,6 +78,20 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
                 TotalCount = totalCount,
                 FilteredCount = filteredCount
             };
+        }
+
+        public Task<ProductOption> Update(ProductOption entity)
+        {
+            var productOptions = _ctx.ProductOptions.FirstOrDefault(x => x.Id == entity.Id);
+            productOptions.SetName(entity.Name);
+            productOptions.SetAccountingName(entity.AccountingName);
+            productOptions.SetIsMultiple(entity.IsMultiple);
+            productOptions.SetNomenclatureId(entity.NomenclatureId);
+            productOptions.SetProductId(entity.ProductId);
+            _ctx.Entry(productOptions).State = EntityState.Modified;
+            _ctx.SaveChanges();
+
+            return Task.FromResult<ProductOption>(productOptions);
         }
     }
 }

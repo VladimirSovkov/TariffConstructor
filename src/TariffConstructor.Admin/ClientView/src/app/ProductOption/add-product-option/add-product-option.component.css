@@ -1,0 +1,36 @@
+.adding_product_option
+{
+  margin: 0 auto;
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+p{
+  padding: 0;
+  margin: 0;
+  width: 46%
+
+}
+
+.select-product
+{
+  width: 100%;
+}
+
+.form-checkbox
+{
+  width: 100%;
+  margin: 11px 0 0 0;
+}
+
+.form-input
+{
+  width: 80%
+}
+
+button{
+  margin: 31px 0px 0 0;
+}

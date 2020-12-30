@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Domain.TariffAggregate;
 using TariffConstructor.Domain.TariffAggregate.Toolkit;
-using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Toolkit.PageApp;
 using TariffConstructor.Toolkit.Search;
 
@@ -22,7 +21,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _DbContext = appDbContext;
         }
 
-        public Task<Tariff> AddTariff(Tariff tariff)
+        public Task<Tariff> Add(Tariff tariff)
         {
             _DbContext.AddAsync(tariff);
             _DbContext.SaveChanges();
@@ -47,7 +46,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
 
         public Task<Tariff> GetTariff(int tariffId)
         {
-            throw new NotImplementedException();
+            return _DbContext.Tariffs.FirstOrDefaultAsync(x => x.Id == tariffId);
         }
 
         public Task<List<Tariff>> GetTariffs(params int[] tariffIds)
@@ -113,6 +112,19 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
                 TotalCount = totalCount,
                 FilteredCount = filteredCount
             };
+        }
+
+        public Task<Tariff> Update(Tariff entity)
+        {
+            var tariff = _DbContext.Tariffs.FirstOrDefault();
+            tariff = entity;
+            _DbContext.SaveChanges();
+            return Task.FromResult<Tariff>(tariff);
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

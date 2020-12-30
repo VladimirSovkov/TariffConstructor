@@ -54,6 +54,27 @@ namespace TariffConstructor.Domain.ApplicationSettingAggregate
             _settingValues.Add( new ApplicationSettingValue( value ) );
         }
 
+        public void SetDefaultValue(string value)
+        {
+            DefaultValue = value;
+        }
+
+        public void SetApplicationId(int applicationId )
+        {
+            ApplicationId = applicationId;
+        }
+
+        public void SetSettingId(int settingId)
+        {
+            SettingId = settingId;
+            Setting = null;
+        }
+
+        public void SetPublicId(string publicId)
+        {
+            PublicId = publicId;
+        }
+
         protected ApplicationSetting()
         {
         }

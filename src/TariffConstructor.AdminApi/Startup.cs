@@ -7,6 +7,7 @@ using System.Reflection;
 using TariffConstructor.Infrastructure.Startup;
 using TariffConstructor.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft;
 
 namespace TariffConstructor.AdminApi
 {
@@ -36,7 +37,7 @@ namespace TariffConstructor.AdminApi
         public void AddServices(IServiceCollection services)
         {
             ConfigureDatabase(services);
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services
                 .AddBaseServices()
                 .AddMvcCore(options => options.EnableEndpointRouting = false)

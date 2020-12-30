@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import construct = Reflect.construct;
 import {BaseSearch} from '../base-search.model';
 import {SearchResult} from '../search-result.model';
-import {Tariff} from '../model/tariff.model';
+import {SimplifiedTariff} from '../model/simplified-tariff.model';
 
 @Injectable()
 export class classApiService
@@ -13,12 +13,14 @@ export class classApiService
   constructor(private http: HttpClient)
   {}
 
-  search(apiUrl: string, searchPattern: BaseSearch): Observable<SearchResult<Tariff>>{
+  search(apiUrl: string, searchPattern: BaseSearch): Observable<SearchResult<SimplifiedTariff>>{
     const params = new HttpParams()
       .set('pageNumber', searchPattern.pageNumber.toString())
       .set('onPage', searchPattern.onPage.toString())
       .set('searchString', searchPattern.searchString.toString());
-    return this.http.get<SearchResult<Tariff>>( this.url + apiUrl, {params});
+    return this.http.get<SearchResult<SimplifiedTariff>>( this.url + apiUrl, {params});
   }
+
+  //getTariff(apiUrl: string):
 }
 

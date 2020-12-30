@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Добавить вариант продукта</h2>
+<form class="add_product_option" [formGroup]="form" (ngSubmit)="addProductOption()">
+  <mat-form-field class="select-product" appearance="fill">
+    <mat-label>Выберите продукт</mat-label>
+    <mat-select formControlName="paymentType" formControlName="productOptionId">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let productOption of this.productOptions" [value]="productOption.id">{{productOption.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Количество</mat-label>
+    <input matInput type="number" formControlName="quantity">
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" [mat-dialog-close]="data">Добавить</button>
+</form>

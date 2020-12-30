@@ -32,3 +32,14 @@ mat-form-field
   position: relative;
   left: 27%;
 }
+
+.blue-snackbar
+{
+  color: blue;
+}
+
+.red-snackbar
+{
+  background: red;
+}
+

@@ -18,9 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<Product> AddTariff(Product entity)
+        public Task<Product> Add(Product entity)
         {
-            throw new System.NotImplementedException();
+            _ctx.AddAsync(entity);
+            _ctx.SaveChanges();
+
+            return Task.FromResult<Product>(entity);
         }
 
         public async Task<SearchResult<Product>> Search(ProductSearchPattern searchPattern)
@@ -52,9 +55,9 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<Product> GetProduct(int productId)
+        public Task<Product> GetProduct(int id)
         {
-            throw new System.NotImplementedException();
+            return _ctx.Products.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<List<Product>> GetProducts(IEnumerable<int> productIds)
@@ -66,6 +69,24 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             List<Product> products = await _ctx.Products.ToListAsync();
             return products;
+        }
+
+        public Task<Product> Update(Product product)
+        {
+            _ctx.Entry(product).State = EntityState.Modified;
+            _ctx.SaveChanges();
+
+            return Task.FromResult<Product>(product);
+        }
+
+        public async Task Delete(int id)
+        {
+            Product product = await _ctx.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (product != null)
+            {
+                _ctx.Products.Remove(product);
+                await _ctx.SaveChangesAsync();
+            }
         }
     }
 }

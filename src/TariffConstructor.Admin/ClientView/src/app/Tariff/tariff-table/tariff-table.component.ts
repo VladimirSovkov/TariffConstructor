@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Tariff} from '../../shared/model/tariff.model';
+import {SimplifiedTariff} from '../../shared/model/simplified-tariff.model';
 import {TariffService} from '../../shared/service/tariff.service';
 import { TariffSearchPattern } from '../../shared/tariff-search-pattern.model';
 import {SearchResult} from '../../shared/search-result.model';
@@ -17,7 +17,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class TariffTableComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'paymentType', 'action'];
-  tariffs: Tariff[];
+  tariffs: SimplifiedTariff[];
   // вместо него использую pageEvent
   pagination: Pagination;
   filter = '';
@@ -42,10 +42,11 @@ export class TariffTableComponent implements OnInit {
     this.searchPattern.onPage = this.pageEvent.pageSize;
     this.searchPattern.pageNumber = this.pageEvent.pageIndex + 1;
     this.searchPattern.searchString = this.filter;
-    this.tariffService.getData(this.searchPattern).subscribe( (searchResult: SearchResult<Tariff>) => {
-      this.tariffs = searchResult.items;
-      this.pageEvent.length = searchResult.totalCount;
-    });
+    this.tariffService.getData(this.searchPattern)
+      .subscribe( (searchResult: SearchResult<SimplifiedTariff>) => {
+        this.tariffs = searchResult.items;
+        this.pageEvent.length = searchResult.totalCount;
+      });
   }
 
   goAdd(): void{

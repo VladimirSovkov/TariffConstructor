@@ -18,6 +18,9 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             var tariffAdvancePriecesNavigation = builder.Metadata.FindNavigation(nameof(Tariff.AdvancePrices));
             tariffAdvancePriecesNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
+            var includedProduct = builder.Metadata.FindNavigation(nameof(Tariff.IncludedProducts));
+            includedProduct.SetPropertyAccessMode(PropertyAccessMode.Field);
+
             var includedProductOptions = builder.Metadata.FindNavigation(nameof(Tariff.IncludedProductOptions));
             includedProductOptions.SetPropertyAccessMode(PropertyAccessMode.Field);
 

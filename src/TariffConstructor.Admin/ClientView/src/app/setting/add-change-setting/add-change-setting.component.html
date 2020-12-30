@@ -1,0 +1,46 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/setting'">Назад</button>
+</div>
+<div class="form_input">
+  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+    <p align="center">
+      <mat-form-field class="select-setting" appearance="legacy">
+        <mat-label>Тип:</mat-label>
+        <mat-select formControlName="type">
+          <mat-option [value]="0">Unknown</mat-option>
+          <mat-option [value]="1">AccumulativeInteger</mat-option>
+          <mat-option [value]="2">AccumulativeBoolean</mat-option>
+          <mat-option [value]="3">ExclusiveInteger</mat-option>
+          <mat-option [value]="4">ExclusiveBoolean</mat-option>
+          <mat-option [value]="5">AccumulativeMultiEnum</mat-option>
+          <mat-option [value]="6">AccumulativeMoney</mat-option>
+          <mat-option [value]="7">ExclusiveEnum</mat-option>
+          <mat-option [value]="8">ExclusiveString</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p align="center"> Имя:
+      <mat-form-field class="example-form-field" appearance="legacy">
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </p>
+    <p align="center"> Код:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true" formControlName="code">
+      </mat-form-field>
+    </p>
+    <p align="center"> Описание
+      <mat-form-field class="example-form-field">
+        <input matInput formControlName="description">
+      </mat-form-field>
+    </p>
+    <p align="center">
+      <mat-checkbox class="checkbox" formControlName="isComputing" [color]="$any('primary')">
+        isComputing
+      </mat-checkbox>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeSetting;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>
+

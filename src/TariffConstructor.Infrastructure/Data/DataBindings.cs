@@ -7,6 +7,10 @@ using TariffConstructor.Domain.ProductAggregate;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Domain.ProductOptionAggregate;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionAggregate.Repository;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.SettingAggregate.Repository;
+using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.ApplicationSettingAggregate;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationSettingAggregate.Repository;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -17,6 +21,8 @@ namespace TariffConstructor.Infrastructure.Data
             services.AddScoped<ITariffRepository, TariffRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductOptionRepository, ProductOptionRepository>();
+            services.AddScoped<ISettingRepository, SettingRepository>();
+            services.AddScoped<IApplicationSettingRepository, ApplicationSettingRepository>();
             return services;
         }
 

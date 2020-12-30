@@ -1,6 +1,7 @@
 ﻿using System;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Domain.ProductOptionKindAggregate;
+using TariffConstructor.Domain.ValueObjects;
 
 namespace TariffConstructor.Domain.ProductAggregate
 {
@@ -20,21 +21,29 @@ namespace TariffConstructor.Domain.ProductAggregate
 
         public string PublicId { get; private set; }
 
-        public string NomenclatureId { get;  set; }
+        public string NomenclatureId { get; private set; }
 
         public string Name { get; private set; }
 
-        //в таблицу можно не выводить
-        //нужно будет для изменения 
         public string ShortName { get; private set; }
 
-        //public ProductSettlementKinds ProductSettlementKinds { get; private set; }
+        public ProductSettlementKinds ProductSettlementKinds { get; private set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; private set; }
 
         public void SetNomenclatureId( string nomeclatureId )
         {
             NomenclatureId = nomeclatureId;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public void SetShortName(string shortName)
+        {
+            ShortName = shortName;
         }
 
         protected Product()

@@ -12,14 +12,7 @@ export class ChangeTariffComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      if(params === null)
-      {
-        this.id = 99999;
-      }
-      else
-      {
         this.id = params.id;
-      }
     });
   }
 

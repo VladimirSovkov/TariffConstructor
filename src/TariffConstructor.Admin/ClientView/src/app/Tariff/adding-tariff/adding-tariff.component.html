@@ -2,7 +2,7 @@
   <button mat-button color="primary" class="back_button" (click)="goBack()">Назад</button>
 </div>
 <div class="form_input">
-  <form class="adding_tariff" [formGroup]="form" (ngSubmit)="addTariff()">
+  <form class="adding_tariff" [formGroup]="form" (ngSubmit)="action()">
     <mat-form-field appearance="standard">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Placeholder" required="true" formControlName="name">
@@ -15,39 +15,39 @@
     </p>
     <div class="TariffTestPeriodForm">
       <h4>Test Period</h4>
-      <p>
-        <mat-form-field appearance="standard">
-          <mat-label>Value</mat-label>
-          <input matInput placeholder="Placeholder" type="number" formControlName="Value">
-          <mat-hint>Name</mat-hint>
-        </mat-form-field>
-      </p>
       <p class="TariffTestPeriodUintForm">
         <mat-form-field appearance="fill">
           <mat-label>TariffTestPeriodUnit</mat-label>
-          <mat-select formControlName="Unit">
-            <mat-option value="0">Day</mat-option>
-            <mat-option value="1">Week</mat-option>
-            <mat-option value="2">Month</mat-option>
+          <mat-select [value]="tariff.unitTestPeriod" formControlName="unitTestPeriod" >
+            <mat-option [value]="0">Day</mat-option>
+            <mat-option [value]="1">Week</mat-option>
+            <mat-option [value]="2">Month</mat-option>
           </mat-select>
           <mat-hint class="MatHintSelect">TariffTestPeriodUnit</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Value</mat-label>
+          <input matInput placeholder="Placeholder" type="number" formControlName="valueTestPeriod">
+          <mat-hint>Name</mat-hint>
         </mat-form-field>
       </p>
     </div>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>AccountingName</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="AccountingName">
+        <input matInput placeholder="Placeholder" required="true" formControlName="accountingName">
         <mat-hint>PublicId</mat-hint>
       </mat-form-field>
     </p>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Payment Type</mat-label>
-        <mat-select formControlName="PaymentType">
-          <mat-option value="0">Prepaid</mat-option>
-          <mat-option value="1">Postpaid</mat-option>
-          <mat-option value="2">Commission</mat-option>
+        <mat-select [value]="tariff.paymentType" formControlName="paymentType">
+          <mat-option [value]="0">Prepaid</mat-option>
+          <mat-option [value]="1">Postpaid</mat-option>
+          <mat-option [value]="2">Commission</mat-option>
         </mat-select>
         <mat-hint class="MatHintSelect">Payment Type</mat-hint>
       </mat-form-field>
@@ -55,41 +55,117 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>AwaitingPaymentStrategy</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="AwaitingPaymentStrategy">
+        <input matInput placeholder="Placeholder" required="true" formControlName="awaitingPaymentStrategy">
         <mat-hint>PublicId</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Accounting Tariff Id</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="AccountingTariffId">
+        <input matInput placeholder="Placeholder" formControlName="accountingTariffId">
         <mat-hint>PublicId</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>SettingsPresetId (Select)</mat-label>
-        <input matInput placeholder="Placeholder" type="number" formControlName="SettingsPresetId">
+        <input matInput placeholder="Placeholder" type="number" formControlName="settingsPresetId">
         <mat-hint>SettingsPresetId</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>TermsOfUseId (Select)</mat-label>
-        <input matInput placeholder="Placeholder" type="number" formControlName="TermsOfUseId">
+        <input matInput placeholder="Placeholder" type="number" formControlName="termsOfUseId">
         <mat-hint>TermsOfUseId</mat-hint>
       </mat-form-field>
     </p>
     <p>
-      <mat-checkbox class="checkbox" formControlName="IsAcceptanceRequired" [color]="$any('primary')">
+      <mat-checkbox class="checkbox" formControlName="isAcceptanceRequired" [color]="$any('primary')">
         IsAcceptanceRequired
       </mat-checkbox>
     </p>
     <p>
-      <mat-checkbox class="checkbox" formControlName="IsGradualFinishAvailable" [color]="$any('primary')">
+      <mat-checkbox class="checkbox" formControlName="isGradualFinishAvailable" [color]="$any('primary')">
         IsGradualFinishAvailable
       </mat-checkbox>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button>
   </form>
+</div>
+<!--Price-->
+<div class="tariff_settings">
+  <div class="mat-expansion-panel-block">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Price</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p *ngFor="let price of tariff.prices">
+        Price: value - {{price.price.value}} currency - {{price.price.currency}}
+        Period: value - {{price.period.value}} unit - {{price.period.periodUnit}}
+      </p>
+    </mat-expansion-panel>
+    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('Price')">Добавить</button>
+  </div>
+  <div class="mat-expansion-panel-block">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> AdvancePrices</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Здесь будет список</p>
+    </mat-expansion-panel>
+    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('AdvancePrice')">Добавить</button>
+  </div>
+
+  <div class="mat-expansion-panel-block">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> IncludedProducts</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p *ngFor="let includeProduct of tariff.includedProducts">
+        productId - {{includeProduct.productId}}
+        relativeWeight - {{includeProduct.relativeWeight}}
+      </p>
+      <mat-table  [dataSource]="tariff.includedProducts" class="mat-elevation-z8">
+        <!-- productId Column -->
+        <ng-container matColumnDef="productId">
+          <mat-header-cell *matHeaderCellDef> productId </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.productId}} </mat-cell>
+        </ng-container>
+        <!-- productId Column -->
+        <ng-container matColumnDef="relativeWeight">
+          <mat-header-cell *matHeaderCellDef> relativeWeight </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.relativeWeight}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsInIncludedProducts"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsInIncludedProducts;"></mat-row>
+      </mat-table>
+
+    </mat-expansion-panel>
+    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('Product')">Добавить</button>
+  </div>
+
+  <div class="mat-expansion-panel-block">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> IncludedProductOptions</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p *ngFor="let productOption of tariff.includedProductOptions">
+        id: {{productOption.productOptionId}}
+        quantity: {{productOption.quantity}}
+      </p>
+    </mat-expansion-panel>
+    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('ProductOption')">Добавить</button>
+  </div>
+
+  <div class="mat-expansion-panel-block">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> ContractKindBindings</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Здесь будет список</p>
+    </mat-expansion-panel>
+    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('ContractKindBindings')">Добавить</button>
+  </div>
 </div>

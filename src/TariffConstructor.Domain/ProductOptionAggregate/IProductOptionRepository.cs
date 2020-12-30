@@ -12,6 +12,8 @@ namespace TariffConstructor.Domain.ProductOptionAggregate
 
         Task<List<ProductOption>> GetProductOptions( int[] productOptionIds );
 
+        Task<List<ProductOption>> GetProductOptions();
+
         Task<SearchResult<ProductOption>> Search(ProductOptionSearchPattern searchPattern);
     }
 }

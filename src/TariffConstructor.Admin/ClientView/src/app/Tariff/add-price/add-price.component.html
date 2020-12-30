@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Добавить Price</h2>
+<form class="add_price" [formGroup]="formPrice">
+  <h3>Price</h3>
+  <p> Значение:
+    <mat-form-field class="example-form-field">
+      <input matInput type="number" required="true" formControlName="value">
+    </mat-form-field>
+  </p>
+  <p>Валюта:
+    <mat-form-field class="example-form-field">
+      <input matInput required="true" formControlName="currency">
+    </mat-form-field>
+  </p>
+</form>
+<form class="add_price" [formGroup]="formPeriod">
+  <h3>ProlongationPeriod</h3>
+  <p>Значение:
+    <input matInput type="number" required="true" formControlName="value">
+  </p>
+  <p>
+    <mat-form-field class="select-product" appearance="fill">
+      <mat-label>Выберите период</mat-label>
+      <mat-select formControlName="paymentType" formControlName="unit">
+        <mat-option value="0">Month</mat-option>
+        <mat-option value="1">QuarterOfTheYear</mat-option>
+        <mat-option value="2">HalfYear</mat-option>
+        <mat-option value="3">Year</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+</form>
+<button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="formPrice.invalid || formPeriod.invalid" mat-dialog-close (click)="addPrice()" [mat-dialog-close]="data">
+  Добавить
+</button>

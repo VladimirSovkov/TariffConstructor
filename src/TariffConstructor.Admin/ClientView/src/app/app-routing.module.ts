@@ -7,6 +7,10 @@ import { AddingTariffComponent } from './Tariff/adding-tariff/adding-tariff.comp
 import { AddProductComponent } from './Product/add-product/add-product.component';
 import { AddProductOptionComponent } from './ProductOption/add-product-option/add-product-option.component';
 import { ChangeTariffComponent } from './Tariff/change-tariff/change-tariff.component';
+import {SettingTableComponent} from './setting/setting-table/setting-table.component';
+import {AddChangeSettingComponent} from './setting/add-change-setting/add-change-setting.component';
+import {ApplicationSettingTableComponent} from './application-setting/application-setting-table/application-setting-table.component';
+import {AddChangeApplicationSettingComponent} from './application-setting/add-change-application-setting/add-change-application-setting.component';
 
 // http://localhost:4200/tariff-> Home Component
 
@@ -15,10 +19,18 @@ const routes: Routes = [
   {path: 'addingTariff', component: AddingTariffComponent},
   {path: 'product', component: ProductTableComponent},
   {path: 'productOption', component: ProductOptionTableComponent},
-  {path: 'addProduct', component: AddProductComponent},
-  {path: 'addProductOption', component: AddProductOptionComponent},
-  {path: 'changeTariff/:id', component: ChangeTariffComponent},
-  {path: 'changeTariff', component: ChangeTariffComponent}
+  {path: 'product/add', component: AddProductComponent},
+  {path: 'product/change/:id',  component: AddProductComponent },
+  {path: 'productOption/change/:id', component: AddProductOptionComponent},
+  {path: 'productOption/change', component: AddProductOptionComponent},
+  {path: 'changeTariff/:id', component: AddingTariffComponent},
+  {path: 'changeTariff', component: AddingTariffComponent},
+  {path: 'setting', component: SettingTableComponent},
+  {path: 'setting/add', component: AddChangeSettingComponent},
+  {path: 'setting/change/:id', component: AddChangeSettingComponent},
+  {path: 'applicationSetting', component: ApplicationSettingTableComponent},
+  {path: 'applicationSetting/add', component: AddChangeApplicationSettingComponent},
+  {path: 'applicationSetting/change/:id', component: AddChangeApplicationSettingComponent},
 ];
 
 @NgModule({

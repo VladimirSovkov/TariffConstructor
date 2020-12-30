@@ -5,6 +5,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {ProductOptionService} from '../../shared/service/product-option/product-option.service';
 import {SearchResult} from '../../shared/search-result.model';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-product-option-table',
@@ -12,13 +13,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./product-option-table.component.css']
 })
 export class ProductOptionTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'nomenclatureId', 'productId', 'isMultiple', 'accountingName'];
+  displayedColumns: string[] = ['id', 'name', 'nomenclatureId', 'productId', 'isMultiple', 'accountingName', 'action'];
   filter = '';
   productOptions: ProductOption[];
   searchPattern: ProductOptionSearchPattern;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  constructor(private productOptionService: ProductOptionService, private router: Router) {
+  constructor(private productOptionService: ProductOptionService, private router: Router, private http: HttpClient) {
     this.searchPattern = new ProductOptionSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
@@ -47,5 +48,13 @@ export class ProductOptionTableComponent implements OnInit {
 
   goAdd(): void {
     this.router.navigate(['addProductOption']);
+  }
+
+  delete(id: number): void {
+    this.http.delete('http://localhost:4401/productOption/?id=' + id)
+      .subscribe(() => {
+        console.log('delete');
+        this.load();
+      });
   }
 }

@@ -31,6 +31,36 @@ namespace TariffConstructor.Domain.ProductOptionAggregate
         public DateTime CreationDate { get; private set; }
         public string AccountingName { get; private set; }
 
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public void SetNomenclatureId(string nomenclatureId)
+        {
+            NomenclatureId = nomenclatureId;
+        }
+
+        public void SetKindId(int? kindId)
+        {
+            KindId = kindId;
+        }
+
+        public void SetIsMultiple(bool isMultiple)
+        {
+            IsMultiple = isMultiple;
+        }
+
+        public void SetProductId(int productId)
+        {
+            ProductId = productId;
+        }
+
+        public void SetAccountingName(string accountingName)
+        {
+            AccountingName = accountingName;
+        }
+
         protected ProductOption()
         {
         }

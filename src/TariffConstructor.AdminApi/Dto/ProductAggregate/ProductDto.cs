@@ -5,9 +5,6 @@ namespace TariffConstructor.AdminApi.Dto
     [DataContract]
     public class ProductDto
     {
-        [DataMember(Name = "id")]
-        public int Id { get; set; }
-
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
@@ -16,5 +13,8 @@ namespace TariffConstructor.AdminApi.Dto
 
         [DataMember(Name = "shortName")]
         public string ShortName { get; set; }
+
+        [DataMember(Name = "id")]
+        public int Id { get; set; }
     }
 }

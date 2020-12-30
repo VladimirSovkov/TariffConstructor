@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" class="btn-add-product" (click)="goAdd()">Добавить</button>
+<button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/product/add']">Добавить</button>
 <div class="mat-elevation-z8">
    <mat-form-field class="input-filter-product">
      <mat-label>Filter</mat-label>
@@ -12,18 +12,26 @@
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <th mat-header-cell *matHeaderCellDef> Имя </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="nomenclatureId">
-        <th mat-header-cell *matHeaderCellDef> NomenclatureId </th>
+        <th mat-header-cell *matHeaderCellDef> Номенклатурный идентификатор </th>
         <td mat-cell *matCellDef="let element"> {{element.nomenclatureId}} </td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="shortName">
-        <th mat-header-cell *matHeaderCellDef> shortName </th>
+        <th mat-header-cell *matHeaderCellDef> Короткое имя </th>
         <td mat-cell *matCellDef="let element"> {{element.shortName}} </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Действия </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" [routerLink]="['/product/change', element.id]">Изменить</button>
+          <button mat-button color="primary" (click)="delete(element.id)">Удалить</button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

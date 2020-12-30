@@ -36,3 +36,40 @@ mat-form-field
   display: block;
   width: 56%;
 }
+
+.tariff_settings
+{
+  margin: 0 auto;
+  width: 600px;
+}
+.mat-expansion-panel-block
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+mat-expansion-panel
+{
+  width: 100%;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  display: block;
+}
+.add_button
+{
+  margin-left: 10px;
+}
+
+mat-panel-title
+{
+  margin: 3px 0 0 0;
+}
+
+table {
+  width: 100%;
+}
