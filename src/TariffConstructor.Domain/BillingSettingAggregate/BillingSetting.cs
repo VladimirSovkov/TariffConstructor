@@ -21,6 +21,15 @@ namespace TariffConstructor.Domain.BillingSettingAggregate
 
         public virtual Setting Setting { get; protected set; }
 
+        public void SetSetting(int settingId)
+        {
+            if (SettingId != settingId)
+            {
+                SettingId = settingId;
+                Setting = null;
+            }
+        }
+
         protected BillingSetting()
         {
         }

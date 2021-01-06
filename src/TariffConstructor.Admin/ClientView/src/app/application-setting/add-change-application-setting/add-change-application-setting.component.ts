@@ -4,7 +4,6 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationSettingApiServices} from '../../shared/service/application-setting/application-setting.services';
 import {ApplicationSetting} from '../../shared/model/application-setting/application-setting.model';
-import {of} from 'rxjs';
 import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {Setting} from '../../shared/model/setting/setting.model';
 
@@ -49,9 +48,7 @@ export class AddChangeApplicationSettingComponent implements OnInit {
 
   private formInitialization(): void {
     this.form = new FormGroup({
-      applicationId: new FormControl(0, [Validators.required]),
-      settingId: new FormControl(0, [Validators.required]),
-      defaultValue: new FormControl('')
+      settingId: new FormControl( [Validators.required]),
     });
   }
 

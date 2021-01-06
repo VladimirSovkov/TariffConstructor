@@ -7,6 +7,5 @@ namespace TariffConstructor.Toolkit.Abstractions
         Task<TEntity> Add(TEntity entity);
         Task<TEntity> Update(TEntity entity);
         Task Delete(int id);
-        //add
     }
 }

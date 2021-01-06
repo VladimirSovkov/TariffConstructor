@@ -53,7 +53,7 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> UpdateApplicationSetting([FromBody] ApplicationSettingDto applicationSettingDto)
         {
             ApplicationSetting applicationSetting = await applicationSettingRepository.GetApplicationSetting(applicationSettingDto.Id);
-            if (applicationSettingDto == null)
+            if (applicationSetting == null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ApplicationSetting id == {applicationSettingDto.Id}. Not found!");
             }

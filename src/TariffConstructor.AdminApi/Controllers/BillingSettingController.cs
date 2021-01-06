@@ -1,0 +1,78 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using TariffConstructor.AdminApi.Dto.BillingSetting;
+using TariffConstructor.AdminApi.Mappers.BillingSettingMap;
+using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.PaginationPattern;
+using TariffConstructor.Toolkit.Pagination;
+
+namespace TariffConstructor.AdminApi.Controllers
+{
+    [Route("billingSetting")]
+    [ApiController]
+    public class BillingSettingController : ControllerBase
+    {
+        private readonly IBillingSettingRepository billingSettingRepository;
+
+        public BillingSettingController(IBillingSettingRepository billingSettingRepository)
+        {
+            this.billingSettingRepository = billingSettingRepository;
+        }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromBody] BillingSettingDto billingSettingDto)
+        {
+            BillingSetting billingSetting = new BillingSetting(billingSettingDto.SettingId);
+            billingSetting = await billingSettingRepository.Add(billingSetting);
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody] BillingSettingDto billingSettingDto)
+        {
+            BillingSetting billingSetting = await billingSettingRepository.GetBillingSetting(billingSettingDto.Id);
+            if (billingSetting == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"BillingSetting id == {billingSettingDto.Id}. Not found!");
+            }
+            billingSetting.SetSetting(billingSettingDto.SettingId);
+            billingSetting = await billingSettingRepository.Update(billingSetting);
+            return Ok();
+        }
+
+        [HttpGet("pagination")]
+        [ProducesResponseType(typeof(PaginationResult<BillingSettingDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Pagination(int pageNumber, int onPage)
+        {
+            var searchPattern = new BillingSettingPaginationPattern();
+            searchPattern.PageNumber = pageNumber;
+            searchPattern.OnPage = onPage;
+            PaginationResult<BillingSetting> searchResult = await billingSettingRepository.Pagination(searchPattern);
+
+            return Ok(new PaginationResult<BillingSettingDto>
+            {
+                Items = searchResult.Items.Map(),
+                TotalCount = searchResult.TotalCount,
+            });
+        }
+
+        [HttpGet("getSetting")]
+        public async Task<IActionResult> GetSetting(int id)
+        {
+            BillingSetting billingSetting = await billingSettingRepository.GetBillingSetting(id);
+            if (billingSetting == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"BillingSetting id == {id}. Not found!");
+            }
+            return Ok(billingSetting);
+        }
+
+        [HttpDelete("")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await billingSettingRepository.Delete(id);
+            return Ok();
+        }
+    }
+}

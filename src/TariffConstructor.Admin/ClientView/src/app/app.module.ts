@@ -50,6 +50,11 @@ import { AddChangeSettingComponent } from './setting/add-change-setting/add-chan
 import { ApplicationSettingTableComponent } from './application-setting/application-setting-table/application-setting-table.component';
 import { AddChangeApplicationSettingComponent } from './application-setting/add-change-application-setting/add-change-application-setting.component';
 import {ApplicationSettingApiServices} from './shared/service/application-setting/application-setting.services';
+import { SettingPresetTableComponent } from './setting-preset/setting-preset-table/setting-preset-table.component';
+import { AddAndChangeSettingsPresetComponent } from './setting-preset/add-and-change-settings-preset/add-and-change-settings-preset.component';
+import { BillingSettingTableComponent } from './billing-setting/billing-setting-table/billing-setting-table.component';
+import { AddAndChangeBillingSettingComponent } from './billing-setting/add-and-change-billing-setting/add-and-change-billing-setting.component';
+import {BillingSettingApiServices} from './shared/service/billing-setting/billing-setting.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +76,11 @@ import {ApplicationSettingApiServices} from './shared/service/application-settin
     SettingTableComponent,
     AddChangeSettingComponent,
     ApplicationSettingTableComponent,
-    AddChangeApplicationSettingComponent
+    AddChangeApplicationSettingComponent,
+    SettingPresetTableComponent,
+    AddAndChangeSettingsPresetComponent,
+    BillingSettingTableComponent,
+    AddAndChangeBillingSettingComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +117,8 @@ import {ApplicationSettingApiServices} from './shared/service/application-settin
     ProductOptionService,
     SettingApiServices,
     ApiService,
-    ApplicationSettingApiServices
+    ApplicationSettingApiServices,
+    BillingSettingApiServices
   ],
   bootstrap: [AppComponent]
 })

@@ -11,6 +11,10 @@ import {SettingTableComponent} from './setting/setting-table/setting-table.compo
 import {AddChangeSettingComponent} from './setting/add-change-setting/add-change-setting.component';
 import {ApplicationSettingTableComponent} from './application-setting/application-setting-table/application-setting-table.component';
 import {AddChangeApplicationSettingComponent} from './application-setting/add-change-application-setting/add-change-application-setting.component';
+import {SettingPresetTableComponent} from './setting-preset/setting-preset-table/setting-preset-table.component';
+import {BillingSettingTableComponent} from './billing-setting/billing-setting-table/billing-setting-table.component';
+import {AddAndChangeSettingsPresetComponent} from './setting-preset/add-and-change-settings-preset/add-and-change-settings-preset.component';
+import {AddAndChangeBillingSettingComponent} from './billing-setting/add-and-change-billing-setting/add-and-change-billing-setting.component';
 
 // http://localhost:4200/tariff-> Home Component
 
@@ -31,6 +35,12 @@ const routes: Routes = [
   {path: 'applicationSetting', component: ApplicationSettingTableComponent},
   {path: 'applicationSetting/add', component: AddChangeApplicationSettingComponent},
   {path: 'applicationSetting/change/:id', component: AddChangeApplicationSettingComponent},
+  {path: 'settingPreset', component: SettingPresetTableComponent},
+  {path: 'settingPreset/add', component: AddAndChangeSettingsPresetComponent},
+  {path: 'settingPreset/change/:id', component: AddAndChangeSettingsPresetComponent},
+  {path: 'billingSetting', component: BillingSettingTableComponent},
+  {path: 'billingSetting/add', component: AddAndChangeBillingSettingComponent},
+  {path: 'billingSetting/change/:id', component: AddAndChangeBillingSettingComponent},
 ];
 
 @NgModule({

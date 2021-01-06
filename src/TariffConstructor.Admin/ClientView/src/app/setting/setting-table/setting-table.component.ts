@@ -8,6 +8,7 @@ import {Setting} from '../../shared/model/setting/setting.model';
 import {SearchResult} from '../../shared/search-result.model';
 import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-setting-table',
@@ -27,7 +28,7 @@ export class SettingTableComponent implements OnInit {
   constructor(private router: Router,
               private settingService: SettingApiServices,
               private http: HttpClient,
-              private snackBar: MatSnackBar) {
+              private snackBarService: SnackBarService) {
     this.searchPattern = new SettingSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
@@ -36,7 +37,7 @@ export class SettingTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-    this.openErrorSnackBar('очень очень очень очень очень очень очень очень очень очень очень очень очень очень очень очень очень очень длиииииииииииинное сообщеееееееееение');
+    this.snackBarService.openErrorSnackBar('message');
   }
 
   load(): void {
@@ -66,11 +67,5 @@ export class SettingTableComponent implements OnInit {
         }
         this.table.renderRows();
       });
-  }
-
-  openErrorSnackBar(message: string): void {
-    this.snackBar.open(message, 'Закрыть', {
-      panelClass: ['warn']
-    });
   }
 }

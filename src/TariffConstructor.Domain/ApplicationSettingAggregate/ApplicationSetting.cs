@@ -66,8 +66,11 @@ namespace TariffConstructor.Domain.ApplicationSettingAggregate
 
         public void SetSettingId(int settingId)
         {
-            SettingId = settingId;
-            Setting = null;
+            if (settingId != SettingId)
+            {
+                SettingId = settingId;
+                Setting = null;
+            }
         }
 
         public void SetPublicId(string publicId)
