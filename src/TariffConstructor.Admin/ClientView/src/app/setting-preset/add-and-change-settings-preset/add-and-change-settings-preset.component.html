@@ -1,1 +1,114 @@
-<p>add-and-change-settings-preset works!</p>
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/settingsPreset'">Назад</button>
+</div>
+<div class="form_input">
+  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+    <p align="center"> Имя:
+      <mat-form-field class="example-form-field" appearance="legacy">
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </p>
+
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>
+
+<div class="mat-expansion-panel-block">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> ApplicationSettingPresets</mat-panel-title>
+    </mat-expansion-panel-header>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddApplicationSettingPreset()">Добавить</button>
+    <table mat-table [dataSource]="applicationSettingsPreset" matSort #table1>
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <!-- applicationSettingId Column -->
+      <ng-container matColumnDef="applicationSettingId">
+        <th mat-header-cell *matHeaderCellDef> applicationSettingId </th>
+        <td mat-cell *matCellDef="let element"> {{element.applicationSettingId}} </td>
+      </ng-container>
+      <!-- defaultValue Column -->
+      <ng-container matColumnDef="defaultValue">
+        <th mat-header-cell *matHeaderCellDef> defaultValue </th>
+        <td mat-cell *matCellDef="let element"> {{element.value.defaultValue}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isRequired">
+        <th mat-header-cell *matHeaderCellDef> isRequired </th>
+        <td mat-cell *matCellDef="let element"> {{element.isRequired}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isReadOnly">
+        <th mat-header-cell *matHeaderCellDef> isReadOnly </th>
+        <td mat-cell *matCellDef="let element"> {{element.isReadOnly}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isHidden">
+        <th mat-header-cell *matHeaderCellDef> isHidden </th>
+        <td mat-cell *matCellDef="let element"> {{element.isHidden}} </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Действия </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" (click)="deleteAppSettings(element)">Удалить</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAppSettings"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAppSettings;"></tr>
+    </table>
+  </mat-expansion-panel>
+</div>
+<div class="mat-expansion-panel-block">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> BillingSettingPresets</mat-panel-title>
+    </mat-expansion-panel-header>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddBillingSettingPreset()">Добавить</button>
+    <table mat-table [dataSource]="billingSettingsPreset" #table2>
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <!-- applicationSettingId Column -->
+      <ng-container matColumnDef="billingSettingId">
+        <th mat-header-cell *matHeaderCellDef> billingSettingId </th>
+        <td mat-cell *matCellDef="let element"> {{element.billingSettingId}} </td>
+      </ng-container>
+      <!-- defaultValue Column -->
+      <ng-container matColumnDef="defaultValue">
+        <th mat-header-cell *matHeaderCellDef> defaultValue </th>
+        <td mat-cell *matCellDef="let element"> {{element.value.defaultValue}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isRequired">
+        <th mat-header-cell *matHeaderCellDef> isRequired </th>
+        <td mat-cell *matCellDef="let element"> {{element.isRequired}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isReadOnly">
+        <th mat-header-cell *matHeaderCellDef> isReadOnly </th>
+        <td mat-cell *matCellDef="let element"> {{element.isReadOnly}} </td>
+      </ng-container>
+      <!-- isRequired Column -->
+      <ng-container matColumnDef="isHidden">
+        <th mat-header-cell *matHeaderCellDef> isHidden </th>
+        <td mat-cell *matCellDef="let element"> {{element.isHidden}} </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Действия </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" (click)="deleteBillingSettings(element)">Удалить</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsBillingSettings"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsBillingSettings;"></tr>
+    </table>
+  </mat-expansion-panel>
+</div>

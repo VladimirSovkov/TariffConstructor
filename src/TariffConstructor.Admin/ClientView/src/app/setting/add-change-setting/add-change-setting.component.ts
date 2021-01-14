@@ -35,7 +35,7 @@ export class AddChangeSettingComponent implements OnInit {
   formInitialization(): void{
     this.form = new FormGroup({
       type: new FormControl('', [Validators.required]),
-      name: new FormControl('', ),
+      name: new FormControl('', [Validators.required]),
       code: new FormControl('', [Validators.required]),
       description: new FormControl(''),
       isComputing: new FormControl(false)

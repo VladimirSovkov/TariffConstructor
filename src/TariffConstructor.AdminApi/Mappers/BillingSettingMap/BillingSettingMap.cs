@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.BillingSetting;
+using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.BillingSettingAggregate;
 
 namespace TariffConstructor.AdminApi.Mappers.BillingSettingMap
@@ -18,7 +19,8 @@ namespace TariffConstructor.AdminApi.Mappers.BillingSettingMap
                 return new BillingSettingDto
                 {
                     Id = billingSetting.Id,
-                    SettingId = billingSetting.SettingId
+                    SettingId = billingSetting.SettingId,
+                    Setting = billingSetting.Setting.Map()
                 };
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.SettingDto;
+using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.Domain.SettingAggregate;
 
 namespace TariffConstructor.AdminApi.Mappers.SettingMap

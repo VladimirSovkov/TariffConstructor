@@ -13,7 +13,7 @@
         <mat-label>Setting</mat-label>
         <mat-select formControlName="paymentType" formControlName="settingId">
           <mat-option>None</mat-option>
-          <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.code}}</mat-option>
+          <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </p>

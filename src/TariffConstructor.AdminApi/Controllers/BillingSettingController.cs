@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.BillingSetting;
 using TariffConstructor.AdminApi.Mappers.BillingSettingMap;
@@ -65,7 +66,14 @@ namespace TariffConstructor.AdminApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"BillingSetting id == {id}. Not found!");
             }
-            return Ok(billingSetting);
+            return Ok(billingSetting.Map());
+        }
+
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            IReadOnlyList<BillingSetting> billingSettings = await billingSettingRepository.GetBillingSettings();
+            return Ok(billingSettings);
         }
 
         [HttpDelete("")]

@@ -18,6 +18,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoFor", "'DBSequenceHiLoFor', '', '1', '1', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForApplication", "'DBSequenceHiLoForApplication', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForApplicationSetting", "'DBSequenceHiLoForApplicationSetting', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForApplicationSettingPreset", "'DBSequenceHiLoForApplicationSettingPreset', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForApplicationSettingSet", "'DBSequenceHiLoForApplicationSettingSet', '', '1', '1', '', '', 'Int32', 'False'")
@@ -39,7 +40,32 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForTariffAdvancePrice", "'DBSequenceHiLoForTariffAdvancePrice', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForTariffPrice", "'DBSequenceHiLoForTariffPrice', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForTariffToContractKindBinding", "'DBSequenceHiLoForTariffToContractKindBinding', '', '1', '1', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForTermsOfUse", "'DBSequenceHiLoForTermsOfUse', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationModel.Application", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForApplication")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("PublicId");
+
+                    b.ToTable("Application");
+                });
 
             modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", b =>
                 {
@@ -455,6 +481,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
@@ -763,6 +790,30 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.HasIndex("TariffId");
 
                     b.ToTable("TariffToContractKindBinding");
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.TermsOfUseAggregate.TermsOfUse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForTermsOfUse")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<string>("DocumentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("PublicId");
+
+                    b.ToTable("TermsOfUses");
                 });
 
             modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", b =>

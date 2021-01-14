@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using TariffConstructor.AdminApi.Dto.Setting;
 
 namespace TariffConstructor.AdminApi.Dto.ApplicationSetting
 {
@@ -13,6 +14,8 @@ namespace TariffConstructor.AdminApi.Dto.ApplicationSetting
         
         [DataMember(Name = "settingId")]
         public int SettingId { get; set; }
+        [DataMember(Name = "setting")]
+        public SettingDto Setting { get; set; } 
         
         [DataMember(Name = "defaultValue")]
         public string DefaultValue { get; set; }

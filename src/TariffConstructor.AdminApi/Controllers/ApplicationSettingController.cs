@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.ApplicationSetting;
 using TariffConstructor.AdminApi.Mappers.ApplicationSettingMap;
@@ -40,6 +41,13 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ApplicationSetting id == {id}. Not found!");
             }
             return Ok(applicationSetting);
+        }
+
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            List<ApplicationSetting> applicationSettings = await applicationSettingRepository.GetApplicationSettings();
+            return Ok(applicationSettings);
         }
 
         [HttpDelete("")]

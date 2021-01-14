@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
@@ -39,6 +40,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task<ApplicationSetting> GetApplicationSetting(int id)
         {
             return _ctx.ApplicationSettings.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<ApplicationSetting>> GetApplicationSettings()
+        {
+            return await _ctx.ApplicationSettings.ToListAsync();
         }
 
         public async Task<PaginationResult<ApplicationSetting>> Pagination(ApplicationSettingPaginationPattern searchPattern)

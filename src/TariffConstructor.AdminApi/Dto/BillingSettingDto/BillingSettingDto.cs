@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.AdminApi.Dto.Setting;
 
 namespace TariffConstructor.AdminApi.Dto.BillingSetting
 {
@@ -11,5 +12,8 @@ namespace TariffConstructor.AdminApi.Dto.BillingSetting
 
         [DataMember(Name = "settingId")]
         public int SettingId { get; set; }
+
+        [DataMember(Name = "setting")]
+        public SettingDto Setting { get; set; }
     }
 }

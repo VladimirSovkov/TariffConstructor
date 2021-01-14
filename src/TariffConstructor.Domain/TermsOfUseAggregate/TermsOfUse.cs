@@ -14,6 +14,16 @@ namespace TariffConstructor.Domain.TermsOfUseAggregate
 
         public string DocumentName { get; private set; }
 
+        public void SetPublicId(string publicId)
+        {
+            PublicId = publicId;
+        }
+
+        public void SetDocumentName(string documentName)
+        {
+            DocumentName = documentName;
+        }
+
         protected TermsOfUse()
         {
         }

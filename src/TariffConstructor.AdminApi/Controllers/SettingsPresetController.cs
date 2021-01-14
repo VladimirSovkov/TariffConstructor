@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.SettingDto;
+using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Domain.BillingSettingAggregate;
@@ -97,7 +97,7 @@ namespace TariffConstructor.AdminApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Setting id == {id}. Not found!");
             }
-            return Ok(settingsPreset);
+            return Ok(settingsPreset.Map());
         }
 
         [HttpDelete("")]

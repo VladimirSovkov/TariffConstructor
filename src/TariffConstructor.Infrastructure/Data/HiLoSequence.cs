@@ -3,35 +3,35 @@ namespace TariffConstructor.Infrastructure.Data
 {
     public static class HiLoSequence
     {
-        //example
-        
+        // Application
+        public static readonly string DBSequenceHiLoForApplication = "DBSequenceHiLoForApplication";
 
-        //ApplicationSettingAggregate
+        // ApplicationSettingAggregate
         public static readonly string DBSequenceHiLoForApplicationSetting = "DBSequenceHiLoForApplicationSetting";
         public static readonly string DBSequenceHiLoForApplicationSettingPreset = "DBSequenceHiLoForApplicationSettingPreset";
         public static readonly string DBSequenceHiLoForApplicationSettingSet = "DBSequenceHiLoForApplicationSettingSet";
         public static readonly string DBSequenceHiLoForApplicationSettingValue = "DBSequenceHiLoForApplicationSettingValue";
 
-        //BillingSettingAggregate
+        // BillingSettingAggregate
         public static readonly string DBSequenceHiLoForBillingSetting = "DBSequenceHiLoForBillingSetting";
         public static readonly string DBSequenceHiLoForBillingSettingPreset = "DBSequenceHiLoForBillingSettingPreset";
         public static readonly string DBSequenceHiLoForBillingSettingSet = "DBSequenceHiLoForBillingSettingSet";
 
-        //ProductAggregate
+        // ProductAggregate
         public static readonly string DBSequenceHiLoForProduct = "DBSequenceHiLoForProduct";
 
-        //ProductOptionAggregate
+        // ProductOptionAggregate
         public static readonly string DBSequenceHiLoForProductOption = "DBSequenceHiLoForProductOption";
         public static readonly string DBSequenceHiLoForApplicationSettingValueInProductOption = "DBSequenceHiLoForApplicationSettingValueInProductOption";
 
-        //ProductOptionKindAggregate
+        // ProductOptionKindAggregate
         public static readonly string DBSequenceHiLoForProductOptionKind = "DBSequenceHiLoForProductOptionKind";
 
-        //ProductOptionTariffAggregate
+        // ProductOptionTariffAggregate
         public static readonly string DBSequenceHiLoForProductOptionTariffPrice = "DBSequenceHiLoForProductOptionTariffPrice";
         public static readonly string DBSequenceHiLoForProductOptionTariff = "DBSequenceHiLoForProductOptionTariff";
 
-        //SettingsAggregate
+        // SettingsAggregate
         public static readonly string DBSequenceHiLoForSetting = "DBSequenceHiLoForSetting";
         public static readonly string DBSequenceHiLoForSettingEnumValue = "DBSequenceHiLoForSettingEnumValue";
         public static readonly string DBSequenceHiLoForSettingsPreset = "DBSequenceHiLoFor";
@@ -46,5 +46,8 @@ namespace TariffConstructor.Infrastructure.Data
         public static readonly string DBSequenceHiLoForTariff = "DBSequenceHiLoForTariff";
         public static readonly string DBSequenceHiLoForTariffPrice = "DBSequenceHiLoForTariffPrice";
         public static readonly string DBSequenceHiLoForTariffToContractKindBinding = "DBSequenceHiLoForTariffToContractKindBinding";
+
+        // TermsOfUse
+        public static readonly string DBSequenceHiLoForTermsOfUse = "DBSequenceHiLoForTermsOfUse";
     }
 }

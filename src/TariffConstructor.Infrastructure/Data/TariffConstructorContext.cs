@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Linq;
+using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Domain.BillingSettingAggregate;
 using TariffConstructor.Domain.ProductAggregate;
@@ -11,7 +12,9 @@ using TariffConstructor.Domain.ProductOptionKindAggregate;
 using TariffConstructor.Domain.ProductOptionTariffAggregate;
 using TariffConstructor.Domain.SettingAggregate;
 using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.TermsOfUseAggregate;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationSettingAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductAggregateMap;
@@ -20,6 +23,7 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.SettingAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Mapping;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseAggregate.Mapping;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -29,6 +33,9 @@ namespace TariffConstructor.Infrastructure.Data
             : base(options)
         {
         }
+
+        //Application
+        public DbSet<Application> Applications { get; set; }
 
         //ApplicationSettingAggregate
         public DbSet<ApplicationSettingSet> ApplicationSettingSets { get; set; }
@@ -72,11 +79,17 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<TariffAdvancePrice> TariffAdvancePrices { get; set; }
         public DbSet<TariffToContractKindBinding> TariffToContractKindBindings { get; set; }
 
+        //TermsOfUse
+        public DbSet<TermsOfUse> TermsOfUses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder )
         {
             base.OnModelCreating(builder);
-            
 
+            // Application
+            builder.ApplyConfiguration(new ApplicationMap());
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForApplication).StartsAt(1)
+                .IncrementsBy(1);
 
             //ApplicationSettingAggregate
             builder.ApplyConfiguration(new ApplicationSettingSetMap());
@@ -164,6 +177,11 @@ namespace TariffConstructor.Infrastructure.Data
                 .IncrementsBy(1);
             builder.ApplyConfiguration(new ProductOptionTariffMap());
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForProductOptionTariff).StartsAt(1)
+                .IncrementsBy(1);
+
+            // TermsOfUse
+            builder.ApplyConfiguration(new TermsOfUseMap());
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForTermsOfUse).StartsAt(1)
                 .IncrementsBy(1);
 
             foreach (var property in builder.Model.GetEntityTypes()

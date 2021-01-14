@@ -1,0 +1,45 @@
+<h3>AddBillingSettingPreset</h3>
+<form [formGroup]="form">
+  <mat-form-field class="select-product" appearance="legacy">
+    <mat-label>billingSettingId</mat-label>
+    <mat-select formControlName="billingSettingId">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let billingSetting of billingSettings" [value]="billingSetting.id">{{billingSetting.id}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div formGroupName="value">
+    <p> defaultValue:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true" formControlName="defaultValue">
+      </mat-form-field>
+    </p>
+    <p> minValue:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true" formControlName="minValue">
+      </mat-form-field>
+    </p>
+    <p> maxValue:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true" formControlName="maxValue">
+      </mat-form-field>
+    </p>
+  </div>
+  <p>
+    <mat-checkbox class="checkbox" formControlName="isRequired" [color]="$any('primary')">
+      isRequired
+    </mat-checkbox>
+  </p>
+  <p>
+    <mat-checkbox class="checkbox" formControlName="isReadOnly" [color]="$any('primary')">
+      isReadOnly
+    </mat-checkbox>
+  </p>
+  <p>
+    <mat-checkbox class="checkbox" formControlName="isHidden" [color]="$any('primary')">
+      isHidden
+    </mat-checkbox>
+  </p>
+  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" (click)="close()">
+    Добавить
+  </button>
+</form>

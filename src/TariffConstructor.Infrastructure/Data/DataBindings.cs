@@ -11,6 +11,12 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Domain.SettingAggregate;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationSettingAggregate.Repository;
+using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingAggregate.Repository;
+using TariffConstructor.Domain.TermsOfUseAggregate;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseAggregate.Repository;
+using TariffConstructor.Domain.ApplicationModel;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationModel.Repository;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -23,6 +29,10 @@ namespace TariffConstructor.Infrastructure.Data
             services.AddScoped<IProductOptionRepository, ProductOptionRepository>();
             services.AddScoped<ISettingRepository, SettingRepository>();
             services.AddScoped<IApplicationSettingRepository, ApplicationSettingRepository>();
+            services.AddScoped<IBillingSettingRepository, BillingSettingRepository>();
+            services.AddScoped<ISettingsPresetRepository, SettingsPresetRepository>();
+            services.AddScoped<ITermsOfUseRepository, TermsOfUseRepository>();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
             return services;
         }
 

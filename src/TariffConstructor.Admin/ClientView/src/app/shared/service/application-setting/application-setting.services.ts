@@ -31,4 +31,8 @@ export class ApplicationSettingApiServices{
   delete(id: number): Observable<any> {
     return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
   }
+
+  getAll(): Observable<ApplicationSetting[]> {
+    return this.apiService.get(this.apiUrl + '/getAll');
+  }
 }

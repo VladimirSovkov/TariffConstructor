@@ -15,7 +15,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForSetting);
 
             builder.Property(x => x.Code).HasMaxLength(50);
-            builder.Property(x => x.Name).HasMaxLength(255);
+            builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
 
             builder.Property(x => x.CreationDate).ValueGeneratedOnAdd();
 

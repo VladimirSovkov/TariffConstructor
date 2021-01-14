@@ -55,6 +55,15 @@ import { AddAndChangeSettingsPresetComponent } from './setting-preset/add-and-ch
 import { BillingSettingTableComponent } from './billing-setting/billing-setting-table/billing-setting-table.component';
 import { AddAndChangeBillingSettingComponent } from './billing-setting/add-and-change-billing-setting/add-and-change-billing-setting.component';
 import {BillingSettingApiServices} from './shared/service/billing-setting/billing-setting.service';
+import {SettingsPresetApiServices} from './shared/service/setting/settings-preset.service';
+import { AddBillingSettingPresetComponent } from './setting-preset/add-and-change-settings-preset/add-billing-setting-preset/add-billing-setting-preset.component';
+import { AddApplicationSettingPresetsComponent } from './setting-preset/add-and-change-settings-preset/add-application-setting-presets/add-application-setting-presets.component';
+import { AddAndChangeTermsOfUseComponent } from './terms-of-use/add-and-change-terms-of-use/add-and-change-terms-of-use.component';
+import { ApplicationTableComponent } from './application/application-table/application-table.component';
+import { AddAndChangeApplicationComponent } from './application/add-and-change-application/add-and-change-application.component';
+import {TermsOfUseTableComponent} from './terms-of-use/terms-of-use-table/terms-of-use-table.component';
+import {TermsOfUseApiService} from './shared/service/terms-of-use/terms-of-use-api.service';
+import {ApplicationApiService} from './shared/service/application/application-api.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +89,13 @@ import {BillingSettingApiServices} from './shared/service/billing-setting/billin
     SettingPresetTableComponent,
     AddAndChangeSettingsPresetComponent,
     BillingSettingTableComponent,
-    AddAndChangeBillingSettingComponent
+    AddAndChangeBillingSettingComponent,
+    AddBillingSettingPresetComponent,
+    AddApplicationSettingPresetsComponent,
+    AddAndChangeTermsOfUseComponent,
+    ApplicationTableComponent,
+    AddAndChangeApplicationComponent,
+    TermsOfUseTableComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +133,10 @@ import {BillingSettingApiServices} from './shared/service/billing-setting/billin
     SettingApiServices,
     ApiService,
     ApplicationSettingApiServices,
-    BillingSettingApiServices
+    BillingSettingApiServices,
+    SettingsPresetApiServices,
+    TermsOfUseApiService,
+    ApplicationApiService
   ],
   bootstrap: [AppComponent]
 })

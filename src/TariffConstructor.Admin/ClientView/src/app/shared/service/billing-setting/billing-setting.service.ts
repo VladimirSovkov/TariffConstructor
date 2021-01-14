@@ -16,8 +16,12 @@ export class BillingSettingApiServices{
     return this.apiService.pagination(this.apiUrl + '/pagination', paginationPattern);
   }
 
-  get(id: number): Observable<BillingSetting>{
+  get(id: number): Observable<BillingSetting> {
     return this.apiService.get(this.apiUrl + '/getSetting', new HttpParams().set('id', id.toString()));
+  }
+
+  getAll(): Observable<BillingSetting[]>{
+    return this.apiService.get(this.apiUrl + '/getAll');
   }
 
   add(setting: BillingSetting): Observable<any> {

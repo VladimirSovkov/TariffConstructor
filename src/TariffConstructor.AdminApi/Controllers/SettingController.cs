@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.AdminApi.Dto.SettingDto;
+using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.SettingAggregate;

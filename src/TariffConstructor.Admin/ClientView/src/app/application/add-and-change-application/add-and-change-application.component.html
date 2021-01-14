@@ -1,0 +1,20 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/application'">Назад</button>
+</div>
+<div class="form_input">
+  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+    <p align="center"> Общедоступный идентификатор:
+      <mat-form-field class="example-form-field" appearance="legacy">
+        <input matInput required="true" formControlName="publicId">
+      </mat-form-field>
+    </p>
+    <p align="center"> Название:
+      <mat-form-field class="example-form-field">
+        <input matInput required="true" formControlName="name">
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>
+

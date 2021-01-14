@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router, RouterEvent, NavigationEnd, RoutesRecognized} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationSettingApiServices} from '../../shared/service/application-setting/application-setting.services';
 import {ApplicationSetting} from '../../shared/model/application-setting/application-setting.model';
 import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {Setting} from '../../shared/model/setting/setting.model';
+import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-change-application-setting',
@@ -18,11 +19,16 @@ export class AddChangeApplicationSettingComponent implements OnInit {
   form: FormGroup;
   appSetting: ApplicationSetting;
   settings: Setting[];
+
+  private previousUrl: string = undefined;
+  private currentUrl: string = undefined;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private http: HttpClient,
               private appSettingService: ApplicationSettingApiServices,
-              private settingService: SettingApiServices) { }
+              private settingService: SettingApiServices) {
+  }
 
   ngOnInit(): void {
     this.loadSetting();
@@ -35,6 +41,13 @@ export class AddChangeApplicationSettingComponent implements OnInit {
       }
     });
     this.formInitialization();
+
+    this.router.events
+      .pipe(filter((e: any) => e instanceof RoutesRecognized),
+        pairwise()
+      ).subscribe((e: any) => {
+      console.log(e[0].urlAfterRedirects); // previous url
+    });
   }
 
   private load(id: number): void {
@@ -48,7 +61,9 @@ export class AddChangeApplicationSettingComponent implements OnInit {
 
   private formInitialization(): void {
     this.form = new FormGroup({
-      settingId: new FormControl( [Validators.required]),
+      applicationId: new FormControl([Validators.required]),
+      settingId: new FormControl(0, [Validators.required]),
+      defaultValue: new FormControl('')
     });
   }
 
