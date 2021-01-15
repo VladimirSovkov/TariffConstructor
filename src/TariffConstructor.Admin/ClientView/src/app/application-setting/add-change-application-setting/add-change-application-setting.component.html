@@ -2,24 +2,28 @@
   <button mat-button color="primary" class="back_button" [routerLink]="'/applicationSetting'">Назад</button>
 </div>
 <div class="form_input">
-  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center"> ApplicationId:
-      <mat-form-field class="example-form-field" appearance="legacy" >
-        <input matInput formControlName="applicationId" type="number">
+  <form class="form_block" [formGroup]="form" (ngSubmit)="action()">
+    <p>Приложение:
+      <mat-form-field class="select-application" appearance="legacy">
+        <mat-select formControlName="applicationId" >
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let application of applications" [value]="application.id">{{application.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </p>
-    <p align="center">
-      <mat-form-field class="select-product" appearance="legacy">
-        <mat-label>Setting</mat-label>
-        <mat-select formControlName="paymentType" formControlName="settingId">
-          <mat-option>None</mat-option>
+    <p>Настройка:
+      <mat-form-field class="select-setting" appearance="legacy">
+        <mat-select formControlName="settingId">
+          <mat-option>-</mat-option>
           <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </p>
-    <p align="center"> defaultValue
-      <mat-form-field class="example-form-field">
-        <input matInput formControlName="defaultValue">
+    <p> Значение по умолчанию:
+      <mat-form-field class="input-default-name">
+        <label>
+          <input matInput formControlName="defaultValue"/>
+        </label>
       </mat-form-field>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeApplicationSetting;else unset" [disabled]="form.invalid">Изменить</button>

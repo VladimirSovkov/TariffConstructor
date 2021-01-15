@@ -13,7 +13,7 @@ import {PaginationResult} from '../../shared/model/pagination-pattern/pagination
   styleUrls: ['./application-setting-table.component.css']
 })
 export class ApplicationSettingTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'applicationId', 'settingId', 'defaultValue', 'action'];
+  displayedColumns: string[] = ['application', 'setting', 'defaultValue', 'action'];
   applicationSettings: ApplicationSetting[];
   paginationPattern: ApplicationSettingPaginationPattern;
   pageEvent: PageEvent;

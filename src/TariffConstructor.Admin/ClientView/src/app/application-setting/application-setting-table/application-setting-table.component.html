@@ -1,41 +1,37 @@
-<button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/applicationSetting/add']">Добавить</button>
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="applicationSettings" matSort>
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="applicationId">
-      <th mat-header-cell *matHeaderCellDef> applicationId </th>
-      <td mat-cell *matCellDef="let element"> {{element.applicationId}} </td>
-    </ng-container>
-    <!-- Code Column -->
-    <ng-container matColumnDef="settingId">
-      <th mat-header-cell *matHeaderCellDef> settingId </th>
-      <td mat-cell *matCellDef="let element"> {{element.settingId}} </td>
-    </ng-container>
-    <!-- Type Column -->
-    <ng-container matColumnDef="defaultValue">
-      <th mat-header-cell *matHeaderCellDef> defaultValue </th>
-      <td mat-cell *matCellDef="let element"> {{element.defaultValue}} </td>
-    </ng-container>
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Действия </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" [routerLink]="['/applicationSetting/change', element.id]">Изменить</button>
-        <button mat-button color="primary" (click)="delete(element.id)">Удалить</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [length]="pageEvent.length"
-                 [pageSize]="pageEvent.pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event; load()">
-  </mat-paginator>
+<div class="tool-bar">
+  <button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/applicationSetting/add']">Добавить
+  </button>
 </div>
+<table mat-table [dataSource]="applicationSettings" matSort>
+  <!-- application Column -->
+  <ng-container matColumnDef="application">
+    <th mat-header-cell *matHeaderCellDef> Приложение</th>
+    <td mat-cell *matCellDef="let element"> {{element.application.name}} </td>
+  </ng-container>
+  <!-- Setting Column -->
+  <ng-container matColumnDef="setting">
+    <th mat-header-cell *matHeaderCellDef> Настройка</th>
+    <td mat-cell *matCellDef="let element"> {{element.setting.name}} </td>
+  </ng-container>
+  <!-- Type Column -->
+  <ng-container matColumnDef="defaultValue">
+    <th mat-header-cell *matHeaderCellDef> Значение по умолчанию</th>
+    <td mat-cell *matCellDef="let element"> {{element.defaultValue}} </td>
+  </ng-container>
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Действия</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="['/applicationSetting/change', element.id]">Изменить</button>
+      <button mat-button color="primary" (click)="delete(element.id)">Удалить</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [length]="pageEvent.length"
+               [pageSize]="pageEvent.pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event; load()">
+</mat-paginator>

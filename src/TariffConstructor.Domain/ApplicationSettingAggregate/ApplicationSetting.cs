@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.SettingAggregate;
 using TariffConstructor.Toolkit.Abstractions;
 
@@ -11,27 +12,28 @@ namespace TariffConstructor.Domain.ApplicationSettingAggregate
     /// </summary>
     public class ApplicationSetting : Entity, IAggregateRoot
     {
-        public ApplicationSetting( 
-            int applicationId, 
-            int settingId, 
+        public ApplicationSetting(
+            int applicationId,
+            int settingId,
             string[] values = null,
-            string publicId = null )
+            string publicId = null)
         {
             ApplicationId = applicationId;
             SettingId = settingId;
 
-            if ( values != null )
+            if (values != null)
             {
-                foreach ( string value in values )
+                foreach (string value in values)
                 {
-                    AddValue( value );
+                    AddValue(value);
                 }
             }
 
-            PublicId = String.IsNullOrEmpty( publicId ) ? Guid.NewGuid().ToString() : publicId;
+            PublicId = String.IsNullOrEmpty(publicId) ? Guid.NewGuid().ToString() : publicId;
         }
 
         public int ApplicationId { get; private set; }
+        public virtual Application Application { get; protected set; }
         public int SettingId { get; private set; }
         public string DefaultValue { get; private set; }
         public virtual Setting Setting { get; protected set; }

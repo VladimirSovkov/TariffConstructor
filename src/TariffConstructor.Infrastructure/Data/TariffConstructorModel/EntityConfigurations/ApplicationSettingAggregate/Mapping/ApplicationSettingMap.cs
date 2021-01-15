@@ -19,6 +19,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.Property(x => x.CreationDate).ValueGeneratedOnAdd();
             builder.Property(x => x.PublicId).HasMaxLength(68);
 
+            builder.HasOne(x => x.Application).WithMany().HasForeignKey(x => x.ApplicationId);
             builder.HasOne(x => x.Setting).WithMany().HasForeignKey(x => x.SettingId);
 
             var navigation = builder.Metadata.FindNavigation(nameof(ApplicationSetting.SettingValues));

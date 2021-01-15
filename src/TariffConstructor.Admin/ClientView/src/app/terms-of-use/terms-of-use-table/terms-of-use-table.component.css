@@ -1,3 +1,20 @@
 table {
   width: 100%;
 }
+
+.mat-column-publicId {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 31%;
+  padding: 0 13px;
+  word-break: break-word;
+}
+
+.tool-bar{
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 auto;
+  align-items: baseline;
+}

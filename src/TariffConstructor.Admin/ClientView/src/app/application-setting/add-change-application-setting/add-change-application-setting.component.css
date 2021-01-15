@@ -1,0 +1,29 @@
+form{
+  margin: 0 auto;
+  width: 30%;
+}
+
+.select-application{
+  width: 77%;
+  margin-left: 5px;
+}
+
+.select-setting {
+  margin-left: 5px;
+  width: 80%;
+}
+
+.input-default-name {
+  margin-left: 5px;
+  width: 58%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}
+
+.block_with_button {
+  width: 70%;
+  margin: 13px auto 0 auto;
+}

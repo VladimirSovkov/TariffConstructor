@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.ApplicationSetting;
+using TariffConstructor.AdminApi.Mappers.ApplicationMap;
+using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 
 namespace TariffConstructor.AdminApi.Mappers.ApplicationSettingMap
@@ -20,7 +22,9 @@ namespace TariffConstructor.AdminApi.Mappers.ApplicationSettingMap
                     Id = applicationSetting.Id,
                     ApplicationId = applicationSetting.ApplicationId,
                     SettingId = applicationSetting.SettingId,
-                    DefaultValue = applicationSetting.DefaultValue
+                    DefaultValue = applicationSetting.DefaultValue,
+                    Application = applicationSetting.Application.Map(),
+                    Setting = applicationSetting.Setting.Map()
                 };
             }
         }

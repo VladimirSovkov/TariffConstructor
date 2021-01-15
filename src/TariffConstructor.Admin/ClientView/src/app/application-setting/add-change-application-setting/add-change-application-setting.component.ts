@@ -7,6 +7,8 @@ import {ApplicationSetting} from '../../shared/model/application-setting/applica
 import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {Setting} from '../../shared/model/setting/setting.model';
 import { filter, pairwise } from 'rxjs/operators';
+import {Application} from '../../shared/model/application/application.model';
+import {ApplicationApiService} from '../../shared/service/application/application-api.service';
 
 @Component({
   selector: 'app-add-change-application-setting',
@@ -19,7 +21,7 @@ export class AddChangeApplicationSettingComponent implements OnInit {
   form: FormGroup;
   appSetting: ApplicationSetting;
   settings: Setting[];
-
+  applications: Application[];
   private previousUrl: string = undefined;
   private currentUrl: string = undefined;
 
@@ -27,11 +29,13 @@ export class AddChangeApplicationSettingComponent implements OnInit {
               private route: ActivatedRoute,
               private http: HttpClient,
               private appSettingService: ApplicationSettingApiServices,
-              private settingService: SettingApiServices) {
+              private settingService: SettingApiServices,
+              private applicationService: ApplicationApiService) {
   }
 
   ngOnInit(): void {
-    this.loadSetting();
+    this.loadSettings();
+    this.loadApplications();
     this.route.params.subscribe((params: Params) => {
       this.id = params.id;
       if (this.id)
@@ -61,7 +65,7 @@ export class AddChangeApplicationSettingComponent implements OnInit {
 
   private formInitialization(): void {
     this.form = new FormGroup({
-      applicationId: new FormControl([Validators.required]),
+      applicationId: new FormControl( 0, [Validators.required]),
       settingId: new FormControl(0, [Validators.required]),
       defaultValue: new FormControl('')
     });
@@ -95,10 +99,17 @@ export class AddChangeApplicationSettingComponent implements OnInit {
       });
   }
 
-  private loadSetting(): void{
+  private loadSettings(): void{
     this.settingService.getSettings()
       .subscribe((settings: Setting[]) => {
         this.settings = settings;
+      });
+  }
+
+  private loadApplications(): void {
+    this.applicationService.getSApplications()
+      .subscribe((applications: Application[]) => {
+        this.applications = applications;
       });
   }
 }
