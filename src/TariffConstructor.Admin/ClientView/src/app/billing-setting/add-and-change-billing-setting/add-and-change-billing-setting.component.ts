@@ -46,7 +46,7 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
         this.form.patchValue(setting);
         console.log('billingSetting: ', setting);
       }, error => {
-        this.snackBarService.openErrorSnackBar(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -74,7 +74,7 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
         this.formInitialization();
         this.router.navigate(['billingSetting']);
       }, error => {
-        this.snackBarService.openErrorSnackBar(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -84,7 +84,7 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
         this.formInitialization();
         console.log('Добавил');
       }, error => {
-        this.snackBarService.openErrorSnackBar(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

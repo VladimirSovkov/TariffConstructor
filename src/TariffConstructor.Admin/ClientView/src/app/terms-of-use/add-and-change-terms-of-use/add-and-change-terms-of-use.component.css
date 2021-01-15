@@ -1,0 +1,24 @@
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+
+.form-block {
+  width: 472px;
+  margin: 0 auto;
+}
+
+.input-public-id{
+  margin-left: 5px;
+  width: 52%;
+}
+
+.input-document-name {
+  margin-left: 5px;
+  width: 68%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}
+

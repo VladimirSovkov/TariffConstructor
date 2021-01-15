@@ -1,9 +1,9 @@
 <div class="tool-bar">
-  <mat-form-field class="input-filter-product">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/termsOfUse/add']">Добавить</button>
+  <mat-form-field class="input-filter">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
   </mat-form-field>
-  <button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/termsOfUse/add']">Добавить</button>
 </div>
 <table mat-table [dataSource]="termsOfUses" matSort>
   <!-- Id Column -->

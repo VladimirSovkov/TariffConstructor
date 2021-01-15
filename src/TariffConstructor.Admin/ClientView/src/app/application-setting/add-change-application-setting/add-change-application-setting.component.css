@@ -1,6 +1,6 @@
 form{
   margin: 0 auto;
-  width: 30%;
+  width: 420px;
 }
 
 .select-application{
@@ -23,7 +23,6 @@ form{
   text-align: center;
 }
 
-.block_with_button {
-  width: 70%;
-  margin: 13px auto 0 auto;
+.back_button {
+  margin: 10px 0 10px 4%;
 }

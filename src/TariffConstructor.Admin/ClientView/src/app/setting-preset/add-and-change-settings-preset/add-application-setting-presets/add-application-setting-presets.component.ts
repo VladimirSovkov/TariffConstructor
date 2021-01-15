@@ -52,7 +52,7 @@ export class AddApplicationSettingPresetsComponent implements OnInit {
       .subscribe( (applicationSettings: ApplicationSetting[]) => {
         this.applicationSettings = applicationSettings;
     }, error => {
-        this.snackBarService.openErrorSnackBar(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 

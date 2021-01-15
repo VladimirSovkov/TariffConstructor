@@ -45,7 +45,7 @@ export class SettingPresetTableComponent implements OnInit {
       this.settingsPresets = searchResult.items;
       this.pageEvent.length = searchResult.totalCount;
     }, error => {
-      this.snackBarService.openErrorSnackBar(error);
+      this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 
@@ -64,7 +64,7 @@ export class SettingPresetTableComponent implements OnInit {
         }
         this.table.renderRows();
       }, error => {
-        this.snackBarService.openErrorSnackBar(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

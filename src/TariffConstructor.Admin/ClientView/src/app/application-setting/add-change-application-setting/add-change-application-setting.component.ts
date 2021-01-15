@@ -9,6 +9,7 @@ import {Setting} from '../../shared/model/setting/setting.model';
 import { filter, pairwise } from 'rxjs/operators';
 import {Application} from '../../shared/model/application/application.model';
 import {ApplicationApiService} from '../../shared/service/application/application-api.service';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-change-application-setting',
@@ -30,7 +31,8 @@ export class AddChangeApplicationSettingComponent implements OnInit {
               private http: HttpClient,
               private appSettingService: ApplicationSettingApiServices,
               private settingService: SettingApiServices,
-              private applicationService: ApplicationApiService) {
+              private applicationService: ApplicationApiService,
+              private snackBarService: SnackBarService) {
   }
 
   ngOnInit(): void {
@@ -88,6 +90,8 @@ export class AddChangeApplicationSettingComponent implements OnInit {
       .subscribe( () => {
         this.formInitialization();
         this.router.navigate(['applicationSetting']);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -96,6 +100,8 @@ export class AddChangeApplicationSettingComponent implements OnInit {
       .subscribe(() => {
         this.formInitialization();
         console.log('Добавил');
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -103,6 +109,8 @@ export class AddChangeApplicationSettingComponent implements OnInit {
     this.settingService.getSettings()
       .subscribe((settings: Setting[]) => {
         this.settings = settings;
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -110,6 +118,8 @@ export class AddChangeApplicationSettingComponent implements OnInit {
     this.applicationService.getSApplications()
       .subscribe((applications: Application[]) => {
         this.applications = applications;
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 }

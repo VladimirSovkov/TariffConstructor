@@ -50,7 +50,7 @@ export class AddBillingSettingPresetComponent implements OnInit {
       .subscribe((billingSettings: BillingSetting[]) => {
         this.billingSettings = billingSettings;
       }, error => {
-        this.snackBar.openErrorSnackBar(error);
+        this.snackBar.openErrorHttpSnackBar(error);
       });
   }
 }

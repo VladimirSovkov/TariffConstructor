@@ -44,7 +44,7 @@ export class TermsOfUseTableComponent implements OnInit {
       this.termsOfUses = searchResult.items;
       this.pageEvent.length = searchResult.totalCount;
     }, error => {
-      this.snackBarService.openErrorSnackBar(error);
+      this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 
