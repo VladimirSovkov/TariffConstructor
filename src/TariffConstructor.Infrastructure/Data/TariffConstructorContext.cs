@@ -6,6 +6,7 @@ using System.Linq;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.ApplicationSettingAggregate;
 using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.CurrencyModel;
 using TariffConstructor.Domain.ProductAggregate;
 using TariffConstructor.Domain.ProductOptionAggregate;
 using TariffConstructor.Domain.ProductOptionKindAggregate;
@@ -17,6 +18,7 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationSettingAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingAggregate.Mapping;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.CurrencyModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductAggregateMap;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionKindAggregate.Mapping;
@@ -47,6 +49,9 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<BillingSetting> BillingSettings { get; set; }
         public DbSet<BillingSettingSet> BillingSettingSets { get; set; }
         public DbSet<BillingSettingPreset> BillingSettingPresets { get; set; }
+
+        //CurrencyModel
+        public DbSet<Currency> Currencies{ get; set; }
 
         //ProductAggregate
         public DbSet<Product> Products { get; set; }
@@ -114,6 +119,11 @@ namespace TariffConstructor.Infrastructure.Data
                 .IncrementsBy(1);
             builder.ApplyConfiguration(new BillingSettingSetMap());
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForBillingSettingSet).StartsAt(1)
+                .IncrementsBy(1);
+
+            //Currency
+            builder.ApplyConfiguration(new CurrencyMap());
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForCurrency).StartsAt(1)
                 .IncrementsBy(1);
 
             //SettingAggregate

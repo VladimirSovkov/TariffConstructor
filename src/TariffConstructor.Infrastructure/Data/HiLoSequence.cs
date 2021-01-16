@@ -17,6 +17,9 @@ namespace TariffConstructor.Infrastructure.Data
         public static readonly string DBSequenceHiLoForBillingSettingPreset = "DBSequenceHiLoForBillingSettingPreset";
         public static readonly string DBSequenceHiLoForBillingSettingSet = "DBSequenceHiLoForBillingSettingSet";
 
+        // CurrencyModel
+        public static readonly string DBSequenceHiLoForCurrency = "DBSequenceHiLoForCurrency";
+
         // ProductAggregate
         public static readonly string DBSequenceHiLoForProduct = "DBSequenceHiLoForProduct";
 
