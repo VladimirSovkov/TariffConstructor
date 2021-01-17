@@ -11,7 +11,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.ToTable("ProductOptionTariff");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForProductOptionTariff);
 
             builder.HasIndex(x => x.TenantId);
 

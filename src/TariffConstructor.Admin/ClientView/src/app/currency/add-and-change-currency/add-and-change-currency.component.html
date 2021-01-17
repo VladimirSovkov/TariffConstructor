@@ -1,0 +1,33 @@
+<button mat-button color="primary" class="back_button" [routerLink]="'/currency'">Назад</button>
+<div class="form_input">
+  <form class="form_block" [formGroup]="form" (ngSubmit)="action()">
+    <p> Название:
+      <mat-form-field class="input-name">
+        <label>
+          <input matInput formControlName="name" style="text-transform: uppercase"/>
+        </label>
+        <mat-error *ngIf="!form.controls['name'].hasError('minLength')">
+          Только 3 символа
+        </mat-error>
+        <mat-error *ngIf="form.controls['name'].hasError('pattern')">
+          Только буквы
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p> Код:
+      <mat-form-field class="input-code">
+        <label>
+          <input matInput formControlName="code"/>
+        </label>
+        <mat-error *ngIf="!form.controls['code'].hasError('minLength')">
+          Кол-во цифр должно быть = 3
+        </mat-error>
+        <mat-error *ngIf="form.controls['code'].hasError('pattern')">
+          Только цифры
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeCurrency;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>

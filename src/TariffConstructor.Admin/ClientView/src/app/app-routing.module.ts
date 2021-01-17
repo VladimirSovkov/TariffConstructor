@@ -19,6 +19,8 @@ import {ApplicationTableComponent} from './application/application-table/applica
 import {AddAndChangeApplicationComponent} from './application/add-and-change-application/add-and-change-application.component';
 import {TermsOfUseTableComponent} from './terms-of-use/terms-of-use-table/terms-of-use-table.component';
 import {AddAndChangeTermsOfUseComponent} from './terms-of-use/add-and-change-terms-of-use/add-and-change-terms-of-use.component';
+import {CurrencyTableComponent} from './currency/currency-table/currency-table.component';
+import {AddAndChangeCurrencyComponent} from './currency/add-and-change-currency/add-and-change-currency.component';
 
 // http://localhost:4200/tariff-> Home Component
 
@@ -57,6 +59,10 @@ const routes: Routes = [
   {path: 'termsOfUse', component: TermsOfUseTableComponent},
   {path: 'termsOfUse/add', component: AddAndChangeTermsOfUseComponent},
   {path: 'termsOfUse/change/:id', component: AddAndChangeTermsOfUseComponent},
+
+  {path: 'currency', component: CurrencyTableComponent},
+  {path: 'currency/add', component: AddAndChangeCurrencyComponent},
+  {path: 'currency/change/:id', component: AddAndChangeCurrencyComponent},
 ];
 
 @NgModule({

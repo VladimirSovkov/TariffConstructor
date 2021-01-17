@@ -92,6 +92,19 @@ namespace TariffConstructor.Domain.ProductOptionTariffAggregate
             _prices.Add( new ProductOptionTariffPrice( Id, price, period ) );
         }
 
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public void SetProductOption(int productOptionId)
+        {
+            if (productOptionId != ProductOptionId)
+            {
+                ProductOptionId = productOptionId;
+            }
+        }
+
         protected ProductOptionTariff()
         {
         }

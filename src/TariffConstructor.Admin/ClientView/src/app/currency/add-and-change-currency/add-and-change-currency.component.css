@@ -1,0 +1,25 @@
+form{
+  margin: 0 auto;
+  width: 420px;
+}
+
+.input-name {
+  width: 81%;
+  margin-left: 5px;
+}
+
+.input-code {
+  width: 91%;
+  margin-left: 5px;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+

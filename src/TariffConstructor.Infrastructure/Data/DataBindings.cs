@@ -19,6 +19,8 @@ using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationModel.Repository;
 using TariffConstructor.Domain.CurrencyModel;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.CurrencyModel.Repository;
+using TariffConstructor.Domain.ProductOptionTariffAggregate;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffModel.Repository;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -36,6 +38,7 @@ namespace TariffConstructor.Infrastructure.Data
             services.AddScoped<ITermsOfUseRepository, TermsOfUseRepository>();
             services.AddScoped<IApplicationRepository, ApplicationRepository>();
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+            services.AddScoped<IProductOptionTariffRepository, ProductOptionTariffRepository>();
             return services;
         }
 

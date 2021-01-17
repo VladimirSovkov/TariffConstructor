@@ -37,7 +37,7 @@ export class SettingTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-    this.snackBarService.openErrorSnackBar('message');
+    this.snackBarService.openErrorHttpSnackBar('message');
   }
 
   load(): void {

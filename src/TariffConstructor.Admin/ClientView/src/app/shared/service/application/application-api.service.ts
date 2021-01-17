@@ -32,7 +32,7 @@ export class ApplicationApiService{
     return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
   }
 
-  getSApplications(): Observable<Application[]> {
+  getApplications(): Observable<Application[]> {
     return this.apiService.get(this.apiUrl + '/getApplications');
   }
 }

@@ -23,6 +23,7 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionKindAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffAggregate.Mapping;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.SettingAggregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseAggregate.Mapping;
@@ -183,7 +184,7 @@ namespace TariffConstructor.Infrastructure.Data
 
             //ProductOptionTariffAggregate
             builder.ApplyConfiguration(new ProductOptionTariffPriceMap());
-            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForTariffPrice).StartsAt(1)
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForProductOptionTariffPrice).StartsAt(1)
                 .IncrementsBy(1);
             builder.ApplyConfiguration(new ProductOptionTariffMap());
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForProductOptionTariff).StartsAt(1)

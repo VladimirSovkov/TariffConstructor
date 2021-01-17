@@ -115,7 +115,7 @@ export class AddChangeApplicationSettingComponent implements OnInit {
   }
 
   private loadApplications(): void {
-    this.applicationService.getSApplications()
+    this.applicationService.getApplications()
       .subscribe((applications: Application[]) => {
         this.applications = applications;
       }, error => {

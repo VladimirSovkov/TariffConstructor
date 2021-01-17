@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TariffConstructor.Domain.ProductOptionTariffAggregate;
 
-namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffAggregate.Mapping
+namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffModel.Mapping
 {
     public class ProductOptionTariffPriceMap : IEntityTypeConfiguration<ProductOptionTariffPrice>
     {
@@ -11,7 +11,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.ToTable("ProductOptionTariffPrice");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
+            builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForProductOptionTariffPrice);
             
             builder.OwnsOne(x => x.Price, y => y.Property(p => p.Currency).HasMaxLength(3));
             builder.OwnsOne(x => x.Period);

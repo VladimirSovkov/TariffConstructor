@@ -64,6 +64,9 @@ import { AddAndChangeApplicationComponent } from './application/add-and-change-a
 import {TermsOfUseTableComponent} from './terms-of-use/terms-of-use-table/terms-of-use-table.component';
 import {TermsOfUseApiService} from './shared/service/terms-of-use/terms-of-use-api.service';
 import {ApplicationApiService} from './shared/service/application/application-api.service';
+import { CurrencyTableComponent } from './currency/currency-table/currency-table.component';
+import { AddAndChangeCurrencyComponent } from './currency/add-and-change-currency/add-and-change-currency.component';
+import {CurrencyService} from './shared/service/currency/currency.service';
 
 @NgModule({
   declarations: [
@@ -95,7 +98,9 @@ import {ApplicationApiService} from './shared/service/application/application-ap
     AddAndChangeTermsOfUseComponent,
     ApplicationTableComponent,
     AddAndChangeApplicationComponent,
-    TermsOfUseTableComponent
+    TermsOfUseTableComponent,
+    CurrencyTableComponent,
+    AddAndChangeCurrencyComponent
   ],
   imports: [
     BrowserModule,
@@ -136,7 +141,8 @@ import {ApplicationApiService} from './shared/service/application/application-ap
     BillingSettingApiServices,
     SettingsPresetApiServices,
     TermsOfUseApiService,
-    ApplicationApiService
+    ApplicationApiService,
+    CurrencyService
   ],
   bootstrap: [AppComponent]
 })
