@@ -6,6 +6,7 @@ import {ProductOptionService} from '../../shared/service/product-option/product-
 import {SearchResult} from '../../shared/search-result.model';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-product-option-table',
@@ -19,7 +20,10 @@ export class ProductOptionTableComponent implements OnInit {
   searchPattern: ProductOptionSearchPattern;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  constructor(private productOptionService: ProductOptionService, private router: Router, private http: HttpClient) {
+  constructor(private productOptionService: ProductOptionService,
+              private router: Router,
+              private http: HttpClient,
+              private snackBarService: SnackBarService) {
     this.searchPattern = new ProductOptionSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
@@ -34,9 +38,11 @@ export class ProductOptionTableComponent implements OnInit {
     this.searchPattern.onPage = this.pageEvent.pageSize;
     this.searchPattern.pageNumber = this.pageEvent.pageIndex + 1;
     this.searchPattern.searchString = this.filter;
-    this.productOptionService.getData(this.searchPattern).subscribe((searchResult: SearchResult<ProductOption>) => {
+    this.productOptionService.search(this.searchPattern).subscribe((searchResult: SearchResult<ProductOption>) => {
       this.productOptions = searchResult.items;
       this.pageEvent.length = searchResult.totalCount;
+    }, error => {
+      this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 
@@ -51,10 +57,9 @@ export class ProductOptionTableComponent implements OnInit {
   }
 
   delete(id: number): void {
-    this.http.delete('http://localhost:4401/productOption/?id=' + id)
-      .subscribe(() => {
+    this.productOptionService.delete(id)
+      .subscribe( () => {
         console.log('delete');
-        this.load();
       });
   }
 }

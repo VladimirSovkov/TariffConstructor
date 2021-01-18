@@ -1,0 +1,35 @@
+form{
+  margin: 0 auto;
+  width: 420px;
+}
+
+.input-name {
+  width: 89%;
+  margin-left: 5px;
+}
+
+.select-product-option{
+  width: 68%;
+  margin-left: 5px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.submit_button {
+  width: 420px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+
+table {
+  width: 100%;
+}
+
+

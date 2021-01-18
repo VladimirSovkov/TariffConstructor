@@ -21,6 +21,9 @@ import {TermsOfUseTableComponent} from './terms-of-use/terms-of-use-table/terms-
 import {AddAndChangeTermsOfUseComponent} from './terms-of-use/add-and-change-terms-of-use/add-and-change-terms-of-use.component';
 import {CurrencyTableComponent} from './currency/currency-table/currency-table.component';
 import {AddAndChangeCurrencyComponent} from './currency/add-and-change-currency/add-and-change-currency.component';
+import {AddAndChangeProductOptionTariffComponent} from './product-option-tariff/add-and-change-product-option-tariff/add-and-change-product-option-tariff.component';
+import {ProductOptionTariff} from './shared/model/product-option-tariff/product-option-tariff.model';
+import {ProductOptionTariffTableComponent} from './product-option-tariff/product-option-tariff-table/product-option-tariff-table.component';
 
 // http://localhost:4200/tariff-> Home Component
 
@@ -63,6 +66,10 @@ const routes: Routes = [
   {path: 'currency', component: CurrencyTableComponent},
   {path: 'currency/add', component: AddAndChangeCurrencyComponent},
   {path: 'currency/change/:id', component: AddAndChangeCurrencyComponent},
+
+  {path: 'productOptionTariff', component: ProductOptionTariffTableComponent},
+  {path: 'productOptionTariff/add', component: AddAndChangeProductOptionTariffComponent},
+  {path: 'productOptionTariff/change/:id', component: AddAndChangeProductOptionTariffComponent},
 ];
 
 @NgModule({

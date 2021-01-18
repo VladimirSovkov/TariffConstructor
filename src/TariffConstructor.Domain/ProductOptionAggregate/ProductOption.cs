@@ -28,7 +28,7 @@ namespace TariffConstructor.Domain.ProductOptionAggregate
         public virtual Product Product { get; private set; }
         public int? KindId { get; private set; }
         public virtual ProductOptionKind Kind { get; private set; }
-        public DateTime CreationDate { get; private set; }
+        public DateTime CreationDate { get; private set; }  
         public string AccountingName { get; private set; }
 
         public void SetName(string name)
@@ -53,7 +53,10 @@ namespace TariffConstructor.Domain.ProductOptionAggregate
 
         public void SetProductId(int productId)
         {
-            ProductId = productId;
+            if (productId != ProductId)
+            {
+                ProductId = productId;
+            }
         }
 
         public void SetAccountingName(string accountingName)

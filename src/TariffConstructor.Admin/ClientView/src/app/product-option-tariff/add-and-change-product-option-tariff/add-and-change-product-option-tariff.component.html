@@ -1,0 +1,68 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/productOptionTariff'">Назад</button>
+</div>
+<form class="adding_product_option" [formGroup]="form">
+  <p> Имя:
+    <mat-form-field class="input-name" appearance="legacy">
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </p>
+  <p>Вариант продукта:
+    <mat-form-field class="select-product-option" appearance="legacy">
+      <mat-select formControlName="productOptionId">
+        <mat-option>-</mat-option>
+        <mat-option *ngFor="let productOption of productOptions"
+                    [value]="productOption.id">{{productOption.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+</form>
+
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Тарифная цена варианта продукта</mat-panel-title>
+  </mat-expansion-panel-header>
+  <button class="add_button" mat-button color="primary" (click)="openAddProductOptionTariffPrice()">Добавить
+  </button>
+  <table mat-table [dataSource]="productOptionTariffPrices" matSort #tablePrice>
+    <!-- priceValue Column -->
+    <ng-container matColumnDef="priceValue">
+      <th mat-header-cell *matHeaderCellDef>Стоимость</th>
+      <td mat-cell *matCellDef="let element"> {{element.price.value}} </td>
+    </ng-container>
+    <!-- priceCurrency Column -->
+    <ng-container matColumnDef="priceCurrency">
+      <th mat-header-cell *matHeaderCellDef>Валюта</th>
+      <td mat-cell *matCellDef="let element"> {{element.price.currency}} </td>
+    </ng-container>
+    <!-- periodValue Column -->
+    <ng-container matColumnDef="periodValue">
+      <th mat-header-cell *matHeaderCellDef> Длительность</th>
+      <td mat-cell *matCellDef="let element"> {{element.period.value}} </td>
+    </ng-container>
+    <!-- periodPeriodUnit Column -->
+    <ng-container matColumnDef="periodPeriodUnit">
+      <th mat-header-cell *matHeaderCellDef>Период</th>
+      <td mat-cell *matCellDef="let element"> {{parserPeriodUnit(element.period.periodUnit)}} </td>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Действия</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="deleteProductOptionPrice(element)">Удалить</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsAppSettings"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsAppSettings;"></tr>
+  </table>
+</mat-expansion-panel>
+
+<div class="button-wrapper">
+  <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset"
+          [disabled]="form.invalid" (click)="action()">Изменить
+  </button>
+  <ng-template #unset>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" (click)="action()">Добавить
+    </button>
+  </ng-template>
+</div>

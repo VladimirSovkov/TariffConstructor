@@ -1,0 +1,28 @@
+form {
+  width: 360px;
+}
+
+.select-currency {
+  width: 82%;
+  margin-left: 5px;
+}
+
+.input-price-value {
+  margin-left: 5px;
+  width: 76%;
+}
+
+.select-period {
+  margin-left: 5px;
+  width: 83%;
+}
+
+.input-period-value {
+  margin-left: 5px;
+  width: 70%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}

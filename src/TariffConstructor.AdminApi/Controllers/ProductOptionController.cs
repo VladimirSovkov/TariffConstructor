@@ -51,22 +51,20 @@ namespace TariffConstructor.AdminApi.Controllers
             return Ok();
         }
 
-        [HttpPost("change")]
+        [HttpPost("update")]
         public async Task<IActionResult> Change([FromBody] ProductOptionDto productOptionDto)
         {
-            //var productOption = new ProductOption(productOptionDto.ProductId,
-            //    productOptionDto.Name, productOptionDto.IsMultiple);
+            ProductOption productOption = await productOptionRepository.GetProductOption(productOptionDto.Id);
 
-            //productOption.SetAccountingName(productOptionDto.AccountingName);
-            //productOption.SetIsMultiple(productOptionDto.IsMultiple);
-            //productOption.SetName(productOptionDto.Name);
-            //productOption.SetNomenclatureId(productOptionDto.NomenclatureId);
-            //productOption.SetProductId(productOptionDto.ProductId);
+            productOption.SetAccountingName(productOptionDto.AccountingName);
+            productOption.SetIsMultiple(productOptionDto.IsMultiple);
+            productOption.SetName(productOptionDto.Name);
+            productOption.SetNomenclatureId(productOptionDto.NomenclatureId);
+            productOption.SetProductId(productOptionDto.ProductId);
 
-            //productOption = await productOptionRepository.Update(productOption);
+            productOption = await productOptionRepository.Update(productOption);
 
-            //return Ok(productOption.Map());
-            return Ok();
+            return Ok(productOption.Map());
         }
     }
 }

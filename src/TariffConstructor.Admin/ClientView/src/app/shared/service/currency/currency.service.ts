@@ -32,7 +32,7 @@ export class CurrencyService {
     return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
   }
 
-  getApplications(): Observable<Currency[]> {
+  getCurrencies(): Observable<Currency[]> {
     return this.apiService.get(this.apiUrl + '/getCurrencies');
   }
 }

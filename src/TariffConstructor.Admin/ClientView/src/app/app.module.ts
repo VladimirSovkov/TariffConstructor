@@ -67,6 +67,11 @@ import {ApplicationApiService} from './shared/service/application/application-ap
 import { CurrencyTableComponent } from './currency/currency-table/currency-table.component';
 import { AddAndChangeCurrencyComponent } from './currency/add-and-change-currency/add-and-change-currency.component';
 import {CurrencyService} from './shared/service/currency/currency.service';
+import { ProductOptionTariffTableComponent } from './product-option-tariff/product-option-tariff-table/product-option-tariff-table.component';
+import { AddAndChangeProductOptionTariffComponent } from './product-option-tariff/add-and-change-product-option-tariff/add-and-change-product-option-tariff.component';
+import {ProductOptionTariffService} from './shared/service/product-option-tariff/product-option-tariff.service';
+import { AddProductOptionTariffPriceComponent } from './product-option-tariff/add-and-change-product-option-tariff/add-product-option-tariff-price/add-product-option-tariff-price.component';
+import {ProductOption} from './shared/model/ProductOption/product-option.model';
 
 @NgModule({
   declarations: [
@@ -100,7 +105,10 @@ import {CurrencyService} from './shared/service/currency/currency.service';
     AddAndChangeApplicationComponent,
     TermsOfUseTableComponent,
     CurrencyTableComponent,
-    AddAndChangeCurrencyComponent
+    AddAndChangeCurrencyComponent,
+    ProductOptionTariffTableComponent,
+    AddAndChangeProductOptionTariffComponent,
+    AddProductOptionTariffPriceComponent
   ],
   imports: [
     BrowserModule,
@@ -142,7 +150,9 @@ import {CurrencyService} from './shared/service/currency/currency.service';
     SettingsPresetApiServices,
     TermsOfUseApiService,
     ApplicationApiService,
-    CurrencyService
+    CurrencyService,
+    ProductOptionTariffService,
+    ProductOptionService
   ],
   bootstrap: [AppComponent]
 })

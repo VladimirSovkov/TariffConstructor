@@ -18,7 +18,7 @@ namespace TariffConstructor.AdminApi.Dto.ProductOptionTariff
         [DataMember(Name = "name")]
         public string Name { get; set; }
         
-        [DataMember(Name = "productOptionTariffPrices")]
+        [DataMember(Name = "prices")]
         public List<ProductOptionTariffPriceDto> Prices { get; set; } 
     }
 }

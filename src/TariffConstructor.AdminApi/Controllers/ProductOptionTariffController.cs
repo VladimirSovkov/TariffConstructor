@@ -64,6 +64,8 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ProductOptionTariff id == {productOptionTariffDto.Id}. Not found!");
             }
             
+            
+
             await productOptionTariffRepository.Update(productOptionTariff);
             return Ok();
         }

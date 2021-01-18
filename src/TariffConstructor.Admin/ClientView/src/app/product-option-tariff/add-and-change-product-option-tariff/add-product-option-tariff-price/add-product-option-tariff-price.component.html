@@ -1,0 +1,46 @@
+<h3>Добавление тарифной цены варианта продукта</h3>
+<form [formGroup]="form">
+
+  <div formGroupName="price">
+    <p>Валюта:
+      <mat-form-field class="select-currency" appearance="legacy">
+        <mat-select formControlName="currency">
+          <mat-option *ngFor="let currency of currencies"
+                      [value]="currency.name">{{currency.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p> Стоимость:
+      <mat-form-field class="input-price-value">
+        <input matInput required="true" formControlName="value" type="number">
+      </mat-form-field>
+    </p>
+  </div>
+  <div formGroupName="period">
+    <p>Период:
+      <mat-form-field class="select-period" appearance="legacy">
+        <mat-select formControlName="periodUnit">
+          <mat-option value="0">Month</mat-option>
+          <mat-option value="1">QuarterOfTheYear</mat-option>
+          <mat-option value="2">HalfYear</mat-option>
+          <mat-option value="3">Year</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p> Длительность:
+      <mat-form-field class="input-period-value">
+        <input matInput type="text" required="true" formControlName="value" pattern="\d*" />
+        <mat-error *ngIf="!form.controls['period'].hasError('pattern')">
+          Только целые числа
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid"
+          (click)="close()">
+    Добавить
+  </button>
+</form>
+
+
+
