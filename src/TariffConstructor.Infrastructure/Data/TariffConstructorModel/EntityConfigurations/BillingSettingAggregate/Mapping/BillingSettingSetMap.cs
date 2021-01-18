@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.BillingSettingModel;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingAggregate.Mapping
 {

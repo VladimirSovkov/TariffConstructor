@@ -2,7 +2,7 @@
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.AdminApi.Mappers.ProductOptionAggregate;
-using TariffConstructor.Domain.ProductOptionTariffAggregate;
+using TariffConstructor.Domain.ProductOptionTariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap
 {

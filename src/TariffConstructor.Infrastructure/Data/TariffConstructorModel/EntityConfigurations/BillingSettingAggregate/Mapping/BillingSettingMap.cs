@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.BillingSettingModel;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingAggregate.Mapping
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Domain.ProductModel;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductAggregateMap
 {

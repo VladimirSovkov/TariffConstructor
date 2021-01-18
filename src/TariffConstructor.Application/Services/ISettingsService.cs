@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.Settings;
 
 namespace TariffConstructor.Application.Services

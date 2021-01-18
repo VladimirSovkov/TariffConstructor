@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.AdminApi.Dto.Setting;
 
 namespace TariffConstructor.AdminApi.Dto.BillingSetting

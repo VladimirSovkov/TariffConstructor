@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.AdminApi.Mappers.ProductOptionAggregate;
-using TariffConstructor.Domain.ProductOptionAggregate;
+using TariffConstructor.Domain.ProductOptionModel;
 
 namespace TariffConstructor.AdminApi.Controllers
 {

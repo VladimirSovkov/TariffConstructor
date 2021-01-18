@@ -1,4 +1,4 @@
-using TariffConstructor.Domain.ApplicationSettingAggregate;
+using TariffConstructor.Domain.ApplicationSettingModel;
 
 namespace TariffConstructor.Domain.Settings
 {

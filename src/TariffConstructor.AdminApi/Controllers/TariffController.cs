@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
-using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.AdminApi.Mappers.TariffAggregate;
 using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Toolkit.Search;
 using Microsoft.AspNetCore.Http;
 using TariffConstructor.Domain.ValueObjects;
 using System;
-using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
-using TariffConstructor.Domain.ProductOptionAggregate;
+using TariffConstructor.Domain.ProductOptionModel;
 
 namespace TariffConstructor.AdminApi.Controllers
 {

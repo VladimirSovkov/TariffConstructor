@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.TermsOfUse;
 using TariffConstructor.AdminApi.Mappers.TermsOfUseMap;
 using TariffConstructor.Domain.SearchPattern;
-using TariffConstructor.Domain.TermsOfUseAggregate;
+using TariffConstructor.Domain.TermsOfUseModel;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers

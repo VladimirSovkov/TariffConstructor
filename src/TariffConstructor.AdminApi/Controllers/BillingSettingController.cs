@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.BillingSetting;
 using TariffConstructor.AdminApi.Mappers.BillingSettingMap;
-using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Toolkit.Pagination;
 

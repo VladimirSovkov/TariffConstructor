@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ContractModel;
-using TariffConstructor.Domain.TariffAggregate;
-using TariffConstructor.Domain.TariffAggregate.Toolkit;
+using TariffConstructor.Domain.TariffModel;
+using TariffConstructor.Domain.TariffModel.Toolkit;
 using TariffConstructor.Toolkit.PageApp;
 using TariffConstructor.Toolkit.Search;
 

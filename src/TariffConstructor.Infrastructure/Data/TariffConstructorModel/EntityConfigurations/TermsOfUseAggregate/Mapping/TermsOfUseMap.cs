@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TariffConstructor.Domain.TermsOfUseAggregate;
+using TariffConstructor.Domain.TermsOfUseModel;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseAggregate.Mapping
 {

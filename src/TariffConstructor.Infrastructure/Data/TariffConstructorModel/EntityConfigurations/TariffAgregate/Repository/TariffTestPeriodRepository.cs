@@ -1,4 +1,4 @@
-﻿using TariffConstructor.Domain.TariffAggregate;
+﻿using TariffConstructor.Domain.TariffModel;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffAgregate.Repository
 {

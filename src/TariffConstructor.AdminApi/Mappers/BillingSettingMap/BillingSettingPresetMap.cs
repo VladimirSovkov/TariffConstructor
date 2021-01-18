@@ -2,7 +2,7 @@
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.BillingSettingDto;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
-using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.BillingSettingModel;
 
 namespace TariffConstructor.AdminApi.Mappers.BillingSettingMap
 {

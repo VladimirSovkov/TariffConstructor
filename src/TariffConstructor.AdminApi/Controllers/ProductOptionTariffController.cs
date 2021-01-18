@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap;
-using TariffConstructor.Domain.ProductOptionTariffAggregate;
+using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Toolkit.Search;

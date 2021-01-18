@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.Settings.Types;
 
 namespace TariffConstructor.Domain.Settings

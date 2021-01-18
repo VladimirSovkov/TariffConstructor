@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.SearchPattern;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers

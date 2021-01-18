@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.AdminApi.Mappers.TariffAggregate;
 using TariffConstructor.Domain.ContractModel;
-using TariffConstructor.Domain.TariffAggregate;
-using TariffConstructor.Domain.TariffAggregate.Toolkit;
+using TariffConstructor.Domain.TariffModel;
+using TariffConstructor.Domain.TariffModel.Toolkit;
 using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Toolkit.Search;
-using TariffConstructor.Domain.ProductAggregate;
+using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.AdminApi.Mappers.ProductAggregate;
-using TariffConstructor.Domain.ProductOptionAggregate;
+using TariffConstructor.Domain.ProductOptionModel;
 using TariffConstructor.AdminApi.Mappers.ProductOptionAggregate;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
 

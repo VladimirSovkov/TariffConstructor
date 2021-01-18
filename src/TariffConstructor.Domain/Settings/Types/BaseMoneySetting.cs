@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.ValueObjects;
 
 namespace TariffConstructor.Domain.Settings.Types

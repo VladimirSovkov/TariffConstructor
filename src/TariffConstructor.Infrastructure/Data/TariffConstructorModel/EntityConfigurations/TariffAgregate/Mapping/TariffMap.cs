@@ -1,4 +1,4 @@
-﻿using TariffConstructor.Domain.TariffAggregate;
+﻿using TariffConstructor.Domain.TariffModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

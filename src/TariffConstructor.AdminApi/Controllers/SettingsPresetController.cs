@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
-using TariffConstructor.Domain.ApplicationSettingAggregate;
-using TariffConstructor.Domain.BillingSettingAggregate;
+using TariffConstructor.Domain.ApplicationSettingModel;
+using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Domain.SearchPattern;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers

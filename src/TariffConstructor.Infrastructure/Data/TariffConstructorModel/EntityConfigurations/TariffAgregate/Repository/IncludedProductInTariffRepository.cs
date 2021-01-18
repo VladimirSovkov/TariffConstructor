@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TariffConstructor.Domain.ProductAggregate;
-using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.ProductModel;
+using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.ValueObjects;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations

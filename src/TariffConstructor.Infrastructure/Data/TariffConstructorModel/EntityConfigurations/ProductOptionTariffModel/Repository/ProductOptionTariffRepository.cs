@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.ProductOptionTariffAggregate;
+using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 

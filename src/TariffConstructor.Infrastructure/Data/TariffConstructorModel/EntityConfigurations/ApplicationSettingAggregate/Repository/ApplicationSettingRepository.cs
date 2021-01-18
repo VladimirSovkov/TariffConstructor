@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.ApplicationSettingAggregate;
+using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Pagination;

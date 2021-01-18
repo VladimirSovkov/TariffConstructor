@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.Setting;
-using TariffConstructor.Domain.SettingAggregate;
+using TariffConstructor.Domain.SettingModel;
 
 namespace TariffConstructor.AdminApi.Mappers.SettingMap
 {

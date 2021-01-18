@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-using TariffConstructor.Domain.TariffAggregate;
+using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.ValueObjects;
 
 namespace TariffConstructor.AdminApi.Dto
