@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Price} from '../../shared/model/value-object/price.model';
 import {ProlongationPeriod} from '../../shared/model/value-object/prolongation-period.model';
-import {TariffAdvancePrice} from '../../shared/model/TariffAggregate/tariff-advance-price.model';
+import {TariffAdvancePrice} from '../../shared/model/tariff/tariff-advance-price.model';
 
 @Component({
   selector: 'app-add-advance-price',

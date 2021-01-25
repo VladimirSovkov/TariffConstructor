@@ -34,17 +34,17 @@ namespace TariffConstructor.Domain.TariffModel
         /// <summary>
         /// Тестовый период
         /// </summary>
-        public virtual TariffTestPeriod TestPeriod { get; private set; } //для добавления нужно будет
+        public virtual TariffTestPeriod TestPeriod { get; private set; }
 
         /// <summary>
         /// Бухгалтерское наименование тарифа (обычно используется в бухгалтерских документах)
         /// </summary>
-        public string AccountingName { get; private set; }//для добавления нужно будет
+        public string AccountingName { get; private set; }
 
         /// <summary>
         /// Тип оплаты тарифа
         /// </summary>
-        public PaymentType PaymentType { get; private set; }//для добавления нужно будет
+        public PaymentType PaymentType { get; private set; }
 
         /// <summary>
         /// Тип оплаты тарифа
@@ -54,28 +54,28 @@ namespace TariffConstructor.Domain.TariffModel
         /// <summary>
         /// Идентификатор тарифа в бухгалтерской системе
         /// </summary>
-        public string AccountingTariffId { get; private set; }//для добавления нужно будет
+        public string AccountingTariffId { get; private set; }
 
         /// <summary>
         /// Идентификатор предустановок для приложений и других сервисов
         /// </summary>
-        public int? SettingsPresetId { get; private set; }// выпадающий список. По умолчанию = 0
+        public int? SettingsPresetId { get; private set; }
 
         /// <summary>
         /// Условия использования тарифа
         /// </summary>
-        public int? TermsOfUseId { get; private set; }// выпадающий список. По умолчанию = 0
+        public int? TermsOfUseId { get; private set; }
 
         /// <summary>
         /// Показывает требуется ли акцепт для использования данного тарифа
         /// </summary>
-        public bool IsAcceptanceRequired { get; private set; }//check box
+        public bool IsAcceptanceRequired { get; private set; }
 
 
         /// <summary>
         /// Показывает доступен ли для плавного завершения
         /// </summary>
-        public bool IsGradualFinishAvailable { get; private set; }//check box
+        public bool IsGradualFinishAvailable { get; private set; }
 
         /// <summary>
         /// Прайс-лист тарифа по периодам
@@ -321,11 +321,15 @@ namespace TariffConstructor.Domain.TariffModel
             return TestPeriod.Value > 0;
         }
 
-        public bool IsAvailableForUpdate()
+        public void SetIsAcceptanceRequired(bool isAcceptanceRequired)
         {
-            return !IsAcceptanceRequired;
+            IsAcceptanceRequired = isAcceptanceRequired;
         }
 
+        public void SetIsGradualFinishAvailable(bool isGradualFinishAvailable)
+        {
+            IsGradualFinishAvailable = isGradualFinishAvailable;
+        }
         public void SetAccountingTariffId( string accountingTariffId )
         {
             AccountingTariffId = accountingTariffId;
@@ -346,9 +350,14 @@ namespace TariffConstructor.Domain.TariffModel
             AwaitingPaymentStrategy = awaitingPaymentStrategy;
         }
 
-        public void Archive()
+        public void SetArchive(bool isArchived)
         {
-            IsArchived = true;
+            IsArchived = isArchived;
+        }
+
+        public void SetAccountingName(string accountingName)
+        {
+            AccountingName = accountingName;
         }
 
         protected Tariff()

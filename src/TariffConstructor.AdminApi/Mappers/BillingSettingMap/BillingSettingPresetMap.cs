@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.BillingSettingDto;
+using TariffConstructor.AdminApi.Dto.BillingSetting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.BillingSettingModel;
 

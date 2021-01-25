@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
-using TariffConstructor.AdminApi.Mappers.TariffAggregate;
+using TariffConstructor.AdminApi.Mappers.TariffMap;
 using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TariffModel.Toolkit;
@@ -13,10 +13,11 @@ using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Toolkit.Search;
 using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.Domain.SearchPattern;
-using TariffConstructor.AdminApi.Mappers.ProductAggregate;
+using TariffConstructor.AdminApi.Mappers.ProductMap;
 using TariffConstructor.Domain.ProductOptionModel;
-using TariffConstructor.AdminApi.Mappers.ProductOptionAggregate;
+using TariffConstructor.AdminApi.Mappers.ProductOptionMap;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
+using TariffConstructor.AdminApi.ProductDtoModel;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -46,21 +47,12 @@ namespace TariffConstructor.AdminApi.Controllers
             tariff.SetAwaitingPaymentStrategy(parameters.AwaitingPaymentStrategy);
             tariff.SetSettingsPresetId(parameters.SettingsPresetId);
             tariff.SetTermsOfUseId(parameters.TermsOfUseId);
-            if (parameters.IsArchived)
-                tariff.Archive();
 
 
             tariff.AddTestPeriod(new TariffTestPeriod(parameters.Value, (TariffTestPeriodUnit)Convert.ToInt32(parameters.Unit)));
             _tariff.Add(tariff);
         }
 
-        [HttpGet("paginator")]
-        public async Task<IReadOnlyList<SimplifiedTariffDto>> GetTariffs()
-        {
-            TariffPaginator abc = await _tariff.GetTariffs(5, 2);
-            IReadOnlyList<SimplifiedTariffDto> tariffs = abc.Tariffs.ToSimplifiedTariffDtos();
-            return tariffs;
-        }
 
         [HttpGet("search")]
         [ProducesResponseType(typeof(SearchResult<SimplifiedTariffDto>), StatusCodes.Status200OK)]
@@ -70,7 +62,7 @@ namespace TariffConstructor.AdminApi.Controllers
             abc.PageNumber = pageNumber;
             abc.OnPage = onPage;
             abc.SearchString = searchString;
-            SearchResult<Tariff> searchResult = await _tariff.GetFoundRates(abc);
+            SearchResult<Tariff> searchResult = await _tariff.GetFoundTariff(abc);
 
             return Ok(new SearchResult<SimplifiedTariffDto>
             {

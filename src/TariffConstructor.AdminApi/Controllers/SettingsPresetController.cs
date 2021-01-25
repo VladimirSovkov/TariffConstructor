@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
@@ -69,6 +72,56 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] SettingsPresetDto settingsPresetDto)
         {
+            SettingsPreset settingsPreset = await settingsPresetRepository.GetSettingsPreset(settingsPresetDto.Id);
+            settingsPreset.SetName(settingsPresetDto.Name);
+            settingsPreset.RemoveApplicationSettingsPresets(settingsPresetDto.ApplicationSettingPresets.Select(x => x.ApplicationSettingId).ToList());
+            settingsPreset.RemoveBillingSettingPresets(settingsPresetDto.BillingSettingPresets.Select(x => x.BillingSettingId).ToList());
+            foreach (var item in settingsPresetDto.ApplicationSettingPresets)
+            {
+                SettingPresetValue settingPresetValue = new SettingPresetValue(
+                    item.Value.DefaultValue,
+                    item.Value.MinValue,
+                    item.Value.MaxValue
+                );
+                ApplicationSettingPreset applicationSettingPreset = new ApplicationSettingPreset(
+                    item.SettingsPresetId,
+                    item.ApplicationSettingId,
+                    settingPresetValue,
+                    item.IsRequired,
+                    item.IsReadOnly,
+                    item.IsHidden
+                );
+
+                if (settingsPreset.ApplicationSettingPresets.Select(x => x.ApplicationSettingId).Contains(item.ApplicationSettingId))
+                    settingsPreset.ChangeApplicationSetting(applicationSettingPreset);
+                else
+                    settingsPreset.AddApplicationSettingPreset(applicationSettingPreset);
+            }
+
+            foreach (var item in settingsPresetDto.BillingSettingPresets)
+            {
+                SettingPresetValue settingPresetValue = new SettingPresetValue(
+                    item.Value.DefaultValue,
+                    item.Value.MinValue,
+                    item.Value.MaxValue
+                );
+                BillingSettingPreset billingSettingPreset = new BillingSettingPreset(
+                    item.SettingsPresetId,
+                    item.BillingSettingId,
+                    settingPresetValue,
+                    item.IsRequired,
+                    item.IsReadOnly,
+                    item.IsHidden
+                );
+
+                if (settingsPreset.BillingSettingPresets.Select(x => x.BillingSettingId).Contains(item.BillingSettingId))
+                    settingsPreset.ChangeBillingSettingPreset(billingSettingPreset);
+                else
+                    settingsPreset.AddBillingSettingPreset(billingSettingPreset);
+            }
+
+            await settingsPresetRepository.Update(settingsPreset);
+
             return Ok();
         }
 

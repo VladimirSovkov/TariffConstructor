@@ -1,4 +1,4 @@
-export interface Price {
+export class Price {
   value: number;
   currency: string;
 }

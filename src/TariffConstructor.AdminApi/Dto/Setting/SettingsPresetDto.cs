@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TariffConstructor.AdminApi.Dto.ApplicationSetting;
-using TariffConstructor.AdminApi.Dto.BillingSettingDto;
+using TariffConstructor.AdminApi.Dto.BillingSetting;
 
 namespace TariffConstructor.AdminApi.Dto.Setting
 {
@@ -9,7 +9,7 @@ namespace TariffConstructor.AdminApi.Dto.Setting
     public class SettingsPresetDto
     {
         [DataMember(Name = "id")]
-        public int Id { get; set; }
+        public int Id {     get; set; }
 
         [DataMember(Name = "name")]
         public string Name { get; set; }

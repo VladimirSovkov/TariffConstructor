@@ -16,11 +16,8 @@ namespace TariffConstructor.AdminApi.Dto.TariffAggragate
         [DataMember(Name = "isArchived")]
         public bool IsArchived { get; set; }
 
-        [DataMember(Name = "valueTestPeriod")]
-        public int ValueTestPeriod { get; set; }
-
-        [DataMember(Name = "unitTestPeriod")]
-        public int UnitTestPeriod { get; set; }
+        [DataMember(Name = "testPeriod")]
+        public TariffTestPeriodDto TestPeriod { get; set; }
 
         [DataMember(Name = "accountingName")]
         public string AccountingName { get; set; }

@@ -9,7 +9,7 @@ import {ProductOptionTariffPrice} from '../../shared/model/product-option-tariff
 import {ProductOptionTariffService} from '../../shared/service/product-option-tariff/product-option-tariff.service';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {AddProductOptionTariffPriceComponent} from './add-product-option-tariff-price/add-product-option-tariff-price.component';
-import {ProductOption} from '../../shared/model/ProductOption/product-option.model';
+import {ProductOption} from '../../shared/model/productOption/product-option.model';
 import {ProductOptionService} from '../../shared/service/product-option/product-option.service';
 
 @Component({

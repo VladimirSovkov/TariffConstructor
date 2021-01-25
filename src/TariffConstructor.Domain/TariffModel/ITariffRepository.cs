@@ -20,11 +20,6 @@ namespace TariffConstructor.Domain.TariffModel
 
         Task<List<Tariff>> GetTariffs( params int[] tariffIds );
 
-        Task<TariffPaginator> GetTariffs(int countElementInPage, int page = 1);
-
-        //search
-        Task<SearchResult<Tariff>> GetFoundRates(TarifftSearchPattern searchPattern);
-
-        Task<List<Tariff>> GetTariffsWithAcceptanceRequired();
+        Task<SearchResult<Tariff>> GetFoundTariff(TarifftSearchPattern searchPattern);
     }
 }

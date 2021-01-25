@@ -1,5 +1,5 @@
 <div class="block_with_button">
-  <button mat-button color="primary" class="back_button" (click)="goBack()">Назад</button>
+  <button mat-button color="primary" class="back_button" [routerLink]="'/tariff'">Назад</button>
 </div>
 <div class="form_input">
   <form class="adding_tariff" [formGroup]="form" (ngSubmit)="action()">
@@ -13,12 +13,13 @@
         IsArchived
       </mat-checkbox>
     </p>
-    <div class="TariffTestPeriodForm">
+    <div class="TariffTestPeriodForm" formGroupName="testPeriod">
       <h4>Test Period</h4>
       <p class="TariffTestPeriodUintForm">
         <mat-form-field appearance="fill">
           <mat-label>TariffTestPeriodUnit</mat-label>
-          <mat-select [value]="tariff.unitTestPeriod" formControlName="unitTestPeriod" >
+          <mat-select [value]="tariff.testPeriod.unit" formControlName="unit" >
+            <mat-option> - </mat-option>
             <mat-option [value]="0">Day</mat-option>
             <mat-option [value]="1">Week</mat-option>
             <mat-option [value]="2">Month</mat-option>
@@ -29,7 +30,7 @@
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Value</mat-label>
-          <input matInput placeholder="Placeholder" type="number" formControlName="valueTestPeriod">
+          <input matInput placeholder="Placeholder" type="number" formControlName="value">
           <mat-hint>Name</mat-hint>
         </mat-form-field>
       </p>
@@ -105,7 +106,7 @@
         Period: value - {{price.period.value}} unit - {{price.period.periodUnit}}
       </p>
     </mat-expansion-panel>
-    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('Price')">Добавить</button>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddPriceTariff()">Добавить</button>
   </div>
   <div class="mat-expansion-panel-block">
     <mat-expansion-panel hideToggle>
@@ -114,7 +115,7 @@
       </mat-expansion-panel-header>
       <p>Здесь будет список</p>
     </mat-expansion-panel>
-    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('AdvancePrice')">Добавить</button>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddAdvancePrice()">Добавить</button>
   </div>
 
   <div class="mat-expansion-panel-block">
@@ -143,7 +144,7 @@
       </mat-table>
 
     </mat-expansion-panel>
-    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('Product')">Добавить</button>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddIncludedProduct()">Добавить</button>
   </div>
 
   <div class="mat-expansion-panel-block">
@@ -156,7 +157,7 @@
         quantity: {{productOption.quantity}}
       </p>
     </mat-expansion-panel>
-    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('ProductOption')">Добавить</button>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddIncludedProductOption()">Добавить</button>
   </div>
 
   <div class="mat-expansion-panel-block">
@@ -166,6 +167,6 @@
       </mat-expansion-panel-header>
       <p>Здесь будет список</p>
     </mat-expansion-panel>
-    <button class="add_button" mat-raised-button color="primary" (click)="openDialog('ContractKindBindings')">Добавить</button>
+    <button class="add_button" mat-raised-button color="primary" (click)="openAddContractKindBindings()">Добавить</button>
   </div>
 </div>

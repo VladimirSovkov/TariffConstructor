@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Product} from '../../shared/model/Product/product.model';
+import {Product} from '../../shared/model/product/product.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Tariff} from '../../shared/model/TariffAggregate/tariff.model';
-import {IncludedProductInTariff} from '../../shared/model/TariffAggregate/included-product-In-tariff.model';
+import {Tariff} from '../../shared/model/tariff/tariff.model';
+import {IncludedProductInTariff} from '../../shared/model/tariff/included-product-In-tariff.model';
 
 @Component({
   selector: 'app-add-included-product',

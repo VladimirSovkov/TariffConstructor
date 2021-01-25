@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.Domain.TariffModel;
-using TariffConstructor.AdminApi.Mappers.TariffAggregate;
+using TariffConstructor.AdminApi.Mappers.TariffMap;
 using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Toolkit.Search;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +32,7 @@ namespace TariffConstructor.AdminApi.Controllers
             this.productOptionRepository = productOptionRepository;
         }
 
-        [HttpGet(Name = "getTariff")]
+        [HttpGet("get")]
         public async Task<IActionResult> GetTariff(int id)
         {
             Tariff tariff = await tariffRepository.GetTariff(id);
@@ -48,7 +48,7 @@ namespace TariffConstructor.AdminApi.Controllers
             abc.PageNumber = pageNumber;
             abc.OnPage = onPage;
             abc.SearchString = searchString;
-            SearchResult<Tariff> searchResult = await tariffRepository.GetFoundRates(abc);
+            SearchResult<Tariff> searchResult = await tariffRepository.GetFoundTariff(abc);
 
             return Ok(new SearchResult<SimplifiedTariffDto>
             {
@@ -58,20 +58,19 @@ namespace TariffConstructor.AdminApi.Controllers
             });
         }
 
-        // POST tariff/add
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] TariffDto tariffLoad)
+        public async Task<IActionResult> Add([FromBody] TariffDto tariffDto)
         {
-            PaymentType paymentType = (PaymentType)Convert.ToInt32(tariffLoad.PaymentType);
-            Tariff tariff = new Tariff(tariffLoad.Name, paymentType);
-            tariff.SetAccountingTariffId(tariffLoad.AccountingTariffId);
-            tariff.SetAwaitingPaymentStrategy(tariffLoad.AwaitingPaymentStrategy);
-            tariff.SetSettingsPresetId(tariffLoad.SettingsPresetId);
-            tariff.SetTermsOfUseId(tariffLoad.TermsOfUseId);
-            if (tariffLoad.IsArchived)
-                tariff.Archive();
-            tariff.AddTestPeriod(new TariffTestPeriod(tariffLoad.ValueTestPeriod, (TariffTestPeriodUnit)Convert.ToInt32(tariffLoad.UnitTestPeriod)));
-            
+            Tariff tariff = new Tariff(tariffDto.Name, (PaymentType)tariffDto.PaymentType);
+            TariffTestPeriod testPeriod = new TariffTestPeriod(tariffDto.TestPeriod.Value, (TariffTestPeriodUnit)tariffDto.TestPeriod.Unit);
+            tariff.SetArchive(tariffDto.IsArchived);
+            tariff.AddTestPeriod(testPeriod);
+            tariff.SetAccountingTariffId(tariffDto.AccountingName);
+            tariff.SetSettingsPresetId(tariffDto.SettingsPresetId);
+            tariff.SetTermsOfUseId(tariffDto.TermsOfUseId);
+            tariff.SetIsAcceptanceRequired(tariffDto.IsAcceptanceRequired);
+            tariff.SetIsGradualFinishAvailable(tariffDto.IsGradualFinishAvailable);
+
             //add price 
             //foreach(var tariffPrice in tariffLoad.Prices)
             //{
@@ -81,7 +80,7 @@ namespace TariffConstructor.AdminApi.Controllers
             //}
             
             //add included product
-            foreach (var includedProduct in tariffLoad.IncludedProducts)
+            foreach (var includedProduct in tariffDto.IncludedProducts)
             {
                 Product product = await productRepository.GetProduct(includedProduct.ProductId);
                 tariff.AddProduct(product, includedProduct.RelativeWeight);
@@ -102,40 +101,30 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody]TariffLoadParameters tariffLoad)
         {
-            PaymentType paymentType = (PaymentType)Convert.ToInt32(tariffLoad.PaymentType);
-            Tariff tariff = new Tariff(tariffLoad.Name, paymentType);
-            tariff.SetAccountingTariffId(tariffLoad.AccountingTariffId);
-            tariff.SetAwaitingPaymentStrategy(tariffLoad.AwaitingPaymentStrategy);
-            tariff.SetSettingsPresetId(tariffLoad.SettingsPresetId);
-            tariff.SetTermsOfUseId(tariffLoad.TermsOfUseId);
-            if (tariffLoad.IsArchived)
-                tariff.Archive();
-            tariff.AddTestPeriod(new TariffTestPeriod(tariffLoad.Value, (TariffTestPeriodUnit)Convert.ToInt32(tariffLoad.Unit)));
-            foreach (var includedProduct in tariff.IncludedProducts)
-            {
-                Product product = await productRepository.GetProduct(includedProduct.ProductId);
-                tariff.AddProduct(product, includedProduct.RelativeWeight);
-            }
-            await tariffRepository.Add(tariff);
+            //PaymentType paymentType = (PaymentType)Convert.ToInt32(tariffLoad.PaymentType);
+            //Tariff tariff = new Tariff(tariffLoad.Name, paymentType);
+            //tariff.SetAccountingTariffId(tariffLoad.AccountingTariffId);
+            //tariff.SetAwaitingPaymentStrategy(tariffLoad.AwaitingPaymentStrategy);
+            //tariff.SetSettingsPresetId(tariffLoad.SettingsPresetId);
+            //tariff.SetTermsOfUseId(tariffLoad.TermsOfUseId);
+            //if (tariffLoad.IsArchived)
+            //    tariff.Archive();
+            //tariff.AddTestPeriod(new TariffTestPeriod(tariffLoad.Value, (TariffTestPeriodUnit)Convert.ToInt32(tariffLoad.Unit)));
+            //foreach (var includedProduct in tariff.IncludedProducts)
+            //{
+            //    Product product = await productRepository.GetProduct(includedProduct.ProductId);
+            //    tariff.AddProduct(product, includedProduct.RelativeWeight);
+            //}
+            //await tariffRepository.Add(tariff);
 
             return Ok();
         }
 
-        [HttpPost("addProduct")]
-        public void AddProduct()
-        {
-
-        }
-
-        [HttpPost("addProductOption")]
-        public void AddProductOption()
-        {
-
-        }
-
         [HttpDelete("")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await tariffRepository.Delete(id);
+            return Ok();
         }
     }
 }

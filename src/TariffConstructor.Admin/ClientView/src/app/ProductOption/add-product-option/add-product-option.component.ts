@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ProductOption} from '../../shared/model/ProductOption/product-option.model';
-import {Product} from '../../shared/model/Product/product.model';
+import {ProductOption} from '../../shared/model/productOption/product-option.model';
+import {Product} from '../../shared/model/product/product.model';
 
 @Component({
   selector: 'app-add-product-option',

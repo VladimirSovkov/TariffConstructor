@@ -13,36 +13,34 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { TariffTableComponent } from './Tariff/tariff-table/tariff-table.component';
+import { TariffTableComponent } from './tariff/tariff-table/tariff-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModel} from './app-routing.module';
-import { ProductTableComponent } from './Product/product-table/product-table.component';
-import { ProductOptionTableComponent } from './ProductOption/product-option-table/product-option-table.component';
-import { AddingTariffComponent } from './Tariff/adding-tariff/adding-tariff.component';
+import { ProductTableComponent } from './product/product-table/product-table.component';
+import { ProductOptionTableComponent } from './productOption/product-option-table/product-option-table.component';
+import { AddingTariffComponent } from './tariff/adding-tariff/adding-tariff.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DeleteMeComponent } from './delete-me/delete-me.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TariffService } from './shared/service/tariff.service';
 import { ProductService } from './shared/service/product/product.service';
 import { ProductOptionService } from './shared/service/product-option/product-option.service';
-import { AddProductComponent } from './Product/add-product/add-product.component';
-import { AddProductOptionComponent } from './ProductOption/add-product-option/add-product-option.component';
-import { ChangeTariffComponent } from './Tariff/change-tariff/change-tariff.component';
-import { AddIncludedProductComponent } from './Tariff/add-included-product/add-included-product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { AddProductOptionComponent } from './productOption/add-product-option/add-product-option.component';
+import { ChangeTariffComponent } from './tariff/change-tariff/change-tariff.component';
+import { AddIncludedProductComponent } from './tariff/add-included-product/add-included-product.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { AddPriceComponent } from './Tariff/add-price/add-price.component';
-import { AddAdvancePriceComponent } from './Tariff/add-advance-price/add-advance-price.component';
-import { AddIncludedProductOptionComponent } from './Tariff/add-included-product-option/add-included-product-option.component';
-import { AddContractKindBindingComponent } from './Tariff/add-contract-kind-binding/add-contract-kind-binding.component';
+import { AddPriceComponent } from './tariff/add-price/add-price.component';
+import { AddAdvancePriceComponent } from './tariff/add-advance-price/add-advance-price.component';
+import { AddIncludedProductOptionComponent } from './tariff/add-included-product-option/add-included-product-option.component';
+import { AddContractKindBindingComponent } from './tariff/add-contract-kind-binding/add-contract-kind-binding.component';
 import { SettingTableComponent } from './setting/setting-table/setting-table.component';
 import {SettingApiServices} from './shared/service/setting/setting-api.services';
 import {ApiService} from './shared/service/api.service';
@@ -71,7 +69,8 @@ import { ProductOptionTariffTableComponent } from './product-option-tariff/produ
 import { AddAndChangeProductOptionTariffComponent } from './product-option-tariff/add-and-change-product-option-tariff/add-and-change-product-option-tariff.component';
 import {ProductOptionTariffService} from './shared/service/product-option-tariff/product-option-tariff.service';
 import { AddProductOptionTariffPriceComponent } from './product-option-tariff/add-and-change-product-option-tariff/add-product-option-tariff-price/add-product-option-tariff-price.component';
-import {ProductOption} from './shared/model/ProductOption/product-option.model';
+import {ProductOption} from './shared/model/productOption/product-option.model';
+import {TariffService} from './shared/service/tariff/tariff.service';
 
 @NgModule({
   declarations: [
@@ -81,7 +80,6 @@ import {ProductOption} from './shared/model/ProductOption/product-option.model';
     ProductTableComponent,
     ProductOptionTableComponent,
     AddingTariffComponent,
-    DeleteMeComponent,
     AddProductComponent,
     AddProductOptionComponent,
     ChangeTariffComponent,
@@ -140,7 +138,7 @@ import {ProductOption} from './shared/model/ProductOption/product-option.model';
   ],
   exports: [
   ],
-  providers: [TariffService,
+  providers: [
     ProductService,
     ProductOptionService,
     SettingApiServices,
@@ -152,7 +150,8 @@ import {ProductOption} from './shared/model/ProductOption/product-option.model';
     ApplicationApiService,
     CurrencyService,
     ProductOptionTariffService,
-    ProductOptionService
+    ProductOptionService,
+    TariffService
   ],
   bootstrap: [AppComponent]
 })

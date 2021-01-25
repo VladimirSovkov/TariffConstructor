@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Price} from '../../shared/model/value-object/price.model';
 import {ProlongationPeriod} from '../../shared/model/value-object/prolongation-period.model';
-import {TariffPrice} from '../../shared/model/TariffAggregate/tariff-price.model';
+import {TariffPrice} from '../../shared/model/tariff/tariff-price.model';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Tariff} from '../../shared/model/TariffAggregate/tariff.model';
+import {Tariff} from '../../shared/model/tariff/tariff.model';
 
 @Component({
   selector: 'app-add-price',

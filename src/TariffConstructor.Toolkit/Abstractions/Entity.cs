@@ -7,7 +7,7 @@ namespace TariffConstructor.Toolkit.Abstractions
         /// <summary>
         ///     Внутренние идентификаторы делаем целочисленными
         /// </summary>
-        public virtual int Id { get; set; }
+        public virtual int Id { get; set; } = 0;
 
         //private readonly Dictionary<Type, IDomainEventNotification> _domainEvents =
         //    new Dictionary<Type, IDomainEventNotification>();

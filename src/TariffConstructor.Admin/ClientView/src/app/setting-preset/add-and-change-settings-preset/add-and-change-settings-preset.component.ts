@@ -91,6 +91,9 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
   }
 
   updateSetting(settingsPreset: SettingsPreset): void {
+    settingsPreset.applicationSettingsPresets = this.applicationSettingsPreset;
+    settingsPreset.billingsSettingPresets = this.billingSettingsPreset;
+    console.log('change settingsPreset', settingsPreset);
     this.settingsPresetService.update(settingsPreset)
       .subscribe(() => {
         this.formInitialization();

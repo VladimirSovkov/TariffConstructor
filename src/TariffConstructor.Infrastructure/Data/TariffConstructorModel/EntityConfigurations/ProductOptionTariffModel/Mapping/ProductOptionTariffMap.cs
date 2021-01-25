@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 
-namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffAggregate.Mapping
+namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffModel.Mapping
 {
     public class ProductOptionTariffMap : IEntityTypeConfiguration<ProductOptionTariff>
     {

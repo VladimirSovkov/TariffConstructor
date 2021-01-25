@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SearchResult } from '../../search-result.model';
-import { Product } from '../../model/Product/product.model';
-import { ProductSearchPattern } from '../../model/Product/product-search-pattern.model';
+import { Product } from '../../model/product/product.model';
+import { ProductSearchPattern } from '../../model/product/product-search-pattern.model';
 
 @Injectable()
 export class ProductService{

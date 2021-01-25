@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../shared/model/Product/product.model';
-import { ProductSearchPattern } from '../../shared/model/Product/product-search-pattern.model';
+import { Product } from '../../shared/model/product/product.model';
+import { ProductSearchPattern } from '../../shared/model/product/product-search-pattern.model';
 import {PageEvent} from '@angular/material/paginator';
 import {ProductService} from '../../shared/service/product/product.service';
 import {SearchResult} from '../../shared/search-result.model';

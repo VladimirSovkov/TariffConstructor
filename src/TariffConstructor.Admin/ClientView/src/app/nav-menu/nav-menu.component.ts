@@ -9,7 +9,7 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 export class NavMenuComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
-  nameItem: string[] = ['Tariff', 'Product', 'Product option'];
+  nameItem: string[] = ['Tariff', 'Product', 'product option'];
   fillerContent = Array.from({length: 50}, () =>
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco

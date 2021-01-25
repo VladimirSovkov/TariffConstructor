@@ -1,4 +1,4 @@
-import {ProductOption} from '../ProductOption/product-option.model';
+import {ProductOption} from '../productOption/product-option.model';
 import {ProductOptionTariffPrice} from './product-option-tariff-price.model';
 
 export class ProductOptionTariff {

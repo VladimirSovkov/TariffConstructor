@@ -4,11 +4,9 @@ import {PageEvent} from '@angular/material/paginator';
 import {MatTable} from '@angular/material/table';
 import {ApplicationSearchPattern} from '../../shared/model/application/application-search-pattern.model';
 import {Router} from '@angular/router';
-import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {HttpClient} from '@angular/common/http';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {SearchResult} from '../../shared/search-result.model';
-import {Setting} from '../../shared/model/setting/setting.model';
 import {Application} from '../../shared/model/application/application.model';
 import {ApplicationApiService} from '../../shared/service/application/application-api.service';
 
@@ -37,7 +35,6 @@ export class ApplicationTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-    this.snackBarService.openErrorHttpSnackBar('message');
   }
 
   load(): void {

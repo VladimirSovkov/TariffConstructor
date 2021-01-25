@@ -46,6 +46,26 @@ namespace TariffConstructor.Domain.BillingSettingModel
 
         public bool IsHidden { get; private set; }
 
+        public void SetSettingPresetValue(SettingPresetValue value)
+        {
+            Value = value;
+        }
+
+        public void SetIsRequired(bool isRequired)
+        {
+            IsRequired = isRequired;
+        }
+
+        public void SetIsReadOnly(bool isReadOnly)
+        {
+            IsReadOnly = isReadOnly;
+        }
+
+        public void SetIsHidden(bool isHidden)
+        {
+            IsHidden = isHidden;
+        }
+
         protected BillingSettingPreset()
         {
         }

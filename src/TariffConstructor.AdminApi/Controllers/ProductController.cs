@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Mappers.ProductAggregate;
+using TariffConstructor.AdminApi.Mappers.ProductMap;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.ProductModel;
-using TariffConstructor.AdminApi.Dto;
+using TariffConstructor.AdminApi.ProductDtoModel;
 using Microsoft.AspNetCore.Http;
 
 namespace TariffConstructor.AdminApi.Controllers

@@ -21,12 +21,12 @@ namespace TariffConstructor.Domain.SettingModel
 
         public string Name { get; private set; }
 
-        private readonly List<BillingSettingPreset> _billingSettingPresets = new List<BillingSettingPreset>();
+        private List<BillingSettingPreset> _billingSettingPresets = new List<BillingSettingPreset>();
 
         public virtual IReadOnlyCollection<BillingSettingPreset> BillingSettingPresets =>
             _billingSettingPresets.AsReadOnly();
 
-        private readonly List<ApplicationSettingPreset> _applicationSettingPresets =
+        private List<ApplicationSettingPreset> _applicationSettingPresets =
             new List<ApplicationSettingPreset>();
 
         public virtual IReadOnlyCollection<ApplicationSettingPreset> ApplicationSettingPresets =>
@@ -76,6 +76,67 @@ namespace TariffConstructor.Domain.SettingModel
             }
 
             _applicationSettingPresets.Add( applicationSettingPreset );
+        }
+
+        public void ClearApplicationSettingsPresets()
+        {
+            var count = ApplicationSettingPresets.Count();
+            for (int i = 0; i < count; i++)
+            {
+               var item = ApplicationSettingPresets.ElementAt(0);
+                _applicationSettingPresets.Remove(item);
+            }
+        }
+
+        public void RemoveApplicationSettingsPresets(List<int> applicationSettingsId)
+        {
+            var count = ApplicationSettingPresets.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = ApplicationSettingPresets.ElementAt(j);
+                if (!applicationSettingsId.Contains(item.ApplicationSettingId))
+                    _applicationSettingPresets.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void RemoveBillingSettingPresets(List<int> billingSettingsId)
+        {
+            var count = BillingSettingPresets.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = BillingSettingPresets.ElementAt(j);
+                if (!billingSettingsId.Contains(item.BillingSettingId))
+                    _billingSettingPresets.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void ChangeApplicationSetting(ApplicationSettingPreset applicationSettingPreset)
+        {
+            var index = _applicationSettingPresets.FindIndex(x => x.ApplicationSettingId == applicationSettingPreset.ApplicationSettingId);
+            _applicationSettingPresets[index].SetSettingPresetValue(applicationSettingPreset.Value);
+            _applicationSettingPresets[index].SetIsHidden(applicationSettingPreset.IsHidden);
+            _applicationSettingPresets[index].SetIsReadOnly(applicationSettingPreset.IsReadOnly);
+            _applicationSettingPresets[index].SetIsRequired(applicationSettingPreset.IsRequired);
+        }
+
+        public void ChangeBillingSettingPreset(BillingSettingPreset billingSettingPreset)
+        {
+            var index = _billingSettingPresets.FindIndex(x => x.BillingSettingId == billingSettingPreset.BillingSettingId);
+            _billingSettingPresets[index].SetSettingPresetValue(billingSettingPreset.Value);
+            _billingSettingPresets[index].SetIsHidden(billingSettingPreset.IsHidden);
+            _billingSettingPresets[index].SetIsReadOnly(billingSettingPreset.IsReadOnly);
+            _billingSettingPresets[index].SetIsRequired(billingSettingPreset.IsRequired);
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
         }
 
         private static void AddSettingsSet( 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
-using TariffConstructor.AdminApi.Mappers.ValueObject;
+using TariffConstructor.AdminApi.Mappers.ValueObjectMap;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap
