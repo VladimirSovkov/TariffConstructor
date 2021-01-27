@@ -1,68 +1,62 @@
-.form_input
-{
+form {
+  width: 785px;
   margin: 0 auto;
-  width: 420px;
-  display: block;
 }
 
-mat-form-field
-{
-  width: 100%;
-}
-
-.TariffTestPeriodForm
-{
-  background-color: aquamarine;
-}
-
-.MatHintSelect
-{
-  margin-left: -10px;
-}
-
-.submit_button
-{
-  margin: 25px 0px 50px 0px;
-}
-
-.back_button
-{
-
-}
-
-.block_with_button
-{
-  margin: 10px auto 0 auto;
-  display: block;
-  width: 56%;
-}
-
-.tariff_settings
-{
+.test_period_block {
+  width: 460px;
   margin: 0 auto;
-  width: 600px;
-}
-.mat-expansion-panel-block
-{
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
 }
 
-mat-expansion-panel
-{
-  width: 100%;
+.back_button {
+  margin: 10px 0 10px 4%;
 }
 
-.mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-  text-align: right;
-  display: block;
+p {
+  margin: 0;
 }
-.add_button
-{
-  margin-left: 10px;
+
+mat-form-field {
+  margin-left: 5px;
+}
+
+.name_input {
+  width: 83%;
+}
+
+.accounting_name_input {
+  width: 73%;
+}
+
+.payment_type_select{
+  width: 75%;
+}
+
+.awaiting_payment_strategy_input {
+  width: 51%;
+}
+
+.accounting_tariff_id_input {
+
+  width: 55%;
+
+}
+.unit_select {
+  width: 46%;
+}
+
+.value_input {
+  width: 67%;
+}
+
+h2 {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.tariff_settings{
+  width: 96%;
+  margin: 0 auto;
 }
 
 mat-panel-title
@@ -70,6 +64,24 @@ mat-panel-title
   margin: 3px 0 0 0;
 }
 
+.mat-expansion-panel-block{
+  margin-top: 5px;
+}
+
 table {
   width: 100%;
+}
+
+.submit_button {
+  display: block;
+  margin: 40px auto 100px auto;
+  width: 460px;
+}
+
+.settings_preset_select {
+  width: 77%;
+}
+
+.terms_of_use_select_select {
+  width: 78%;
 }

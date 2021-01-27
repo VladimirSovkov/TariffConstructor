@@ -14,7 +14,6 @@ using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TermsOfUseModel;
-using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ApplicationSettingModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingModel.Mapping;
@@ -26,6 +25,8 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.SettingModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffModel.Mapping;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseModel.Mapping;
+using TariffConstructor.Domain.ContractKindModel;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ContractKindModel.Map;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -49,6 +50,9 @@ namespace TariffConstructor.Infrastructure.Data
         public DbSet<BillingSetting> BillingSettings { get; set; }
         public DbSet<BillingSettingSet> BillingSettingSets { get; set; }
         public DbSet<BillingSettingPreset> BillingSettingPresets { get; set; }
+
+        //ContractKindModel
+        public DbSet<ContractKind> ContractKinds { get; set; }
 
         //CurrencyModel
         public DbSet<Currency> Currencies{ get; set; }
@@ -119,6 +123,11 @@ namespace TariffConstructor.Infrastructure.Data
                 .IncrementsBy(1);
             builder.ApplyConfiguration(new BillingSettingSetMap());
             builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForBillingSettingSet).StartsAt(1)
+                .IncrementsBy(1);
+
+            //ContractKind
+            builder.ApplyConfiguration(new ContractKindMap());
+            builder.HasSequence<int>(HiLoSequence.DBSequenceHiLoForContractKind).StartsAt(1)
                 .IncrementsBy(1);
 
             //Currency

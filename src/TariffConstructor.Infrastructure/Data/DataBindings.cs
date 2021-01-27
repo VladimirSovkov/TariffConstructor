@@ -21,6 +21,8 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductOptionTariffModel.Repository;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductModel.Repository;
+using TariffConstructor.Domain.ContractKindModel;
+using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ContractKindModel.Repository;
 
 namespace TariffConstructor.Infrastructure.Data
 {
@@ -39,6 +41,7 @@ namespace TariffConstructor.Infrastructure.Data
             services.AddScoped<IApplicationRepository, ApplicationRepository>();
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IProductOptionTariffRepository, ProductOptionTariffRepository>();
+            services.AddScoped<IContractKindRepository, ContractKindRepository>();
             return services;
         }
 

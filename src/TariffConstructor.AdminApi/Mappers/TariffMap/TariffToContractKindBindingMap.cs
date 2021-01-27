@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
+using TariffConstructor.AdminApi.Mappers.ContractKindMap;
 using TariffConstructor.Domain.TariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.TariffMap
@@ -19,7 +20,8 @@ namespace TariffConstructor.AdminApi.Mappers.TariffMap
                 {
                     Id = tariffToContractKindBinding.Id,
                     TariffId = tariffToContractKindBinding.TariffId,
-                    ContractKindId = tariffToContractKindBinding.ContractKindId
+                    ContractKindId = tariffToContractKindBinding.ContractKindId,
+                    ContractKind = tariffToContractKindBinding.ContractKind.Map()
                 };
             }
         }

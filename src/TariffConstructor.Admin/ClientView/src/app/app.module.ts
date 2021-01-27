@@ -71,6 +71,9 @@ import {ProductOptionTariffService} from './shared/service/product-option-tariff
 import { AddProductOptionTariffPriceComponent } from './product-option-tariff/add-and-change-product-option-tariff/add-product-option-tariff-price/add-product-option-tariff-price.component';
 import {ProductOption} from './shared/model/productOption/product-option.model';
 import {TariffService} from './shared/service/tariff/tariff.service';
+import {ContractKindService} from './shared/service/contract-kind/contract-kind.service';
+import { AddAndChangeContractKindComponent } from './contract-kind/add-and-change-contract-kind/add-and-change-contract-kind.component';
+import { ContractKindTableComponent } from './contract-kind/contract-kind-table/contract-kind-table.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +109,9 @@ import {TariffService} from './shared/service/tariff/tariff.service';
     AddAndChangeCurrencyComponent,
     ProductOptionTariffTableComponent,
     AddAndChangeProductOptionTariffComponent,
-    AddProductOptionTariffPriceComponent
+    AddProductOptionTariffPriceComponent,
+    AddAndChangeContractKindComponent,
+    ContractKindTableComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +156,8 @@ import {TariffService} from './shared/service/tariff/tariff.service';
     CurrencyService,
     ProductOptionTariffService,
     ProductOptionService,
-    TariffService
+    TariffService,
+    ContractKindService
   ],
   bootstrap: [AppComponent]
 })

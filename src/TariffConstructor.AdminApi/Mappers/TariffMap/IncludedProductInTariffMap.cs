@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
+using TariffConstructor.AdminApi.Mappers.ProductMap;
 using TariffConstructor.Domain.TariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.TariffMap
@@ -20,7 +21,8 @@ namespace TariffConstructor.AdminApi.Mappers.TariffMap
                     Id = includedProductInTariff.Id,
                     TariffId = includedProductInTariff.TariffId,
                     ProductId = includedProductInTariff.ProductId,
-                    RelativeWeight = includedProductInTariff.RelativeWeight
+                    RelativeWeight = includedProductInTariff.RelativeWeight,
+                    Product = includedProductInTariff.Product.Map()
                 };
             }
         }

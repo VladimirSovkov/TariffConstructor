@@ -22,6 +22,16 @@ namespace TariffConstructor.Domain.TariffModel
         public int TariffId { get; private set; }
         public virtual Tariff Tariff { get; private set; }
 
+        public void SetPrice(Price price)
+        {
+            Price = price;
+        }
+
+        public void SetPeriod(ProlongationPeriod period)
+        {
+            Period = period;
+        }
+
         protected TariffPrice()
         {
         }

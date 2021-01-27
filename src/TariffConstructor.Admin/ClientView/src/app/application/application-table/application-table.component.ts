@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SettingSearchPattern} from '../../shared/model/setting/setting-search-pattern.model';
 import {PageEvent} from '@angular/material/paginator';
 import {MatTable} from '@angular/material/table';
 import {ApplicationSearchPattern} from '../../shared/model/application/application-search-pattern.model';
@@ -27,7 +26,7 @@ export class ApplicationTableComponent implements OnInit {
               private applicationService: ApplicationApiService,
               private http: HttpClient,
               private snackBarService: SnackBarService) {
-    this.searchPattern = new SettingSearchPattern();
+    this.searchPattern = new ApplicationSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 5;
@@ -45,7 +44,7 @@ export class ApplicationTableComponent implements OnInit {
       this.applications = searchResult.items;
       this.pageEvent.length = searchResult.totalCount;
     }, error => {
-
+      this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 

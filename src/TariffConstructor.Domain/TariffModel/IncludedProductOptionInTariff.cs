@@ -21,6 +21,20 @@ namespace TariffConstructor.Domain.TariffModel
         public virtual ProductOption ProductOption { get; private set; }
         public DateTime CreationDate { get; private set; }
 
+        public void SetQuantity(int quantity)
+        {
+            Quantity = quantity;
+        }
+
+        public void SetProductOptionId(int productOptionId)
+        {
+            if (ProductOptionId != productOptionId)
+            {
+                ProductOptionId = productOptionId;
+            }
+        }
+
+
         protected IncludedProductOptionInTariff()
         {
         }

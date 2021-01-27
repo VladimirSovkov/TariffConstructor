@@ -1,6 +1,9 @@
-export interface IncludedProductOptionInTariff {
+import {ProductOption} from '../productOption/product-option.model';
+
+export class IncludedProductOptionInTariff {
   id: number;
   quantity: number;
   tariffId: number;
-  productOptionId: string;
+  productOptionId: number;
+  productOption: ProductOption;
 }

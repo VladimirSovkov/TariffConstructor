@@ -6,6 +6,7 @@ using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.Domain.ProductOptionModel;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Exceptions;
+using TariffConstructor.Domain.ContractKindModel;
 
 namespace TariffConstructor.Domain.TariffModel
 {
@@ -306,14 +307,37 @@ namespace TariffConstructor.Domain.TariffModel
             TestPeriod = testPeriod;
         }
 
-        public void AddAvailableContractKind( int contractKindId )
+        public IReadOnlyList<string> CanAddContractKind(ContractKind contractKind)
         {
-            if ( _contractKindBindings.Any( x => x.ContractKindId == contractKindId ) )
+            List<string> errors = new List<string>();
+            if (contractKind == null)
             {
-                return;
+                errors.Add(ValidationMessage.MustSpecify("product option"));
+            }
+            else
+            {
+                if (contractKind.Id == 0)
+                {
+                    errors.Add(ValidationMessage.MustSpecify("product option id"));
+                }
+
+                if (ContractKindBindings.FirstOrDefault(x => x.ContractKindId == contractKind.Id) != null)
+                {
+                    errors.Add(ValidationMessage.AlreadyExists("product option"));
+                }
             }
 
-            _contractKindBindings.Add( new TariffToContractKindBinding( contractKindId ) );
+            return errors;
+        }
+
+        public void AddAvailableContractKind( ContractKind contractKind )
+        {
+            if (CanAddContractKind(contractKind).Any())
+            {
+                throw new InvalidOperationException();
+            }
+
+            _contractKindBindings.Add(new TariffToContractKindBinding(contractKind.Id));
         }
 
         public bool HasTestPeriod()
@@ -358,6 +382,242 @@ namespace TariffConstructor.Domain.TariffModel
         public void SetAccountingName(string accountingName)
         {
             AccountingName = accountingName;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public void SetPaymentType(PaymentType paymentType)
+        {
+            PaymentType = paymentType;
+        }
+
+        public void RemovePriceItems(List<TariffPrice> prices)
+        {
+            var count = Prices.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = Prices.ElementAt(j);
+                if (prices.FirstOrDefault(x => x.Period == item.Period && x.Price.Currency == item.Price.Currency) == null)
+                    _prices.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void RemoveAdvancePrices(List<TariffAdvancePrice> advancePrices)
+        {
+            var count = AdvancePrices.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = AdvancePrices.ElementAt(j);
+                if (advancePrices.FirstOrDefault(x => x.Period == item.Period && x.Price.Currency == item.Price.Currency) == null)
+                    _advancePrices.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void RemoveIncludedProduct(List<int> includedProductId)
+        {
+            var count = IncludedProducts.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = IncludedProducts.ElementAt(j);
+                if (!includedProductId.Contains(item.ProductId))
+                    _includedProducts.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void RemoveIncludedProductOption(List<int> includedProductOptionId)
+        {
+            var count = IncludedProductOptions.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = IncludedProductOptions.ElementAt(j);
+                if (!includedProductOptionId.Contains(item.ProductOptionId))
+                    _includedProductOptions.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public void RemoveContractKindBinding(List<int> contractKindBindingId)
+        {
+            var count = ContractKindBindings.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = ContractKindBindings.ElementAt(j);
+                if (!contractKindBindingId.Contains(item.ContractKindId))
+                    _contractKindBindings.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public IReadOnlyList<string> CanChangePriceItem(Price price, ProlongationPeriod period)
+        {
+            List<string> errors = new List<string>();
+            if (price == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("price"));
+            }
+
+            if (period == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("period"));
+            }
+
+            return errors;
+        }
+
+        public IReadOnlyList<string> CanChangeAdvancePriceItem(Price price, ProlongationPeriod period)
+        {
+            List<string> errors = new List<string>();
+            if (price == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("price"));
+            }
+
+            if (period == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("period"));
+            }
+
+            return errors;
+        }
+
+
+
+        public void ChangePriceItem(Price price, ProlongationPeriod period)
+        {
+            if (CanChangePriceItem(price, period).Any())
+            {
+                throw new InvalidOperationException();
+            }
+
+            var index = _prices.FindIndex(x => x.Period == period && x.Price.Currency == price.Currency);
+            _prices[index].SetPrice(price);
+            _prices[index].SetPeriod(period);
+        }
+
+        public void ChangeAdvancePrice(Price price, ProlongationPeriod period)
+        {
+            if (CanChangeAdvancePriceItem(price, period).Any())
+            {
+                throw new InvalidOperationException();
+            }
+            var index = _advancePrices.FindIndex(x => x.Period == period && x.Price.Currency == price.Currency);
+            _advancePrices[index].SetPrice(price);
+            _advancePrices[index].SetPeriod(period);
+        }
+
+        public IReadOnlyList<string> CanChangeProduct(Product product, int relativeWeight = 1)
+        {
+            List<string> errors = new List<string>();
+            if (product == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("product"));
+            }
+            else
+            {
+                if (product.Id == 0)
+                {
+                    errors.Add(ValidationMessage.MustSpecify("product id"));
+                }
+            }
+
+            if (relativeWeight < 0)
+            {
+                errors.Add(ValidationMessage.Incorrect("relative weight"));
+            }
+
+            return errors;
+        }
+
+        public void ChangeProduct(IncludedProductInTariff includedProductInTariff, Product product, int relativeWeight = 1)
+        {
+            if (CanChangeProduct(product, relativeWeight).Any())
+            {
+                throw new InvalidOperationException();
+            }
+
+            var index = _includedProducts.FindIndex(x => x.ProductId == includedProductInTariff.ProductId);
+            _includedProducts[index].SetProductId(includedProductInTariff.ProductId);
+            _includedProducts[index].SetRelativeWeight(relativeWeight);
+        }
+
+        public IReadOnlyList<string> CanChangeProductOption(ProductOption productOption, int quantity = 1)
+        {
+            List<string> errors = new List<string>();
+            if (quantity <= 0)
+            {
+                errors.Add(ValidationMessage.MustBeGreater("Product option quantity", "0"));
+            }
+            else if (productOption == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("product option"));
+            }
+            else
+            {
+                if (productOption.Id == 0)
+                {
+                    errors.Add(ValidationMessage.MustSpecify("product option id"));
+                }
+            }
+
+            return errors;
+        }
+         
+        public void ChangeProductOption(IncludedProductOptionInTariff includedProductOption,
+            ProductOption productOption, 
+            int quantity)
+        {
+            if (CanChangeProductOption(productOption, quantity).Any())
+            {
+                throw new InvalidOperationException();
+            }
+            var index = _includedProductOptions.FindIndex(x => 
+                x.ProductOptionId == includedProductOption.ProductOptionId);
+            _includedProductOptions[index].SetQuantity(quantity);
+            _includedProductOptions[index].SetProductOptionId(productOption.Id);
+        }
+
+        public IReadOnlyList<string> CanChangeContractKind(ContractKind contractKind)
+        {
+            List<string> errors = new List<string>();
+            if (contractKind == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("product option"));
+            }
+            else
+            {
+                if (contractKind.Id == 0)
+                {
+                    errors.Add(ValidationMessage.MustSpecify("product option id"));
+                }
+            }
+
+            return errors;
+        }
+
+        public void ChangeContractKind(TariffToContractKindBinding ContractKindBinding, ContractKind contractKind)
+        {
+            if (CanChangeContractKind(contractKind).Any())
+            {
+                throw new InvalidOperationException();
+            }
+            var index = _contractKindBindings.FindIndex(x => x.ContractKindId == ContractKindBinding.ContractKindId);
+            _contractKindBindings[index].SetContractKindId(contractKind.Id);
         }
 
         protected Tariff()

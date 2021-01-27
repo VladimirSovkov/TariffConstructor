@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using TariffConstructor.AdminApi.Dto.ContractKind;
 
 namespace TariffConstructor.AdminApi.Dto.TariffAggragate
 {
@@ -13,5 +14,8 @@ namespace TariffConstructor.AdminApi.Dto.TariffAggragate
 
         [DataMember(Name = "contractKindId")]
         public int ContractKindId { get; set; }
+
+        [DataMember(Name = "contractKind")]
+        public ContractKindDto ContractKind { get; set; }
     }
 }

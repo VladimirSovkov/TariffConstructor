@@ -47,6 +47,14 @@ namespace TariffConstructor.Domain.TariffModel
             }
         }
 
+        public void SetProductId(int productId)
+        {
+            if (ProductId != productId)
+            {
+                ProductId = productId;
+            }
+        }
+
         protected IncludedProductInTariff()
         {
             RelativeWeight = 1;

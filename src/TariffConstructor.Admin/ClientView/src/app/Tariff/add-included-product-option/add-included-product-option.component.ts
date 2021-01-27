@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {ProductOption} from '../../shared/model/productOption/product-option.model';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Tariff} from '../../shared/model/tariff/tariff.model';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {TariffToContractKindBinding} from '../../shared/model/tariff/tariff-to-contract-kind-binding.model';
 
 @Component({
   selector: 'app-add-included-product-option',
@@ -17,12 +19,13 @@ export class AddIncludedProductOptionComponent implements OnInit {
   productOptions: ProductOption[];
   constructor(private http: HttpClient,
               public dialogRef: MatDialogRef<AddIncludedProductOptionComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Tariff) { }
+              private snackBarService: SnackBarService,
+              @Inject(MAT_DIALOG_DATA) public data: IncludedProductOptionInTariff[]) { }
 
   ngOnInit(): void {
     this.getProductOption();
     this.form = new FormGroup({
-      quantity: new FormControl(0, [Validators.required]),
+      quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
       productOptionId: new FormControl('', [Validators.required]),
     });
   }
@@ -30,14 +33,14 @@ export class AddIncludedProductOptionComponent implements OnInit {
   getProductOption(): void {
     this.http.get<ProductOption[]>('http://localhost:4401/productOption/getAll')
       .subscribe( (productOptions: ProductOption[]) => {
-        this.productOptions = productOptions;
+        this.productOptions = productOptions.filter( ( el ) => !this.data.map(x => x.productOptionId).includes( el.id ));
       });
   }
 
-  addProductOption(): void {
+  close(): void {
     this.productOption = this.form.getRawValue();
     this.productOption.id = 0;
-    this.productOption.tariffId = (this.data.id === undefined) ? 0 : this.data.id;
-    this.data.includedProductOptions.push(this.productOption);
+    console.log('productOption: ', this.productOption);
+    this.dialogRef.close(this.productOption);
   }
 }

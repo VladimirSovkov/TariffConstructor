@@ -1,4 +1,4 @@
-export interface ProlongationPeriod {
+export class ProlongationPeriod {
   value: number;
   periodUnit: number;
 }

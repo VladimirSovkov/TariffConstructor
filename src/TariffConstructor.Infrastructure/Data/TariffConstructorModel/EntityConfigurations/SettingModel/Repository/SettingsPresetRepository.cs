@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ApplicationSettingModel;
@@ -41,6 +42,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return await _ctx.SettingsPresets.Include(x => x.ApplicationSettingPresets)
                 .Include(x => x.BillingSettingPresets)
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<SettingsPreset>> GetSettingsPresets()
+        {
+            return await _ctx.SettingsPresets.ToListAsync();
         }
 
         public async Task<SearchResult<SettingsPreset>> Search(SettingsPresetSearchPattern searchPattern)

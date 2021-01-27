@@ -20,6 +20,10 @@ export class SettingsPresetApiServices{
     return this.apiService.get(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
   }
 
+  getAll(): Observable<SettingsPreset[]> {
+    return this.apiService.get(this.apiUrl + '/getAll');
+  }
+
   add(settingsPreset: SettingsPreset): Observable<any> {
     return this.apiService.post(this.apiUrl + '/add', settingsPreset);
   }

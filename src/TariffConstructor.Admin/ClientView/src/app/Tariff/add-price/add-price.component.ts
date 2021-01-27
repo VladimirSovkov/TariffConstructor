@@ -5,6 +5,9 @@ import {ProlongationPeriod} from '../../shared/model/value-object/prolongation-p
 import {TariffPrice} from '../../shared/model/tariff/tariff-price.model';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Tariff} from '../../shared/model/tariff/tariff.model';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {CurrencyService} from '../../shared/service/currency/currency.service';
+import {Currency} from '../../shared/model/currency/currency.model';
 
 @Component({
   selector: 'app-add-price',
@@ -12,38 +15,45 @@ import {Tariff} from '../../shared/model/tariff/tariff.model';
   styleUrls: ['./add-price.component.css']
 })
 export class AddPriceComponent implements OnInit {
-  formPeriod: FormGroup;
-  formPrice: FormGroup;
-  tariffPrice: TariffPrice;
-  price: Price;
-  period: ProlongationPeriod;
+  form: FormGroup;
+  tariffPrice: TariffPrice = new TariffPrice();
   prolongationPeriod: ProlongationPeriod;
+  currencies: Currency[] = [];
   constructor(public dialogRef: MatDialogRef<AddPriceComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Tariff) { }
+              private snackBarService: SnackBarService,
+              private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
-    this.formPeriod = new FormGroup({
-      value: new FormControl( 0, [Validators.required]),
-      unit: new FormControl('', [Validators.required])
-    });
+    this.initializationForm();
+    this.loadCurrency();
+  }
 
-    this.formPrice = new FormGroup({
-      value: new FormControl(0, [Validators.required]),
-      currency: new FormControl('', [Validators.required])
+  private initializationForm(): void {
+    this.form = new FormGroup({
+      price: new FormGroup({
+        value: new FormControl(0, [Validators.required, Validators.min(0)]),
+        currency: new FormControl('', [Validators.required]),
+      }),
+      period: new FormGroup({
+        value: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('\\d*')]),
+        periodUnit: new FormControl(0, [Validators.required]),
+      })
     });
   }
 
-  addPrice(): void{
-    this.price =  this.formPrice.getRawValue();
-    this.period = this.formPeriod.getRawValue();
-    this.tariffPrice = new TariffPrice();
-    this.tariffPrice = {
-      id: 0,
-      tariffId: (this.data.id === undefined) ? 0 : this.data.id,
-      price: this.price,
-      period: this.period,
-    };
-    this.data.prices.push(this.tariffPrice);
+  close(): void {
+    this.tariffPrice = this.form.getRawValue();
+    this.tariffPrice.id = 0;
+    console.log('tariffPrice: ', this.tariffPrice);
+    this.dialogRef.close(this.tariffPrice);
+  }
 
+  private loadCurrency(): void {
+    this.currencyService.getCurrencies()
+      .subscribe((currencies: Currency[]) => {
+        this.currencies = currencies;
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+      });
   }
 }

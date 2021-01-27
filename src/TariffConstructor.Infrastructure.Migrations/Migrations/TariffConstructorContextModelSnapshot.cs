@@ -28,6 +28,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForBillingSetting", "'DBSequenceHiLoForBillingSetting', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForBillingSettingPreset", "'DBSequenceHiLoForBillingSettingPreset', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForBillingSettingSet", "'DBSequenceHiLoForBillingSettingSet', '', '1', '1', '', '', 'Int32', 'False'")
+                .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForContractKind", "'DBSequenceHiLoForContractKind', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForCurrency", "'DBSequenceHiLoForCurrency', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForIncludedProductInTariff", "'DBSequenceHiLoForIncludedProductInTariff', '', '1', '1', '', '', 'Int32', 'False'")
                 .HasAnnotation("Relational:Sequence:.DBSequenceHiLoForIncludedProductOptionInTariff", "'DBSequenceHiLoForIncludedProductOptionInTariff', '', '1', '1', '', '', 'Int32', 'False'")
@@ -69,7 +70,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("Application");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +105,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ApplicationSetting");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingPreset", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingPreset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +137,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ApplicationSettingPreset");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingSet", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingSet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +163,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ApplicationSettingSet");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingValue", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingValue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -194,7 +195,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ApplicationSettingValue");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSetting", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSetting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -216,7 +217,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("BillingSetting");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSettingPreset", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSettingPreset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,7 +249,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("BillingSettingPreset");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSettingSet", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSettingSet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -275,6 +276,34 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("BillingSettingSet");
                 });
 
+            modelBuilder.Entity("TariffConstructor.Domain.ContractKindModel.ContractKind", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "DBSequenceHiLoForContractKind")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("PublicId");
+
+                    b.ToTable("ContractKind");
+                });
+
             modelBuilder.Entity("TariffConstructor.Domain.CurrencyModel.Currency", b =>
                 {
                     b.Property<int>("Id")
@@ -298,7 +327,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("Currency");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductAggregate.Product", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductModel.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -343,7 +372,37 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionAggregate.ProductOption", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionKindModel.ProductOptionKind", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("ProductOptionKind");
+                });
+
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionModel.ProductOption", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -395,37 +454,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ProductOption");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionKindAggregate.ProductOptionKind", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId");
-
-                    b.ToTable("ProductOptionKind");
-                });
-
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -461,7 +490,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ProductOptionTariff");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariffPrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariffPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -483,7 +512,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("ProductOptionTariffPrice");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.SettingAggregate.Setting", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.SettingModel.Setting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -518,7 +547,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("Setting");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.SettingAggregate.SettingEnumValue", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.SettingModel.SettingEnumValue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -546,7 +575,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("SettingEnumValue");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.SettingAggregate.SettingsPreset", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.SettingModel.SettingsPreset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -563,7 +592,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("SettingsPreset");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.SettingAggregate.SettingsSet", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.SettingModel.SettingsSet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -576,7 +605,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("SettingsSet");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableProductOptionTariffInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.AvailableProductOptionTariffInTariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -609,7 +638,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("AvailableProductOptionTariffInTariff");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableTariffForUpgrade", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.AvailableTariffForUpgrade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -633,7 +662,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("AvailableTariffForUpgrade");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.IncludedProductInTariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -659,7 +688,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("IncludedProductInTariff");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductOptionInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.IncludedProductOptionInTariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -689,7 +718,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("IncludedProductOptionInTariffs");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.Tariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.Tariff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -752,7 +781,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("Tariffs");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffAdvancePrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffAdvancePrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -774,7 +803,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("TariffAdvancePrice");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffPrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffPrice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -796,7 +825,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("TariffPrice");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffToContractKindBinding", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffToContractKindBinding", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -812,12 +841,14 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContractKindId");
+
                     b.HasIndex("TariffId");
 
                     b.ToTable("TariffToContractKindBinding");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TermsOfUseAggregate.TermsOfUse", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TermsOfUseModel.TermsOfUse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -841,7 +872,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.ToTable("TermsOfUses");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", b =>
                 {
                     b.HasOne("TariffConstructor.Domain.ApplicationModel.Application", "Application")
                         .WithMany()
@@ -849,28 +880,28 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.Setting", "Setting")
+                    b.HasOne("TariffConstructor.Domain.SettingModel.Setting", "Setting")
                         .WithMany()
                         .HasForeignKey("SettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingPreset", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingPreset", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", "ApplicationSetting")
+                    b.HasOne("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", "ApplicationSetting")
                         .WithMany()
                         .HasForeignKey("ApplicationSettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.SettingsPreset", null)
+                    b.HasOne("TariffConstructor.Domain.SettingModel.SettingsPreset", null)
                         .WithMany("ApplicationSettingPresets")
                         .HasForeignKey("SettingsPresetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("TariffConstructor.Domain.SettingAggregate.SettingPresetValue", "Value", b1 =>
+                    b.OwnsOne("TariffConstructor.Domain.SettingModel.SettingPresetValue", "Value", b1 =>
                         {
                             b1.Property<int>("ApplicationSettingPresetId")
                                 .HasColumnType("int");
@@ -893,58 +924,58 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingSet", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingSet", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", "ApplicationSetting")
+                    b.HasOne("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", "ApplicationSetting")
                         .WithMany()
                         .HasForeignKey("ApplicationSettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.SettingsSet", null)
+                    b.HasOne("TariffConstructor.Domain.SettingModel.SettingsSet", null)
                         .WithMany("ApplicationSettingSets")
                         .HasForeignKey("SettingsSetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSettingValue", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSettingValue", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", "ApplicationSetting")
+                    b.HasOne("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", "ApplicationSetting")
                         .WithMany()
                         .HasForeignKey("ApplicationSettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.ApplicationSettingAggregate.ApplicationSetting", null)
+                    b.HasOne("TariffConstructor.Domain.ApplicationSettingModel.ApplicationSetting", null)
                         .WithMany("SettingValues")
                         .HasForeignKey("ApplicationSettingId2");
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSetting", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSetting", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.Setting", "Setting")
+                    b.HasOne("TariffConstructor.Domain.SettingModel.Setting", "Setting")
                         .WithMany()
                         .HasForeignKey("SettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSettingPreset", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSettingPreset", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.BillingSettingAggregate.BillingSetting", "BillingSetting")
+                    b.HasOne("TariffConstructor.Domain.BillingSettingModel.BillingSetting", "BillingSetting")
                         .WithMany()
                         .HasForeignKey("BillingSettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.SettingsPreset", null)
+                    b.HasOne("TariffConstructor.Domain.SettingModel.SettingsPreset", null)
                         .WithMany("BillingSettingPresets")
                         .HasForeignKey("SettingsPresetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("TariffConstructor.Domain.SettingAggregate.SettingPresetValue", "Value", b1 =>
+                    b.OwnsOne("TariffConstructor.Domain.SettingModel.SettingPresetValue", "Value", b1 =>
                         {
                             b1.Property<int>("BillingSettingPresetId")
                                 .HasColumnType("int");
@@ -967,46 +998,46 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingAggregate.BillingSettingSet", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.BillingSettingModel.BillingSettingSet", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.BillingSettingAggregate.BillingSetting", "BillingSetting")
+                    b.HasOne("TariffConstructor.Domain.BillingSettingModel.BillingSetting", "BillingSetting")
                         .WithMany()
                         .HasForeignKey("BillingSettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.SettingsSet", null)
+                    b.HasOne("TariffConstructor.Domain.SettingModel.SettingsSet", null)
                         .WithMany("BillingSettingSets")
                         .HasForeignKey("SettingsSetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionAggregate.ProductOption", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionModel.ProductOption", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductOptionKindAggregate.ProductOptionKind", "Kind")
+                    b.HasOne("TariffConstructor.Domain.ProductOptionKindModel.ProductOptionKind", "Kind")
                         .WithMany()
                         .HasForeignKey("KindId");
 
-                    b.HasOne("TariffConstructor.Domain.ProductAggregate.Product", "Product")
+                    b.HasOne("TariffConstructor.Domain.ProductModel.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariff", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductOptionAggregate.ProductOption", "ProductOption")
+                    b.HasOne("TariffConstructor.Domain.ProductOptionModel.ProductOption", "ProductOption")
                         .WithMany()
                         .HasForeignKey("ProductOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariffPrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariffPrice", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", "ProductOptionTariff")
+                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariff", "ProductOptionTariff")
                         .WithMany("Prices")
                         .HasForeignKey("ProductOptionTariffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1052,57 +1083,57 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.SettingAggregate.SettingEnumValue", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.SettingModel.SettingEnumValue", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.SettingAggregate.Setting", null)
+                    b.HasOne("TariffConstructor.Domain.SettingModel.Setting", null)
                         .WithMany("EnumValues")
                         .HasForeignKey("SettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.AvailableProductOptionTariffInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.AvailableProductOptionTariffInTariff", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffAggregate.ProductOptionTariff", "ProductOptionTariff")
+                    b.HasOne("TariffConstructor.Domain.ProductOptionTariffModel.ProductOptionTariff", "ProductOptionTariff")
                         .WithMany()
                         .HasForeignKey("ProductOptionTariffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.IncludedProductInTariff", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductAggregate.Product", "Product")
+                    b.HasOne("TariffConstructor.Domain.ProductModel.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
+                    b.HasOne("TariffConstructor.Domain.TariffModel.Tariff", "Tariff")
                         .WithMany("IncludedProducts")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.IncludedProductOptionInTariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.IncludedProductOptionInTariff", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.ProductOptionAggregate.ProductOption", "ProductOption")
+                    b.HasOne("TariffConstructor.Domain.ProductOptionModel.ProductOption", "ProductOption")
                         .WithMany()
                         .HasForeignKey("ProductOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
+                    b.HasOne("TariffConstructor.Domain.TariffModel.Tariff", "Tariff")
                         .WithMany("IncludedProductOptions")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.Tariff", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.Tariff", b =>
                 {
-                    b.OwnsOne("TariffConstructor.Domain.TariffAggregate.TariffTestPeriod", "TestPeriod", b1 =>
+                    b.OwnsOne("TariffConstructor.Domain.TariffModel.TariffTestPeriod", "TestPeriod", b1 =>
                         {
                             b1.Property<int>("TariffId")
                                 .HasColumnType("int");
@@ -1122,9 +1153,9 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffAdvancePrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffAdvancePrice", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
+                    b.HasOne("TariffConstructor.Domain.TariffModel.Tariff", "Tariff")
                         .WithMany("AdvancePrices")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1170,9 +1201,9 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffPrice", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffPrice", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", "Tariff")
+                    b.HasOne("TariffConstructor.Domain.TariffModel.Tariff", "Tariff")
                         .WithMany("Prices")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1218,9 +1249,15 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TariffConstructor.Domain.TariffAggregate.TariffToContractKindBinding", b =>
+            modelBuilder.Entity("TariffConstructor.Domain.TariffModel.TariffToContractKindBinding", b =>
                 {
-                    b.HasOne("TariffConstructor.Domain.TariffAggregate.Tariff", null)
+                    b.HasOne("TariffConstructor.Domain.ContractKindModel.ContractKind", "ContractKind")
+                        .WithMany()
+                        .HasForeignKey("ContractKindId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TariffConstructor.Domain.TariffModel.Tariff", null)
                         .WithMany("ContractKindBindings")
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)

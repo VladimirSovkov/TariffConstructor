@@ -16,5 +16,8 @@ namespace TariffConstructor.AdminApi.Dto.TariffAggragate
 
         [DataMember(Name = "productOptionId")]
         public int ProductOptionId { get; set; }
+
+        [DataMember(Name = "productOption")]
+        public ProductOptionDto ProductOption { get; set; }
     }
 }

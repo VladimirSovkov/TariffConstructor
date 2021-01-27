@@ -1,0 +1,13 @@
+h2 {
+  text-align: center;
+}
+
+.select_contractId{
+  width: 500px;
+}
+
+.submit_button{
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+}

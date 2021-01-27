@@ -31,7 +31,7 @@
       <mat-form-field class="input-period-value">
         <input matInput type="text" required="true" formControlName="value" pattern="\d*" />
         <mat-error *ngIf="!form.controls['period'].hasError('pattern')">
-          Только целые числа
+          Только целые положительные числа
         </mat-error>
       </mat-form-field>
     </p>

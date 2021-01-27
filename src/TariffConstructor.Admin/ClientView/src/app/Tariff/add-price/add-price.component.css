@@ -1,0 +1,30 @@
+form {
+  width: 360px;
+}
+
+.select_currency{
+  margin-left: 5px;
+  width: 82%;
+}
+
+.input_currency_value{
+  margin-left: 5px;
+  width: 76%;
+}
+
+.select_period{
+  margin-left: 5px;
+  width: 82%;
+
+}
+
+.input_period_value{
+  margin-left: 5px;
+  width: 70%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}
+

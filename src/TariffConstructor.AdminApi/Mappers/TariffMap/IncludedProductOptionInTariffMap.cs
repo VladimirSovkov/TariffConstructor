@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
+using TariffConstructor.AdminApi.Mappers.ProductOptionMap;
 using TariffConstructor.Domain.TariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.TariffMap
@@ -20,7 +21,8 @@ namespace TariffConstructor.AdminApi.Mappers.TariffMap
                     Id = includedProductOptionInTariff.Id,
                     Quantity = includedProductOptionInTariff.Quantity,
                     TariffId = includedProductOptionInTariff.TariffId,
-                    ProductOptionId = includedProductOptionInTariff.ProductOptionId
+                    ProductOptionId = includedProductOptionInTariff.ProductOptionId,
+                    ProductOption = includedProductOptionInTariff.ProductOption.Map()
                 };
             }
         }

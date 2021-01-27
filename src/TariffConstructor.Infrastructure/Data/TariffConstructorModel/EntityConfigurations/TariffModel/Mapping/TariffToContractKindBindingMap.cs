@@ -12,8 +12,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);
-
-            builder.Property(x => x.ContractKindId).IsRequired();
+            builder.HasOne(x => x.ContractKind).WithMany().HasForeignKey(x => x.ContractKindId);
         }
     }
 }

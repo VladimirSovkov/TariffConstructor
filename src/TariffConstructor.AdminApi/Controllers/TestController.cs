@@ -125,7 +125,6 @@ namespace TariffConstructor.AdminApi.Controllers
             //included product option
             //abc.AddProductOption(productOption);
             //contract kind bindings
-            abc.AddAvailableContractKind(1);
             return Ok(abc.Map());
         }
     }

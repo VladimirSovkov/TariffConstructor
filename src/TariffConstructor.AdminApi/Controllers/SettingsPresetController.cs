@@ -153,6 +153,13 @@ namespace TariffConstructor.AdminApi.Controllers
             return Ok(settingsPreset.Map());
         }
 
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetSettingsPresets()
+        {
+            var settingsPresets = await settingsPresetRepository.GetSettingsPresets();
+            return Ok(settingsPresets);
+        }
+
         [HttpDelete("")]
         public async Task<IActionResult> Delete(int id)
         {

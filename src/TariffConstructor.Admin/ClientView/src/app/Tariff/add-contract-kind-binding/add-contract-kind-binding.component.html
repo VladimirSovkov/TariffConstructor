@@ -1,1 +1,17 @@
-<p>add-contract-kind-binding works!</p>
+<h2 mat-dialog-title>Добавить привязку договора</h2>
+<form class="add_price" [formGroup]="form">
+    <p>Договор:
+      <mat-form-field class="select_contractId" appearance="legacy">
+        <mat-select  formControlName="contractKindId">
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let contractKind of contractKinds"
+                      [value]="contractKind.id">{{contractKind.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" (click)="close()">
+    Добавить
+  </button>
+</form>
+
+

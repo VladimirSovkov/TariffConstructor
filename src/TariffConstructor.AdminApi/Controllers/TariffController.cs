@@ -11,6 +11,8 @@ using System;
 using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.AdminApi.Dto.TariffAggragate;
 using TariffConstructor.Domain.ProductOptionModel;
+using System.Linq;
+using TariffConstructor.Domain.ContractKindModel;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -21,22 +23,25 @@ namespace TariffConstructor.AdminApi.Controllers
         private readonly ITariffRepository tariffRepository;
         private readonly IProductRepository productRepository;
         private readonly IProductOptionRepository productOptionRepository;
+        private readonly IContractKindRepository contractKindRepository;
 
         public TariffController(
             ITariffRepository tariffRepository
             , IProductRepository productRepository
-            , IProductOptionRepository productOptionRepository)
+            , IProductOptionRepository productOptionRepository
+            , IContractKindRepository contractKindRepository)
         {
             this.tariffRepository = tariffRepository;
             this.productRepository = productRepository;
             this.productOptionRepository = productOptionRepository;
+            this.contractKindRepository = contractKindRepository;
         }
 
         [HttpGet("get")]
         public async Task<IActionResult> GetTariff(int id)
         {
             Tariff tariff = await tariffRepository.GetTariff(id);
-            return Ok(tariff);
+            return Ok(tariff.Map());
         }
 
 
@@ -66,19 +71,27 @@ namespace TariffConstructor.AdminApi.Controllers
             tariff.SetArchive(tariffDto.IsArchived);
             tariff.AddTestPeriod(testPeriod);
             tariff.SetAccountingTariffId(tariffDto.AccountingName);
+            tariff.SetAwaitingPaymentStrategy(tariffDto.AwaitingPaymentStrategy);
             tariff.SetSettingsPresetId(tariffDto.SettingsPresetId);
             tariff.SetTermsOfUseId(tariffDto.TermsOfUseId);
             tariff.SetIsAcceptanceRequired(tariffDto.IsAcceptanceRequired);
             tariff.SetIsGradualFinishAvailable(tariffDto.IsGradualFinishAvailable);
 
             //add price 
-            //foreach(var tariffPrice in tariffLoad.Prices)
-            //{
-            //    Price price = new Price(tariffPrice.Price.Value, tariffPrice.Price.Currency);
-            //    ProlongationPeriod period = new ProlongationPeriod(tariffPrice.Period.Value, (PeriodUnit)Convert.ToInt32(tariffPrice.Period.periodUnit));
-            //    tariff.AddPriceItem(price, period);
-            //}
-            
+            foreach (var tariffPrice in tariffDto.Prices)
+            {
+                Price price = new Price(tariffPrice.Price.Value, tariffPrice.Price.Currency);
+                ProlongationPeriod period = new ProlongationPeriod(tariffPrice.Period.Value, (PeriodUnit)tariffPrice.Period.periodUnit);
+                tariff.AddPriceItem(price, period);
+            }
+
+            foreach (var advancePrice in tariffDto.AdvancePrices)
+            {
+                Price price = new Price(advancePrice.Price.Value, advancePrice.Price.Currency);
+                ProlongationPeriod period = new ProlongationPeriod(advancePrice.Period.Value, (PeriodUnit)advancePrice.Period.periodUnit);
+                tariff.AddAdvancePriceItem(price, period);
+            }
+
             //add included product
             foreach (var includedProduct in tariffDto.IncludedProducts)
             {
@@ -87,35 +100,116 @@ namespace TariffConstructor.AdminApi.Controllers
             }
 
             //add product option
-            //foreach (var includedProductOption in tariffLoad.IncludedProductOptions)
-            //{
-            //    ProductOption productOption = await productOptionRepository.GetProductOption(includedProductOption.ProductOptionId);
-            //    tariff.AddProductOption(productOption, includedProductOption.Quantity);
-            //}
-            
+            foreach (var includedProductOption in tariffDto.IncludedProductOptions)
+            {
+                ProductOption productOption = await productOptionRepository.GetProductOption(includedProductOption.ProductOptionId);
+                tariff.AddProductOption(productOption, includedProductOption.Quantity);
+            }
+
+            //add contractKindBindings
+            foreach (var contractKindBinding in tariffDto.ContractKindBindings)
+            {
+                ContractKind contractkind = await contractKindRepository.GetContractKind(contractKindBinding.ContractKindId);
+                tariff.AddAvailableContractKind(contractkind);
+            }
+
             await tariffRepository.Add(tariff);
 
             return Ok();
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update([FromBody]TariffLoadParameters tariffLoad)
+        public async Task<IActionResult> Update([FromBody]TariffDto tariffDto)
         {
-            //PaymentType paymentType = (PaymentType)Convert.ToInt32(tariffLoad.PaymentType);
-            //Tariff tariff = new Tariff(tariffLoad.Name, paymentType);
-            //tariff.SetAccountingTariffId(tariffLoad.AccountingTariffId);
-            //tariff.SetAwaitingPaymentStrategy(tariffLoad.AwaitingPaymentStrategy);
-            //tariff.SetSettingsPresetId(tariffLoad.SettingsPresetId);
-            //tariff.SetTermsOfUseId(tariffLoad.TermsOfUseId);
-            //if (tariffLoad.IsArchived)
-            //    tariff.Archive();
-            //tariff.AddTestPeriod(new TariffTestPeriod(tariffLoad.Value, (TariffTestPeriodUnit)Convert.ToInt32(tariffLoad.Unit)));
-            //foreach (var includedProduct in tariff.IncludedProducts)
-            //{
-            //    Product product = await productRepository.GetProduct(includedProduct.ProductId);
-            //    tariff.AddProduct(product, includedProduct.RelativeWeight);
-            //}
-            //await tariffRepository.Add(tariff);
+            Tariff tariff = await tariffRepository.GetTariff(tariffDto.Id);
+            tariff.SetName(tariffDto.Name);
+            tariff.SetArchive(tariffDto.IsArchived);
+            tariff.SetAccountingName(tariffDto.AccountingName);
+            tariff.SetPaymentType((PaymentType)tariffDto.PaymentType);
+            tariff.SetAwaitingPaymentStrategy(tariffDto.AwaitingPaymentStrategy);
+            tariff.SetAccountingTariffId(tariffDto.AccountingTariffId);
+            tariff.SetSettingsPresetId(tariffDto.SettingsPresetId);
+            tariff.SetTermsOfUseId(tariffDto.SettingsPresetId);
+            tariff.SetTermsOfUseId(tariffDto.TermsOfUseId);
+            tariff.SetIsAcceptanceRequired(tariffDto.IsAcceptanceRequired);
+            tariff.SetIsGradualFinishAvailable(tariff.IsGradualFinishAvailable);
+
+            tariff.RemovePriceItems(tariffDto.Prices.ToTariffPrices());
+            tariff.RemoveAdvancePrices(tariffDto.AdvancePrices.ToTariffAdvancePrices());
+            tariff.RemoveIncludedProduct(tariffDto.IncludedProducts.Select(x => x.ProductId).ToList());
+            tariff.RemoveIncludedProductOption(tariffDto.IncludedProductOptions.Select(x => x.ProductOptionId).ToList());
+            tariff.RemoveContractKindBinding(tariffDto.ContractKindBindings.Select(x => x.ContractKindId).ToList());
+
+            //add price 
+            foreach (var item in tariffDto.Prices)
+            {
+                Price price = new Price(item.Price.Value, item.Price.Currency);
+                ProlongationPeriod period = new ProlongationPeriod(item.Period.Value, (PeriodUnit)item.Period.periodUnit);
+                if (tariff.Prices.FirstOrDefault(x => x.Period == period
+                                                                    && x.Price.Currency == price.Currency) != null)
+                {
+                    tariff.ChangePriceItem(price, period);
+                }
+                else
+                    tariff.AddPriceItem(price, period);
+            }
+            
+            //advancePrice price 
+            foreach (var item in tariffDto.AdvancePrices)
+            {
+                Price price = new Price(item.Price.Value, item.Price.Currency);
+                ProlongationPeriod period = new ProlongationPeriod(item.Period.Value, 
+                    (PeriodUnit)item.Period.periodUnit);
+                if (tariff.AdvancePrices.FirstOrDefault(x => x.Period == period
+                                                                    && x.Price.Currency == price.Currency) != null)
+                {
+                    tariff.ChangeAdvancePrice(price, period);
+                }
+                else
+                    tariff.AddAdvancePriceItem(price, period);
+            }
+
+            //change included product
+            foreach (var item in tariffDto.IncludedProducts)
+            {
+                Product product = await productRepository.GetProduct(item.ProductId);
+                if (tariff.IncludedProducts.Select(x => x.ProductId).Contains(item.ProductId))
+                {
+                    var includedProduct = tariff.IncludedProducts.FirstOrDefault(x => x.ProductId == item.ProductId);
+                    tariff.ChangeProduct(includedProduct, product, item.RelativeWeight);
+                }
+                else
+                    tariff.AddProduct(product, item.RelativeWeight);
+            }
+
+            //change product option
+            foreach (var item in tariffDto.IncludedProductOptions)
+            {
+                ProductOption productOption = await productOptionRepository.GetProductOption(item.ProductOptionId);
+                if (tariff.IncludedProductOptions.Select(x => x.ProductOptionId).Contains(item.ProductOptionId))
+                {
+                    var includedProductOption = tariff.IncludedProductOptions.FirstOrDefault(x => x.ProductOptionId == item.ProductOptionId);
+                    tariff.ChangeProductOption(includedProductOption, productOption, item.Quantity);
+                }
+                else
+                    tariff.AddProductOption(productOption, item.Quantity);
+            }
+
+            //change contractKindBindings
+            foreach (var item in tariffDto.ContractKindBindings)
+            {
+                ContractKind contractKind = await contractKindRepository.GetContractKind(item.ContractKindId);
+                if (tariff.ContractKindBindings.Select(x => x.ContractKindId).Contains(item.ContractKindId))
+                {
+                    var contractKindBindings = tariff.ContractKindBindings.FirstOrDefault(x => x.ContractKindId == item.ContractKindId);
+                    tariff.ChangeContractKind(contractKindBindings, contractKind);
+                }
+                else
+                    tariff.AddAvailableContractKind(contractKind);
+            }
+
+            await tariffRepository.Update(tariff);
+
 
             return Ok();
         }

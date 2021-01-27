@@ -22,8 +22,9 @@ import {AddAndChangeTermsOfUseComponent} from './terms-of-use/add-and-change-ter
 import {CurrencyTableComponent} from './currency/currency-table/currency-table.component';
 import {AddAndChangeCurrencyComponent} from './currency/add-and-change-currency/add-and-change-currency.component';
 import {AddAndChangeProductOptionTariffComponent} from './product-option-tariff/add-and-change-product-option-tariff/add-and-change-product-option-tariff.component';
-import {ProductOptionTariff} from './shared/model/product-option-tariff/product-option-tariff.model';
 import {ProductOptionTariffTableComponent} from './product-option-tariff/product-option-tariff-table/product-option-tariff-table.component';
+import {AddAndChangeContractKindComponent} from './contract-kind/add-and-change-contract-kind/add-and-change-contract-kind.component';
+import {ContractKindTableComponent} from './contract-kind/contract-kind-table/contract-kind-table.component';
 
 // http://localhost:4200/tariff-> Home Component
 
@@ -71,6 +72,10 @@ const routes: Routes = [
   {path: 'productOptionTariff', component: ProductOptionTariffTableComponent},
   {path: 'productOptionTariff/add', component: AddAndChangeProductOptionTariffComponent},
   {path: 'productOptionTariff/change/:id', component: AddAndChangeProductOptionTariffComponent},
+
+  {path: 'contractKind', component: ContractKindTableComponent},
+  {path: 'contractKind/add', component: AddAndChangeContractKindComponent},
+  {path: 'contractKind/change/:id', component: AddAndChangeContractKindComponent},
 ];
 
 @NgModule({
@@ -81,4 +86,3 @@ const routes: Routes = [
 export class AppRoutingModel{
 
 }
-
