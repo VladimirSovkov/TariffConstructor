@@ -8,17 +8,13 @@ import {AddIncludedProductComponent} from '../add-included-product/add-included-
 import {AddPriceComponent} from '../add-price/add-price.component';
 import {IncludedProductInTariff} from '../../shared/model/tariff/included-product-In-tariff.model';
 import {AddIncludedProductOptionComponent} from '../add-included-product-option/add-included-product-option.component';
-import {Price} from '../../shared/model/value-object/price.model';
 import {TariffAdvancePrice} from '../../shared/model/tariff/tariff-advance-price.model';
 import {IncludedProductOptionInTariff} from '../../shared/model/tariff/included-product-option-in-tariff.model';
 import {TariffToContractKindBinding} from '../../shared/model/tariff/tariff-to-contract-kind-binding.model';
 import {MatTable} from '@angular/material/table';
-import {ApplicationSettingPreset} from '../../shared/model/application-setting/application-setting-preset.model';
 import {SettingsPreset} from '../../shared/model/setting/settings-preset.model';
 import {TariffService} from '../../shared/service/tariff/tariff.service';
 import {TariffPrice} from '../../shared/model/tariff/tariff-price.model';
-import {AddApplicationSettingPresetsComponent} from '../../setting-preset/add-and-change-settings-preset/add-application-setting-presets/add-application-setting-presets.component';
-import {AddAdvancePriceComponent} from '../add-advance-price/add-advance-price.component';
 import {AddContractKindBindingComponent} from '../add-contract-kind-binding/add-contract-kind-binding.component';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {TermsOfUse} from '../../shared/model/terms-of-use/terms-of-use.model';
@@ -144,7 +140,7 @@ export class AddingTariffComponent implements OnInit {
     this.tariff.includedProducts = this.includedProducts;
     this.tariff.includedProductOptions = this.includedProductOptions;
     this.tariff.contractKindBindings = this.contractKindBindings;
-    console.log('tariff: ', this.tariff);
+    console.log('tarifff: ', this.tariff);
     if (this.isChangeTariff)
     {
       this.changeTariff();
@@ -169,7 +165,7 @@ export class AddingTariffComponent implements OnInit {
     this.tariffService.update(this.tariff)
       .subscribe(() => {
         this.formInitialization();
-        this.router.navigate(['/tariff']);
+        this.router.navigate(['/tarifff']);
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });
