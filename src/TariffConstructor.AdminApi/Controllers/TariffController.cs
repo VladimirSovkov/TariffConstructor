@@ -26,8 +26,8 @@ namespace TariffConstructor.AdminApi.Controllers
         private readonly IContractKindRepository contractKindRepository;
 
         public TariffController(
-            ITariffRepository tariffRepository, 
-            IProductRepository productRepository, 
+            ITariffRepository tariffRepository,
+            IProductRepository productRepository,
             IProductOptionRepository productOptionRepository,
             IContractKindRepository contractKindRepository)
         {

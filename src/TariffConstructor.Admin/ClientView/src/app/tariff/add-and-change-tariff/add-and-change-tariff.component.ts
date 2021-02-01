@@ -21,6 +21,7 @@ import {TermsOfUse} from '../../shared/model/terms-of-use/terms-of-use.model';
 import {SettingsPresetApiServices} from '../../shared/service/setting/settings-preset.service';
 import {TermsOfUseApiService} from '../../shared/service/terms-of-use/terms-of-use-api.service';
 import {TariffTestPeriod} from '../../shared/model/tariff/tariff-test-period.model';
+import {AddAdvancedPriceComponent} from '../add-advanced-price/add-advanced-price.component';
 
 @Component({
   selector: 'app-adding-tariff',
@@ -213,7 +214,7 @@ export class AddAndChangeTariffComponent implements OnInit {
 
   openAddAdvancePrice(): void {
     let dialogRef;
-    dialogRef = this.dialog.open(AddPriceComponent);
+    dialogRef = this.dialog.open(AddAdvancedPriceComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined)
       {

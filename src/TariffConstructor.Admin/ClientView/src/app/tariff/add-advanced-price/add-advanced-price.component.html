@@ -13,7 +13,7 @@
       <mat-form-field class="input_currency_value">
         <input matInput type="number" formControlName="value">
         <mat-error *ngIf="!form.controls['period'].hasError('min')">
-          Только от 0 (включительно)
+          Только от 0
         </mat-error>
       </mat-form-field>
     </p>
@@ -43,4 +43,3 @@
     Добавить
   </button>
 </form>
-

@@ -1,0 +1,15 @@
+form{
+  width: 500px;
+}
+
+.product-select{
+  width: 87%;
+}
+
+.quantity-input{
+  width: 72%;
+}
+
+.submit_button{
+  width: 100%;
+}

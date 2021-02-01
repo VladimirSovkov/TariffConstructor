@@ -73,6 +73,7 @@ import { AddAndChangeContractKindComponent } from './contract-kind/add-and-chang
 import { ContractKindTableComponent } from './contract-kind/contract-kind-table/contract-kind-table.component';
 import { AddApplicationSettingComponent } from './setting-preset/add-and-change-settings-preset/add-application-setting-presets/add-application-setting/add-application-setting.component';
 import { AddBillingSettingComponent } from './setting-preset/add-and-change-settings-preset/add-billing-setting-preset/add-billing-setting/add-billing-setting.component';
+import { AddAdvancedPriceComponent } from './tariff/add-advanced-price/add-advanced-price.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { AddBillingSettingComponent } from './setting-preset/add-and-change-sett
     AddAndChangeContractKindComponent,
     ContractKindTableComponent,
     AddApplicationSettingComponent,
-    AddBillingSettingComponent
+    AddBillingSettingComponent,
+    AddAdvancedPriceComponent
   ],
   imports: [
     BrowserModule,
