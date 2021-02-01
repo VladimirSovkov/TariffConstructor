@@ -1,0 +1,39 @@
+.title{
+  text-align: center;
+  margin: 23px 0 0 0;
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-column-nomenclatureId {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 13%;
+  padding: 0 17px;
+  word-break: break-word;
+}
+
+.mat-column-productId {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 18%;
+  padding: 0px 10px;
+  word-break: break-word;
+}
+
+.tool-bar{
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 auto;
+  align-items: baseline;
+}
+
+.input-filter {
+  width: 30%;
+}

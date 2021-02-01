@@ -11,7 +11,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTermsOfUse);
 
-            builder.HasAlternateKey(x => x.PublicId);
+            builder.HasIndex(b => b.PublicId)
+                .IsUnique();
 
             builder.Property(x => x.DocumentName).HasMaxLength(255).IsRequired();
         }

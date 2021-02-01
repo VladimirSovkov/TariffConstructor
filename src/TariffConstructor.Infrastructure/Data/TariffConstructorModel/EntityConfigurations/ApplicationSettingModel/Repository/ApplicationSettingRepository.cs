@@ -42,6 +42,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return _ctx.ApplicationSettings.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<ApplicationSetting> GetApplicationSetting(int applicationId, int settingId)
+        {
+            return _ctx.ApplicationSettings.FirstOrDefaultAsync(x => x.ApplicationId == applicationId && x.SettingId == settingId);
+        }
+
         public async Task<List<ApplicationSetting>> GetApplicationSettings()
         {
             return await _ctx.ApplicationSettings.ToListAsync();

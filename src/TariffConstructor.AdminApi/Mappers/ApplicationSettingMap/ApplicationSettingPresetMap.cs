@@ -20,6 +20,7 @@ namespace TariffConstructor.AdminApi.Mappers.ApplicationSettingMap
                 {
                     Id = applicationSettingPreset.Id,
                     ApplicationSettingId = applicationSettingPreset.ApplicationSettingId,
+                    ApplicationSetting = applicationSettingPreset.ApplicationSetting.Map(),
                     IsHidden = applicationSettingPreset.IsHidden,
                     IsReadOnly = applicationSettingPreset.IsReadOnly,
                     IsRequired = applicationSettingPreset.IsRequired,

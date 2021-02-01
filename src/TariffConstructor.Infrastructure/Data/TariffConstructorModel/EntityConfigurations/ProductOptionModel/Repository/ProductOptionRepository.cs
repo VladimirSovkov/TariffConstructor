@@ -41,6 +41,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return _ctx.ProductOptions.FirstOrDefaultAsync(x => x.Id == productOptionId);
         }
 
+        public Task<ProductOption> GetProductOption(string publicId)
+        {
+            return _ctx.ProductOptions.FirstOrDefaultAsync(x => x.PublicId == publicId);
+        }
+
         public Task<List<ProductOption>> GetProductOptions(int[] productOptionIds)
         {
             throw new System.NotImplementedException();

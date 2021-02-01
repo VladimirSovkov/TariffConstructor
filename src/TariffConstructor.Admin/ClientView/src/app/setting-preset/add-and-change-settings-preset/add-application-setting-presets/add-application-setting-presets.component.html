@@ -1,12 +1,11 @@
-<h3>AddApplicationSettingPreset</h3>
+<h2>Создание предварительной настройки приложения</h2>
 <form [formGroup]="appSettingForm">
-  <p>
-    <mat-form-field class="select-product" appearance="legacy">
-      <mat-label>ApplicationSettingId</mat-label>
+  <p>Настройка приложения:
+    <mat-form-field class="application_setting_select" appearance="legacy">
       <mat-select formControlName="applicationSettingId">
-        <mat-option>None</mat-option>
+        <mat-option> - </mat-option>
         <mat-option *ngFor="let applicationSetting of applicationSettings"
-                    [value]="applicationSetting.id">{{applicationSetting.id}}</mat-option>
+                    [value]="applicationSetting.id">{{applicationSetting.application.name}}, {{applicationSetting.setting.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-icon-button class="add_button" (click)="openAddApplicationSetting()">
@@ -14,35 +13,35 @@
     </button>
   </p>
   <div formGroupName="value">
-    <p> defaultValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="defaultValue">
+    <p> Значение по умолчанию:
+      <mat-form-field class="default_value_input">
+        <input matInput formControlName="defaultValue">
       </mat-form-field>
     </p>
-    <p> minValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="minValue">
+    <p> Минимальное значение:
+      <mat-form-field class="min_value_input">
+        <input matInput formControlName="minValue">
       </mat-form-field>
     </p>
-    <p> maxValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="maxValue">
+    <p> Максимальное значение:
+      <mat-form-field class="max_value_input">
+        <input matInput formControlName="maxValue">
       </mat-form-field>
     </p>
   </div>
   <p>
     <mat-checkbox class="checkbox" formControlName="isRequired" [color]="$any('primary')">
-      isRequired
+      isRequired(Необходим)
     </mat-checkbox>
   </p>
   <p>
     <mat-checkbox class="checkbox" formControlName="isReadOnly" [color]="$any('primary')">
-      isReadOnly
+      isReadOnly(Только для чтения)
     </mat-checkbox>
   </p>
   <p>
     <mat-checkbox class="checkbox" formControlName="isHidden" [color]="$any('primary')">
-      isHidden
+      isHidden(Скрыть)
     </mat-checkbox>
   </p>
   <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="appSettingForm.invalid"

@@ -1,0 +1,30 @@
+<h2>Добавление настройки приложения</h2>
+<div class="form_input">
+  <form class="form_block" [formGroup]="form" (ngSubmit)="addAppSetting()">
+    <p>Приложение:
+      <mat-form-field class="select-application" appearance="legacy">
+        <mat-select formControlName="applicationId" >
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let application of applications" [value]="application.id">{{application.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>Настройка:
+      <mat-form-field class="select-setting" appearance="legacy">
+        <mat-select formControlName="settingId">
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p> Значение по умолчанию:
+      <mat-form-field class="input-default-name">
+        <label>
+          <input matInput formControlName="defaultValue"/>
+        </label>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button>
+  </form>
+</div>
+

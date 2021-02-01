@@ -23,6 +23,10 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] ApplicationDto applicationDto)
         {
+            if (await applicationRepository.GetApplication(applicationDto.PublicId) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"application with this PublicId == {applicationDto.PublicId} already exists");
+            }
             Application application = new Application(applicationDto.PublicId, applicationDto.Name);
             application = await applicationRepository.Add(application);
             return Ok(application.Map());
@@ -54,7 +58,14 @@ namespace TariffConstructor.AdminApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Application id == {applicationDto.Id}. Not found!");
             }
-            application.SetPublicId(applicationDto.PublicId);
+            if (application.PublicId != applicationDto.PublicId)
+            {
+                if (await applicationRepository.GetApplication(applicationDto.PublicId) != null) 
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"application with this PublicId == {applicationDto.PublicId} already exists");
+                }
+                application.SetPublicId(applicationDto.PublicId);
+            }
             application.SetName(applicationDto.Name);
             await applicationRepository.Update(application);
             return Ok();

@@ -10,6 +10,7 @@ import {AddApplicationSettingPresetsComponent} from './add-application-setting-p
 import {ApplicationSettingPreset} from '../../shared/model/application-setting/application-setting-preset.model';
 import {MatTable} from '@angular/material/table';
 import {BillingsSettingPreset} from '../../shared/model/billing-setting/billings-setting-preset.model';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-and-change-settings-preset',
@@ -23,16 +24,17 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
   settingsPreset: SettingsPreset;
   applicationSettingsPreset: ApplicationSettingPreset[] = [];
   billingSettingsPreset: BillingsSettingPreset[] = [];
-  displayedColumnsAppSettings: string[] = ['id', 'applicationSettingId', 'defaultValue', 'isRequired', 'isReadOnly', 'isHidden', 'action'];
-  displayedColumnsBillingSettings: string[] = ['id', 'billingSettingId', 'defaultValue', 'isRequired', 'isReadOnly', 'isHidden', 'action'];
-  @ViewChild('table1') appSettingTable: MatTable<ApplicationSettingPreset>;
+  displayedColumnsAppSettings: string[] = ['application-setting-application', 'application-setting-setting', 'defaultValue', 'minValue', 'maxValue', 'isRequired', 'isReadOnly', 'isHidden', 'action'];
+  displayedColumnsBillingSettings: string[] = ['billingSettingId', 'defaultValue', 'minValue', 'maxValue', 'isRequired', 'isReadOnly', 'isHidden', 'action'];
+  @ViewChild('applicationSettingTable') appSettingTable: MatTable<ApplicationSettingPreset>;
   // @ViewChildren(MatTable) appSettingTable !: QueryList<MatTable<ApplicationSettingPreset>>;
-  @ViewChild('table2') billingSettingTable: MatTable<BillingsSettingPreset>;
+  @ViewChild('billingSettingTable') billingSettingTable: MatTable<BillingsSettingPreset>;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private http: HttpClient,
               private settingsPresetService: SettingsPresetApiServices,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.settingsPreset = new SettingsPreset();
@@ -68,6 +70,7 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
   load(id: number): void {
     this.settingsPresetService.get(id)
       .subscribe( (settingsPreset: SettingsPreset) => {
+        console.log(settingsPreset);
         this.settingsPreset = settingsPreset;
         this.form.patchValue(settingsPreset);
         this.applicationSettingsPreset = this.settingsPreset.applicationSettingsPresets;
@@ -75,7 +78,7 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
         this.appSettingTable.renderRows();
         this.billingSettingTable.renderRows();
       }, error => {
-        console.log(error);
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -85,8 +88,11 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
     console.log('add settingsPreset', settingsPreset);
     this.settingsPresetService.add(settingsPreset)
       .subscribe(() => {
-        console.log('При добавлении сервер ответил: Ok');
         this.formInitialization();
+        this.applicationSettingsPreset = [];
+        this.billingSettingsPreset = [];
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -97,13 +103,17 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
     this.settingsPresetService.update(settingsPreset)
       .subscribe(() => {
         this.formInitialization();
+        this.applicationSettingsPreset = [];
+        this.billingSettingsPreset = [];
         this.router.navigate(['/settingsPreset']);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
   openAddApplicationSettingPreset(): void {
     let dialogRef;
-    dialogRef = this.dialog.open(AddApplicationSettingPresetsComponent);
+    dialogRef = this.dialog.open(AddApplicationSettingPresetsComponent, {data: this.applicationSettingsPreset});
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined)
       {
@@ -119,7 +129,7 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
 
   openAddBillingSettingPreset(): void {
     let dialogRef;
-    dialogRef = this.dialog.open(AddBillingSettingPresetComponent);
+    dialogRef = this.dialog.open(AddBillingSettingPresetComponent, {data: this.billingSettingsPreset});
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined)
       {

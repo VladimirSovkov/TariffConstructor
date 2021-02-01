@@ -1,8 +1,20 @@
+.title{
+  text-align: center;
+  margin: 23px 0 0 0;
+}
+
+.tool-bar{
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 auto;
+  align-items: baseline;
+}
+
 table {
   width: 100%;
 }
 
-.mat-elevation-z8
-{
-
+.input-filter {
+  width: 30%;
 }

@@ -10,6 +10,7 @@ namespace TariffConstructor.Domain.TermsOfUseModel
     {
         Task<SearchResult<TermsOfUse>> Search(TermsOfUseSearchPattern searchPattern);
         Task<TermsOfUse> GetTermsOfUse( int termsOfUseId );
+        Task<TermsOfUse> GetTermsOfUse(string publicId);
         Task<List<TermsOfUse>> GetTermsOfUses();
     }
 }

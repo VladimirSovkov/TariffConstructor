@@ -21,7 +21,7 @@ export class CurrencyTableComponent implements OnInit {
   filter = '';
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  @ViewChild(MatTable) table: MatTable<any>;
+    @ViewChild(MatTable) table: MatTable<any>;
   constructor(private router: Router,
               private currencyService: CurrencyService,
               private http: HttpClient,

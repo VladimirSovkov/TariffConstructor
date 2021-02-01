@@ -45,6 +45,16 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return _ctx.Currencies.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<Currency> GetCurrency(string name)
+        {
+            return _ctx.Currencies.FirstOrDefaultAsync(x => x.Name == name);
+        }
+
+        public Task<Currency> GetCurrencyByCode(int code)
+        {
+            return _ctx.Currencies.FirstOrDefaultAsync(x => x.Code == code);
+        }
+
         public async Task<SearchResult<Currency>> Search(CurrencySearchPattern searchPattern)
         {
             IQueryable<Currency> query = _ctx.Currencies.AsQueryable();

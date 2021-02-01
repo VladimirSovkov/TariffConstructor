@@ -1,4 +1,4 @@
-<h3>Добавление тарифной цены варианта продукта</h3>
+<h3>Добавление тарифной цены опции продукта</h3>
 <form [formGroup]="form">
 
   <div formGroupName="price">
@@ -20,18 +20,19 @@
     <p>Период:
       <mat-form-field class="select-period" appearance="legacy">
         <mat-select formControlName="periodUnit">
-          <mat-option value="0">Month</mat-option>
-          <mat-option value="1">QuarterOfTheYear</mat-option>
-          <mat-option value="2">HalfYear</mat-option>
-          <mat-option value="3">Year</mat-option>
+          <mat-option>-</mat-option>
+          <mat-option [value]="0">Month</mat-option>
+          <mat-option [value]="1">QuarterOfTheYear</mat-option>
+          <mat-option [value]="2">HalfYear</mat-option>
+          <mat-option [value]="3">Year</mat-option>
         </mat-select>
       </mat-form-field>
     </p>
     <p> Длительность:
       <mat-form-field class="input-period-value">
-        <input matInput type="text" required="true" formControlName="value" pattern="\d*" />
+        <input matInput type="number" formControlName="value" pattern="\d*" />
         <mat-error *ngIf="!form.controls['period'].hasError('pattern')">
-          Только целые положительные числа
+          Только целые положительные числа от 1
         </mat-error>
       </mat-form-field>
     </p>

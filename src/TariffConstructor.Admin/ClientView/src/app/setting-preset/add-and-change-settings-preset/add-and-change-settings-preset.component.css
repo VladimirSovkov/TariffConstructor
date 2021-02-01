@@ -1,3 +1,119 @@
+.title{
+  text-align: center;
+}
+
 table {
   width: 100%;
 }
+
+form{
+  margin: 0 auto;
+  width: 600px;
+}
+
+mat-form-field{
+  margin-left: 5px;
+}
+
+.name_input{
+  width: 93%;
+}
+
+.submit_button {
+  display: block;
+  margin: 40px auto 100px auto;
+  width: 460px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+
+mat-expansion-panel{
+  margin: 9px auto 0 auto;
+  width: 98%;
+
+}
+
+.mat-column-application-setting-setting {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 12%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-application-setting-application {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 12%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-billingSettingId {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 21%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-defaultValue {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 15%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-minValue {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 15%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+
+.mat-column-maxValue {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 28%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-isRequired {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 6%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-isReadOnly {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 6%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+
+.mat-column-isHidden {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 6%;
+  padding: 0px 5px;
+  word-break: break-word;
+}
+

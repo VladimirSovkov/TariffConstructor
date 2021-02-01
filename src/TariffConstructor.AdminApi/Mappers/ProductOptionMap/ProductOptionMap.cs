@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TariffConstructor.AdminApi.Dto;
+using TariffConstructor.AdminApi.Mappers.ProductMap;
 using TariffConstructor.Domain.ProductOptionModel;
 
 namespace TariffConstructor.AdminApi.Mappers.ProductOptionMap
@@ -18,11 +19,13 @@ namespace TariffConstructor.AdminApi.Mappers.ProductOptionMap
                 return new ProductOptionDto
                 {
                     Id = productOption.Id,
+                    PublicId = productOption.PublicId,
                     Name = productOption.Name,
                     IsMultiple = productOption.IsMultiple,
                     AccountingName = productOption.AccountingName,
                     NomenclatureId = productOption.NomenclatureId,
-                    ProductId = productOption.ProductId
+                    ProductId = productOption.ProductId,
+                    Product = productOption.Product.Map()
                 };
             }
         }

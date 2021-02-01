@@ -27,7 +27,7 @@ export class AddIncludedProductComponent implements OnInit {
     this.getProduct();
     this.form = new FormGroup({
       productId: new FormControl('', [Validators.required]),
-      relativeWeight: new FormControl(0, [Validators.required, Validators.min(0)] )
+      relativeWeight: new FormControl(0, [Validators.required, Validators.pattern('\\d*'), Validators.min(0)] )
     });
   }
 

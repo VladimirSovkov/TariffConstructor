@@ -1,4 +1,8 @@
 <button mat-button color="primary" class="back_button" [routerLink]="'/applicationSetting'">Назад</button>
+<h2 class="title" *ngIf="!isChangeApplicationSetting; else changeTitle">Создание настройки приложений</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение настройки приложений</h2>
+</ng-template>
 <div class="form_input">
   <form class="form_block" [formGroup]="form" (ngSubmit)="action()">
     <p>Приложение:

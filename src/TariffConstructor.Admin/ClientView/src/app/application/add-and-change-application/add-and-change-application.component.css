@@ -1,0 +1,32 @@
+form{
+  margin: 0 auto;
+  width: 600px;
+}
+
+.title{
+  text-align: center;
+}
+
+.input-name {
+  width: 81%;
+  margin-left: 5px;
+}
+
+.public_id_input{
+  width: 68%;
+}
+
+.input-name
+{
+  width: 87%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}

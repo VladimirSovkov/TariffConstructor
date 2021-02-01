@@ -1,18 +1,25 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="'/billingSetting'">Назад</button>
 </div>
-<div class="form_input">
-  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center">
-      <mat-form-field class="select-product" appearance="legacy">
-        <mat-label>Setting</mat-label>
-        <mat-select formControlName="paymentType" formControlName="settingId">
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.code}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>
-    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
-  </form>
-</div>
+<h2 class="title" *ngIf="!isChange; else changeTitle">Создание настройки биллинга</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение настройки биллинга</h2>
+</ng-template>
+<form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+  <p>Настройка:
+    <mat-form-field class="setting-select" appearance="legacy">
+      <mat-select formControlName="settingId">
+        <mat-option>-</mat-option>
+        <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset"
+          [disabled]="form.invalid">Изменить
+  </button>
+  <ng-template #unset>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить
+    </button>
+  </ng-template>
+</form>
+

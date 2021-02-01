@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Product } from '../../shared/model/product/product.model';
 import { ProductSearchPattern } from '../../shared/model/product/product-search-pattern.model';
 import {PageEvent} from '@angular/material/paginator';
@@ -6,6 +6,8 @@ import {ProductService} from '../../shared/service/product/product.service';
 import {SearchResult} from '../../shared/search-result.model';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {MatTable} from '@angular/material/table';
 
 @Component({
   selector: 'app-product-table',
@@ -13,13 +15,14 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./product-table.component.css']
 })
 export class ProductTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'nomenclatureId', 'shortName', 'action'];
+  displayedColumns: string[] = ['publicId', 'name', 'nomenclatureId', 'shortName', 'action'];
   products: Product[];
   filter = '';
   searchPattern: ProductSearchPattern;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  constructor(private router: Router, private productService: ProductService, private http: HttpClient) {
+  @ViewChild(MatTable) table: MatTable<any>;
+  constructor(private router: Router, private productService: ProductService, private http: HttpClient, private snackBarService: SnackBarService) {
     this.searchPattern = new ProductSearchPattern();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageIndex = 0;
@@ -34,9 +37,11 @@ export class ProductTableComponent implements OnInit {
     this.searchPattern.onPage = this.pageEvent.pageSize;
     this.searchPattern.pageNumber = this.pageEvent.pageIndex + 1;
     this.searchPattern.searchString = this.filter;
-    this.productService.getData(this.searchPattern).subscribe((searchResult: SearchResult<Product>) =>{
+    this.productService.search(this.searchPattern).subscribe((searchResult: SearchResult<Product>) => {
       this.products = searchResult.items;
       this.pageEvent.length = searchResult.totalCount;
+    }, error => {
+      this.snackBarService.openErrorHttpSnackBar(error);
     });
   }
 
@@ -46,10 +51,16 @@ export class ProductTableComponent implements OnInit {
     this.load();
   }
 
-  delete(id: number): void{
-    this.http.delete('http://localhost:4401/product/delete?id=' + id )
+  delete(product: Product): void{
+    this.productService.delete(product.id)
       .subscribe(() => {
-        this.load();
+        const index = this.products.indexOf(product, 0);
+        if (index > -1) {
+          this.products.splice(index, 1);
+        }
+        this.table.renderRows();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 }

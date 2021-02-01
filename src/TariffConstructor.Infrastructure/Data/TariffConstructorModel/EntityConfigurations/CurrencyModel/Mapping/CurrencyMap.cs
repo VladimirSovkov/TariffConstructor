@@ -13,7 +13,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
 
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForCurrency);
             builder.Property(x => x.Name).HasMaxLength(3);
-            builder.HasAlternateKey(x => new { x.Code, x.Name });
+            builder.HasIndex(x => new { x.Code, x.Name })
+                .IsUnique();
         }
     }
 }

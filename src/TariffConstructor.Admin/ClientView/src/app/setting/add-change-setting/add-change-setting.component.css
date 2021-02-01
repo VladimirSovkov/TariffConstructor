@@ -1,4 +1,38 @@
-form {
+.title{
+  text-align: center;
+}
+
+form{
   margin: 0 auto;
-  width: 21%;
+  width: 600px;
+}
+
+mat-form-field{
+  margin-left: 5px;
+}
+
+.setting-select{
+  width: 81%;
+}
+
+.name-input {
+  width: 86%;
+}
+
+.code_input {
+  width: 93%;
+}
+
+.description_input{
+  width: 87%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
 }

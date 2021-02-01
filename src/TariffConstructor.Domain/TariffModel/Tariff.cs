@@ -496,8 +496,6 @@ namespace TariffConstructor.Domain.TariffModel
             return errors;
         }
 
-
-
         public void ChangePriceItem(Price price, ProlongationPeriod period)
         {
             if (CanChangePriceItem(price, period).Any())

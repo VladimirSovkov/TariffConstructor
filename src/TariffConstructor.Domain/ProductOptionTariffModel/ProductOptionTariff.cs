@@ -105,6 +105,47 @@ namespace TariffConstructor.Domain.ProductOptionTariffModel
             }
         }
 
+        public void RemovePriceItems(List<ProductOptionTariffPrice> prices)
+        {
+            var count = Prices.Count();
+            int j = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var item = Prices.ElementAt(j);
+                if (prices.FirstOrDefault(x => x.Period == item.Period && x.Price.Currency == item.Price.Currency) == null)
+                    _prices.Remove(item);
+                else
+                    j++;
+            }
+        }
+
+        public IReadOnlyList<string> CanChangePriceItem(Price price, ProlongationPeriod period)
+        {
+            List<string> errors = new List<string>();
+            if (price == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("price"));
+            }
+            if (period == null)
+            {
+                errors.Add(ValidationMessage.MustSpecify("period"));
+            }
+
+            return errors;
+        }
+
+        public void ChangePriceItem(Price price, ProlongationPeriod period)
+        {
+            if (CanChangePriceItem(price, period).Any())
+            {
+                throw new InvalidOperationException();
+            }
+
+            var index = _prices.FindIndex(x => x.Period == period && x.Price.Currency == price.Currency);
+            _prices[index].SetPrice(price);
+            _prices[index].SetPeriod(period);
+        }
+
         protected ProductOptionTariff()
         {
         }

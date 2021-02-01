@@ -1,0 +1,47 @@
+h2{
+  text-align: center;
+}
+form{
+  margin: 0 auto;
+  width: 766px;
+}
+
+p{
+  margin: 0;
+}
+
+h2{
+  text-align: center;
+}
+
+.billing_setting_select{
+  width: 76%;
+}
+
+.default_value_input
+{
+  width: 72.5%;
+}
+
+.min_value_input
+{
+  width: 73%;
+}
+
+.max_value_input
+{
+  width: 72%;
+}
+
+.checkbox{
+  margin-top: 15px;
+  display: block;
+}
+
+.submit_button{
+  display: block;
+  margin: 31px auto 0 auto;
+  width: 100%;
+}
+
+

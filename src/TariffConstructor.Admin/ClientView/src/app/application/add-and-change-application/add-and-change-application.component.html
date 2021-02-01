@@ -1,16 +1,20 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="'/application'">Назад</button>
 </div>
+<h2 class="title" *ngIf="!isChange; else changeTitle">Создание приложения</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение приложения</h2>
+</ng-template>
 <div class="form_input">
   <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center"> Общедоступный идентификатор:
-      <mat-form-field class="example-form-field" appearance="legacy">
-        <input matInput required="true" formControlName="publicId">
+    <p> Публичный идентификатор:
+      <mat-form-field class="public_id_input" appearance="legacy">
+        <input matInput formControlName="publicId">
       </mat-form-field>
     </p>
-    <p align="center"> Название:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="name">
+    <p> Название:
+      <mat-form-field class="input-name">
+        <input matInput formControlName="name">
       </mat-form-field>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>

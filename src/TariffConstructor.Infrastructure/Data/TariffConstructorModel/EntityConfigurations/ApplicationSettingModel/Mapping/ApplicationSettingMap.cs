@@ -11,7 +11,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.ToTable("ApplicationSetting");
 
             builder.HasKey(x => x.Id);
-            builder.HasAlternateKey(x => new { x.ApplicationId, x.SettingId });
+            builder.HasIndex(x => new { x.ApplicationId, x.SettingId }).IsUnique();
 
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForApplicationSetting);
             builder.Property(x => x.DefaultValue).HasMaxLength(50);

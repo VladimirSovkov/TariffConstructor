@@ -1,0 +1,32 @@
+h2{
+  text-align: center;
+}
+
+form{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.select-application{
+  width: 86%;
+  margin-left: 5px;
+}
+
+.select-setting {
+  margin-left: 5px;
+  width: 88%;
+}
+
+.input-default-name {
+  margin-left: 5px;
+  width: 75%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}

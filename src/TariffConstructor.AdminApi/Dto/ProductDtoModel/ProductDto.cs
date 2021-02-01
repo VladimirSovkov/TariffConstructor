@@ -8,6 +8,9 @@ namespace TariffConstructor.AdminApi.ProductDtoModel
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        [DataMember(Name = "publicId")]
+        public string PublicId { get; set; }
+
         [DataMember(Name = "nomenclatureId")]
         public string NomenclatureId { get; set; }
 

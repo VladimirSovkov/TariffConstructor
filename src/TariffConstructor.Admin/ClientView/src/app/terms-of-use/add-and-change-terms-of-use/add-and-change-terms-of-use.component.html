@@ -1,13 +1,17 @@
 <button mat-button color="primary" class="back_button" [routerLink]="'/termsOfUse'">Назад</button>
+<h2 class="title" *ngIf="!isChange;else changeTitle">Добавление условия эксплуатации</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение условия эксплуатации</h2>
+</ng-template>
 <form class="form-block" [formGroup]="form" (ngSubmit)="action()">
-  <p> Общедоступный идентификатор:
+  <p> Публичный идентификатор:
     <mat-form-field class="input-public-id" appearance="legacy">
-      <input matInput required="true" formControlName="publicId">
+      <input matInput formControlName="publicId">
     </mat-form-field>
   </p>
   <p> Название документа:
     <mat-form-field class="input-document-name">
-      <input matInput required="true" formControlName="documentName">
+      <textarea style="resize: none" matInput formControlName="documentName"></textarea>
     </mat-form-field>
   </p>
   <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset"

@@ -20,6 +20,7 @@ namespace TariffConstructor.AdminApi.Mappers.BillingSettingMap
                 {
                     Id = billingSettingPreset.Id,
                     BillingSettingId = billingSettingPreset.BillingSettingId,
+                    BillingSetting = billingSettingPreset.BillingSetting.Map(),
                     SettingsPresetId = billingSettingPreset.SettingsPresetId,
                     IsHidden = billingSettingPreset.IsHidden,
                     IsReadOnly = billingSettingPreset.IsReadOnly,

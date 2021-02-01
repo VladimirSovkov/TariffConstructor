@@ -1,13 +1,17 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="'/productOptionTariff'">Назад</button>
 </div>
+<h2 class="title" *ngIf="!isChange;else changeTitle">Создание тарифной опции продукта</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение тарифной опции продукта</h2>
+</ng-template>
 <form class="adding_product_option" [formGroup]="form">
-  <p> Имя:
+  <p> Название:
     <mat-form-field class="input-name" appearance="legacy">
       <input matInput formControlName="name">
     </mat-form-field>
   </p>
-  <p>Вариант продукта:
+  <p>Опция продукта:
     <mat-form-field class="select-product-option" appearance="legacy">
       <mat-select formControlName="productOptionId">
         <mat-option>-</mat-option>
@@ -20,7 +24,7 @@
 
 <mat-expansion-panel hideToggle>
   <mat-expansion-panel-header>
-    <mat-panel-title>Тарифная цена варианта продукта</mat-panel-title>
+    <mat-panel-title>Тарифная цена опции продукта</mat-panel-title>
   </mat-expansion-panel-header>
   <button class="add_button" mat-button color="primary" (click)="openAddProductOptionTariffPrice()">Добавить
   </button>
@@ -47,7 +51,7 @@
     </ng-container>
     <!-- Action Column -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Действия</th>
+      <th mat-header-cell *matHeaderCellDef> Действие</th>
       <td mat-cell *matCellDef="let element">
         <button mat-button color="primary" (click)="deleteProductOptionPrice(element)">Удалить</button>
       </td>

@@ -1,0 +1,44 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/product-option'">Назад</button>
+</div>
+<h2 class="title" *ngIf="!isChangeProductOption; else changeTitle">Создание опции продукта</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение опции продукта</h2>
+</ng-template>
+<div class="form_input">
+  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+    <p> Название:
+      <mat-form-field class="name_input">
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </p>
+    <p> Публичный идентификатор:
+      <mat-form-field class="public_id_input">
+        <input matInput formControlName="publicId">
+      </mat-form-field>
+    </p>
+    <p>Выберите продукт:
+      <mat-form-field class="product-select" appearance="legacy">
+        <mat-select formControlName="productId">
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p> Является множественным:
+      <mat-checkbox class="form-checkbox" formControlName="isMultiple"></mat-checkbox>
+    </p>
+    <p> Бухгалтерское название:
+      <mat-form-field class="accounting-name_input">
+        <input matInput formControlName="accountingName">
+      </mat-form-field>
+    </p>
+    <p> Идентификатор номенклатуры:
+      <mat-form-field class="nomenclature-input">
+        <input matInput formControlName="nomenclatureId">
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeProductOption;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>

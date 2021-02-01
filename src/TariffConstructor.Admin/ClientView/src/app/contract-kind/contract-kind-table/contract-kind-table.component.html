@@ -1,35 +1,36 @@
-<button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/contractKind/add']">Добавить</button>
-<div class="mat-elevation-z8">
-  <mat-form-field class="input-filter-product">
+<h2 class="title">Типы договров</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/contractKind/add']">Добавить</button>
+  <mat-form-field class="input-filter">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="contractKinds" matSort >
-    <!-- PublicId Column -->
-    <ng-container matColumnDef="publicId">
-      <th mat-header-cell *matHeaderCellDef> Общедоступный идентификатор </th>
-      <td mat-cell *matCellDef="let element"> {{element.publicId}} </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Имя </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Действия </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" [routerLink]="['/contractKind/change', element.id]">Изменить</button>
-        <button mat-button color="primary" (click)="delete(element)">Удалить</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [length]="pageEvent.length"
-                 [pageSize]="pageEvent.pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event; load()">
-  </mat-paginator>
 </div>
+<table mat-table [dataSource]="contractKinds" matSort>
+  <!-- PublicId Column -->
+  <ng-container matColumnDef="publicId">
+    <th mat-header-cell *matHeaderCellDef> Публичный идентификатор</th>
+    <td mat-cell *matCellDef="let element"> {{element.publicId}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Название</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Действия</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="['/contractKind/change', element.id]">Изменить</button>
+      <button mat-button color="primary" (click)="delete(element)">Удалить</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [length]="pageEvent.length"
+               [pageSize]="pageEvent.pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event; load()">
+</mat-paginator>

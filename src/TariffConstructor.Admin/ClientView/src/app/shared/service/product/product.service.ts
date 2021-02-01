@@ -4,18 +4,34 @@ import { Observable } from 'rxjs';
 import { SearchResult } from '../../search-result.model';
 import { Product } from '../../model/product/product.model';
 import { ProductSearchPattern } from '../../model/product/product-search-pattern.model';
+import {ApiService} from '../api.service';
 
 @Injectable()
 export class ProductService{
-  apiUrl = 'здесь мой апи';
-  constructor(private http: HttpClient) {
+  apiUrl = '/product';
+  constructor(private http: HttpClient, private apiService: ApiService) {
+  }
+  search(searchPattern: ProductSearchPattern): Observable<SearchResult<Product>>{
+    return this.apiService.search(this.apiUrl + '/search', searchPattern);
   }
 
-  getData(searchPattern: ProductSearchPattern): Observable<SearchResult<Product>>{
-    const params = new HttpParams()
-      .set('pageNumber', searchPattern.pageNumber.toString())
-      .set('onPage', searchPattern.onPage.toString())
-      .set('searchString', searchPattern.searchString.toString());
-    return this.http.get<SearchResult<Product>>('http://localhost:4401/test/product', {params});
+  get(id: number): Observable<Product>{
+    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+  }
+
+  add(product: Product): Observable<any> {
+    return this.apiService.post(this.apiUrl + '/add', product);
+  }
+
+  update(product: Product): Observable<any> {
+    return this.apiService.post(this.apiUrl + '/update', product);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.apiService.get(this.apiUrl + '/getProducts');
   }
 }

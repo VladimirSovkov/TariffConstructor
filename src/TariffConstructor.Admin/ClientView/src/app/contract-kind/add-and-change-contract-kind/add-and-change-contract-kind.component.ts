@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ContractKind} from '../../shared/model/contract-kind/contract-kind.model';
 import {ContractKindService} from '../../shared/service/contract-kind/contract-kind.service';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-and-change-contract-kind',
@@ -18,7 +19,8 @@ export class AddAndChangeContractKindComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private http: HttpClient,
-              private contractKindService: ContractKindService) { }
+              private contractKindService: ContractKindService,
+              private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -58,6 +60,8 @@ export class AddAndChangeContractKindComponent implements OnInit {
         this.contractKind = contractKind;
         this.form.patchValue(contractKind);
         console.log('contractKind: ', this.contractKind);
+      },  error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -66,6 +70,8 @@ export class AddAndChangeContractKindComponent implements OnInit {
       .subscribe(() => {
         console.log('При добавлении сервер ответил: Ok');
         this.formInitialization();
+      },  error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -74,6 +80,8 @@ export class AddAndChangeContractKindComponent implements OnInit {
       .subscribe(() => {
         this.formInitialization();
         this.router.navigate(['/contractKind']);
+      },  error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 }

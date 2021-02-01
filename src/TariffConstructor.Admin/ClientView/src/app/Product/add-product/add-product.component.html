@@ -1,21 +1,30 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="['/product']">Назад</button>
 </div>
+<h2 class="title" *ngIf="!isChangeProduct; else changeTitle">Создание продукта</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение продукта</h2>
+</ng-template>
 <div class="form_input">
   <form class="add_product" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center"> Имя продукта:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="name">
+    <p> Название продукта:
+      <mat-form-field class="name_input">
+        <input matInput formControlName="name">
       </mat-form-field>
     </p>
-    <p align="center"> Номенклатурный идентификатор:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="nomenclatureId">
+    <p> Публичный идентификатор:
+      <mat-form-field class="public_id_input">
+        <input matInput formControlName="publicId">
       </mat-form-field>
     </p>
-    <p align="center"> Короткое имя продукта:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="shortName">
+    <p> Идентификатор номенклатуры:
+      <mat-form-field class="nomenclature_input">
+        <input matInput formControlName="nomenclatureId">
+      </mat-form-field>
+    </p>
+    <p> Короткое имя продукта:
+      <mat-form-field class="short_name_input">
+        <input matInput formControlName="shortName">
       </mat-form-field>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeProduct;else unset" [disabled]="form.invalid">Изменить</button>

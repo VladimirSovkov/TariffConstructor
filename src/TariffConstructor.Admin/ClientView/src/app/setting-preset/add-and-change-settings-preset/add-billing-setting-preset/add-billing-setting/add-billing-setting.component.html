@@ -1,0 +1,15 @@
+<h2>Добавление настройки</h2>
+<form class="adding_product_option" [formGroup]="form" (ngSubmit)="add()">
+  <p>Настройка:
+    <mat-form-field class="setting-select" appearance="legacy">
+      <mat-select formControlName="paymentType" formControlName="settingId">
+        <mat-option> - </mat-option>
+        <mat-option *ngFor="let setting of settings" [value]="setting.id">{{setting.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить
+    </button>
+</form>
+
+

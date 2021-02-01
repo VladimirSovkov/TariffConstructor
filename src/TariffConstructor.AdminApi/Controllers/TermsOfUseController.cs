@@ -23,6 +23,10 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] TermsOfUseDto termsOfUseDto)
         {
+            if (await termsOfUseRepository.GetTermsOfUse(termsOfUseDto.PublicId) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"TermsOfUse with this PublicId == {termsOfUseDto.PublicId} already exists");
+            }
             TermsOfUse termsOfUse = new TermsOfUse(termsOfUseDto.PublicId, termsOfUseDto.DocumentName);
             termsOfUse = await termsOfUseRepository.Add(termsOfUse);
 
@@ -55,7 +59,14 @@ namespace TariffConstructor.AdminApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"TermsOfUse id == {termsOfUseDto.Id}. Not found!");
             }
-            termsOfUse.SetPublicId(termsOfUseDto.PublicId);
+            if (termsOfUse.PublicId != termsOfUseDto.PublicId)
+            {
+                if (await termsOfUseRepository.GetTermsOfUse(termsOfUseDto.PublicId) != null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"TermsOfUse with this PublicId == {termsOfUseDto.PublicId} already exists");
+                }
+                termsOfUse.SetPublicId(termsOfUseDto.PublicId);
+            }
             termsOfUse.SetDocumentName(termsOfUseDto.DocumentName);
             await termsOfUseRepository.Update(termsOfUse);
             return Ok();

@@ -13,11 +13,11 @@ import {SnackBarService} from '../../shared/service/snack-bar.service';
 @Component({
   selector: 'app-setting-table',
   templateUrl: './setting-table.component.html',
-  styleUrls: ['./test-style.scss']
+  styleUrls: ['./setting-table.component.css']
 })
 
 export class SettingTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'code', 'type', 'action'];
+  displayedColumns: string[] = ['name', 'code', 'type', 'action'];
   settings: Setting[];
   searchPattern: SettingSearchPattern;
   filter = '';
@@ -37,7 +37,6 @@ export class SettingTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-    this.snackBarService.openErrorHttpSnackBar('message');
   }
 
   load(): void {
@@ -68,4 +67,20 @@ export class SettingTableComponent implements OnInit {
         this.table.renderRows();
       });
   }
+
+  parserSettingType(id: number): any {
+    return SettingType[id];
+  }
+}
+
+enum SettingType {
+  Unknown = 0,
+  AccumulativeInteger = 1,
+  AccumulativeBoolean = 2,
+  ExclusiveInteger = 3,
+  ExclusiveBoolean = 4,
+  AccumulativeMultiEnum = 5,
+  AccumulativeMoney = 6,
+  ExclusiveEnum = 7,
+  ExclusiveString = 8
 }

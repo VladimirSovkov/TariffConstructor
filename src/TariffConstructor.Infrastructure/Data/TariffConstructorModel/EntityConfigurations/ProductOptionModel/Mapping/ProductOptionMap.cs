@@ -15,7 +15,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             
             builder.HasIndex(x => x.TenantId);
 
-            builder.Property(x => x.PublicId).HasMaxLength(100);
+            builder.HasIndex(x => x.PublicId).IsUnique();
             builder.Property(x => x.NomenclatureId).HasMaxLength(100);
             builder.Property(x => x.Name).HasMaxLength(255);
             builder.Property(x => x.Name).IsRequired();

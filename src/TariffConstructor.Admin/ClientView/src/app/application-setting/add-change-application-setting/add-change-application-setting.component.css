@@ -1,21 +1,25 @@
+.title{
+  text-align: center;
+}
+
 form{
   margin: 0 auto;
-  width: 420px;
+  width: 750px;
 }
 
 .select-application{
-  width: 77%;
+  width: 87%;
   margin-left: 5px;
 }
 
 .select-setting {
   margin-left: 5px;
-  width: 80%;
+  width: 88.5%;
 }
 
 .input-default-name {
   margin-left: 5px;
-  width: 58%;
+  width: 76.5%;
 }
 
 .submit_button {

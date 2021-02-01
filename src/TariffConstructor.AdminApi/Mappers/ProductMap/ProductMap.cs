@@ -18,6 +18,7 @@ namespace TariffConstructor.AdminApi.Mappers.ProductMap
                 return new ProductDto
                 {
                     Id = product.Id,
+                    PublicId = product.PublicId,
                     Name = product.Name,
                     ShortName = product.ShortName,
                     NomenclatureId = product.NomenclatureId

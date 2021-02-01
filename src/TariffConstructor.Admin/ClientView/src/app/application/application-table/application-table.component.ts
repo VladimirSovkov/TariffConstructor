@@ -15,7 +15,7 @@ import {ApplicationApiService} from '../../shared/service/application/applicatio
   styleUrls: ['./application-table.component.css']
 })
 export class ApplicationTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'publicId', 'name', 'action'];
+  displayedColumns: string[] = ['publicId', 'name', 'action'];
   applications: Application[];
   searchPattern: ApplicationSearchPattern;
   filter = '';

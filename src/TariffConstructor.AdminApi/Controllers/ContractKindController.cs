@@ -23,6 +23,10 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] ContractKindDto contractKindDto)
         {
+            if (await contractKindRepository.GetContractKind(contractKindDto.PublicId) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"ContractKind with this PublicId == {contractKindDto.PublicId} already exists");
+            }
             ContractKind contractKind = new ContractKind(contractKindDto.PublicId, contractKindDto.Name);
             contractKind = await contractKindRepository.Add(contractKind);
             return Ok(contractKind.Map());
@@ -35,6 +39,14 @@ namespace TariffConstructor.AdminApi.Controllers
             if (contractKind == null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ContractKind id == {contractKindDto.Id}. Not found!");
+            }
+            if (contractKind.PublicId != contractKindDto.PublicId)
+            {
+                if (await contractKindRepository.GetContractKind(contractKindDto.PublicId) != null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"ContractKind with this PublicId == {contractKindDto.PublicId} already exists");
+                }
+                contractKind.SetPublicId(contractKindDto.PublicId);
             }
             contractKind.SetPublicId(contractKindDto.PublicId);
             contractKind.SetName(contractKindDto.Name);

@@ -1,15 +1,13 @@
-<button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/billingSetting/add']">Добавить</button>
-<div class="mat-elevation-z8">
+<h2 class="title">Настройки биллинга</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/billingSetting/add']">Добавить
+  </button>
+</div>
   <table mat-table [dataSource]="billingSettings" matSort >
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
     <!-- settingId Column -->
-    <ng-container matColumnDef="settingId">
-      <th mat-header-cell *matHeaderCellDef> settingId </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <ng-container matColumnDef="setting">
+      <th mat-header-cell *matHeaderCellDef> Настройка </th>
+      <td mat-cell *matCellDef="let element"> {{element.setting.name}} </td>
     </ng-container>
     <!-- Action Column -->
     <ng-container matColumnDef="action">
@@ -28,4 +26,4 @@
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = $event; load()">
   </mat-paginator>
-</div>
+

@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.AdminApi.Mappers.ProductOptionMap;
 using TariffConstructor.Domain.ProductOptionModel;
+using TariffConstructor.Domain.SearchPattern;
+using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -31,11 +34,32 @@ namespace TariffConstructor.AdminApi.Controllers
             return Ok(productOption.Map());
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
+        {
+            var abc = new ProductOptionSearchPattern();
+            abc.PageNumber = pageNumber;
+            abc.OnPage = onPage;
+            abc.SearchString = searchString;
+            SearchResult<ProductOption> searchResult = await productOptionRepository.Search(abc);
+
+            return Ok(new SearchResult<ProductOptionDto>
+            {
+                Items = searchResult.Items.Map(),
+                TotalCount = searchResult.TotalCount,
+                FilteredCount = searchResult.FilteredCount
+            });
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> AddProductOption([FromBody]ProductOptionDto productOptionDto)
         {
+            if (await productOptionRepository.GetProductOption(productOptionDto.PublicId) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"ProductOption with this PublicId == {productOptionDto.PublicId} already exists");
+            }
             var productOption = new ProductOption(productOptionDto.ProductId, 
-                productOptionDto.Name, productOptionDto.IsMultiple);
+                productOptionDto.Name, productOptionDto.IsMultiple, productOptionDto.PublicId);
             productOption.SetAccountingName(productOptionDto.AccountingName);
             productOption.SetNomenclatureId(productOptionDto.NomenclatureId);
             //productOption.SetKindId(productOptionDto.KindId);
@@ -55,6 +79,15 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> Change([FromBody] ProductOptionDto productOptionDto)
         {
             ProductOption productOption = await productOptionRepository.GetProductOption(productOptionDto.Id);
+
+            if (productOption.PublicId != productOptionDto.PublicId)
+            {
+                if (await productOptionRepository.GetProductOption(productOptionDto.PublicId) != null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"ProductOption with this PublicId == {productOptionDto.PublicId} already exists");
+                }
+                productOption.SetPublicId(productOptionDto.PublicId);
+            }
 
             productOption.SetAccountingName(productOptionDto.AccountingName);
             productOption.SetIsMultiple(productOptionDto.IsMultiple);

@@ -1,6 +1,10 @@
+.title{
+  text-align: center;
+}
+
 form{
   margin: 0 auto;
-  width: 420px;
+  width: 750px;
 }
 
 .input-name {
@@ -9,13 +13,18 @@ form{
 }
 
 .select-product-option{
-  width: 68%;
+  width: 83.5%;
   margin-left: 5px;
 }
 
 .button-wrapper {
   display: flex;
   justify-content: center;
+}
+
+mat-expansion-panel{
+  margin: 0 auto;
+  width: 98%;
 }
 
 .submit_button {

@@ -1,4 +1,44 @@
-.add_button {
-  margin-left: 9px;
+form{
+  margin: 0 auto;
+  width: 1000px;
 }
+
+p{
+  margin: 0;
+}
+
+h2{
+  text-align: center;
+}
+
+.application_setting_select{
+  width: 79%;
+}
+
+.default_value_input
+{
+  width: 78.3%;
+}
+
+.min_value_input
+{
+  width: 78.6%;
+}
+
+.max_value_input
+{
+  width: 78%;
+}
+
+.checkbox{
+  margin-top: 15px;
+  display: block;
+}
+
+.submit_button{
+  display: block;
+  margin: 31px auto 0 auto;
+  width: 100%;
+}
+
 

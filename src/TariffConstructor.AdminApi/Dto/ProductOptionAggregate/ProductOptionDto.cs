@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using TariffConstructor.AdminApi.ProductDtoModel;
 
 namespace TariffConstructor.AdminApi.Dto
 {
@@ -8,6 +9,9 @@ namespace TariffConstructor.AdminApi.Dto
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
+        [DataMember(Name = "publicId")]
+        public string PublicId { get; set; }
+
         [DataMember(Name = "nomenclatureId")]
         public string NomenclatureId { get; set; }
 
@@ -16,6 +20,9 @@ namespace TariffConstructor.AdminApi.Dto
 
         [DataMember(Name = "productId")]
         public int ProductId { get; set; }
+
+        [DataMember(Name = "product")]
+        public ProductDto Product { get; set; }
 
         [DataMember(Name = "isMultiple")]
         public bool IsMultiple { get; set; }

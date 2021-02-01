@@ -41,6 +41,11 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return _ctx.TermsOfUses.FirstOrDefaultAsync(x => x.Id == termsOfUseId);
         }
 
+        public Task<TermsOfUse> GetTermsOfUse(string publicId)
+        {
+            return _ctx.TermsOfUses.FirstOrDefaultAsync(x => x.PublicId == publicId);
+        }
+
         public async Task<List<TermsOfUse>> GetTermsOfUses()
         {
             List<TermsOfUse> termsOfUses = await _ctx.TermsOfUses.ToListAsync();

@@ -31,6 +31,12 @@ namespace TariffConstructor.Domain.ProductOptionModel
         public DateTime CreationDate { get; private set; }  
         public string AccountingName { get; private set; }
 
+
+        public void SetPublicId(string publicId)
+        {
+            PublicId = publicId;
+        }
+
         public void SetName(string name)
         {
             Name = name;

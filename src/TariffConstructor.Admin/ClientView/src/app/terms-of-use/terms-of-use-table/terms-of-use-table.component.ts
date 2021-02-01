@@ -15,7 +15,7 @@ import {TermsOfUseApiService} from '../../shared/service/terms-of-use/terms-of-u
   styleUrls: ['./terms-of-use-table.component.css']
 })
 export class TermsOfUseTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'publicId', 'documentName', 'action'];
+  displayedColumns: string[] = ['publicId', 'documentName', 'action'];
   searchPattern: TermsOfUseSearchPattern;
   termsOfUses: TermsOfUse[];
   filter = '';

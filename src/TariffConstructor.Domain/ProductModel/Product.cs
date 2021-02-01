@@ -31,6 +31,11 @@ namespace TariffConstructor.Domain.ProductModel
 
         public DateTime CreationDate { get; private set; }
 
+        public void SetPublicId(string publicId)
+        {
+            PublicId = publicId;
+        }
+
         public void SetNomenclatureId( string nomeclatureId )
         {
             NomenclatureId = nomeclatureId;

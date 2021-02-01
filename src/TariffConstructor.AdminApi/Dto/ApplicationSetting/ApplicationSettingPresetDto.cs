@@ -14,6 +14,9 @@ namespace TariffConstructor.AdminApi.Dto.ApplicationSetting
         
         [DataMember(Name = "applicationSettingId")]
         public int ApplicationSettingId { get; set; }
+
+        [DataMember(Name = "applicationSetting")]
+        public ApplicationSettingDto ApplicationSetting { get; set; }
         
         [DataMember(Name = "value")]
         public SettingPresetValueDto Value { get; set; }

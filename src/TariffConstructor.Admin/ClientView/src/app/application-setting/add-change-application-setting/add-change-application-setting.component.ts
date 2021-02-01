@@ -23,12 +23,9 @@ export class AddChangeApplicationSettingComponent implements OnInit {
   appSetting: ApplicationSetting;
   settings: Setting[];
   applications: Application[];
-  private previousUrl: string = undefined;
-  private currentUrl: string = undefined;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private http: HttpClient,
               private appSettingService: ApplicationSettingApiServices,
               private settingService: SettingApiServices,
               private applicationService: ApplicationApiService,
@@ -47,13 +44,6 @@ export class AddChangeApplicationSettingComponent implements OnInit {
       }
     });
     this.formInitialization();
-
-    this.router.events
-      .pipe(filter((e: any) => e instanceof RoutesRecognized),
-        pairwise()
-      ).subscribe((e: any) => {
-      console.log(e[0].urlAfterRedirects); // previous url
-    });
   }
 
   private load(id: number): void {

@@ -1,15 +1,12 @@
-<button mat-raised-button color="primary" class="btn-add-product" [routerLink]="['/settingsPreset/add']">Добавить</button>
-<div class="mat-elevation-z8">
-  <mat-form-field class="input-filter-product">
+<h2 class="title">Предварительные настройки тарифа</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/settingsPreset/add']">Добавить</button>
+  <mat-form-field class="input-filter">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
   </mat-form-field>
+</div>
   <table mat-table [dataSource]="settingsPresets" matSort >
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Имя </th>
@@ -32,4 +29,3 @@
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = $event; load()">
   </mat-paginator>
-</div>

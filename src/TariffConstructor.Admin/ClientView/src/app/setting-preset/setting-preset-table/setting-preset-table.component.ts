@@ -15,7 +15,7 @@ import {SearchResult} from '../../shared/search-result.model';
   styleUrls: ['./setting-preset-table.component.css']
 })
 export class SettingPresetTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
   filter = '';
   pageEvent: PageEvent;
   searchPattern: SettingsPresetSearchPattern;

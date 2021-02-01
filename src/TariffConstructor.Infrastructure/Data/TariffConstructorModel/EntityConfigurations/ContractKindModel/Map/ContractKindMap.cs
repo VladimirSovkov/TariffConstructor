@@ -11,7 +11,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             builder.ToTable("ContractKind");
 
             builder.HasKey(x => x.Id);
-            builder.HasAlternateKey(x => x.PublicId);
+            builder.HasIndex(b => b.PublicId)
+                .IsUnique();
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForContractKind);
             builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
             builder.Property(x => x.CreationDate).ValueGeneratedOnAdd();

@@ -1,16 +1,18 @@
-<div class="block_with_button">
-  <button mat-button color="primary" class="back_button" [routerLink]="'/contractKind'">Назад</button>
-</div>
+<button mat-button color="primary" class="back_button" [routerLink]="'/contractKind'">Назад</button>
+<h2 class="title" *ngIf="!isChange; else changeTitle">Создание типа договора</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение типа договора</h2>
+</ng-template>
 <div class="form_input">
-  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center"> Общедоступный идентификатор:
-      <mat-form-field class="example-form-field" appearance="legacy">
-        <input matInput required="true" formControlName="publicId">
+  <form [formGroup]="form" (ngSubmit)="action()">
+    <p> Публичный идентификатор:
+      <mat-form-field class="public-id-input" appearance="legacy">
+        <input matInput formControlName="publicId">
       </mat-form-field>
     </p>
-    <p align="center"> Название:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="name">
+    <p> Название:
+      <mat-form-field class="name-input">
+        <input matInput formControlName="name">
       </mat-form-field>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>

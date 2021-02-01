@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TariffTableComponent } from './tariff/tariff-table/tariff-table.component';
 import { ProductTableComponent } from './product/product-table/product-table.component';
-import { ProductOptionTableComponent } from './productOption/product-option-table/product-option-table.component';
+import { ProductOptionTableComponent } from './product-option/product-option-table/product-option-table.component';
 import { AddingTariffComponent } from './tariff/adding-tariff/adding-tariff.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
-import { AddProductOptionComponent } from './productOption/add-product-option/add-product-option.component';
+import { AddProductOptionComponent } from './product-option/add-product-option/add-product-option.component';
 import { ChangeTariffComponent } from './tariff/change-tariff/change-tariff.component';
 import {SettingTableComponent} from './setting/setting-table/setting-table.component';
 import {AddChangeSettingComponent} from './setting/add-change-setting/add-change-setting.component';
@@ -34,11 +34,12 @@ const routes: Routes = [
   {path: 'tariff/change/:id', component: AddingTariffComponent},
 
   {path: 'product', component: ProductTableComponent},
-  {path: 'productOption', component: ProductOptionTableComponent},
   {path: 'product/add', component: AddProductComponent},
   {path: 'product/change/:id',  component: AddProductComponent },
-  {path: 'productOption/change/:id', component: AddProductOptionComponent},
-  {path: 'productOption/change', component: AddProductOptionComponent},
+
+  {path: 'productOption', component: ProductOptionTableComponent},
+  {path: 'product-option/add', component: AddProductOptionComponent},
+  {path: 'product-option/change/:id', component: AddProductOptionComponent},
 
 
   {path: 'setting', component: SettingTableComponent},

@@ -10,7 +10,8 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             builder.ToTable("Product");
             builder.HasKey(x => x.Id);
-            builder.HasAlternateKey(x => x.PublicId);
+            builder.HasIndex(x => x.PublicId).IsUnique();
+
             builder.HasIndex(x => x.TenantId);
 
             builder.Property(x => x.Id).UseHiLo(HiLoSequence.DBSequenceHiLoForTariffAdvancePrice);

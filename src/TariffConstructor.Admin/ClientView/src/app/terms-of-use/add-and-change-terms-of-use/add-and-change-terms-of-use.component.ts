@@ -4,6 +4,7 @@ import {TermsOfUse} from '../../shared/model/terms-of-use/terms-of-use.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {TermsOfUseApiService} from '../../shared/service/terms-of-use/terms-of-use-api.service';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-and-change-terms-of-use',
@@ -18,7 +19,8 @@ export class AddAndChangeTermsOfUseComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private http: HttpClient,
-              private termsOfUseService: TermsOfUseApiService) { }
+              private termsOfUseService: TermsOfUseApiService,
+              private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -58,6 +60,8 @@ export class AddAndChangeTermsOfUseComponent implements OnInit {
         this.termsOfUse = termsOfUse;
         this.form.patchValue(termsOfUse);
         console.log('termsOfUse: ', this.termsOfUse);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -65,6 +69,9 @@ export class AddAndChangeTermsOfUseComponent implements OnInit {
     this.termsOfUseService.add(termsOfUse)
       .subscribe(() => {
         this.formInitialization();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+
       });
   }
 
@@ -73,6 +80,8 @@ export class AddAndChangeTermsOfUseComponent implements OnInit {
       .subscribe(() => {
         this.formInitialization();
         this.router.navigate(['/termsOfUse']);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

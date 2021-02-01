@@ -1,0 +1,23 @@
+.title{
+  text-align: center;
+}
+
+form{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.setting-select{
+  margin-left: 5px;
+  width: 88%;
+}
+
+.submit_button {
+  width: 96%;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}

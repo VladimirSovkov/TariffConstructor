@@ -1,0 +1,25 @@
+.title{
+  text-align: center;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+
+form{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.public-id-input{
+  width: 73%;
+}
+
+.name-input{
+  width: 89.5%;
+}
+.submit_button{
+  display: block;
+  margin: 0 auto;
+  width: 420px;
+}

@@ -9,6 +9,7 @@ namespace TariffConstructor.Domain.ApplicationModel
     public interface IApplicationRepository : IRepository<Application>
     {
         Task<Application> GetApplication(int id);
+        Task<Application> GetApplication(string publicId);
         Task<List<Application>> GetApplications();
         Task<SearchResult<Application>> Search(ApplicationSearchPattern searchPattern);
     }

@@ -1,0 +1,42 @@
+.title{
+  text-align: center;
+}
+
+form{
+  margin: 0 auto;
+  width: 700px;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}
+
+mat-form-field{
+  margin-left: 5px;
+}
+
+.name_input{
+  width: 89%;
+}
+
+.public_id_input{
+  width: 72%;
+}
+
+.product-select {
+  width: 81%;
+}
+
+.accounting-name_input{
+  width: 75.3%;
+}
+
+.nomenclature-input{
+  width: 69%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}

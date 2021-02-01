@@ -1,11 +1,19 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="'/setting'">Назад</button>
 </div>
+<h2 class="title" *ngIf="!isChangeSetting; else changeTitle">Создание настройки</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение настройки</h2>
+</ng-template>
 <div class="form_input">
   <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
-    <p align="center">
-      <mat-form-field class="select-setting" appearance="legacy">
-        <mat-label>Тип:</mat-label>
+    <p> Название:
+      <mat-form-field class="name-input" appearance="legacy">
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </p>
+    <p> Тип настройки:
+      <mat-form-field class="setting-select" appearance="legacy">
         <mat-select formControlName="type">
           <mat-option [value]="0">Unknown</mat-option>
           <mat-option [value]="1">AccumulativeInteger</mat-option>
@@ -19,24 +27,19 @@
         </mat-select>
       </mat-form-field>
     </p>
-    <p align="center"> Имя:
-      <mat-form-field class="example-form-field" appearance="legacy">
-        <input matInput formControlName="name">
+    <p> Код:
+      <mat-form-field class="code_input">
+        <input matInput formControlName="code">
       </mat-form-field>
     </p>
-    <p align="center"> Код:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="code">
-      </mat-form-field>
-    </p>
-    <p align="center"> Описание
-      <mat-form-field class="example-form-field">
+    <p> Описание:
+      <mat-form-field class="description_input">
         <input matInput formControlName="description">
       </mat-form-field>
     </p>
-    <p align="center">
+    <p>
       <mat-checkbox class="checkbox" formControlName="isComputing" [color]="$any('primary')">
-        isComputing
+        isComputing(Вычисляется)
       </mat-checkbox>
     </p>
     <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChangeSetting;else unset" [disabled]="form.invalid">Изменить</button>

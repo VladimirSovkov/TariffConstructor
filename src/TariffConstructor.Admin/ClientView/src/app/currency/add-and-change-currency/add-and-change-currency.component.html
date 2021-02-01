@@ -1,4 +1,8 @@
 <button mat-button color="primary" class="back_button" [routerLink]="'/currency'">Назад</button>
+<h2 class="title" *ngIf="!isChangeCurrency;else changeTitle">Добавление валюты</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение валюты</h2>
+</ng-template>
 <div class="form_input">
   <form class="form_block" [formGroup]="form" (ngSubmit)="action()">
     <p> Название:

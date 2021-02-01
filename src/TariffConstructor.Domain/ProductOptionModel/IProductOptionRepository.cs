@@ -9,6 +9,7 @@ namespace TariffConstructor.Domain.ProductOptionModel
     public interface IProductOptionRepository : IRepository<ProductOption>
     {
         Task<ProductOption> GetProductOption( int productOptionId );
+        Task<ProductOption> GetProductOption(string publicId);
 
         Task<List<ProductOption>> GetProductOptions( int[] productOptionIds );
 

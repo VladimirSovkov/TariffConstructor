@@ -33,8 +33,8 @@ export class AddProductOptionTariffPriceComponent implements OnInit {
         currency: new FormControl('', [Validators.required]),
       }),
       period: new FormGroup({
-        value: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('\\d*')]),
-        periodUnit: new FormControl(0, [Validators.required]),
+        value: new FormControl(0, [Validators.required, Validators.min(1), Validators.pattern('\\d*')]),
+        periodUnit: new FormControl('', [Validators.required]),
       }),
     });
   }

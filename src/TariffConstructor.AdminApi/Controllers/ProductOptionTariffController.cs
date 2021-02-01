@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap;
@@ -58,13 +59,31 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] ProductOptionTariffDto productOptionTariffDto)
         {
+
+
             ProductOptionTariff productOptionTariff = await productOptionTariffRepository.GetProductOptionTariff(productOptionTariffDto.Id);
             if (productOptionTariff == null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ProductOptionTariff id == {productOptionTariffDto.Id}. Not found!");
             }
-            
-            
+
+            productOptionTariff.SetName(productOptionTariffDto.Name);
+            productOptionTariff.SetProductOption(productOptionTariffDto.ProductOptionId);
+
+            productOptionTariff.RemovePriceItems(productOptionTariffDto.Prices.ToProductOptionTariffPrices());
+
+            foreach (var item in productOptionTariffDto.Prices)
+            {
+                Price price = new Price(item.Price.Value, item.Price.Currency);
+                ProlongationPeriod period = new ProlongationPeriod(item.Period.Value, (PeriodUnit)item.Period.periodUnit);
+                if (productOptionTariff.Prices.FirstOrDefault(x => x.Period == period
+                                                                    && x.Price.Currency == price.Currency) != null)
+                {
+                    productOptionTariff.ChangePriceItem(price, period);
+                }
+                else
+                    productOptionTariff.AddPriceItem(price, period);
+            }
 
             await productOptionTariffRepository.Update(productOptionTariff);
             return Ok();

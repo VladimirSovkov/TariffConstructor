@@ -190,7 +190,7 @@ export class AddingTariffComponent implements OnInit {
           x.period.value === price.period.value &&
           x.price.currency === price.price.currency))
         {
-          this.snackBarService.openErrorHttpSnackBar('Ошибка валидации');
+          this.snackBarService.openErrorHttpSnackBar('Цена с такой валютой за указанный период уже существует!');
         }
         else {
           this.prices.push(price);
@@ -215,7 +215,7 @@ export class AddingTariffComponent implements OnInit {
           x.period.value === advancePrice.period.value &&
           x.price.currency === advancePrice.price.currency))
         {
-          this.snackBarService.openErrorHttpSnackBar('Ошибка валидации');
+          this.snackBarService.openErrorHttpSnackBar('Цена с такой валютой за указанный период уже существует!');
         }
         else {
           this.advancePrices.push(advancePrice);

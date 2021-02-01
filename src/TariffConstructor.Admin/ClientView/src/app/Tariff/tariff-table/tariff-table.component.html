@@ -1,49 +1,42 @@
-<button mat-button color="primary" [routerLink]="['/tariff/add']">Добавить</button>
-
-<div class="mat-elevation-z8">
-  <mat-form-field>
+<h2 class="title">Тарифы</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/tariff/add']">Добавить</button>
+  <mat-form-field class="input-filter">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="tariffs" matSort>
-    <!-- Position Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <!-- paymentType Column -->
-    <ng-container matColumnDef="paymentType">
-      <th mat-header-cell *matHeaderCellDef> PaymentType </th>
-      <td mat-cell *matCellDef="let element"> {{element.paymentType}} </td>
-    </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" [routerLink]="['/tariff/change', element.id]">Изменить</button>
-        <button mat-button color="primary">Удалить</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-  <mat-paginator [length]="pageEvent.length"
-                 [pageSize]="pageEvent.pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event; load()">
-  </mat-paginator>
-
 </div>
+<table mat-table [dataSource]="tariffs" matSort>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Название</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- paymentType Column -->
+  <ng-container matColumnDef="paymentType">
+    <th mat-header-cell *matHeaderCellDef> Способ оплаты</th>
+    <td mat-cell *matCellDef="let element"> {{parserPaymentType(element.paymentType)}} </td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Действия</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="['/tariff/change', element.id]">Изменить</button>
+      <button mat-button color="primary" (click)="delete(element)">Удалить</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
+<mat-paginator [length]="pageEvent.length"
+               [pageSize]="pageEvent.pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event; load()">
+</mat-paginator>

@@ -24,7 +24,7 @@ export class AddAndChangeProductOptionTariffComponent implements OnInit {
   productOptionTariff: ProductOptionTariff;
   productOptions: ProductOption[];
   productOptionTariffPrices: ProductOptionTariffPrice[] = [];
-  displayedColumnsAppSettings: string[] = ['priceValue', 'priceCurrency', 'periodValue', 'periodPeriodUnit', 'action'];
+  displayedColumnsAppSettings: string[] = [ 'priceCurrency', 'priceValue', 'periodPeriodUnit', 'periodValue', 'action'];
   @ViewChild('tablePrice') productOptionTariffPriceTable: MatTable<ProductOptionTariffPrice>;
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -58,6 +58,7 @@ export class AddAndChangeProductOptionTariffComponent implements OnInit {
   action(): void {
     this.productOptionTariff = this.form.getRawValue();
     this.productOptionTariff.id = this.id;
+    this.productOptionTariff.prices = this.productOptionTariffPrices;
     console.log('productOptionTariff: ', this.productOptionTariff);
     if (this.isChange){
       this.update(this.productOptionTariff);
@@ -74,8 +75,6 @@ export class AddAndChangeProductOptionTariffComponent implements OnInit {
         this.form.patchValue(productOptionTariff);
         this.productOptionTariffPrices = this.productOptionTariff.prices;
         this.productOptionTariffPriceTable.renderRows();
-        console.log('productOptionTariff', this.productOptionTariff);
-        console.log('productOptionTariffPrices', this.productOptionTariffPrices);
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });
@@ -91,7 +90,6 @@ export class AddAndChangeProductOptionTariffComponent implements OnInit {
   }
 
   addProductOptionTariff(productOptionTariff: ProductOptionTariff): void {
-    productOptionTariff.prices = this.productOptionTariffPrices;
     console.log('add productOptionTariff', productOptionTariff);
     this.productOptionTariffService.add(productOptionTariff)
       .subscribe(() => {
@@ -122,9 +120,18 @@ export class AddAndChangeProductOptionTariffComponent implements OnInit {
         console.log('productOptionTariffPrice === undefined');
       }
       else{
-        const productOptionTariffPrice = result;
-        this.productOptionTariffPrices.push(productOptionTariffPrice);
-        this.productOptionTariffPriceTable.renderRows();
+        const price: ProductOptionTariffPrice = result;
+        if (this.productOptionTariffPrices.some(x =>
+          x.period.periodUnit === price.period.periodUnit &&
+          x.period.value === price.period.value &&
+          x.price.currency === price.price.currency))
+        {
+          this.snackBarService.openErrorHttpSnackBar('Цена с такой валютой за указанный период уже существует!');
+        }
+        else {
+          this.productOptionTariffPrices.push(price);
+          this.productOptionTariffPriceTable.renderRows();
+        }
       }
     });
   }

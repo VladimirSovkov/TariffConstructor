@@ -60,12 +60,13 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("PublicId");
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasFilter("[PublicId] IS NOT NULL");
 
                     b.ToTable("Application");
                 });
@@ -98,9 +99,10 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("ApplicationId", "SettingId");
-
                     b.HasIndex("SettingId");
+
+                    b.HasIndex("ApplicationId", "SettingId")
+                        .IsUnique();
 
                     b.ToTable("ApplicationSetting");
                 });
@@ -294,12 +296,13 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("PublicId");
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasFilter("[PublicId] IS NOT NULL");
 
                     b.ToTable("ContractKind");
                 });
@@ -316,13 +319,14 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(3)")
                         .HasMaxLength(3);
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("Code", "Name");
+                    b.HasIndex("Code", "Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("Currency");
                 });
@@ -352,7 +356,6 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(68)")
                         .HasMaxLength(68);
 
@@ -365,7 +368,9 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("PublicId");
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasFilter("[PublicId] IS NOT NULL");
 
                     b.HasIndex("TenantId");
 
@@ -437,8 +442,7 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("TenantId")
                         .HasColumnType("int");
@@ -448,6 +452,10 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                     b.HasIndex("KindId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasFilter("[PublicId] IS NOT NULL");
 
                     b.HasIndex("TenantId");
 
@@ -862,12 +870,13 @@ namespace TariffConstructor.Infrastructure.Migrations.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("PublicId");
+                    b.HasIndex("PublicId")
+                        .IsUnique()
+                        .HasFilter("[PublicId] IS NOT NULL");
 
                     b.ToTable("TermsOfUses");
                 });

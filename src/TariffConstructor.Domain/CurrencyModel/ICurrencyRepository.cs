@@ -10,6 +10,8 @@ namespace TariffConstructor.Domain.CurrencyModel
     {
         Task<List<Currency>> GetCurrencies();
         Task<Currency> GetCurrency(int id);
+        Task<Currency> GetCurrency(string name);
+        Task<Currency> GetCurrencyByCode(int code);
         Task<SearchResult<Currency>> Search(CurrencySearchPattern searchPattern);
     }
 }

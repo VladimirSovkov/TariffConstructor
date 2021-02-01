@@ -88,5 +88,10 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
                 await _ctx.SaveChangesAsync();
             }
         }
+
+        public Task<Product> GetProduct(string publicId)
+        {
+            return _ctx.Products.FirstOrDefaultAsync(x => x.PublicId == publicId);
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace TariffConstructor.AdminApi.Dto.BillingSetting
 
         [DataMember(Name = "billingSettingId")]
         public int BillingSettingId { get; set; }
+        
+        [DataMember(Name = "billingSetting")]
+        public BillingSettingDto BillingSetting { get; set; }
 
         [DataMember(Name = "value")]
         public SettingPresetValueDto Value { get; set; }

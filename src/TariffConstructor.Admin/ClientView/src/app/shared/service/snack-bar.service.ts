@@ -17,7 +17,8 @@ export class SnackBarService {
       message = error;
     }
     this.snackBar.open(message, 'Закрыть', {
-      panelClass: ['warn']
+      duration: 5000,
+      panelClass: ['mat-toolbar', 'mat-primary']
     });
   }
 }

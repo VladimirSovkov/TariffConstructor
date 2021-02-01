@@ -5,6 +5,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationApiService} from '../../shared/service/application/application-api.service';
 import {Setting} from '../../shared/model/setting/setting.model';
+import {SnackBarService} from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-and-change-application',
@@ -19,7 +20,8 @@ export class AddAndChangeApplicationComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private http: HttpClient,
-              private applicationService: ApplicationApiService) { }
+              private applicationService: ApplicationApiService,
+              private  snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -67,6 +69,8 @@ export class AddAndChangeApplicationComponent implements OnInit {
       .subscribe(() => {
         console.log('При добавлении сервер ответил: Ok');
         this.formInitialization();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
@@ -75,6 +79,8 @@ export class AddAndChangeApplicationComponent implements OnInit {
       .subscribe(() => {
         this.formInitialization();
         this.router.navigate(['/application']);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

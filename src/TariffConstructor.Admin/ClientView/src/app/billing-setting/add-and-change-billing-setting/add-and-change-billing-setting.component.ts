@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BillingSetting} from '../../shared/model/billing-setting/billing-setting/billing-setting.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {BillingSettingApiServices} from '../../shared/service/billing-setting/billing-setting.service';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {Setting} from '../../shared/model/setting/setting.model';
@@ -21,7 +20,6 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
   settings: Setting[];
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private http: HttpClient,
               private billingSettingService: BillingSettingApiServices,
               private snackBarService: SnackBarService,
               private settingService: SettingApiServices) { }
@@ -52,7 +50,7 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
 
   private formInitialization(): void {
     this.form = new FormGroup({
-      settingId: new FormControl(0, [Validators.required]),
+      settingId: new FormControl('', [Validators.required]),
     });
   }
 
@@ -92,6 +90,8 @@ export class AddAndChangeBillingSettingComponent implements OnInit {
     this.settingService.getSettings()
       .subscribe((settings: Setting[]) => {
         this.settings = settings;
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

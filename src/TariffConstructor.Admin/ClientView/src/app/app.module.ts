@@ -20,7 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModel} from './app-routing.module';
 import { ProductTableComponent } from './product/product-table/product-table.component';
-import { ProductOptionTableComponent } from './productOption/product-option-table/product-option-table.component';
+import { ProductOptionTableComponent } from './product-option/product-option-table/product-option-table.component';
 import { AddingTariffComponent } from './tariff/adding-tariff/adding-tariff.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProductService } from './shared/service/product/product.service';
 import { ProductOptionService } from './shared/service/product-option/product-option.service';
 import { AddProductComponent } from './product/add-product/add-product.component';
-import { AddProductOptionComponent } from './productOption/add-product-option/add-product-option.component';
+import { AddProductOptionComponent } from './product-option/add-product-option/add-product-option.component';
 import { ChangeTariffComponent } from './tariff/change-tariff/change-tariff.component';
 import { AddIncludedProductComponent } from './tariff/add-included-product/add-included-product.component';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -74,6 +74,8 @@ import {TariffService} from './shared/service/tariff/tariff.service';
 import {ContractKindService} from './shared/service/contract-kind/contract-kind.service';
 import { AddAndChangeContractKindComponent } from './contract-kind/add-and-change-contract-kind/add-and-change-contract-kind.component';
 import { ContractKindTableComponent } from './contract-kind/contract-kind-table/contract-kind-table.component';
+import { AddApplicationSettingComponent } from './setting-preset/add-and-change-settings-preset/add-application-setting-presets/add-application-setting/add-application-setting.component';
+import { AddBillingSettingComponent } from './setting-preset/add-and-change-settings-preset/add-billing-setting-preset/add-billing-setting/add-billing-setting.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +113,9 @@ import { ContractKindTableComponent } from './contract-kind/contract-kind-table/
     AddAndChangeProductOptionTariffComponent,
     AddProductOptionTariffPriceComponent,
     AddAndChangeContractKindComponent,
-    ContractKindTableComponent
+    ContractKindTableComponent,
+    AddApplicationSettingComponent,
+    AddBillingSettingComponent
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,14 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CurrencyDto currencyDto)
         {
+            if (await currencyRepository.GetCurrencyByCode(currencyDto.Code) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Currency with this PublicId == {currencyDto.Code} already exists");
+            }
+            if (await currencyRepository.GetCurrency(currencyDto.Name) != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Currency with this Name == {currencyDto.Name} already exists");
+            }
             Currency currency = new Currency(currencyDto.Code, currencyDto.Name);
             currency = await currencyRepository.Add(currency);
             return Ok(currency.Map());
@@ -54,8 +62,25 @@ namespace TariffConstructor.AdminApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Currency id == {currencyDto.Id}. Not found!");
             }
-            currency.SetCode(currencyDto.Code);
-            currency.SetName(currencyDto.Name);
+            if (currency.Code != currencyDto.Code)
+            {
+                if (await currencyRepository.GetCurrencyByCode(currencyDto.Code) != null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"Currency with this Name == {currencyDto.Code} already exists");
+                }
+
+                currency.SetCode(currencyDto.Code);
+            }
+
+            if (currency.Name != currencyDto.Name)
+            {
+                if (await currencyRepository.GetCurrency(currencyDto.Name) != null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"Currency with this PublicId == {currencyDto.Name} already exists");
+                }
+                currency.SetName(currencyDto.Name);
+            }
+
             await currencyRepository.Update(currency);
             return Ok();
         }

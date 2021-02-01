@@ -10,6 +10,9 @@
   <p> Относительный вес:
     <mat-form-field class="example-form-field">
       <input matInput type="number" required="true" formControlName="relativeWeight">
+      <mat-error *ngIf="!form.controls['relativeWeight'].hasError('pattern')">
+        Только целые положительные числа
+      </mat-error>
     </mat-form-field>
   </p>
   <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" (click)="close()">Добавить</button>

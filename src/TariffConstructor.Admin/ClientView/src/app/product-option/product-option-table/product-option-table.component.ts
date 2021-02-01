@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ProductOption } from '../../shared/model/productOption/product-option.model';
 import {ProductOptionSearchPattern} from '../../shared/model/productOption/product-option-search-pattern.model';
 import {PageEvent} from '@angular/material/paginator';
@@ -7,6 +7,7 @@ import {SearchResult} from '../../shared/search-result.model';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {MatTable} from '@angular/material/table';
 
 @Component({
   selector: 'app-product-option-table',
@@ -14,12 +15,13 @@ import {SnackBarService} from '../../shared/service/snack-bar.service';
   styleUrls: ['./product-option-table.component.css']
 })
 export class ProductOptionTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'nomenclatureId', 'productId', 'isMultiple', 'accountingName', 'action'];
+  displayedColumns: string[] = ['name', 'publicId', 'nomenclatureId', 'productId', 'accountingName', 'action'];
   filter = '';
   productOptions: ProductOption[];
   searchPattern: ProductOptionSearchPattern;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  @ViewChild(MatTable) table: MatTable<any>;
   constructor(private productOptionService: ProductOptionService,
               private router: Router,
               private http: HttpClient,
@@ -52,14 +54,16 @@ export class ProductOptionTableComponent implements OnInit {
     this.load();
   }
 
-  goAdd(): void {
-    this.router.navigate(['addProductOption']);
-  }
-
-  delete(id: number): void {
-    this.productOptionService.delete(id)
-      .subscribe( () => {
-        console.log('delete');
+  delete(product: ProductOption): void {
+    this.productOptionService.delete(product.id)
+      .subscribe(() => {
+        const index = this.productOptions.indexOf(product, 0);
+        if (index > -1) {
+          this.productOptions.splice(index, 1);
+        }
+        this.table.renderRows();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 }

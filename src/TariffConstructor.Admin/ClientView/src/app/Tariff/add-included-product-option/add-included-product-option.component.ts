@@ -25,7 +25,7 @@ export class AddIncludedProductOptionComponent implements OnInit {
   ngOnInit(): void {
     this.getProductOption();
     this.form = new FormGroup({
-      quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
+      quantity: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('\\d*')]),
       productOptionId: new FormControl('', [Validators.required]),
     });
   }
@@ -40,7 +40,7 @@ export class AddIncludedProductOptionComponent implements OnInit {
   close(): void {
     this.productOption = this.form.getRawValue();
     this.productOption.id = 0;
-    console.log('productOption: ', this.productOption);
+    console.log('product-option: ', this.productOption);
     this.dialogRef.close(this.productOption);
   }
 }

@@ -1,0 +1,18 @@
+h2{
+  text-align: center;
+}
+
+form{
+  width: 700px;
+}
+
+.setting-select{
+  width: 88%;
+  margin-top: 5px;
+}
+
+.submit_button{
+  display: block;
+  margin: 27px auto 0 auto;
+  width: 100%;
+}

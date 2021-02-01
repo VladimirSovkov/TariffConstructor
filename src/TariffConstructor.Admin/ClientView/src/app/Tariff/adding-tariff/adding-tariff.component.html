@@ -1,6 +1,10 @@
 <div class="block_with_button">
   <button mat-button color="primary" class="back_button" [routerLink]="'/tariff'">Назад</button>
 </div>
+<h2 class="title" *ngIf="!isChangeTariff; else changeTitle">Добавление тарифа</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение тарифа</h2>
+</ng-template>
 <div class="form_input">
   <form class="adding_tariff" [formGroup]="form">
     <p>Название:
@@ -8,7 +12,7 @@
         <input matInput formControlName="name">
       </mat-form-field>
     </p>
-    <p>Имя бухгалтерии:
+    <p>Бухгалтерское название:
       <mat-form-field class="accounting_name_input" appearance="legacy">
         <input matInput formControlName="accountingName">
       </mat-form-field>
@@ -22,12 +26,12 @@
           </mat-select>
         </mat-form-field>
     </p>
-    <p>Ожидание платежной стратегии:
+    <p>Стратегия оплаты:
       <mat-form-field appearance="legacy" class="awaiting_payment_strategy_input">
         <input matInput formControlName="awaitingPaymentStrategy">
       </mat-form-field>
     </p>
-    <p>Идентификатор тарифа учета:
+    <p>Бухгалтерский идентификатор тарифа:
       <mat-form-field appearance="legacy" class="accounting_tariff_id_input">
         <input matInput formControlName="accountingTariffId">
       </mat-form-field>
@@ -57,12 +61,12 @@
     </p>
     <p>
       <mat-checkbox class="checkbox" formControlName="isAcceptanceRequired" [color]="$any('primary')">
-        Требуется принятие
+        Требуется согласие
       </mat-checkbox>
     </p>
     <p>
       <mat-checkbox class="checkbox" formControlName="isGradualFinishAvailable" [color]="$any('primary')">
-        Доступна ли постепенная отделка
+        IsGradualFinishAvailable
       </mat-checkbox>
     </p>
     <h2>Тестовый период</h2>
@@ -72,7 +76,7 @@
           <mat-select [value]="tariff.testPeriod.unit" formControlName="unit" >
             <mat-option> - </mat-option>
             <mat-option [value]="0">День</mat-option>
-            <mat-option [value]="1">Неделю</mat-option>
+            <mat-option [value]="1">Неделя</mat-option>
             <mat-option [value]="2">Месяц</mat-option>
           </mat-select>
         </mat-form-field>
@@ -118,7 +122,7 @@
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Действия</th>
+          <th mat-header-cell *matHeaderCellDef> Действие</th>
           <td mat-cell *matCellDef="let element">
             <button mat-button color="primary" (click)="deleteTariffPrice(element)">Удалить</button>
           </td>
@@ -158,7 +162,7 @@
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Действия</th>
+          <th mat-header-cell *matHeaderCellDef> Действие</th>
           <td mat-cell *matCellDef="let element">
             <button mat-button color="primary" (click)="deleteAdvancePrice(element)">Удалить</button>
           </td>
@@ -189,7 +193,7 @@
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Действия</th>
+          <th mat-header-cell *matHeaderCellDef> Действие</th>
           <td mat-cell *matCellDef="let element">
             <button mat-button color="primary" (click)="deleteIncludedProduct(element)">Удалить</button>
           </td>
@@ -203,14 +207,14 @@
   <div class="mat-expansion-panel-block">
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
-        <mat-panel-title> Варианты продукта</mat-panel-title>
+        <mat-panel-title> Опции продукта</mat-panel-title>
       </mat-expansion-panel-header>
       <button class="add_button" mat-button color="primary" (click)="openAddIncludedProductOption()">Добавить
       </button>
       <table mat-table [dataSource]="includedProductOptions" matSort #IncludedProductOptionInTariffTable>
         <!-- productOptionId Column -->
         <ng-container matColumnDef="productOptionId">
-          <th mat-header-cell *matHeaderCellDef>Настройка продукта</th>
+          <th mat-header-cell *matHeaderCellDef>Опция продукта</th>
           <td mat-cell *matCellDef="let element"> {{element.productOption.name}} </td>
         </ng-container>
         <!-- quantity Column -->
@@ -220,7 +224,7 @@
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Действия</th>
+          <th mat-header-cell *matHeaderCellDef> Действие</th>
           <td mat-cell *matCellDef="let element">
             <button mat-button color="primary" (click)="deleteIncludedProductOption(element)">Удалить</button>
           </td>
@@ -234,7 +238,7 @@
   <div class="mat-expansion-panel-block">
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
-        <mat-panel-title> Типы договров</mat-panel-title>
+        <mat-panel-title> Типы договоров</mat-panel-title>
       </mat-expansion-panel-header>
       <button class="add_button" mat-button color="primary" (click)="openAddContractKindBindings()">Добавить
       </button>
@@ -246,7 +250,7 @@
         </ng-container>
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Действия</th>
+          <th mat-header-cell *matHeaderCellDef> Действие</th>
           <td mat-cell *matCellDef="let element">
             <button mat-button color="primary" (click)="deleteContractKindBinding(element)">Удалить</button>
           </td>

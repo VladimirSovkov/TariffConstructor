@@ -1,26 +1,31 @@
-<h3>AddBillingSettingPreset</h3>
+<h2>Создание предварительной настройки биллинга</h2>
 <form [formGroup]="form">
-  <mat-form-field class="select-product" appearance="legacy">
-    <mat-label>billingSettingId</mat-label>
-    <mat-select formControlName="billingSettingId">
-      <mat-option>None</mat-option>
-      <mat-option *ngFor="let billingSetting of billingSettings" [value]="billingSetting.id">{{billingSetting.id}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <p>Настройка биллинга:
+    <mat-form-field class="billing_setting_select" appearance="legacy">
+      <mat-select formControlName="billingSettingId">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let billingSetting of billingSettings"
+                    [value]="billingSetting.id">{{billingSetting.setting.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-icon-button class="add_button" (click)="openAddBillingSetting()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </p>
   <div formGroupName="value">
-    <p> defaultValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="defaultValue">
+    <p> Значение по умолчанию:
+      <mat-form-field class="default_value_input">
+        <input matInput formControlName="defaultValue">
       </mat-form-field>
     </p>
-    <p> minValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="minValue">
+    <p> Минимальное значение:
+      <mat-form-field class="min_value_input">
+        <input matInput formControlName="minValue">
       </mat-form-field>
     </p>
-    <p> maxValue:
-      <mat-form-field class="example-form-field">
-        <input matInput required="true" formControlName="maxValue">
+    <p> Максимальное значение:
+      <mat-form-field class="max_value_input">
+        <input matInput formControlName="maxValue">
       </mat-form-field>
     </p>
   </div>
@@ -39,7 +44,8 @@
       isHidden
     </mat-checkbox>
   </p>
-  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid" (click)="close()">
+  <button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid"
+          (click)="close()">
     Добавить
   </button>
 </form>
