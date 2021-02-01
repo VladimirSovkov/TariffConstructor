@@ -40,7 +40,7 @@ export class AddIncludedProductOptionComponent implements OnInit {
   close(): void {
     this.productOption = this.form.getRawValue();
     this.productOption.id = 0;
-    console.log('product-option: ', this.productOption);
+    console.log('productt-option: ', this.productOption);
     this.dialogRef.close(this.productOption);
   }
 }

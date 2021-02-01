@@ -140,7 +140,7 @@ export class AddingTariffComponent implements OnInit {
     this.tariff.includedProducts = this.includedProducts;
     this.tariff.includedProductOptions = this.includedProductOptions;
     this.tariff.contractKindBindings = this.contractKindBindings;
-    console.log('tarifff: ', this.tariff);
+    console.log('tariff: ', this.tariff);
     if (this.isChangeTariff)
     {
       this.changeTariff();
@@ -165,7 +165,7 @@ export class AddingTariffComponent implements OnInit {
     this.tariffService.update(this.tariff)
       .subscribe(() => {
         this.formInitialization();
-        this.router.navigate(['/tarifff']);
+        this.router.navigate(['/tariff']);
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });

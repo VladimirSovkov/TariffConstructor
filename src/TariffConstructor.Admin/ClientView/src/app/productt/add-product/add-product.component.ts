@@ -78,7 +78,7 @@ export class AddProductComponent implements OnInit {
 
   changeProduct(product: Product): void {
     this.product.id = this.id;
-    console.log('product: ', this.product);
+    console.log('productt: ', this.product);
     this.productService.update(product)
       .subscribe(() => {
         this.formInitialization();
