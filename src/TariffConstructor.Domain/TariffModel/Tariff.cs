@@ -50,7 +50,7 @@ namespace TariffConstructor.Domain.TariffModel
         /// <summary>
         /// Тип оплаты тарифа
         /// </summary>
-        public string AwaitingPaymentStrategy { get; private set; }//пока не надо 
+        public string AwaitingPaymentStrategy { get; private set; }
 
         /// <summary>
         /// Идентификатор тарифа в бухгалтерской системе
@@ -387,6 +387,11 @@ namespace TariffConstructor.Domain.TariffModel
         public void SetName(string name)
         {
             Name = name;
+        }
+
+        public void SetTestPeriod(TariffTestPeriod testPeriod)
+        {
+            TestPeriod = testPeriod;
         }
 
         public void SetPaymentType(PaymentType paymentType)

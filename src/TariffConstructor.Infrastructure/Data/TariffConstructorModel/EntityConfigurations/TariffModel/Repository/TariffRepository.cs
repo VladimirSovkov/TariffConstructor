@@ -62,9 +62,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             {
                 string searchString = searchPattern.SearchString.Trim();
                 query = query.Where(x =>
-                   x.Name.Contains(searchString)
-                   /*|| x.AccountantEmailsSerialized.Contains(searchString)
-                   || x.Profile.Name.Contains(searchString)*/);
+                   x.Name.Contains(searchString));
             }
 
             query = query.OrderByDescending(x => x.Id);
@@ -72,12 +70,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             int filteredCount = query.Count();
 
             query = query.Skip(searchPattern.Skip()).Take(searchPattern.Take());
-
-            // include 
-            //query = query.Include(x => x)
-            //    .Include(x => x.)
-            //    .Include(x => x.Kind.Company)
-            //    .Include(x => x.Profile);
 
             return new SearchResult<Tariff>
             {
@@ -103,6 +95,16 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
                 _DbContext.Tariffs.Remove(tariff);
                 await _DbContext.SaveChangesAsync();
             }
+        }
+
+        public Task<Tariff> GeTariffFirstOrDefaultSettingPreset(int settingPresetId)
+        {
+            return _DbContext.Tariffs.FirstOrDefaultAsync(x => x.SettingsPresetId == settingPresetId);
+        }
+
+        public Task<Tariff> GeTariffFirstOrDefaulTermsOfUse(int termsOfUseId)
+        {
+            return _DbContext.Tariffs.FirstOrDefaultAsync(x => x.TermsOfUseId == termsOfUseId);
         }
     }
 }

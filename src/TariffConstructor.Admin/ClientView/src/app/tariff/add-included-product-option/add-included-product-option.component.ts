@@ -7,6 +7,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Tariff} from '../../shared/model/tariff/tariff.model';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {TariffToContractKindBinding} from '../../shared/model/tariff/tariff-to-contract-kind-binding.model';
+import {ProductOptionService} from '../../shared/service/product-option/product-option.service';
 
 @Component({
   selector: 'app-add-included-product-option',
@@ -20,27 +21,36 @@ export class AddIncludedProductOptionComponent implements OnInit {
   constructor(private http: HttpClient,
               public dialogRef: MatDialogRef<AddIncludedProductOptionComponent>,
               private snackBarService: SnackBarService,
-              @Inject(MAT_DIALOG_DATA) public data: IncludedProductOptionInTariff[]) { }
+              @Inject(MAT_DIALOG_DATA) public data: IncludedProductOptionInTariff[],
+              private productOptionService: ProductOptionService) { }
 
   ngOnInit(): void {
     this.getProductOption();
     this.form = new FormGroup({
-      quantity: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('\\d*')]),
+      quantity: new FormControl(0, [Validators.required, Validators.min(1), Validators.pattern('\\d*')]),
       productOptionId: new FormControl('', [Validators.required]),
     });
   }
 
   getProductOption(): void {
-    this.http.get<ProductOption[]>('http://localhost:4401/productOption/getAll')
+    this.productOptionService.getAll()
       .subscribe( (productOptions: ProductOption[]) => {
         this.productOptions = productOptions.filter( ( el ) => !this.data.map(x => x.productOptionId).includes( el.id ));
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 
   close(): void {
     this.productOption = this.form.getRawValue();
     this.productOption.id = 0;
-    console.log('productt-option: ', this.productOption);
-    this.dialogRef.close(this.productOption);
+    this.productOptionService.get(this.productOption.productOptionId)
+      .subscribe((productOption: ProductOption) => {
+        this. productOption.productOption = productOption;
+        console.log('product-option: ', this.productOption);
+        this.dialogRef.close(this.productOption);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+      });
   }
 }

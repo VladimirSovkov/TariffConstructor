@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Tariff} from '../../shared/model/tariff/tariff.model';
 import {IncludedProductInTariff} from '../../shared/model/tariff/included-product-In-tariff.model';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {ProductService} from '../../shared/service/product/product.service';
 
 @Component({
   selector: 'app-add-included-product',
@@ -20,7 +21,8 @@ export class AddIncludedProductComponent implements OnInit {
   constructor(private http: HttpClient,
               public dialogRef: MatDialogRef<AddIncludedProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IncludedProductInTariff[],
-              private snackBarService: SnackBarService) {
+              private snackBarService: SnackBarService,
+              private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -32,15 +34,25 @@ export class AddIncludedProductComponent implements OnInit {
   }
 
   getProduct(): void {
-    this.http.get<Product[]>('http://localhost:4401/product/GetProducts')
+    this.productService.getProducts()
       .subscribe((products: Product[]) => {
         this.products = products.filter( ( el ) => !this.data.map(x => x.productId).includes( el.id ) );
-      });
+
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+      })
   }
 
   close(): void {
     this.includedProduct = this.form.getRawValue();
     this.includedProduct.id = 0;
-    this.dialogRef.close(this.includedProduct);
+    this.productService.get(this.includedProduct.productId)
+      .subscribe((product: Product) => {
+        this.includedProduct.product = product;
+        console.log(this.includedProduct);
+        this.dialogRef.close(this.includedProduct);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+      });
   }
 }

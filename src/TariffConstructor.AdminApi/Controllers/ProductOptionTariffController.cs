@@ -59,8 +59,6 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] ProductOptionTariffDto productOptionTariffDto)
         {
-
-
             ProductOptionTariff productOptionTariff = await productOptionTariffRepository.GetProductOptionTariff(productOptionTariffDto.Id);
             if (productOptionTariff == null)
             {

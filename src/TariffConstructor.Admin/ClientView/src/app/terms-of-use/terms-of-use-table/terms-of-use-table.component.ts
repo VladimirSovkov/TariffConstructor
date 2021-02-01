@@ -62,6 +62,8 @@ export class TermsOfUseTableComponent implements OnInit {
           this.termsOfUses.splice(index, 1);
         }
         this.table.renderRows();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 }

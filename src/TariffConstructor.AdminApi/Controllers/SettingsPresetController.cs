@@ -10,6 +10,7 @@ using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.SettingModel;
+using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
@@ -19,10 +20,14 @@ namespace TariffConstructor.AdminApi.Controllers
     public class SettingsPresetController : ControllerBase
     {
         private readonly ISettingsPresetRepository settingsPresetRepository;
+        private readonly ITariffRepository tariffRepository;
 
-        public SettingsPresetController(ISettingsPresetRepository settingsPresetRepository)
+
+        public SettingsPresetController(ISettingsPresetRepository settingsPresetRepository,
+            ITariffRepository tariffRepository)
         {
             this.settingsPresetRepository = settingsPresetRepository;
+            this.tariffRepository = tariffRepository;
         }
 
         [HttpPost("add")]
@@ -163,6 +168,11 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpDelete("")]
         public async Task<IActionResult> Delete(int id)
         {
+            Tariff tariff = await tariffRepository.GeTariffFirstOrDefaultSettingPreset(id);
+            if (tariff != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"You cannot delete the settings preset, as they are used in the tariff == {tariff.Name}");
+            }
             await settingsPresetRepository.Delete(id);
             return Ok();
         }

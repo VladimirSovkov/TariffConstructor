@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.TermsOfUse;
 using TariffConstructor.AdminApi.Mappers.TermsOfUseMap;
 using TariffConstructor.Domain.SearchPattern;
+using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TermsOfUseModel;
 using TariffConstructor.Toolkit.Search;
 
@@ -14,10 +15,13 @@ namespace TariffConstructor.AdminApi.Controllers
     public class TermsOfUseController : ControllerBase
     {
         private readonly ITermsOfUseRepository termsOfUseRepository;
+        private readonly ITariffRepository tariffRepository;
 
-        public TermsOfUseController(ITermsOfUseRepository termsOfUseRepository)
+        public TermsOfUseController(ITermsOfUseRepository termsOfUseRepository,
+            ITariffRepository tariffRepository)
         {
             this.termsOfUseRepository = termsOfUseRepository;
+            this.tariffRepository = tariffRepository;
         }
 
         [HttpPost("add")]
@@ -47,6 +51,11 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpDelete("")]
         public async Task<IActionResult> Delete(int id)
         {
+            Tariff tariff = await tariffRepository.GeTariffFirstOrDefaulTermsOfUse(id);
+            if (tariff != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"You cannot delete the terms of use, as they are used in the tariff == {tariff.Name}");
+            }
             await termsOfUseRepository.Delete(id);
             return Ok();
         }

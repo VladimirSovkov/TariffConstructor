@@ -31,7 +31,7 @@ export class AddPriceComponent implements OnInit {
   private initializationForm(): void {
     this.form = new FormGroup({
       price: new FormGroup({
-        value: new FormControl(0, [Validators.required, Validators.min(0)]),
+        value: new FormControl(0, [Validators.required, Validators.min(1)]),
         currency: new FormControl('', [Validators.required]),
       }),
       period: new FormGroup({

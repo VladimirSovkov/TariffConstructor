@@ -46,7 +46,7 @@ export class AddProductOptionComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       publicId: new FormControl('', [Validators.required]),
       isMultiple: new FormControl( false),
-      accountingName: new FormControl('', [Validators.required]),
+      accountingName: new FormControl(''),
       nomenclatureId: new FormControl('', [Validators.required])
     });
   }

@@ -13,13 +13,11 @@ namespace TariffConstructor.Domain.TariffModel
         Task<Dictionary<int, List<int>>> GetAllProductIdsGroupByTariffId( params int[] tariffIds );
 
         Task<int[]> GetIncludedProductIdsInTariffs( params int[] tariffIds );
-
         Task<int[]> GetIncludedProductIdsInProductOptionTariffs( params int[] productOptionTariffIds );
-
         Task<Tariff> GetTariff( int tariffId );
-
+        Task<Tariff> GeTariffFirstOrDefaultSettingPreset(int idSettingPreset);
+        Task<Tariff> GeTariffFirstOrDefaulTermsOfUse(int idTermsOfUse);
         Task<List<Tariff>> GetTariffs( params int[] tariffIds );
-
         Task<SearchResult<Tariff>> GetFoundTariff(TarifftSearchPattern searchPattern);
     }
 }

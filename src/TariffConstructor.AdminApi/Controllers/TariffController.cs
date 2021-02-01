@@ -26,10 +26,10 @@ namespace TariffConstructor.AdminApi.Controllers
         private readonly IContractKindRepository contractKindRepository;
 
         public TariffController(
-            ITariffRepository tariffRepository
-            , IProductRepository productRepository
-            , IProductOptionRepository productOptionRepository
-            , IContractKindRepository contractKindRepository)
+            ITariffRepository tariffRepository, 
+            IProductRepository productRepository, 
+            IProductOptionRepository productOptionRepository,
+            IContractKindRepository contractKindRepository)
         {
             this.tariffRepository = tariffRepository;
             this.productRepository = productRepository;
@@ -67,9 +67,12 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> Add([FromBody] TariffDto tariffDto)
         {
             Tariff tariff = new Tariff(tariffDto.Name, (PaymentType)tariffDto.PaymentType);
-            TariffTestPeriod testPeriod = new TariffTestPeriod(tariffDto.TestPeriod.Value, (TariffTestPeriodUnit)tariffDto.TestPeriod.Unit);
+            if (tariffDto.TestPeriod.Value != 0)
+            {
+                TariffTestPeriod testPeriod = new TariffTestPeriod(tariffDto.TestPeriod.Value, (TariffTestPeriodUnit)tariffDto.TestPeriod.Unit);
+                tariff.AddTestPeriod(testPeriod);
+            }
             tariff.SetArchive(tariffDto.IsArchived);
-            tariff.AddTestPeriod(testPeriod);
             tariff.SetAccountingTariffId(tariffDto.AccountingName);
             tariff.SetAwaitingPaymentStrategy(tariffDto.AwaitingPaymentStrategy);
             tariff.SetSettingsPresetId(tariffDto.SettingsPresetId);
@@ -122,6 +125,15 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> Update([FromBody]TariffDto tariffDto)
         {
             Tariff tariff = await tariffRepository.GetTariff(tariffDto.Id);
+            if (tariffDto.TestPeriod.Value != 0)
+            {
+                TariffTestPeriod testPeriod = new TariffTestPeriod(tariffDto.TestPeriod.Value, (TariffTestPeriodUnit)tariffDto.TestPeriod.Unit);
+                tariff.SetTestPeriod(testPeriod);
+            }
+            else
+            {
+                tariff.SetTestPeriod(TariffTestPeriod.Empty());
+            }
             tariff.SetName(tariffDto.Name);
             tariff.SetArchive(tariffDto.IsArchived);
             tariff.SetAccountingName(tariffDto.AccountingName);
@@ -129,7 +141,6 @@ namespace TariffConstructor.AdminApi.Controllers
             tariff.SetAwaitingPaymentStrategy(tariffDto.AwaitingPaymentStrategy);
             tariff.SetAccountingTariffId(tariffDto.AccountingTariffId);
             tariff.SetSettingsPresetId(tariffDto.SettingsPresetId);
-            tariff.SetTermsOfUseId(tariffDto.SettingsPresetId);
             tariff.SetTermsOfUseId(tariffDto.TermsOfUseId);
             tariff.SetIsAcceptanceRequired(tariffDto.IsAcceptanceRequired);
             tariff.SetIsGradualFinishAvailable(tariff.IsGradualFinishAvailable);

@@ -35,8 +35,14 @@ export class AddContractKindBindingComponent implements OnInit {
   close(): void {
     this.contractKindBinding = this.form.getRawValue();
     this.contractKindBinding.id = 0;
-    console.log('contractKindBinding: ', this.contractKindBinding);
-    this.dialogRef.close(this.contractKindBinding);
+    this.contractKindService.get(this.contractKindBinding.contractKindId)
+      .subscribe((contractKind: ContractKind) => {
+        this.contractKindBinding.contractKind = contractKind;
+        console.log('contractKindBinding: ', this.contractKindBinding);
+        this.dialogRef.close(this.contractKindBinding);
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
+      });
   }
 
   private loadContractKinds(): void {

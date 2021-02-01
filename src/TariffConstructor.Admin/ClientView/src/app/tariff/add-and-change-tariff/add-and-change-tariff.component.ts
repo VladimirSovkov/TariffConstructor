@@ -20,14 +20,15 @@ import {SnackBarService} from '../../shared/service/snack-bar.service';
 import {TermsOfUse} from '../../shared/model/terms-of-use/terms-of-use.model';
 import {SettingsPresetApiServices} from '../../shared/service/setting/settings-preset.service';
 import {TermsOfUseApiService} from '../../shared/service/terms-of-use/terms-of-use-api.service';
+import {TariffTestPeriod} from '../../shared/model/tariff/tariff-test-period.model';
 
 @Component({
   selector: 'app-adding-tariff',
-  templateUrl: './adding-tariff.component.html',
-  styleUrls: ['./adding-tariff.component.css']
+  templateUrl: './add-and-change-tariff.component.html',
+  styleUrls: ['./add-and-change-tariff.component.css']
 })
 
-export class AddingTariffComponent implements OnInit {
+export class AddAndChangeTariffComponent implements OnInit {
   isChangeTariff = false;
   form: FormGroup;
   tariff: Tariff;
@@ -78,12 +79,12 @@ export class AddingTariffComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       isArchived: new FormControl( false),
       testPeriod: new FormGroup({
-        value: new FormControl(),
-        unit: new FormControl()
+        value: new FormControl('', [Validators.min(0), Validators.pattern('\\d*')]),
+        unit: new FormControl('')
       }),
       valueTestPeriod: new FormControl( 0),
-      accountingName: new FormControl('', [Validators.required]),
-      awaitingPaymentStrategy: new FormControl('', [Validators.required]),
+      accountingName: new FormControl(''),
+      awaitingPaymentStrategy: new FormControl(''),
       accountingTariffId: new FormControl(''),
       settingsPresetId: new FormControl( 0),
       termsOfUseId: new FormControl( 0),
@@ -134,13 +135,16 @@ export class AddingTariffComponent implements OnInit {
 
   action(): void {
     this.tariff = this.form.getRawValue();
+    if (!this.tariff.testPeriod.value)
+    {
+      this.tariff.testPeriod = new TariffTestPeriod();
+    }
     this.tariff.id = this.id;
     this.tariff.prices = this.prices;
     this.tariff.advancePrices = this.advancePrices;
     this.tariff.includedProducts = this.includedProducts;
     this.tariff.includedProductOptions = this.includedProductOptions;
     this.tariff.contractKindBindings = this.contractKindBindings;
-    console.log('tariff: ', this.tariff);
     if (this.isChangeTariff)
     {
       this.changeTariff();
@@ -152,10 +156,16 @@ export class AddingTariffComponent implements OnInit {
   }
 
   addTariff(): void {
+    console.log('tariff: ', this.tariff);
     this.tariffService.add(this.tariff)
       .subscribe(() =>
       {
         this.formInitialization();
+        this.prices = [];
+        this.advancePrices = [];
+        this.includedProducts = [];
+        this.includedProductOptions = [];
+        this.contractKindBindings = [];
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });
@@ -165,6 +175,11 @@ export class AddingTariffComponent implements OnInit {
     this.tariffService.update(this.tariff)
       .subscribe(() => {
         this.formInitialization();
+        this.prices = [];
+        this.advancePrices = [];
+        this.includedProducts = [];
+        this.includedProductOptions = [];
+        this.contractKindBindings = [];
         this.router.navigate(['/tariff']);
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
@@ -232,6 +247,7 @@ export class AddingTariffComponent implements OnInit {
       else{
         const includedProduct = result;
         this.includedProducts.push(includedProduct);
+        console.log(this.includedProducts);
         this.includedProductInTariffTable.renderRows();
       }
     });

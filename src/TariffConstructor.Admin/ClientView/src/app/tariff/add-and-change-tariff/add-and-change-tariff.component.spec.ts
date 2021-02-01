@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddingTariffComponent } from './adding-tariff.component';
+import { AddAndChangeTariffComponent } from './add-and-change-tariff.component';
 
 describe('AddingTariffComponent', () => {
-  let component: AddingTariffComponent;
-  let fixture: ComponentFixture<AddingTariffComponent>;
+  let component: AddAndChangeTariffComponent;
+  let fixture: ComponentFixture<AddAndChangeTariffComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddingTariffComponent ]
+      declarations: [ AddAndChangeTariffComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddingTariffComponent);
+    fixture = TestBed.createComponent(AddAndChangeTariffComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

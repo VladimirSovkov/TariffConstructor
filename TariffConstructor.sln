@@ -7,15 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{76592443-2AD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.Domain", "src\TariffConstructor.Domain\TariffConstructor.Domain.csproj", "{7B92DCA3-0390-44E6-BA69-71752ACEF6A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.Application", "src\TariffConstructor.Application\TariffConstructor.Application.csproj", "{FDFC3410-8820-4399-B4B8-AA9305A1C36F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.Infrastructure", "src\TariffConstructor.Infrastructure\TariffConstructor.Infrastructure.csproj", "{96623110-6C0B-4EE3-A280-38AA09E34CF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.AdminApi", "src\TariffConstructor.AdminApi\TariffConstructor.AdminApi.csproj", "{1FFD16B8-46F3-4F4F-9E78-B11181B3E428}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.Toolkit", "src\TariffConstructor.Toolkit\TariffConstructor.Toolkit.csproj", "{A78B9A4E-9BBB-4AEC-8E27-7C90FC348CDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffConstructor.Infrastructure.Migrations", "src\TariffConstructor.Infrastructure.Migrations\TariffConstructor.Infrastructure.Migrations.csproj", "{D4BC48F2-32BC-488E-A16A-BE5E34B6EDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TariffConstructor.Infrastructure.Migrations", "src\TariffConstructor.Infrastructure.Migrations\TariffConstructor.Infrastructure.Migrations.csproj", "{D4BC48F2-32BC-488E-A16A-BE5E34B6EDDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{7B92DCA3-0390-44E6-BA69-71752ACEF6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B92DCA3-0390-44E6-BA69-71752ACEF6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B92DCA3-0390-44E6-BA69-71752ACEF6A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDFC3410-8820-4399-B4B8-AA9305A1C36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDFC3410-8820-4399-B4B8-AA9305A1C36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDFC3410-8820-4399-B4B8-AA9305A1C36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDFC3410-8820-4399-B4B8-AA9305A1C36F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96623110-6C0B-4EE3-A280-38AA09E34CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96623110-6C0B-4EE3-A280-38AA09E34CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96623110-6C0B-4EE3-A280-38AA09E34CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,7 +47,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7B92DCA3-0390-44E6-BA69-71752ACEF6A4} = {76592443-2AD5-4D21-A47E-5ABF6F59FF7F}
-		{FDFC3410-8820-4399-B4B8-AA9305A1C36F} = {76592443-2AD5-4D21-A47E-5ABF6F59FF7F}
 		{96623110-6C0B-4EE3-A280-38AA09E34CF1} = {76592443-2AD5-4D21-A47E-5ABF6F59FF7F}
 		{1FFD16B8-46F3-4F4F-9E78-B11181B3E428} = {76592443-2AD5-4D21-A47E-5ABF6F59FF7F}
 		{A78B9A4E-9BBB-4AEC-8E27-7C90FC348CDB} = {76592443-2AD5-4D21-A47E-5ABF6F59FF7F}

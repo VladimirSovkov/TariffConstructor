@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -21,7 +20,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModel} from './app-routing.module';
 import { ProductTableComponent } from './product/product-table/product-table.component';
 import { ProductOptionTableComponent } from './product-option/product-option-table/product-option-table.component';
-import { AddingTariffComponent } from './tariff/adding-tariff/adding-tariff.component';
+import { AddAndChangeTariffComponent } from './tariff/add-and-change-tariff/add-and-change-tariff.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -33,12 +32,10 @@ import { ProductService } from './shared/service/product/product.service';
 import { ProductOptionService } from './shared/service/product-option/product-option.service';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { AddProductOptionComponent } from './product-option/add-product-option/add-product-option.component';
-import { ChangeTariffComponent } from './tariff/change-tariff/change-tariff.component';
 import { AddIncludedProductComponent } from './tariff/add-included-product/add-included-product.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddPriceComponent } from './tariff/add-price/add-price.component';
-import { AddAdvancePriceComponent } from './tariff/add-advance-price/add-advance-price.component';
 import { AddIncludedProductOptionComponent } from './tariff/add-included-product-option/add-included-product-option.component';
 import { AddContractKindBindingComponent } from './tariff/add-contract-kind-binding/add-contract-kind-binding.component';
 import { SettingTableComponent } from './setting/setting-table/setting-table.component';
@@ -84,13 +81,11 @@ import { AddBillingSettingComponent } from './setting-preset/add-and-change-sett
     TariffTableComponent,
     ProductTableComponent,
     ProductOptionTableComponent,
-    AddingTariffComponent,
+    AddAndChangeTariffComponent,
     AddProductComponent,
     AddProductOptionComponent,
-    ChangeTariffComponent,
     AddIncludedProductComponent,
     AddPriceComponent,
-    AddAdvancePriceComponent,
     AddIncludedProductOptionComponent,
     AddContractKindBindingComponent,
     SettingTableComponent,

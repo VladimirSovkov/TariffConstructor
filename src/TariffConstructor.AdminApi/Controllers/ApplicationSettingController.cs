@@ -20,9 +20,9 @@ namespace TariffConstructor.AdminApi.Controllers
         private readonly IApplicationRepository applicationRepository;
         private readonly ISettingRepository settingRepository;
 
-        public ApplicationSettingController(IApplicationSettingRepository applicationSettingRepository
-            , IApplicationRepository applicationRepository
-            , ISettingRepository settingRepository)
+        public ApplicationSettingController(IApplicationSettingRepository applicationSettingRepository, 
+            IApplicationRepository applicationRepository, 
+            ISettingRepository settingRepository)
         {
             this.applicationSettingRepository = applicationSettingRepository;
             this.applicationRepository = applicationRepository;

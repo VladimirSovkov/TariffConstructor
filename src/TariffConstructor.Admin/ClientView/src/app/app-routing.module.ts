@@ -3,10 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { TariffTableComponent } from './tariff/tariff-table/tariff-table.component';
 import { ProductTableComponent } from './product/product-table/product-table.component';
 import { ProductOptionTableComponent } from './product-option/product-option-table/product-option-table.component';
-import { AddingTariffComponent } from './tariff/adding-tariff/adding-tariff.component';
+import { AddAndChangeTariffComponent } from './tariff/add-and-change-tariff/add-and-change-tariff.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { AddProductOptionComponent } from './product-option/add-product-option/add-product-option.component';
-import { ChangeTariffComponent } from './tariff/change-tariff/change-tariff.component';
 import {SettingTableComponent} from './setting/setting-table/setting-table.component';
 import {AddChangeSettingComponent} from './setting/add-change-setting/add-change-setting.component';
 import {ApplicationSettingTableComponent} from './application-setting/application-setting-table/application-setting-table.component';
@@ -26,18 +25,16 @@ import {ProductOptionTariffTableComponent} from './product-option-tariff/product
 import {AddAndChangeContractKindComponent} from './contract-kind/add-and-change-contract-kind/add-and-change-contract-kind.component';
 import {ContractKindTableComponent} from './contract-kind/contract-kind-table/contract-kind-table.component';
 
-// http://localhost:4200/tariff-> Home Component
-
 const routes: Routes = [
   {path: 'tariff', component: TariffTableComponent},
-  {path: 'tariff/add', component: AddingTariffComponent},
-  {path: 'tariff/change/:id', component: AddingTariffComponent},
+  {path: 'tariff/add', component: AddAndChangeTariffComponent},
+  {path: 'tariff/change/:id', component: AddAndChangeTariffComponent},
 
   {path: 'product', component: ProductTableComponent},
   {path: 'product/add', component: AddProductComponent},
   {path: 'product/change/:id',  component: AddProductComponent },
 
-  {path: 'productOption', component: ProductOptionTableComponent},
+  {path: 'product-option', component: ProductOptionTableComponent},
   {path: 'product-option/add', component: AddProductOptionComponent},
   {path: 'product-option/change/:id', component: AddProductOptionComponent},
 

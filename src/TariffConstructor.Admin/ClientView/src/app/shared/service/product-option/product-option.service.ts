@@ -8,7 +8,7 @@ import {ApiService} from '../api.service';
 
 @Injectable()
 export class ProductOptionService{
-  apiUrl = '/product-option';
+  apiUrl = '/productOption';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
