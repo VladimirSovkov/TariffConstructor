@@ -31,7 +31,6 @@ export class AddAndChangeSettingsPresetComponent implements OnInit {
   @ViewChild('billingSettingTable') billingSettingTable: MatTable<BillingsSettingPreset>;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private http: HttpClient,
               private settingsPresetService: SettingsPresetApiServices,
               public dialog: MatDialog,
               private snackBarService: SnackBarService) { }

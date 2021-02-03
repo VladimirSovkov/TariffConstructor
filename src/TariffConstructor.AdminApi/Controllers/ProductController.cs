@@ -9,7 +9,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
-    [Route("product")]
+    [Route("products")]
     [ApiController]
     public class ProductController : ControllerBase
     {

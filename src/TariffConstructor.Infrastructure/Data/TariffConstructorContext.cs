@@ -27,10 +27,13 @@ using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigu
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TermsOfUseModel.Mapping;
 using TariffConstructor.Domain.ContractKindModel;
 using TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ContractKindModel.Map;
+using TariffConstructor.Toolkit.Abstractions;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TariffConstructor.Infrastructure.Data
 {
-    public class TariffConstructorContext : DbContext
+    public class TariffConstructorContext : DbContext, IUnitOfWork
     {
         public TariffConstructorContext(DbContextOptions<TariffConstructorContext> options)
             : base(options)
@@ -223,6 +226,13 @@ namespace TariffConstructor.Infrastructure.Data
                     }
                 }
             }
+        }
+        public async Task<bool> SaveEntitiesAsync(string traceId = null,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            await SaveChangesAsync(cancellationToken);
+
+            return true;
         }
     }
 }

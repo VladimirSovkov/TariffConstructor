@@ -13,8 +13,7 @@ namespace TariffConstructor.AdminApi.Mappers.ProductMap
             {
                 return null;
             }
-            else
-            {
+
                 return new ProductDto
                 {
                     Id = product.Id,
@@ -23,7 +22,7 @@ namespace TariffConstructor.AdminApi.Mappers.ProductMap
                     ShortName = product.ShortName,
                     NomenclatureId = product.NomenclatureId
                 };
-            }
+
         }
 
         public static IReadOnlyList<ProductDto> Map(this IEnumerable<Product> products)
