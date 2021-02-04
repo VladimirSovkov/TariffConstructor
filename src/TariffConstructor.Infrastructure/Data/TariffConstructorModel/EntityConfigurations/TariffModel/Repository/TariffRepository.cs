@@ -19,12 +19,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _DbContext = appDbContext;
         }
 
-        public Task<Tariff> Add(Tariff tariff)
+        public Task Add(Tariff tariff)
         {
             _DbContext.AddAsync(tariff);
             _DbContext.SaveChanges();
 
-            return Task.FromResult<Tariff>(tariff);
+            return Task.CompletedTask;
         }
 
         public Task<Dictionary<int, List<int>>> GetAllProductIdsGroupByTariffId(params int[] tariffIds)
@@ -79,12 +79,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<Tariff> Update(Tariff tariff)
+        public Task Update(Tariff tariff)
         {
             _DbContext.Entry(tariff).State = EntityState.Modified;
             _DbContext.SaveChanges();
 
-            return Task.FromResult<Tariff>(tariff);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)

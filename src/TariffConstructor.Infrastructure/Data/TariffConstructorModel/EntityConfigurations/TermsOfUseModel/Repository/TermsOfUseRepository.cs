@@ -18,12 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<TermsOfUse> Add(TermsOfUse entity)
+        public Task Add(TermsOfUse entity)
         {
             _ctx.AddAsync(entity);
             _ctx.SaveChanges();
 
-            return Task.FromResult<TermsOfUse>(entity);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
