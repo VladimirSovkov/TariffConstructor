@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import { TariffTableComponent } from './tariff/tariff-table/tariff-table.component';
 import { ProductTableComponent } from './product/product-table/product-table.component';
 import { ProductOptionTableComponent } from './product-option/product-option-table/product-option-table.component';
@@ -77,7 +77,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 

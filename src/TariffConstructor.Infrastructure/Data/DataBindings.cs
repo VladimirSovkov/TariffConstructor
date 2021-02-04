@@ -42,6 +42,7 @@ namespace TariffConstructor.Infrastructure.Data
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<IProductOptionTariffRepository, ProductOptionTariffRepository>();
             services.AddScoped<IContractKindRepository, ContractKindRepository>();
+            services.AddScoped<IAvailableTariffForUpgradeRepository, AvailableTariffForUpgradeRepository>();
             return services;
         }
 

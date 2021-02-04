@@ -74,6 +74,8 @@ import { ContractKindTableComponent } from './contract-kind/contract-kind-table/
 import { AddApplicationSettingComponent } from './setting-preset/add-and-change-settings-preset/add-application-setting-presets/add-application-setting/add-application-setting.component';
 import { AddBillingSettingComponent } from './setting-preset/add-and-change-settings-preset/add-billing-setting-preset/add-billing-setting/add-billing-setting.component';
 import { AddAdvancedPriceComponent } from './tariff/add-advanced-price/add-advanced-price.component';
+import {AvailableTariffForUpgradeRoutingModule} from './available-tariff-for-upgrade/available-tariff-for-upgrade-routing.module';
+import {AvailableTariffForUpgradeModule} from './available-tariff-for-upgrade/available-tariff-for-upgrade.module';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,7 @@ import { AddAdvancedPriceComponent } from './tariff/add-advanced-price/add-advan
     ContractKindTableComponent,
     AddApplicationSettingComponent,
     AddBillingSettingComponent,
-    AddAdvancedPriceComponent
+    AddAdvancedPriceComponent,
   ],
   imports: [
     BrowserModule,
@@ -140,7 +142,8 @@ import { AddAdvancedPriceComponent } from './tariff/add-advanced-price/add-advan
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AvailableTariffForUpgradeModule
   ],
   exports: [
   ],

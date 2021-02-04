@@ -8,7 +8,7 @@ namespace TariffConstructor.AdminApi.Dto.Application
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        [DataMember(Name = "publicId")]
+        [DataMember(Name = "publicId", )]
         public string PublicId { get; set; }
   
         [DataMember(Name = "name")]
