@@ -18,12 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<ProductOption> Add(ProductOption entity)
+        public Task Add(ProductOption entity)
         {
             _ctx.AddAsync(entity);
             _ctx.SaveChanges();
 
-            return Task.FromResult<ProductOption>(entity);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
@@ -85,7 +85,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<ProductOption> Update(ProductOption entity)
+        public Task Update(ProductOption entity)
         {
             var productOptions = _ctx.ProductOptions.FirstOrDefault(x => x.Id == entity.Id);
             productOptions.SetName(entity.Name);
@@ -96,7 +96,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx.Entry(productOptions).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<ProductOption>(productOptions);
+            return Task.CompletedTask;
         }
     }
 }

@@ -17,12 +17,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             _ctx = appDbContext;
         }
-        public Task<Currency> Add(Currency currency)
+        public Task Add(Currency currency)
         {
             _ctx.AddAsync(currency);
             _ctx.SaveChanges();
 
-            return Task.FromResult<Currency>(currency);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
@@ -84,12 +84,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<Currency> Update(Currency currency)
+        public Task Update(Currency currency)
         {
             _ctx.Entry(currency).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<Currency>(currency);
+            return Task.CompletedTask;
         }
     }
 }

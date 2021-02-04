@@ -70,7 +70,7 @@ namespace TariffConstructor.AdminApi.Controllers
                 settingPreset.AddApplicationSettingPreset(applicationSettingPreset);
             }
 
-            settingPreset = await settingsPresetRepository.Add(settingPreset);
+            await settingsPresetRepository.Add(settingPreset);
             return Ok();
         }
 

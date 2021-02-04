@@ -32,9 +32,9 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"TermsOfUse with this PublicId == {termsOfUseDto.PublicId} already exists");
             }
             TermsOfUse termsOfUse = new TermsOfUse(termsOfUseDto.PublicId, termsOfUseDto.DocumentName);
-            termsOfUse = await termsOfUseRepository.Add(termsOfUse);
+            await termsOfUseRepository.Add(termsOfUse);
 
-            return Ok(termsOfUse.Map());
+            return Ok();
         }
 
         [HttpGet("getTermsOfUse")]

@@ -28,8 +28,8 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"application with this PublicId == {applicationDto.PublicId} already exists");
             }
             Application application = new Application(applicationDto.PublicId, applicationDto.Name);
-            application = await applicationRepository.Add(application);
-            return Ok(application.Map());
+            await applicationRepository.Add(application);
+            return Ok();
         }
 
         [HttpGet("getApplication")]

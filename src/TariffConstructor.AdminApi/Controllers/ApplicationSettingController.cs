@@ -45,7 +45,7 @@ namespace TariffConstructor.AdminApi.Controllers
                 applicationSettingDto.ApplicationId
                 , applicationSettingDto.SettingId);
             applicationSetting.SetDefaultValue(applicationSettingDto.DefaultValue);
-            applicationSetting = await applicationSettingRepository.Add(applicationSetting);
+            await applicationSettingRepository.Add(applicationSetting);
             return Ok();
         }
 

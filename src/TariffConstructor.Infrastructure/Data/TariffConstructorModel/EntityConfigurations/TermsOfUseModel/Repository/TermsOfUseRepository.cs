@@ -81,12 +81,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<TermsOfUse> Update(TermsOfUse termsOfUse)
+        public Task Update(TermsOfUse termsOfUse)
         {
             _ctx.Entry(termsOfUse).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<TermsOfUse>(termsOfUse);
+            return Task.CompletedTask;
         }
     }
 }

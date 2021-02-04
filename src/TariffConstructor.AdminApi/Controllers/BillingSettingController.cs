@@ -25,7 +25,7 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> Add([FromBody] BillingSettingDto billingSettingDto)
         {
             BillingSetting billingSetting = new BillingSetting(billingSettingDto.SettingId);
-            billingSetting = await billingSettingRepository.Add(billingSetting);
+            await billingSettingRepository.Add(billingSetting);
             return Ok();
         }
 
@@ -38,7 +38,7 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"BillingSetting id == {billingSettingDto.Id}. Not found!");
             }
             billingSetting.SetSetting(billingSettingDto.SettingId);
-            billingSetting = await billingSettingRepository.Update(billingSetting);
+            await billingSettingRepository.Update(billingSetting);
             return Ok();
         }
 

@@ -18,12 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<ContractKind> Add(ContractKind contractKind)
+        public Task Add(ContractKind contractKind)
         {
             _ctx.AddAsync(contractKind);
             _ctx.SaveChanges();
 
-            return Task.FromResult<ContractKind>(contractKind);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
@@ -81,12 +81,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<ContractKind> Update(ContractKind contractKind)
+        public Task Update(ContractKind contractKind)
         {
             _ctx.Entry(contractKind).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<ContractKind>(contractKind);
+            return Task.CompletedTask;
         }
     }
 }

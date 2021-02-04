@@ -18,12 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<BillingSetting> Add(BillingSetting entity)
+        public Task Add(BillingSetting entity)
         {
             _ctx.AddAsync(entity);
             _ctx.SaveChanges();
 
-            return Task.FromResult<BillingSetting>(entity);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
@@ -65,12 +65,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<BillingSetting> Update(BillingSetting setting)
+        public Task Update(BillingSetting setting)
         {
             _ctx.Entry(setting).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<BillingSetting>(setting);
+            return Task.CompletedTask;
         }
     }
 }

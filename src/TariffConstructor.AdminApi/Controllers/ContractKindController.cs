@@ -28,8 +28,8 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"ContractKind with this PublicId == {contractKindDto.PublicId} already exists");
             }
             ContractKind contractKind = new ContractKind(contractKindDto.PublicId, contractKindDto.Name);
-            contractKind = await contractKindRepository.Add(contractKind);
-            return Ok(contractKind.Map());
+            await contractKindRepository.Add(contractKind);
+            return Ok();
         }
 
         [HttpPost("update")]

@@ -25,8 +25,8 @@ namespace TariffConstructor.AdminApi.Controllers
         {
             Setting setting = new Setting((SettingType)settingDto.Type, 
                 settingDto.Code, settingDto.Name, settingDto.IsComputing, settingDto.Description);
-            setting = await settingRepository.Add(setting);
-            return Ok(setting);
+            await settingRepository.Add(setting);
+            return Ok();
         }
 
         [HttpGet("getSetting")]

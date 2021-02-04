@@ -95,9 +95,9 @@ namespace TariffConstructor.AdminApi.Controllers
             productOption.SetNomenclatureId(productOptionDto.NomenclatureId);
             productOption.SetProductId(productOptionDto.ProductId);
 
-            productOption = await productOptionRepository.Update(productOption);
+            await productOptionRepository.Update(productOption);
 
-            return Ok(productOption.Map());
+            return Ok();
         }
     }
 }

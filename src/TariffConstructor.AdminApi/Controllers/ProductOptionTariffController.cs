@@ -34,8 +34,8 @@ namespace TariffConstructor.AdminApi.Controllers
                 ProlongationPeriod prolongationPeriod = new ProlongationPeriod(priceItem.Period.Value, (PeriodUnit)priceItem.Period.periodUnit);
                 productOptionTariff.AddPriceItem(price, prolongationPeriod);
             }
-            productOptionTariff = await productOptionTariffRepository.Add(productOptionTariff);
-            return Ok(productOptionTariff.Map());
+            await productOptionTariffRepository.Add(productOptionTariff);
+            return Ok();
         }
 
         [HttpGet("get")]

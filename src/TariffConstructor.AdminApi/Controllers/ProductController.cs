@@ -37,8 +37,8 @@ namespace TariffConstructor.AdminApi.Controllers
 
             Product product = new Product(productDto.Name, productDto.PublicId, productDto.ShortName);
             product.SetNomenclatureId(productDto.NomenclatureId);
-            product = await productRepository.Add(product);
-            return Ok(product.Map());
+            await productRepository.Add(product);
+            return Ok();
         }
 
         [HttpGet("get")]

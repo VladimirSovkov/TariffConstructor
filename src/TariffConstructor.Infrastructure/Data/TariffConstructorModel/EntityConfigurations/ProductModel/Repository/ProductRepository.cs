@@ -18,12 +18,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<Product> Add(Product entity)
+        public Task Add(Product entity)
         {
             _ctx.AddAsync(entity);
             _ctx.SaveChanges();
 
-            return Task.FromResult<Product>(entity);
+            return Task.CompletedTask;
         }
 
         public async Task<SearchResult<Product>> Search(ProductSearchPattern searchPattern)
@@ -71,12 +71,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return products;
         }
 
-        public Task<Product> Update(Product product)
+        public Task Update(Product product)
         {
             _ctx.Entry(product).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<Product>(product);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)

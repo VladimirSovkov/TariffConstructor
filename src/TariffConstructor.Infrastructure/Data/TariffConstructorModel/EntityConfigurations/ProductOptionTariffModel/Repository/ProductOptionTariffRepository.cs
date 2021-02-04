@@ -17,12 +17,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             _ctx = appDbContext;
         }
 
-        public Task<ProductOptionTariff> Add(ProductOptionTariff productOptionTariff)
+        public Task Add(ProductOptionTariff productOptionTariff)
         {
             _ctx.AddAsync(productOptionTariff);
             _ctx.SaveChanges();
 
-            return Task.FromResult<ProductOptionTariff>(productOptionTariff);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(int id)
@@ -69,12 +69,12 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             };
         }
 
-        public Task<ProductOptionTariff> Update(ProductOptionTariff productOptionTariff)
+        public Task Update(ProductOptionTariff productOptionTariff)
         {
             _ctx.Entry(productOptionTariff).State = EntityState.Modified;
             _ctx.SaveChanges();
 
-            return Task.FromResult<ProductOptionTariff>(productOptionTariff);
+            return Task.CompletedTask;
         }
     }
 }

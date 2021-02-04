@@ -32,8 +32,8 @@ namespace TariffConstructor.AdminApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Currency with this Name == {currencyDto.Name} already exists");
             }
             Currency currency = new Currency(currencyDto.Code, currencyDto.Name);
-            currency = await currencyRepository.Add(currency);
-            return Ok(currency.Map());
+            await currencyRepository.Add(currency);
+            return Ok();
         }
 
         [HttpGet("getCurrency")]
