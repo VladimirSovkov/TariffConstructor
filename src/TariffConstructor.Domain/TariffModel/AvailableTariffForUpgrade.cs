@@ -16,5 +16,15 @@ namespace TariffConstructor.Domain.TariffModel
         protected AvailableTariffForUpgrade()
         {
         }
+
+        public void SetFromTariffId(int fromTariffId)
+        {
+            FromTariffId = fromTariffId;
+        }
+
+        public void SetToTariffId(int toTariffId)
+        {
+            ToTariffId = toTariffId;
+        }
     }
 }

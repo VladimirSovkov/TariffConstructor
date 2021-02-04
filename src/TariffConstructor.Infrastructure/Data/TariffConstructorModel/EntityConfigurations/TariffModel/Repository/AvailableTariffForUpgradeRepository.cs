@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Pagination;
@@ -44,7 +45,7 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             return await _ctx.AvailableTariffForUpgrades.ToListAsync();
         }
 
-        public async Task<PaginationResult<AvailableTariffForUpgrade>> Serach(AvailableTariffForUpgradeSearchPattern searchPattern)
+        public async Task<PaginationResult<AvailableTariffForUpgrade>> Serach(AvailableTariffForUpgradePaginationPattern searchPattern)
         {
             IQueryable<AvailableTariffForUpgrade> query = _ctx.AvailableTariffForUpgrades.AsQueryable();
 

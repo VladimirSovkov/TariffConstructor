@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.SearchPattern;
+using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Pagination;
 
@@ -10,6 +10,6 @@ namespace TariffConstructor.Domain.TariffModel
     {
         Task<AvailableTariffForUpgrade> GetAvailableTariffForUpgrade(int id);
         Task<List<AvailableTariffForUpgrade>> GetAvailableTariffForUpgrades();
-        Task<PaginationResult<AvailableTariffForUpgrade>> Serach(AvailableTariffForUpgradeSearchPattern searchPattern);
+        Task<PaginationResult<AvailableTariffForUpgrade>> Serach(AvailableTariffForUpgradePaginationPattern searchPattern);
     }
 }
