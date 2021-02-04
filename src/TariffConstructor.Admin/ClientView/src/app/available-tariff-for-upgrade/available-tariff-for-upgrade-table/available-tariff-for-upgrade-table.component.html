@@ -1,1 +1,33 @@
-<p>available-tariff-for-upgrade-table works!</p>
+<h2 class="title">availableTariffForUpgrade</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/applicationSetting/add']">Добавить
+  </button>
+</div>
+<table mat-table [dataSource]="availableTariffForUpgrade" matSort>
+  <!-- application Column -->
+  <ng-container matColumnDef="fromTariff">
+    <th mat-header-cell *matHeaderCellDef> fromTariff</th>
+    <td mat-cell *matCellDef="let element"> {{element.fromTariff}} </td>
+  </ng-container>
+  <!-- Setting Column -->
+  <ng-container matColumnDef="toTariff">
+    <th mat-header-cell *matHeaderCellDef> toTariff</th>
+    <td mat-cell *matCellDef="let element"> {{element.toTariff}} </td>
+  </ng-container>
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Действия</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="['/applicationSetting/change', element.id]">Изменить</button>
+      <button mat-button color="primary" (click)="delete(element)">Удалить</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [length]="pageEvent.length"
+               [pageSize]="pageEvent.pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event; load()">
+</mat-paginator>

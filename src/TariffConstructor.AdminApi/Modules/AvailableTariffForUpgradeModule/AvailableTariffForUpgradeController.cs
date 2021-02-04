@@ -51,7 +51,7 @@ namespace TariffConstructor.AdminApi.Modules.AvailableTariffForUpgradeModule
             return Ok(availableTariffForUpgrade.Map());
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await availableTariffForUpgradeRepository.Delete(id);
@@ -74,7 +74,7 @@ namespace TariffConstructor.AdminApi.Modules.AvailableTariffForUpgradeModule
             return Ok();
         }
 
-        [HttpGet("search")]
+        [HttpGet("pagination")]
         public async Task<IActionResult> Search(int pageNumber, int onPage)
         {
             var paginationPattern = new AvailableTariffForUpgradePaginationPattern();
