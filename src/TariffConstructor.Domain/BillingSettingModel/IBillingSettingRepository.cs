@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Pagination;
 

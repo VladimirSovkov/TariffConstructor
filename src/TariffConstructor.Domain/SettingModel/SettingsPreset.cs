@@ -21,12 +21,12 @@ namespace TariffConstructor.Domain.SettingModel
 
         public string Name { get; private set; }
 
-        private List<BillingSettingPreset> _billingSettingPresets = new List<BillingSettingPreset>();
+        private readonly List<BillingSettingPreset> _billingSettingPresets = new List<BillingSettingPreset>();
 
         public virtual IReadOnlyCollection<BillingSettingPreset> BillingSettingPresets =>
             _billingSettingPresets.AsReadOnly();
 
-        private List<ApplicationSettingPreset> _applicationSettingPresets =
+        private readonly List<ApplicationSettingPreset> _applicationSettingPresets =
             new List<ApplicationSettingPreset>();
 
         public virtual IReadOnlyCollection<ApplicationSettingPreset> ApplicationSettingPresets =>

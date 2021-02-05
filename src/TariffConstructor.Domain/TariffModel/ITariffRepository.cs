@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.ContractModel;
+using TariffConstructor.Domain;
 using TariffConstructor.Domain.TariffModel.Toolkit;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;

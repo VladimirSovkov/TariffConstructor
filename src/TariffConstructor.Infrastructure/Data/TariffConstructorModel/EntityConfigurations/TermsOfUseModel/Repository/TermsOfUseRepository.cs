@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.TermsOfUseModel;
 using TariffConstructor.Toolkit.Search;
 

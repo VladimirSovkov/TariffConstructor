@@ -6,7 +6,6 @@ using TariffConstructor.AdminApi.Dto.ApplicationSetting;
 using TariffConstructor.AdminApi.Mappers.ApplicationSettingMap;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.ApplicationSettingModel;
-using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Toolkit.Pagination;
 
@@ -106,9 +105,11 @@ namespace TariffConstructor.AdminApi.Controllers
         [ProducesResponseType(typeof(PaginationResult<ApplicationSettingDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> PaginationApplicationSetting(int pageNumber, int onPage)
         {
-            var searchPattern = new ApplicationSettingPaginationPattern();
-            searchPattern.PageNumber = pageNumber;
-            searchPattern.OnPage = onPage;
+            var searchPattern = new ApplicationSettingPaginationPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage
+            };
             PaginationResult<ApplicationSetting> searchResult = await applicationSettingRepository.Pagination(searchPattern);
 
             return Ok(new PaginationResult<ApplicationSettingDto>

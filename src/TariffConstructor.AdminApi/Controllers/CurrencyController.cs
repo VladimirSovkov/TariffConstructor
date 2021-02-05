@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto.Currency;
 using TariffConstructor.AdminApi.Mappers.CurrencyMap;
 using TariffConstructor.Domain.CurrencyModel;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
@@ -88,10 +87,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var abc = new CurrencySearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new CurrencySearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<Currency> searchResult = await currencyRepository.Search(abc);
 
             return Ok(new SearchResult<CurrencyDto>

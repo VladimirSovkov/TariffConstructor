@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Pagination;
@@ -77,9 +76,11 @@ namespace TariffConstructor.AdminApi.Modules.AvailableTariffForUpgradeModule
         [HttpGet("pagination")]
         public async Task<IActionResult> Search(int pageNumber, int onPage)
         {
-            var paginationPattern = new AvailableTariffForUpgradePaginationPattern();
-            paginationPattern.PageNumber = pageNumber;
-            paginationPattern.OnPage = onPage;
+            var paginationPattern = new AvailableTariffForUpgradePaginationPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage
+            };
             PaginationResult<AvailableTariffForUpgrade> searchResult = await availableTariffForUpgradeRepository.Serach(paginationPattern);
 
             return Ok(new PaginationResult<AvailableTariffForUpgradeDto>

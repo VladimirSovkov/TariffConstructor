@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ProductModel;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.ProductModel.Repository

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.Application;
 using TariffConstructor.AdminApi.Mappers.ApplicationMap;
 using TariffConstructor.Domain.ApplicationModel;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
@@ -21,7 +20,7 @@ namespace TariffConstructor.AdminApi.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] ApplicationDto applicationDto)
+        public async Task<IActionResult> Add([FromBody] ApplicationReadOnlyDto applicationDto)
         {
             if (await applicationRepository.GetApplication(applicationDto.PublicId) != null)
             {
@@ -74,10 +73,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var abc = new ApplicationSearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new ApplicationSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<Application> searchResult = await applicationRepository.Search(abc);
 
             return Ok(new SearchResult<ApplicationDto>

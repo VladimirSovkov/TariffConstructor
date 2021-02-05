@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.BillingSetting;
 using TariffConstructor.AdminApi.Mappers.BillingSettingMap;
 using TariffConstructor.Domain.BillingSettingModel;
-using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Toolkit.Pagination;
 
 namespace TariffConstructor.AdminApi.Controllers

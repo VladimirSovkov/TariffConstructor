@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.AdminApi.Mappers.TariffMap;
-using TariffConstructor.Domain.ContractModel;
 using TariffConstructor.Toolkit.Search;
 using Microsoft.AspNetCore.Http;
 using TariffConstructor.Domain.ValueObjects;
@@ -49,10 +48,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [ProducesResponseType(typeof(SearchResult<SimplifiedTariffDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(int pageNumber, int onPage, string searchString)
         {
-            var abc = new TarifftSearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new TarifftSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<Tariff> searchResult = await tariffRepository.GetFoundTariff(abc);
 
             return Ok(new SearchResult<SimplifiedTariffDto>

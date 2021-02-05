@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TariffConstructor.Domain.PaginationPattern;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Pagination;
-using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.TariffModel.Repository
 {

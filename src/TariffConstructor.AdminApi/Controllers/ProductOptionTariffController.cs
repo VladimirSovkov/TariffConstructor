@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap;
 using TariffConstructor.Domain.ProductOptionTariffModel;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.ValueObjects;
 using TariffConstructor.Toolkit.Search;
 
@@ -90,10 +89,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var abc = new ProductOptionTariffSearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new ProductOptionTariffSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<ProductOptionTariff> searchResult = await productOptionTariffRepository.Search(abc);
 
             return Ok(new SearchResult<ProductOptionTariffDto>

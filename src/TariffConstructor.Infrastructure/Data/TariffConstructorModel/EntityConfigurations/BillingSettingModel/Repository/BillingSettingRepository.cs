@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.BillingSettingModel;
-using TariffConstructor.Domain.PaginationPattern;
 using TariffConstructor.Toolkit.Pagination;
-using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityConfigurations.BillingSettingModel.Repository
 {

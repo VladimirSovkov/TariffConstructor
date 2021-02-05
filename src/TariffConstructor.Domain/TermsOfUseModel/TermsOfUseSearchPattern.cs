@@ -1,10 +1,11 @@
 ﻿using System.Runtime.Serialization;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.Domain.SearchPattern
+namespace TariffConstructor.Domain.TermsOfUseModel
 {
     [DataContract]
-     public class SettingsPresetSearchPattern : BaseSearchPattern
+    public class TermsOfUseSearchPattern : BaseSearchPattern
     {
+
     }
 }

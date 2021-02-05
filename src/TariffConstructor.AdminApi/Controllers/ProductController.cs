@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.ProductModel;
 using TariffConstructor.AdminApi.ProductDtoModel;
 using Microsoft.AspNetCore.Http;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Controllers
@@ -51,10 +50,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var abc = new ProductSearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new ProductSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<Product> searchResult = await productRepository.Search(abc);
 
             return Ok(new SearchResult<ProductDto>

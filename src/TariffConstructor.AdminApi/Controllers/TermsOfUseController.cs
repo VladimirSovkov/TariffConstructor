@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.TermsOfUse;
 using TariffConstructor.AdminApi.Mappers.TermsOfUseMap;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TermsOfUseModel;
 using TariffConstructor.Toolkit.Search;
@@ -84,10 +83,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var abc = new TermsOfUseSearchPattern();
-            abc.PageNumber = pageNumber;
-            abc.OnPage = onPage;
-            abc.SearchString = searchString;
+            var abc = new TermsOfUseSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<TermsOfUse> searchResult = await termsOfUseRepository.Search(abc);
 
             return Ok(new SearchResult<TermsOfUseDto>

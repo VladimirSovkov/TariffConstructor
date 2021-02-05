@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.BillingSettingModel;
-using TariffConstructor.Domain.SearchPattern;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Search;
@@ -133,10 +131,12 @@ namespace TariffConstructor.AdminApi.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> Search(int pageNumber, int onPage, string searchString)
         {
-            var searchPattern = new SettingsPresetSearchPattern();
-            searchPattern.PageNumber = pageNumber;
-            searchPattern.OnPage = onPage;
-            searchPattern.SearchString = searchString;
+            var searchPattern = new SettingsPresetSearchPattern
+            {
+                PageNumber = pageNumber,
+                OnPage = onPage,
+                SearchString = searchString
+            };
             SearchResult<SettingsPreset> searchResult = await settingsPresetRepository.Search(searchPattern);
 
             return Ok(new SearchResult<SettingsPresetDto>
