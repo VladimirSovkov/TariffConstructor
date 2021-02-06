@@ -1,10 +1,10 @@
 ﻿using System.Runtime.Serialization;
-using TariffConstructor.AdminApi.Dto.Setting;
+using TariffConstructor.AdminApi.Modules.ApplicationSettingModule;
 
-namespace TariffConstructor.AdminApi.Dto.BillingSetting
+namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
 {
     [DataContract]
-    public class BillingSettingPresetDto
+    public class ApplicationSettingPresetDto
     {
         [DataMember(Name = "id")]
         public int Id { get; set; }
@@ -12,11 +12,11 @@ namespace TariffConstructor.AdminApi.Dto.BillingSetting
         [DataMember(Name = "settingsPresetId")]
         public int SettingsPresetId { get; set; }
 
-        [DataMember(Name = "billingSettingId")]
-        public int BillingSettingId { get; set; }
-        
-        [DataMember(Name = "billingSetting")]
-        public BillingSettingDto BillingSetting { get; set; }
+        [DataMember(Name = "applicationSettingId")]
+        public int ApplicationSettingId { get; set; }
+
+        [DataMember(Name = "applicationSetting")]
+        public ApplicationSettingDto ApplicationSetting { get; set; }
 
         [DataMember(Name = "value")]
         public SettingPresetValueDto Value { get; set; }

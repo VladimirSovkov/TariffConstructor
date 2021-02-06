@@ -3,15 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.Setting;
-using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
 {
     [Route("settingsPreset")]
     [ApiController]

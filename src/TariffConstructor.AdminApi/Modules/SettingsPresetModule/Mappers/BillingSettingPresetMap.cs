@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.BillingSetting;
-using TariffConstructor.AdminApi.Mappers.SettingMap;
+using TariffConstructor.AdminApi.Modules.BillingSettingModule;
 using TariffConstructor.Domain.BillingSettingModel;
 
-namespace TariffConstructor.AdminApi.Mappers.BillingSettingMap
+namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
 {
     public static class BillingSettingPresetMap
     {
