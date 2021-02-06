@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.Setting
+namespace TariffConstructor.AdminApi.Modules.SettingModule
 {
     [DataContract]
     public class SettingDto

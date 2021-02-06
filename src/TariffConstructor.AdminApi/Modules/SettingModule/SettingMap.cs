@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.Setting;
 using TariffConstructor.Domain.SettingModel;
 
-namespace TariffConstructor.AdminApi.Mappers.SettingMap
+namespace TariffConstructor.AdminApi.Modules.SettingModule
 {
     public static class SettingMap
     {

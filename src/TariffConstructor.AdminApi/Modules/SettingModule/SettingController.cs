@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.AdminApi.Dto.Setting;
-using TariffConstructor.AdminApi.Mappers.SettingMap;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.SettingModule
 {
     [Route("setting")]
     [ApiController]
