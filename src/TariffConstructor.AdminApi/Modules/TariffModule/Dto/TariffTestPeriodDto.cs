@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.TariffAggragate
+namespace TariffConstructor.AdminApi.Modules.TariffModule.Dto
 {
     [DataContract]
     public class TariffTestPeriodDto

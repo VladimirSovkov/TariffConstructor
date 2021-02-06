@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.TariffAggragate;
+using TariffConstructor.AdminApi.Modules.TariffModule.Dto;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.ValueObjects;
 

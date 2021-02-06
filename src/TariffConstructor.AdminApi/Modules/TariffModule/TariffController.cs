@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.AdminApi.Dto;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.AdminApi.Mappers.TariffMap;
 using TariffConstructor.Toolkit.Search;
@@ -8,10 +7,10 @@ using Microsoft.AspNetCore.Http;
 using TariffConstructor.Domain.ValueObjects;
 using System;
 using TariffConstructor.Domain.ProductModel;
-using TariffConstructor.AdminApi.Dto.TariffAggragate;
 using TariffConstructor.Domain.ProductOptionModel;
 using System.Linq;
 using TariffConstructor.Domain.ContractKindModel;
+using TariffConstructor.AdminApi.Modules.TariffModule.Dto;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -45,7 +44,7 @@ namespace TariffConstructor.AdminApi.Controllers
 
 
         [HttpGet("search")]
-        [ProducesResponseType(typeof(SearchResult<SimplifiedTariffDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SearchResult<TariffDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(int pageNumber, int onPage, string searchString)
         {
             var abc = new TarifftSearchPattern
@@ -56,9 +55,9 @@ namespace TariffConstructor.AdminApi.Controllers
             };
             SearchResult<Tariff> searchResult = await tariffRepository.GetFoundTariff(abc);
 
-            return Ok(new SearchResult<SimplifiedTariffDto>
+            return Ok(new SearchResult<TariffDto>
             {
-                Items = searchResult.Items.ToSimplifiedTariffDtos(),
+                Items = searchResult.Items.Map(),
                 TotalCount = searchResult.TotalCount,
                 FilteredCount = searchResult.FilteredCount
             });

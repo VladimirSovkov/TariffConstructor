@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
+using TariffConstructor.AdminApi.Modules.ProductOptionModule;
 
-namespace TariffConstructor.AdminApi.Dto.TariffAggragate
+namespace TariffConstructor.AdminApi.Modules.TariffModule.Dto
 {
     [DataContract]
     public class IncludedProductOptionInTariffDto

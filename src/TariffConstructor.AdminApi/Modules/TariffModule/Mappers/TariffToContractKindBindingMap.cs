@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.TariffAggragate;
-using TariffConstructor.AdminApi.Mappers.ContractKindMap;
+using TariffConstructor.AdminApi.Modules.ContractKindModule;
+using TariffConstructor.AdminApi.Modules.TariffModule.Dto;
 using TariffConstructor.Domain.TariffModel;
 
 namespace TariffConstructor.AdminApi.Mappers.TariffMap

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.TariffAggragate;
-using TariffConstructor.AdminApi.Mappers.ProductMap;
+using TariffConstructor.AdminApi.Modules.ProductModule;
+using TariffConstructor.AdminApi.Modules.TariffModule.Dto;
 using TariffConstructor.Domain.TariffModel;
 
-namespace TariffConstructor.AdminApi.Mappers.TariffMap
+namespace TariffConstructor.AdminApi.Modules.TariffModule.Mappers
 {
     public static class IncludedProductInTariffMap
     {
