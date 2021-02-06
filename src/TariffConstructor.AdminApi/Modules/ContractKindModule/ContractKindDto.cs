@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.ContractKind
+namespace TariffConstructor.AdminApi.Modules.ContractKindModule
 {
     [DataContract]
     public class ContractKindDto

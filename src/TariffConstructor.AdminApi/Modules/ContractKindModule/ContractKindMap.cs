@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.ContractKind;
 using TariffConstructor.Domain.ContractKindModel;
 
-namespace TariffConstructor.AdminApi.Mappers.ContractKindMap
+namespace TariffConstructor.AdminApi.Modules.ContractKindModule
 {
     public static class ContractKindMap
     {

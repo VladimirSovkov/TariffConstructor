@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.AdminApi.Dto.ContractKind;
-using TariffConstructor.AdminApi.Mappers.ContractKindMap;
 using TariffConstructor.Domain.ContractKindModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.ContractKindModule
 {
     [Route("contractKind")]
     [ApiController]
