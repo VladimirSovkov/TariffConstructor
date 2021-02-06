@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.ProductDtoModel;
 using TariffConstructor.Domain.ProductModel;
 
-namespace TariffConstructor.AdminApi.Mappers.ProductMap
+namespace TariffConstructor.AdminApi.Modules.ProductModule
 {
     public static class ProductMap
     {
