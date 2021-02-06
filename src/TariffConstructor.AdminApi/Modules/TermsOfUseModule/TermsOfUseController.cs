@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.TermsOfUse;
-using TariffConstructor.AdminApi.Mappers.TermsOfUseMap;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TermsOfUseModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
 {
     [Route("termsOfUse")]
     [ApiController]

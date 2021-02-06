@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.TermsOfUse;
 using TariffConstructor.Domain.TermsOfUseModel;
 
-namespace TariffConstructor.AdminApi.Mappers.TermsOfUseMap
+namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
 {
     public static class TermsOfUseMap
     {

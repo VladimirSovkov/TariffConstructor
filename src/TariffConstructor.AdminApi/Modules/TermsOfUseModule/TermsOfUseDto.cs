@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.TermsOfUse
+namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
 {
     [DataContract]
     public class TermsOfUseDto
