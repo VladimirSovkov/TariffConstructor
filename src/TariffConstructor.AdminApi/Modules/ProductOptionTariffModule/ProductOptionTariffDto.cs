@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
+using TariffConstructor.AdminApi.Modules.ProductOptionModule;
 
-namespace TariffConstructor.AdminApi.Dto.ProductOptionTariff
+namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
 {
     [DataContract]
     public class ProductOptionTariffDto
