@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.ApplicationSetting;
-using TariffConstructor.AdminApi.Mappers.ApplicationSettingMap;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.SettingModel;

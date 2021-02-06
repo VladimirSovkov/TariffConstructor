@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Dto;
 using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Dto;
 using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Mappers;
 using TariffConstructor.Domain.ProductOptionTariffModel;

@@ -9,30 +9,6 @@ namespace TariffConstructor.AdminApi.Mappers.TariffMap
 {
     public static class TariffMap
     {
-        public static SimplifiedTariffDto ToSimplifiedTariffDto(this Tariff tariff)
-        {
-            if (tariff == null)
-            {
-                return null;
-            }
-            else
-            {
-                return new SimplifiedTariffDto
-                {
-                    Id = tariff.Id,
-                    TenantId = tariff.TenantId,
-                    Name = tariff.Name,
-                    PaymentType = (int)tariff.PaymentType,
-                    ContractKindBindings = tariff.ContractKindBindings.ToList()
-                };
-            }
-        }
-
-        public static IReadOnlyList<SimplifiedTariffDto> ToSimplifiedTariffDtos(this IEnumerable<Tariff> tariffs)
-        {
-            return tariffs == null ? new List<SimplifiedTariffDto>() : tariffs.Select(ToSimplifiedTariffDto).ToList();
-        }
-
         public static TariffDto Map(this Tariff tariff)
         {
             if (tariff == null)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Dto;
+using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Mappers;
 using TariffConstructor.AdminApi.Modules.ProductOptionModule;
 using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Dto;
 using TariffConstructor.Domain.ProductOptionTariffModel;
