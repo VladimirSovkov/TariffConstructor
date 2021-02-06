@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.Currency;
 using TariffConstructor.Domain.CurrencyModel;
 
-namespace TariffConstructor.AdminApi.Mappers.CurrencyMap
+namespace TariffConstructor.AdminApi.Modules.CurrencyModule
 {
     public static class CurrencyMap
     {

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.Currency
+namespace TariffConstructor.AdminApi.Modules.CurrencyModule
 {
     [DataContract]
     public class CurrencyDto

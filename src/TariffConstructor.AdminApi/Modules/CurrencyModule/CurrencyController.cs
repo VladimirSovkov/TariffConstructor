@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TariffConstructor.AdminApi.Dto.Currency;
-using TariffConstructor.AdminApi.Mappers.CurrencyMap;
 using TariffConstructor.Domain.CurrencyModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.CurrencyModule
 {
     [Route("currency")]
     [ApiController]
