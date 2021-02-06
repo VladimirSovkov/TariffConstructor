@@ -2,6 +2,7 @@
 using System.Linq;
 using TariffConstructor.AdminApi.Dto.ApplicationSetting;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
+using TariffConstructor.AdminApi.Modules.ApplicationSettingModule;
 using TariffConstructor.Domain.ApplicationSettingModel;
 
 namespace TariffConstructor.AdminApi.Mappers.ApplicationSettingMap

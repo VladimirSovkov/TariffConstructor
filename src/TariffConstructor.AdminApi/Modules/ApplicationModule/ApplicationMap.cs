@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.Application;
 using TariffConstructor.Domain.ApplicationModel;
 
 namespace TariffConstructor.AdminApi.Modules.ApplicationModule

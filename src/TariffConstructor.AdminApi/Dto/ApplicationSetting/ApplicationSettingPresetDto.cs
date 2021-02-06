@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using TariffConstructor.AdminApi.Dto.Setting;
+using TariffConstructor.AdminApi.Modules.ApplicationSettingModule;
 
 namespace TariffConstructor.AdminApi.Dto.ApplicationSetting
 {

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Dto.ApplicationSetting;
-using TariffConstructor.AdminApi.Mappers.ApplicationMap;
 using TariffConstructor.AdminApi.Mappers.SettingMap;
+using TariffConstructor.AdminApi.Modules.ApplicationModule;
 using TariffConstructor.Domain.ApplicationSettingModel;
 
-namespace TariffConstructor.AdminApi.Mappers.ApplicationSettingMap
+namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 {
     public static class ApplicationSettingMap
     {

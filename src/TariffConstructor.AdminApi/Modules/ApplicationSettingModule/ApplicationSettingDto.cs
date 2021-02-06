@@ -1,8 +1,8 @@
 ﻿using System.Runtime.Serialization;
-using TariffConstructor.AdminApi.Dto.Application;
 using TariffConstructor.AdminApi.Dto.Setting;
+using TariffConstructor.AdminApi.Modules.ApplicationModule;
 
-namespace TariffConstructor.AdminApi.Dto.ApplicationSetting
+namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 {
     [DataContract]
     public class ApplicationSettingDto

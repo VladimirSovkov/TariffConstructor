@@ -9,7 +9,7 @@ using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Toolkit.Pagination;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 {
     [Route("applicationSetting")]
     [ApiController]

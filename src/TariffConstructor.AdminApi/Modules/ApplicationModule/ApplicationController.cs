@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.Application;
-using TariffConstructor.AdminApi.Mappers.ApplicationMap;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Toolkit.Search;
 
