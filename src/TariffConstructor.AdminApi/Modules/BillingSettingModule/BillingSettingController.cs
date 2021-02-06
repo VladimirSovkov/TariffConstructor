@@ -2,12 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.BillingSetting;
-using TariffConstructor.AdminApi.Mappers.BillingSettingMap;
 using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Toolkit.Pagination;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
 {
     [Route("billingSetting")]
     [ApiController]
