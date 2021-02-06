@@ -6,7 +6,7 @@ using TariffConstructor.AdminApi.Mappers.ApplicationMap;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.ApplicationModule
 {
     [Route("application")]
     [ApiController]

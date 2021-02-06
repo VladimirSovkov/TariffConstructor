@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Dto.Application
+namespace TariffConstructor.AdminApi.Modules.ApplicationModule
 {
     [DataContract]
     public class ApplicationDto

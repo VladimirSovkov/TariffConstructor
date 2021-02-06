@@ -3,7 +3,7 @@ using System.Linq;
 using TariffConstructor.AdminApi.Dto.Application;
 using TariffConstructor.Domain.ApplicationModel;
 
-namespace TariffConstructor.AdminApi.Mappers.ApplicationMap
+namespace TariffConstructor.AdminApi.Modules.ApplicationModule
 {
     public static class ApplicationMap
     {
