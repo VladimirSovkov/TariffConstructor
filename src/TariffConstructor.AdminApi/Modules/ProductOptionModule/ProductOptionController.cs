@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto;
-using TariffConstructor.AdminApi.Mappers.ProductOptionMap;
 using TariffConstructor.Domain.ProductOptionModel;
 using TariffConstructor.Toolkit.Search;
 
-namespace TariffConstructor.AdminApi.Controllers
+namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
 {
     [Route("productOption")]
     [ApiController]
