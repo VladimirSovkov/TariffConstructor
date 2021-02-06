@@ -6,7 +6,7 @@ using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Domain.ValueObjects;
 
-namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap
+namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Dto
 {
     public static class ProductOptionTariffPriceDtoMap
     {

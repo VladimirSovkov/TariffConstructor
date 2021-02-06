@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
 using TariffConstructor.AdminApi.Modules.ProductOptionModule;
 
-namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
+namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Dto
 {
     [DataContract]
     public class ProductOptionTariffDto

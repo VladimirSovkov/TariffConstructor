@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap;
+using TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Dto;
 using TariffConstructor.AdminApi.Modules.ProductOptionModule;
+using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Dto;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 
-namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
+namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Mappers
 {
     public static class ProductOptionTariffMap
     {

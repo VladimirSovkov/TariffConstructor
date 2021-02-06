@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TariffConstructor.AdminApi.Dto.ProductOptionTariff;
+using TariffConstructor.AdminApi.Dto.ProductOptionTariff.Dto;
 using TariffConstructor.AdminApi.Mappers.ValueObjectMap;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 
-namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap
+namespace TariffConstructor.AdminApi.Mappers.ProductOptionTariffMap.Mappers
 {
     public static class ProductOptionTariffPriceMap
     {

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using TariffConstructor.AdminApi.Dto.ValueObject;
 
-namespace TariffConstructor.AdminApi.Dto.ProductOptionTariff
+namespace TariffConstructor.AdminApi.Dto.ProductOptionTariff.Dto
 {
     [DataContract]
     public class ProductOptionTariffPriceDto
