@@ -15,7 +15,7 @@ using TariffConstructor.Domain.ContractKindModel;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
-    [Route("tariff")]
+    [Route("tariffs")]
     public class TariffController : ControllerBase
     {
 
@@ -36,7 +36,7 @@ namespace TariffConstructor.AdminApi.Controllers
             this.contractKindRepository = contractKindRepository;
         }
 
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetTariff(int id)
         {
             Tariff tariff = await tariffRepository.GetTariff(id);
@@ -122,8 +122,8 @@ namespace TariffConstructor.AdminApi.Controllers
             return Ok();
         }
 
-        [HttpPost("update")]
-        public async Task<IActionResult> Update([FromBody]TariffDto tariffDto)
+        [HttpPost("")]
+        public async Task<IActionResult> Update([FromBody] TariffDto tariffDto)
         {
             Tariff tariff = await tariffRepository.GetTariff(tariffDto.Id);
             if (tariffDto.TestPeriod.Value != 0)
@@ -165,12 +165,12 @@ namespace TariffConstructor.AdminApi.Controllers
                 else
                     tariff.AddPriceItem(price, period);
             }
-            
+
             //advancePrice price 
             foreach (var item in tariffDto.AdvancePrices)
             {
                 Price price = new Price(item.Price.Value, item.Price.Currency);
-                ProlongationPeriod period = new ProlongationPeriod(item.Period.Value, 
+                ProlongationPeriod period = new ProlongationPeriod(item.Period.Value,
                     (PeriodUnit)item.Period.periodUnit);
                 if (tariff.AdvancePrices.FirstOrDefault(x => x.Period == period
                                                                     && x.Price.Currency == price.Currency) != null)
@@ -231,6 +231,13 @@ namespace TariffConstructor.AdminApi.Controllers
         {
             await tariffRepository.Delete(id);
             return Ok();
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetTariffs()
+        {
+            var tariffs = await tariffRepository.GetTariffs();
+            return Ok(tariffs.Map());
         }
     }
 }

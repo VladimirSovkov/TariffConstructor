@@ -41,6 +41,7 @@ export class AvailableTariffForUpgradeTableComponent implements OnInit {
       .subscribe((paginationResult: PaginationResult<AvailableTariffForUpgrade>) => {
         this.availableTariffForUpgrade = paginationResult.items;
         this.pageEvent.length = paginationResult.totalCount;
+        console.log(this.availableTariffForUpgrade);
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });

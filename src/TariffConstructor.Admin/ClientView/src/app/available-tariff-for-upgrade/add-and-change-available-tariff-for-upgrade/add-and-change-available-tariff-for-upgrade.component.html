@@ -1,0 +1,30 @@
+<div class="block_with_button">
+  <button mat-button color="primary" class="back_button" [routerLink]="'/availableTariffForUpgrade'">Назад</button>
+</div>
+<h2 class="title" *ngIf="!isChange; else changeTitle">Добавление доступного тарифа на повышение класса обслуживания</h2>
+<ng-template #changeTitle>
+  <h2 class="title">Изменение доступного тарифа на повышение класса обслуживания</h2>
+</ng-template>
+<div class="form_input">
+  <form class="adding_product_option" [formGroup]="form" (ngSubmit)="action()">
+    <p>Из тарифа(fromTariff):
+      <mat-form-field class="from-tariff-input" appearance="legacy">
+        <mat-select formControlName="fromTariff" >
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let tariff of tariffs" [value]="tariff.id">{{tariff.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>К тарифу:
+      <mat-form-field class="to-tariff-input" appearance="legacy">
+        <mat-select formControlName="toTariff" >
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let tariff of tariffs" [value]="tariff.id">{{tariff.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" class="submit_button" type="submit" *ngIf="isChange;else unset" [disabled]="form.invalid">Изменить</button>
+    <ng-template #unset><button mat-raised-button color="primary" class="submit_button" type="submit" [disabled]="form.invalid">Добавить</button></ng-template>
+  </form>
+</div>
+

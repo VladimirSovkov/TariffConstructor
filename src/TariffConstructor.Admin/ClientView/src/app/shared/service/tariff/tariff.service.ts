@@ -8,7 +8,7 @@ import {Tariff} from '../../model/tariff/tariff.model';
 
 @Injectable()
 export class TariffService{
-  apiUrl = '/tariff';
+  apiUrl = '/tariffs';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class TariffService{
   }
 
   get(id: number): Observable<Tariff>{
-    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
   }
 
   add(tariff: Tariff): Observable<any> {
@@ -25,10 +25,14 @@ export class TariffService{
   }
 
   update(tariff: Tariff): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', tariff);
+    return this.apiService.post(this.apiUrl + '/', tariff);
   }
 
   delete(id: number): Observable<any> {
     return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+  }
+
+  getAll(): Observable<Tariff[]>{
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

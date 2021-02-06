@@ -21,7 +21,7 @@ namespace TariffConstructor.AdminApi.Modules.AvailableTariffForUpgradeModule
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet("add")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddAvailableTariffForUpgrade([FromBody] AvailableTariffForUpgradeDto availableTariffForUpgradeDto)
         {
             AvailableTariffForUpgrade availableTariffForUpgrade = new AvailableTariffForUpgrade(

@@ -15,6 +15,7 @@ namespace TariffConstructor.Domain.TariffModel
         Task<int[]> GetIncludedProductIdsInTariffs( params int[] tariffIds );
         Task<int[]> GetIncludedProductIdsInProductOptionTariffs( params int[] productOptionTariffIds );
         Task<Tariff> GetTariff( int tariffId );
+        Task<List<Tariff>> GetTariffs();
         Task<Tariff> GeTariffFirstOrDefaultSettingPreset(int idSettingPreset);
         Task<Tariff> GeTariffFirstOrDefaulTermsOfUse(int idTermsOfUse);
         Task<List<Tariff>> GetTariffs( params int[] tariffIds );

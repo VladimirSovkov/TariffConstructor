@@ -105,5 +105,10 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         {
             return _DbContext.Tariffs.FirstOrDefaultAsync(x => x.TermsOfUseId == termsOfUseId);
         }
+
+        public async Task<List<Tariff>> GetTariffs()
+        {
+            return await _DbContext.Tariffs.ToListAsync();
+        }
     }
 }
