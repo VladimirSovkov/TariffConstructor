@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\ProductOptionTariffModule\DtoReadOnly\" />
+    <Folder Include="Modules\ProductOptionTariffModule\ReadOnlyDto\" />
     <Folder Include="Modules\SettingsPresetModule\DtoReadOnly\" />
     <Folder Include="Modules\TariffModule\DtoReadOnly\" />
   </ItemGroup>

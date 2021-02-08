@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Modules.ApplicationModule
+namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
 {
     [DataContract]
-    public class ApplicationReadOnlyDto
+    public class TermsOfUsereadOnlyDto
     {
         [DataMember(Name = "id")]
         public int Id { get; private set; }
@@ -12,9 +12,9 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
         [Required]
         [DataMember(Name = "publicId")]
         public string PublicId { get; private set; }
-
+        
         [Required]
-        [DataMember(Name = "name")]
-        public string Name { get; private set; }
+        [DataMember(Name = "documentName")]
+        public string DocumentName { get; private set; }
     }
 }

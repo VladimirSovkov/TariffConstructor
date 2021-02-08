@@ -1,12 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router, RouterEvent, NavigationEnd, RoutesRecognized} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {ApplicationSettingApiServices} from '../../shared/service/application-setting/application-setting.services';
 import {ApplicationSetting} from '../../shared/model/application-setting/application-setting.model';
 import {SettingApiServices} from '../../shared/service/setting/setting-api.services';
 import {Setting} from '../../shared/model/setting/setting.model';
-import { filter, pairwise } from 'rxjs/operators';
 import {Application} from '../../shared/model/application/application.model';
 import {ApplicationApiService} from '../../shared/service/application/application-api.service';
 import {SnackBarService} from '../../shared/service/snack-bar.service';
@@ -66,7 +64,6 @@ export class AddChangeApplicationSettingComponent implements OnInit {
   action(): void {
     this.appSetting = this.form.getRawValue();
     this.appSetting.id = this.id;
-    console.log('appSetting: ', this.appSetting);
     if (this.isChangeApplicationSetting){
       this.updateAppSetting(this.appSetting);
     }

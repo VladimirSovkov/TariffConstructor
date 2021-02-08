@@ -21,7 +21,7 @@ export class AddAndChangeApplicationComponent implements OnInit {
               private route: ActivatedRoute,
               private http: HttpClient,
               private applicationService: ApplicationApiService,
-              private  snackBarService: SnackBarService) { }
+              private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

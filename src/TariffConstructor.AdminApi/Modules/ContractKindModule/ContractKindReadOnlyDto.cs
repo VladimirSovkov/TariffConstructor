@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace TariffConstructor.AdminApi.Modules.ApplicationModule
+namespace TariffConstructor.AdminApi.Modules.ContractKindModule
 {
     [DataContract]
-    public class ApplicationReadOnlyDto
+    public class ContractKindReadOnlyDto
     {
         [DataMember(Name = "id")]
         public int Id { get; private set; }
