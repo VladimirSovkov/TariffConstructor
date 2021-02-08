@@ -12,12 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
     public class ApplicationController : ControllerBase
     {
         private readonly IApplicationRepository applicationRepository;
-        IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public ApplicationController(IApplicationRepository applicationRepository,
             IUnitOfWork unitOfWork)
         {
             this.applicationRepository = applicationRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -48,6 +49,7 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
         public async Task<IActionResult> Delete(int id)
         {
             await applicationRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -69,6 +71,7 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
             }
             application.SetName(applicationDto.Name);
             await applicationRepository.Update(application);
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TariffConstructor.Domain.ApplicationModel;
 using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.SettingModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Pagination;
 
 namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
@@ -16,6 +17,8 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
         private readonly IApplicationSettingRepository applicationSettingRepository;
         private readonly IApplicationRepository applicationRepository;
         private readonly ISettingRepository settingRepository;
+        private readonly IUnitOfWork unitOfWork;
+
 
         public ApplicationSettingController(IApplicationSettingRepository applicationSettingRepository, 
             IApplicationRepository applicationRepository, 
@@ -43,6 +46,8 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
                 , applicationSettingDto.SettingId);
             applicationSetting.SetDefaultValue(applicationSettingDto.DefaultValue);
             await applicationSettingRepository.Add(applicationSetting);
+            await unitOfWork.SaveEntitiesAsync();
+
             return Ok();
         }
 
@@ -68,6 +73,8 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
         public async Task<IActionResult> DeleteApplicationSetting(int id)
         {
             await applicationSettingRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
+
             return Ok();
         }
 
@@ -96,6 +103,8 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
             applicationSetting.SetApplicationId(applicationSettingDto.ApplicationId);
             applicationSetting.SetDefaultValue(applicationSettingDto.DefaultValue);
             await applicationSettingRepository.Update(applicationSetting);
+            await unitOfWork.SaveEntitiesAsync();
+
             return Ok();
         }
 

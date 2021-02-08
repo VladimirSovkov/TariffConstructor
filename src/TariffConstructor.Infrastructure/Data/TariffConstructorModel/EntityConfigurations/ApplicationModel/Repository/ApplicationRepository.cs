@@ -20,8 +20,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(Application application)
         {
             _ctx.AddAsync(application);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -31,7 +29,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (application != null)
             {
                 _ctx.Applications.Remove(application);
-                await _ctx.SaveChangesAsync();
             }
         }
 
@@ -82,8 +79,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(Application application)
         {
             _ctx.Entry(application).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }
