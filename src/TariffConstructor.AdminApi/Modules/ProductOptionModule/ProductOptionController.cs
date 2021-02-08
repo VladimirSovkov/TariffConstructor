@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ProductOptionModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
@@ -11,10 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
     public class ProductOptionController : ControllerBase
     {
         private readonly IProductOptionRepository productOptionRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProductOptionController(IProductOptionRepository productOptionRepository)
+        public ProductOptionController(IProductOptionRepository productOptionRepository,
+            IUnitOfWork unitOfWork)
         {
             this.productOptionRepository = productOptionRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpGet("")]
@@ -64,6 +68,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
             //productOption.SetKindId(productOptionDto.KindId);
 
             await productOptionRepository.Add(productOption);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -71,6 +76,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
         public async Task<IActionResult> Delete(int id)
         {
             await productOptionRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -95,6 +101,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
             productOption.SetProductId(productOptionDto.ProductId);
 
             await productOptionRepository.Update(productOption);
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }

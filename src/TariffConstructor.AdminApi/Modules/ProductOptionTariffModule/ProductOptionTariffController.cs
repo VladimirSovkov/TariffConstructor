@@ -6,6 +6,7 @@ using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Dto;
 using TariffConstructor.AdminApi.Modules.ProductOptionTariffModule.Mappers;
 using TariffConstructor.Domain.ProductOptionTariffModel;
 using TariffConstructor.Domain.ValueObjects;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
@@ -15,10 +16,13 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
     public class ProductOptionTariffController : ControllerBase
     {
         private readonly IProductOptionTariffRepository productOptionTariffRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProductOptionTariffController(IProductOptionTariffRepository productOptionTariffRepository)
+        public ProductOptionTariffController(IProductOptionTariffRepository productOptionTariffRepository,
+            IUnitOfWork unitOfWork)
         {
             this.productOptionTariffRepository = productOptionTariffRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -34,6 +38,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
                 productOptionTariff.AddPriceItem(price, prolongationPeriod);
             }
             await productOptionTariffRepository.Add(productOptionTariff);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -52,6 +57,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
         public async Task<IActionResult> Delete(int id)
         {
             await productOptionTariffRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -83,6 +89,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
             }
 
             await productOptionTariffRepository.Update(productOptionTariff);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 

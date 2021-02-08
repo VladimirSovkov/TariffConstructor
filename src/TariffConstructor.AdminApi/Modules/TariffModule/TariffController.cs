@@ -11,6 +11,7 @@ using TariffConstructor.Domain.ProductOptionModel;
 using System.Linq;
 using TariffConstructor.Domain.ContractKindModel;
 using TariffConstructor.AdminApi.Modules.TariffModule.Dto;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.AdminApi.Controllers
 {
@@ -22,17 +23,20 @@ namespace TariffConstructor.AdminApi.Controllers
         private readonly IProductRepository productRepository;
         private readonly IProductOptionRepository productOptionRepository;
         private readonly IContractKindRepository contractKindRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public TariffController(
             ITariffRepository tariffRepository,
             IProductRepository productRepository,
             IProductOptionRepository productOptionRepository,
-            IContractKindRepository contractKindRepository)
+            IContractKindRepository contractKindRepository,
+            IUnitOfWork unitOfWork)
         {
             this.tariffRepository = tariffRepository;
             this.productRepository = productRepository;
             this.productOptionRepository = productOptionRepository;
             this.contractKindRepository = contractKindRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpGet("{id}")]
@@ -117,6 +121,7 @@ namespace TariffConstructor.AdminApi.Controllers
             }
 
             await tariffRepository.Add(tariff);
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }
@@ -220,7 +225,7 @@ namespace TariffConstructor.AdminApi.Controllers
             }
 
             await tariffRepository.Update(tariff);
-
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }
@@ -229,6 +234,7 @@ namespace TariffConstructor.AdminApi.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await tariffRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 

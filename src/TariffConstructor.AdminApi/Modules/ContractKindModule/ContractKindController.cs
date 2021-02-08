@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.ContractKindModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ContractKindModule
@@ -11,10 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
     public class ContractKindController : ControllerBase
     {
         private readonly IContractKindRepository contractKindRepository;
-
-        public ContractKindController(IContractKindRepository contractKindRepository)
+        private readonly IUnitOfWork unitOfWork;
+        
+        public ContractKindController(IContractKindRepository contractKindRepository,
+            IUnitOfWork unitOfWork)
         {
             this.contractKindRepository = contractKindRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -26,6 +30,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             }
             ContractKind contractKind = new ContractKind(contractKindDto.PublicId, contractKindDto.Name);
             await contractKindRepository.Add(contractKind);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -48,6 +53,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             contractKind.SetPublicId(contractKindDto.PublicId);
             contractKind.SetName(contractKindDto.Name);
             await contractKindRepository.Update(contractKind);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -92,6 +98,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
         public async Task<IActionResult> Delete(int id)
         {
             await contractKindRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
     }

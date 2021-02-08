@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.SettingModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.SettingModule
@@ -11,10 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
     public class SettingController : ControllerBase
     {
         private readonly ISettingRepository settingRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SettingController(ISettingRepository settingRepository)
+        public SettingController(ISettingRepository settingRepository,
+            IUnitOfWork unitOfWork)
         {
             this.settingRepository = settingRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")] 
@@ -23,6 +27,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
             Setting setting = new Setting((SettingType)settingDto.Type, 
                 settingDto.Code, settingDto.Name, settingDto.IsComputing, settingDto.Description);
             await settingRepository.Add(setting);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -41,6 +46,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
         public async Task<IActionResult> Delete(int id)
         {
             await settingRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -58,6 +64,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
             setting.SetName(settingDto.Name);
             setting.SetType((SettingType)settingDto.Type);
             await settingRepository.Update(setting);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 

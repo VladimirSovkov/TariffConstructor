@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.ProductModel;
 using Microsoft.AspNetCore.Http;
 using TariffConstructor.Toolkit.Search;
+using TariffConstructor.Toolkit.Abstractions;
 
 namespace TariffConstructor.AdminApi.Modules.ProductModule
 {
@@ -11,10 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository productRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProductController (IProductRepository productRepository)
+        public ProductController (IProductRepository productRepository,
+            IUnitOfWork unitOfWork)
         {
             this.productRepository = productRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpGet("")]
@@ -35,6 +39,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             Product product = new Product(productDto.Name, productDto.PublicId, productDto.ShortName);
             product.SetNomenclatureId(productDto.NomenclatureId);
             await productRepository.Add(product);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -87,6 +92,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             product.SetShortName(productDto.ShortName);
             product.SetNomenclatureId(productDto.NomenclatureId);
             await productRepository.Update(product);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -94,6 +100,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
         public async Task<IActionResult> Delete(int id)
         {
             await productRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
     }

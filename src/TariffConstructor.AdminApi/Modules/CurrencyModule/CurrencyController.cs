@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TariffConstructor.Domain.CurrencyModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.CurrencyModule
@@ -11,10 +12,13 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
     public class CurrencyController : ControllerBase
     {
         private readonly ICurrencyRepository currencyRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CurrencyController(ICurrencyRepository currencyRepository)
+        public CurrencyController(ICurrencyRepository currencyRepository,
+            IUnitOfWork unitOfWork)
         {
             this.currencyRepository = currencyRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -30,6 +34,7 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
             }
             Currency currency = new Currency(currencyDto.Code, currencyDto.Name);
             await currencyRepository.Add(currency);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -48,6 +53,7 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
         public async Task<IActionResult> Delete(int id)
         {
             await currencyRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -79,6 +85,7 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
             }
 
             await currencyRepository.Update(currency);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 

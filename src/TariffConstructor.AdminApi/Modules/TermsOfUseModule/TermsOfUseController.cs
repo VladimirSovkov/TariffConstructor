@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.TariffModel;
 using TariffConstructor.Domain.TermsOfUseModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
@@ -13,12 +14,15 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
     {
         private readonly ITermsOfUseRepository termsOfUseRepository;
         private readonly ITariffRepository tariffRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public TermsOfUseController(ITermsOfUseRepository termsOfUseRepository,
-            ITariffRepository tariffRepository)
+            ITariffRepository tariffRepository,
+            IUnitOfWork unitOfWork)
         {
             this.termsOfUseRepository = termsOfUseRepository;
             this.tariffRepository = tariffRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -30,6 +34,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             }
             TermsOfUse termsOfUse = new TermsOfUse(termsOfUseDto.PublicId, termsOfUseDto.DocumentName);
             await termsOfUseRepository.Add(termsOfUse);
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }
@@ -54,6 +59,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
                 return StatusCode(StatusCodes.Status500InternalServerError, $"You cannot delete the terms of use, as they are used in the tariff == {tariff.Name}");
             }
             await termsOfUseRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -75,6 +81,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             }
             termsOfUse.SetDocumentName(termsOfUseDto.DocumentName);
             await termsOfUseRepository.Update(termsOfUse);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 

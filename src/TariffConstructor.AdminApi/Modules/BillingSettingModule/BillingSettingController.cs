@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.BillingSettingModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Pagination;
 
 namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
@@ -12,10 +13,13 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
     public class BillingSettingController : ControllerBase
     {
         private readonly IBillingSettingRepository billingSettingRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public BillingSettingController(IBillingSettingRepository billingSettingRepository)
+        public BillingSettingController(IBillingSettingRepository billingSettingRepository,
+            IUnitOfWork unitOfWork)
         {
             this.billingSettingRepository = billingSettingRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -23,6 +27,7 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
         {
             BillingSetting billingSetting = new BillingSetting(billingSettingDto.SettingId);
             await billingSettingRepository.Add(billingSetting);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -36,6 +41,7 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
             }
             billingSetting.SetSetting(billingSettingDto.SettingId);
             await billingSettingRepository.Update(billingSetting);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -77,6 +83,7 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
         public async Task<IActionResult> Delete(int id)
         {
             await billingSettingRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
     }

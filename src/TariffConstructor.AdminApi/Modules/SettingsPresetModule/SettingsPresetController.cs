@@ -7,6 +7,7 @@ using TariffConstructor.Domain.ApplicationSettingModel;
 using TariffConstructor.Domain.BillingSettingModel;
 using TariffConstructor.Domain.SettingModel;
 using TariffConstructor.Domain.TariffModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
@@ -17,13 +18,15 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
     {
         private readonly ISettingsPresetRepository settingsPresetRepository;
         private readonly ITariffRepository tariffRepository;
-
+        private readonly IUnitOfWork unitOfWork;
 
         public SettingsPresetController(ISettingsPresetRepository settingsPresetRepository,
-            ITariffRepository tariffRepository)
+            ITariffRepository tariffRepository,
+            IUnitOfWork unitOfWork)
         {
             this.settingsPresetRepository = settingsPresetRepository;
             this.tariffRepository = tariffRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost("add")]
@@ -67,6 +70,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
             }
 
             await settingsPresetRepository.Add(settingPreset);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
@@ -122,6 +126,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
             }
 
             await settingsPresetRepository.Update(settingsPreset);
+            await unitOfWork.SaveEntitiesAsync();
 
             return Ok();
         }
@@ -172,6 +177,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
                 return StatusCode(StatusCodes.Status500InternalServerError, $"You cannot delete the settings preset, as they are used in the tariff == {tariff.Name}");
             }
             await settingsPresetRepository.Delete(id);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
     }
