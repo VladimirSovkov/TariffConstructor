@@ -6,7 +6,7 @@ using TariffConstructor.AdminApi.Modules.SettingModule;
 namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 {
     [DataContract]
-    public class ApplicationsetingReadOnlyDto
+    public class ApplicationSettingReadOnlyDto
     {
         [DataMember(Name = "id")]
         public int Id { get; private set; }
