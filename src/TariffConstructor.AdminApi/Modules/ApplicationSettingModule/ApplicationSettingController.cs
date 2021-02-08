@@ -22,8 +22,10 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 
         public ApplicationSettingController(IApplicationSettingRepository applicationSettingRepository, 
             IApplicationRepository applicationRepository, 
-            ISettingRepository settingRepository)
+            ISettingRepository settingRepository,
+            IUnitOfWork unitOfWork)
         {
+            this.unitOfWork = unitOfWork;
             this.applicationSettingRepository = applicationSettingRepository;
             this.applicationRepository = applicationRepository;
             this.settingRepository = settingRepository;
