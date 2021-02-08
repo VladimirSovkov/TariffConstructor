@@ -20,8 +20,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(TermsOfUse entity)
         {
             _ctx.AddAsync(entity);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -31,7 +29,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (termsOfUse != null)
             {
                 _ctx.TermsOfUses.Remove(termsOfUse);
-                _ctx.SaveChanges();
             }
         }
 
@@ -83,8 +80,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(TermsOfUse termsOfUse)
         {
             _ctx.Entry(termsOfUse).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }

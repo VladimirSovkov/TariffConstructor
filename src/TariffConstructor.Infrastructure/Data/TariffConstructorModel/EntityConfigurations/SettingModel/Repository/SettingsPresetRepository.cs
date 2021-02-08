@@ -30,7 +30,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (settingsPreset != null)
             {
                 _ctx.SettingsPresets.Remove(settingsPreset);
-                await _ctx.SaveChangesAsync();
             }
         }
 

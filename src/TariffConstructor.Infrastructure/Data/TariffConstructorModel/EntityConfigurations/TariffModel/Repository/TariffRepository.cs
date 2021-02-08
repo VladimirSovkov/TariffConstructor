@@ -21,8 +21,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(Tariff tariff)
         {
             _DbContext.AddAsync(tariff);
-            _DbContext.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -81,8 +79,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(Tariff tariff)
         {
             _DbContext.Entry(tariff).State = EntityState.Modified;
-            _DbContext.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -92,7 +88,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (tariff != null)
             {
                 _DbContext.Tariffs.Remove(tariff);
-                await _DbContext.SaveChangesAsync();
             }
         }
 

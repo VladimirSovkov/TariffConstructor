@@ -29,7 +29,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (setting != null)
             {
                 _ctx.Settings.Remove(setting);
-                await _ctx.SaveChangesAsync();
             }
         }
 

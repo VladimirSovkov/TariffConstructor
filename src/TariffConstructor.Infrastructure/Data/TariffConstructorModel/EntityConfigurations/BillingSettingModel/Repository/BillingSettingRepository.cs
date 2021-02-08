@@ -19,8 +19,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(BillingSetting entity)
         {
             _ctx.AddAsync(entity);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -30,7 +28,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (billingSetting != null)
             {
                 _ctx.BillingSettings.Remove(billingSetting);
-                await _ctx.SaveChangesAsync();
             }
         }
 
@@ -66,8 +63,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(BillingSetting setting)
         {
             _ctx.Entry(setting).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }

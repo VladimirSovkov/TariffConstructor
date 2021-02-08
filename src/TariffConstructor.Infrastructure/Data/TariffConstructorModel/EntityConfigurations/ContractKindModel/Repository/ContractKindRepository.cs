@@ -20,8 +20,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(ContractKind contractKind)
         {
             _ctx.AddAsync(contractKind);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -31,7 +29,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (contractKind != null)
             {
                 _ctx.ContractKinds.Remove(contractKind);
-                await _ctx.SaveChangesAsync();
             }
         }
 
@@ -83,8 +80,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(ContractKind contractKind)
         {
             _ctx.Entry(contractKind).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }

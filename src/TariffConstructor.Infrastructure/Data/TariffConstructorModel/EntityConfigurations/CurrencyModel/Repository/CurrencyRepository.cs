@@ -19,8 +19,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(Currency currency)
         {
             _ctx.AddAsync(currency);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -30,7 +28,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (currency != null)
             {
                 _ctx.Currencies.Remove(currency);
-                await _ctx.SaveChangesAsync();
             }
         }
 
@@ -86,8 +83,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Update(Currency currency)
         {
             _ctx.Entry(currency).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }

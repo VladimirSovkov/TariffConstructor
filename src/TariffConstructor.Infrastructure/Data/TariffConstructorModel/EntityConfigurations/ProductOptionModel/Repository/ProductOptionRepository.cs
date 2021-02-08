@@ -20,8 +20,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
         public Task Add(ProductOption entity)
         {
             _ctx.AddAsync(entity);
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
 
@@ -31,7 +29,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             if (productOption != null)
             {
                 _ctx.ProductOptions.Remove(productOption);
-                await _ctx.SaveChangesAsync();
             }
         }
 
@@ -93,8 +90,6 @@ namespace TariffConstructor.Infrastructure.Data.TariffConstructorModel.EntityCon
             productOptions.SetNomenclatureId(entity.NomenclatureId);
             productOptions.SetProductId(entity.ProductId);
             _ctx.Entry(productOptions).State = EntityState.Modified;
-            _ctx.SaveChanges();
-
             return Task.CompletedTask;
         }
     }
