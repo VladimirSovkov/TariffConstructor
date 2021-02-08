@@ -6,7 +6,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.SettingModule
 {
-    [Route("setting")]
+    [Route("settings")]
     [ApiController]
     public class SettingController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
             return Ok();
         }
 
-        [HttpGet("getSetting")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSetting(int id)
         {
             Setting setting = await settingRepository.GetSetting(id);
@@ -37,14 +37,14 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
             return Ok(setting.Map());
         }
             
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await settingRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody]SettingDto settingDto)
         {
             Setting setting = await settingRepository.GetSetting(settingDto.Id);
@@ -80,7 +80,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingModule
             });
         }
 
-        [HttpGet("getSettings")]
+        [HttpGet("")]
         public async Task<IActionResult> GetSettings()
         {
             var settings = await settingRepository.GetSettings();

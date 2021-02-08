@@ -11,7 +11,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
 {
-    [Route("settingsPreset")]
+    [Route("settingsPresets")]
     [ApiController]
     public class SettingsPresetController : ControllerBase
     {
@@ -70,7 +70,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] SettingsPresetDto settingsPresetDto)
         {
             SettingsPreset settingsPreset = await settingsPresetRepository.GetSettingsPreset(settingsPresetDto.Id);
@@ -145,7 +145,7 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
             });
         }
 
-        [HttpGet("")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSettingPreset(int id)
         {
             SettingsPreset settingsPreset = await settingsPresetRepository.GetSettingsPreset(id);
@@ -156,14 +156,14 @@ namespace TariffConstructor.AdminApi.Modules.SettingsPresetModule
             return Ok(settingsPreset.Map());
         }
 
-        [HttpGet("getAll")]
+        [HttpGet("")]
         public async Task<IActionResult> GetSettingsPresets()
         {
             var settingsPresets = await settingsPresetRepository.GetSettingsPresets();
             return Ok(settingsPresets);
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             Tariff tariff = await tariffRepository.GeTariffFirstOrDefaultSettingPreset(id);

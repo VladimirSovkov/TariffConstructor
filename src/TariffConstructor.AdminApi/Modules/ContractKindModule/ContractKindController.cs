@@ -6,7 +6,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ContractKindModule
 {
-    [Route("contractKind")]
+    [Route("contractKinds")]
     [ApiController]
     public class ContractKindController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] ContractKindDto contractKindDto)
         {
             ContractKind contractKind = await contractKindRepository.GetContractKind(contractKindDto.Id);
@@ -51,7 +51,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             return Ok();
         }
 
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetApplication(int id)
         {
             ContractKind application = await contractKindRepository.GetContractKind(id);
@@ -62,7 +62,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             return Ok(application.Map());
         }
 
-        [HttpGet("getAll")]
+        [HttpGet("")]
         public async Task<IActionResult> GetSettings()
         {
             var contractKinds = await contractKindRepository.GetContractKinds();
@@ -88,7 +88,7 @@ namespace TariffConstructor.AdminApi.Modules.ContractKindModule
             });
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await contractKindRepository.Delete(id);

@@ -7,7 +7,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
 {
-    [Route("termsOfUse")]
+    [Route("termsOfUses")]
     [ApiController]
     public class TermsOfUseController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             return Ok();
         }
 
-        [HttpGet("getTermsOfUse")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetTermsOfUse(int id)
         {
             TermsOfUse termsOfUse = await termsOfUseRepository.GetTermsOfUse(id);
@@ -45,7 +45,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             return Ok(termsOfUse.Map());
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             Tariff tariff = await tariffRepository.GeTariffFirstOrDefaulTermsOfUse(id);
@@ -57,7 +57,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] TermsOfUseDto termsOfUseDto)
         {
             TermsOfUse termsOfUse = await termsOfUseRepository.GetTermsOfUse(termsOfUseDto.Id);
@@ -97,7 +97,7 @@ namespace TariffConstructor.AdminApi.Modules.TermsOfUseModule
             });
         }
 
-        [HttpGet("getTermsOfUses")]
+        [HttpGet("")]
         public async Task<IActionResult> GetSettings()
         {
             var termsOfUses = await termsOfUseRepository.GetTermsOfUses();

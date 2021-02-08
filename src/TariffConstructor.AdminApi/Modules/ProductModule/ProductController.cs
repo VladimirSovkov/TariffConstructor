@@ -17,7 +17,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             this.productRepository = productRepository;
         }
 
-        [HttpGet("getProducts")]
+        [HttpGet("")]
         public async Task<IActionResult> GetProducts()
         {
             var products = await productRepository.GetProducts();
@@ -38,7 +38,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             return Ok();
         }
 
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id )
         {
             Product product = await productRepository.GetProduct(id);
@@ -64,7 +64,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             });
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update(ProductDto productDto)
         {
             Product product = await productRepository.GetProduct(productDto.Id);
@@ -90,7 +90,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductModule
             return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await productRepository.Delete(id);

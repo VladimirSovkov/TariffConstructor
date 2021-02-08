@@ -8,7 +8,7 @@ import {SearchResult} from '../../search-result.model';
 
 @Injectable()
 export class TermsOfUseApiService{
-  apiUrl = '/termsOfUse';
+  apiUrl = '/termsOfUses';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class TermsOfUseApiService{
   }
 
   get(id: number): Observable<TermsOfUse>{
-    return this.apiService.get(this.apiUrl + '/getTermsOfUse', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(termsOfUse: TermsOfUse): Observable<any> {
@@ -25,14 +25,14 @@ export class TermsOfUseApiService{
   }
 
   update(termsOfUse: TermsOfUse): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', termsOfUse);
+    return this.apiService.post(this.apiUrl + '/', termsOfUse);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getTermsOfUses(): Observable<TermsOfUse[]> {
-    return this.apiService.get(this.apiUrl + '/getTermsOfUses');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

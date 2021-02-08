@@ -8,7 +8,7 @@ import {CurrencySearchPattern} from '../../model/currency/currency-search-patter
 
 @Injectable()
 export class CurrencyService {
-  apiUrl = '/currency';
+  apiUrl = '/currencies';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class CurrencyService {
   }
 
   get(id: number): Observable<Currency>{
-    return this.apiService.get(this.apiUrl + '/getCurrency', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(currency: Currency): Observable<any> {
@@ -25,14 +25,14 @@ export class CurrencyService {
   }
 
   update(currency: Currency): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', currency);
+    return this.apiService.post(this.apiUrl + '/', currency);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getCurrencies(): Observable<Currency[]> {
-    return this.apiService.get(this.apiUrl + '/getCurrencies');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

@@ -8,7 +8,7 @@ import {SettingsPreset} from '../../model/setting/settings-preset.model';
 
 @Injectable()
 export class SettingsPresetApiServices{
-  apiUrl = '/settingsPreset';
+  apiUrl = '/settingsPresets';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,11 +17,11 @@ export class SettingsPresetApiServices{
   }
 
   get(id: number): Observable<SettingsPreset>{
-    return this.apiService.get(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   getAll(): Observable<SettingsPreset[]> {
-    return this.apiService.get(this.apiUrl + '/getAll');
+    return this.apiService.get(this.apiUrl + '/');
   }
 
   add(settingsPreset: SettingsPreset): Observable<any> {
@@ -29,10 +29,10 @@ export class SettingsPresetApiServices{
   }
 
   update(settingsPreset: SettingsPreset): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', settingsPreset);
+    return this.apiService.post(this.apiUrl + '/', settingsPreset);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 }

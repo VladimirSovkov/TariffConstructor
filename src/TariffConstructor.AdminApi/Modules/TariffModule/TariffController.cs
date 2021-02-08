@@ -225,7 +225,7 @@ namespace TariffConstructor.AdminApi.Controllers
             return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await tariffRepository.Delete(id);

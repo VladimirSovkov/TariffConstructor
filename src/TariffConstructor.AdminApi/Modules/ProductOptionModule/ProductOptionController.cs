@@ -6,7 +6,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
 {
-    [Route("productOption")]
+    [Route("productOptions")]
     [ApiController]
     public class ProductOptionController : ControllerBase
     {
@@ -17,14 +17,14 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
             this.productOptionRepository = productOptionRepository;
         }
 
-        [HttpGet("getAll")]
+        [HttpGet("")]
         public async Task<IActionResult> GetProductOption()
         {
             var productOptions = await productOptionRepository.GetProductOptions();
             return Ok(productOptions.Map());
         }
 
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProductOption(int id)
         {
             ProductOption productOption = await productOptionRepository.GetProductOption(id);
@@ -67,14 +67,14 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
             return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await productOptionRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Change([FromBody] ProductOptionDto productOptionDto)
         {
             ProductOption productOption = await productOptionRepository.GetProductOption(productOptionDto.Id);

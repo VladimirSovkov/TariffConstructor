@@ -8,7 +8,7 @@ import {Application} from '../../model/application/application.model';
 
 @Injectable()
 export class ApplicationApiService{
-  apiUrl = '/application';
+  apiUrl = '/applications';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class ApplicationApiService{
   }
 
   get(id: number): Observable<Application>{
-    return this.apiService.get(this.apiUrl + '/getApplication', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(application: Application): Observable<any> {
@@ -25,14 +25,14 @@ export class ApplicationApiService{
   }
 
   update(application: Application): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', application);
+    return this.apiService.post(this.apiUrl + '/', application);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getApplications(): Observable<Application[]> {
-    return this.apiService.get(this.apiUrl + '/getApplications');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

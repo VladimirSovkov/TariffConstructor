@@ -23,4 +23,3 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
         public string DefaultValue { get; private set; }
     }
 }
-}

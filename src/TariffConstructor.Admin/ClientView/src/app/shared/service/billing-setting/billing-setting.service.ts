@@ -8,7 +8,7 @@ import {BillingSettingPaginationPattern} from '../../model/billing-setting/billi
 
 @Injectable()
 export class BillingSettingApiServices{
-  apiUrl = '/billingSetting';
+  apiUrl = '/billingSettings';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,11 +17,11 @@ export class BillingSettingApiServices{
   }
 
   get(id: number): Observable<BillingSetting> {
-    return this.apiService.get(this.apiUrl + '/getSetting', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   getAll(): Observable<BillingSetting[]>{
-    return this.apiService.get(this.apiUrl + '/getAll');
+    return this.apiService.get(this.apiUrl + '/');
   }
 
   add(setting: BillingSetting): Observable<any> {
@@ -29,10 +29,10 @@ export class BillingSettingApiServices{
   }
 
   update(setting: BillingSetting): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', setting);
+    return this.apiService.post(this.apiUrl + '/', setting);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 }

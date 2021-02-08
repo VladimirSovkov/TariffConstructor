@@ -8,7 +8,7 @@ import {ProductOptionTariff} from '../../model/product-option-tariff/product-opt
 
 @Injectable()
 export class ProductOptionTariffService{
-  apiUrl = '/productOptionTariff';
+  apiUrl = '/productOptionTariffs';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class ProductOptionTariffService{
   }
 
   get(id: number): Observable<ProductOptionTariff>{
-    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(productOptionTariff: ProductOptionTariff): Observable<any> {
@@ -25,10 +25,10 @@ export class ProductOptionTariffService{
   }
 
   update(productOptionTariff: ProductOptionTariff): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', productOptionTariff);
+    return this.apiService.post(this.apiUrl + '/', productOptionTariff);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 }

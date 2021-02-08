@@ -17,7 +17,7 @@ export class TariffService{
   }
 
   get(id: number): Observable<Tariff>{
-    return this.apiService.get(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(tariff: Tariff): Observable<any> {
@@ -29,7 +29,7 @@ export class TariffService{
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getAll(): Observable<Tariff[]>{

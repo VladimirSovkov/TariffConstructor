@@ -8,7 +8,7 @@ import {PaginationResult} from '../../model/pagination-pattern/pagination-result
 
 @Injectable()
 export class ApplicationSettingApiServices{
-  apiUrl = '/applicationSetting';
+  apiUrl = '/applicationSettings';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class ApplicationSettingApiServices{
   }
 
   get(id: number): Observable<ApplicationSetting>{
-    return this.apiService.get(this.apiUrl + '/getApplicationSetting', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(setting: ApplicationSetting): Observable<any> {
@@ -25,14 +25,14 @@ export class ApplicationSettingApiServices{
   }
 
   update(setting: ApplicationSetting): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', setting);
+    return this.apiService.post(this.apiUrl + '/', setting);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getAll(): Observable<ApplicationSetting[]> {
-    return this.apiService.get(this.apiUrl + '/getAll');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

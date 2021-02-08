@@ -8,7 +8,7 @@ import {ApiService} from '../api.service';
 
 @Injectable()
 export class ProductOptionService{
-  apiUrl = '/productOption';
+  apiUrl = '/productOptions';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class ProductOptionService{
   }
 
   get(id: number): Observable<ProductOption>{
-    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(productOption: ProductOption): Observable<any> {
@@ -25,15 +25,15 @@ export class ProductOptionService{
   }
 
   update(productOption: ProductOption): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', productOption);
+    return this.apiService.post(this.apiUrl + '/', productOption);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getAll(): Observable<ProductOption[]> {
-    return this.apiService.get(this.apiUrl + '/getAll');
+    return this.apiService.get(this.apiUrl + '/');
   }
 
 }

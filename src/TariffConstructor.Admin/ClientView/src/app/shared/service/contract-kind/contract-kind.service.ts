@@ -8,7 +8,7 @@ import {ContractKind} from '../../model/contract-kind/contract-kind.model';
 
 @Injectable()
 export class ContractKindService{
-  apiUrl = '/contractKind';
+  apiUrl = '/contractKinds';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -17,7 +17,7 @@ export class ContractKindService{
   }
 
   get(id: number): Observable<ContractKind>{
-    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(contractKind: ContractKind): Observable<any> {
@@ -25,14 +25,14 @@ export class ContractKindService{
   }
 
   update(contractKind: ContractKind): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', contractKind);
+    return this.apiService.post(this.apiUrl + '/', contractKind);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getContractKinds(): Observable<ContractKind[]> {
-    return this.apiService.get(this.apiUrl + '/getAll');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

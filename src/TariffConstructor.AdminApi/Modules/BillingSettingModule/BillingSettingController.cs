@@ -7,7 +7,7 @@ using TariffConstructor.Toolkit.Pagination;
 
 namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
 {
-    [Route("billingSetting")]
+    [Route("billingSettings")]
     [ApiController]
     public class BillingSettingController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] BillingSettingDto billingSettingDto)
         {
             BillingSetting billingSetting = await billingSettingRepository.GetBillingSetting(billingSettingDto.Id);
@@ -55,7 +55,7 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
             });
         }
 
-        [HttpGet("getSetting")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSetting(int id)
         {
             BillingSetting billingSetting = await billingSettingRepository.GetBillingSetting(id);
@@ -66,14 +66,14 @@ namespace TariffConstructor.AdminApi.Modules.BillingSettingModule
             return Ok(billingSetting.Map());
         }
 
-        [HttpGet("getAll")]
+        [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
             IReadOnlyList<BillingSetting> billingSettings = await billingSettingRepository.GetBillingSettings();
             return Ok(billingSettings);
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await billingSettingRepository.Delete(id);

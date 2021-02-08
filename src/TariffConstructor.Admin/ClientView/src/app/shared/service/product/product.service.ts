@@ -8,7 +8,7 @@ import {ApiService} from '../api.service';
 
 @Injectable()
 export class ProductService{
-  apiUrl = '/product';
+  apiUrl = '/products';
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
   search(searchPattern: ProductSearchPattern): Observable<SearchResult<Product>>{
@@ -16,7 +16,7 @@ export class ProductService{
   }
 
   get(id: number): Observable<Product>{
-    return this.apiService.get(this.apiUrl + '/get', new HttpParams().set('id', id.toString()));
+    return this.apiService.get(this.apiUrl + '/' + id);
   }
 
   add(product: Product): Observable<any> {
@@ -24,14 +24,14 @@ export class ProductService{
   }
 
   update(product: Product): Observable<any> {
-    return this.apiService.post(this.apiUrl + '/update', product);
+    return this.apiService.post(this.apiUrl + '/', product);
   }
 
   delete(id: number): Observable<any> {
-    return this.apiService.delete(this.apiUrl + '/', new HttpParams().set('id', id.toString()));
+    return this.apiService.delete(this.apiUrl + '/' + id);
   }
 
   getProducts(): Observable<Product[]> {
-    return this.apiService.get(this.apiUrl + '/getProducts');
+    return this.apiService.get(this.apiUrl + '/');
   }
 }

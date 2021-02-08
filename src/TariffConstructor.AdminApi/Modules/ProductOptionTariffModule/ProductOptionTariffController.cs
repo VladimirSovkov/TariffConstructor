@@ -10,7 +10,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
 {
-    [Route("productOptionTariff")]
+    [Route("productOptionTariffs")]
     [ApiController]
     public class ProductOptionTariffController : ControllerBase
     {
@@ -37,7 +37,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
             return Ok();
         }
 
-        [HttpGet("get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProductOptionTariff(int id)
         {
             ProductOptionTariff productOptionTariff = await productOptionTariffRepository.GetProductOptionTariff(id);
@@ -48,14 +48,14 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionTariffModule
             return Ok(productOptionTariff.Map());
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await productOptionTariffRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] ProductOptionTariffDto productOptionTariffDto)
         {
             ProductOptionTariff productOptionTariff = await productOptionTariffRepository.GetProductOptionTariff(productOptionTariffDto.Id);

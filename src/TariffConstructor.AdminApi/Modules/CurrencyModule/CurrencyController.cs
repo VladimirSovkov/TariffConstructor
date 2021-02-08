@@ -6,7 +6,7 @@ using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.CurrencyModule
 {
-    [Route("currency")]
+    [Route("currencies")]
     [ApiController]
     public class CurrencyController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
             return Ok();
         }
 
-        [HttpGet("getCurrency")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCurrency(int id)
         {
             Currency currency = await currencyRepository.GetCurrency(id);
@@ -44,14 +44,14 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
             return Ok(currency.Map());
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await currencyRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] CurrencyDto currencyDto)
         {
             Currency currency = await currencyRepository.GetCurrency(currencyDto.Id);
@@ -101,7 +101,7 @@ namespace TariffConstructor.AdminApi.Modules.CurrencyModule
             });
         }
 
-        [HttpGet("getCurrencies")]
+        [HttpGet("")]
         public async Task<IActionResult> GetCurrencies()
         {
             var currency = await currencyRepository.GetCurrencies();

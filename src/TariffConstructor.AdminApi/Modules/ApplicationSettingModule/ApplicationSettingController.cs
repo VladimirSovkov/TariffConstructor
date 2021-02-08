@@ -9,7 +9,7 @@ using TariffConstructor.Toolkit.Pagination;
 
 namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
 {
-    [Route("applicationSetting")]
+    [Route("applicationSettings")]
     [ApiController]
     public class ApplicationSettingController : ControllerBase
     {
@@ -46,7 +46,7 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
             return Ok();
         }
 
-        [HttpGet("getApplicationSetting")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetApplicationSetting(int id)
         {
             ApplicationSetting applicationSetting = await applicationSettingRepository.GetApplicationSetting(id);
@@ -57,21 +57,21 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationSettingModule
             return Ok(applicationSetting);
         }
 
-        [HttpGet("getAll")]
+        [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
             List<ApplicationSetting> applicationSettings = await applicationSettingRepository.GetApplicationSettings();
             return Ok(applicationSettings);
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteApplicationSetting(int id)
         {
             await applicationSettingRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> UpdateApplicationSetting([FromBody] ApplicationSettingDto applicationSettingDto)
         {
             ApplicationSetting applicationSetting = await applicationSettingRepository.GetApplicationSetting(applicationSettingDto.Id);

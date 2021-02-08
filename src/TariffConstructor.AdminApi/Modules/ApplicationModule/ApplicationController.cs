@@ -2,17 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TariffConstructor.Domain.ApplicationModel;
+using TariffConstructor.Toolkit.Abstractions;
 using TariffConstructor.Toolkit.Search;
 
 namespace TariffConstructor.AdminApi.Modules.ApplicationModule
 {
-    [Route("application")]
+    [Route("applications")]
     [ApiController]
     public class ApplicationController : ControllerBase
     {
         private readonly IApplicationRepository applicationRepository;
+        IUnitOfWork unitOfWork;
 
-        public ApplicationController(IApplicationRepository applicationRepository)
+        public ApplicationController(IApplicationRepository applicationRepository,
+            IUnitOfWork unitOfWork)
         {
             this.applicationRepository = applicationRepository;
         }
@@ -26,10 +29,11 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
             }
             Application application = new Application(applicationDto.PublicId, applicationDto.Name);
             await applicationRepository.Add(application);
+            await unitOfWork.SaveEntitiesAsync();
             return Ok();
         }
 
-        [HttpGet("getApplication")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetApplication(int id)
         {
             Application application = await applicationRepository.GetApplication(id);
@@ -40,14 +44,14 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
             return Ok(application.Map());
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await applicationRepository.Delete(id);
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPost("")]
         public async Task<IActionResult> Update([FromBody] ApplicationDto applicationDto)
         {
             Application application = await applicationRepository.GetApplication(applicationDto.Id);
@@ -65,6 +69,7 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
             }
             application.SetName(applicationDto.Name);
             await applicationRepository.Update(application);
+
             return Ok();
         }
 
@@ -87,7 +92,7 @@ namespace TariffConstructor.AdminApi.Modules.ApplicationModule
             });
         }
 
-        [HttpGet("getApplications")]
+        [HttpGet("")]
         public async Task<IActionResult> GetSettings()
         {
             var applications = await applicationRepository.GetApplications();
