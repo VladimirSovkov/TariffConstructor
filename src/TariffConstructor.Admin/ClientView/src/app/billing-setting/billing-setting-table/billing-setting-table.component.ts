@@ -51,6 +51,9 @@ export class BillingSettingTableComponent implements OnInit {
           this.billingSettings.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

@@ -62,6 +62,7 @@ export class ProductOptionTableComponent implements OnInit {
           this.productOptions.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });

@@ -65,6 +65,7 @@ export class SettingTableComponent implements OnInit {
           this.settings.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
       });
   }
 

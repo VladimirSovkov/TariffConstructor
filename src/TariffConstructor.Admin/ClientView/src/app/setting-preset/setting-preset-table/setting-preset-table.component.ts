@@ -63,6 +63,7 @@ export class SettingPresetTableComponent implements OnInit {
           this.settingsPresets.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });

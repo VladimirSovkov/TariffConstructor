@@ -62,6 +62,9 @@ export class ContractKindTableComponent implements OnInit {
           this.contractKinds.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
+      }, error => {
+        this.snackBarService.openErrorHttpSnackBar(error);
       });
   }
 

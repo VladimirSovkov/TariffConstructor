@@ -66,6 +66,7 @@ export class TariffTableComponent implements OnInit {
           this.tariffs.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
       }, error => {
         this.snackBarService.openErrorHttpSnackBar(error);
       });

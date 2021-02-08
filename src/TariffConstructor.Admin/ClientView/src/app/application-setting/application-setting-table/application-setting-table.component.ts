@@ -55,6 +55,7 @@ export class ApplicationSettingTableComponent implements OnInit {
           this.applicationSettings.splice(index, 1);
         }
         this.table.renderRows();
+        this.load();
       }, error => {
           this.snackBarService.openErrorHttpSnackBar(error);
       });
