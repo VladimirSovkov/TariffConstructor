@@ -21,8 +21,8 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
         [DataMember(Name = "productId")]
         public int ProductId { get; set; }
 
-        [DataMember(Name = "product")]
-        public ProductDto Product { get; set; }
+        [DataMember(Name = "productName")]
+        public string  ProductName { get; set; }
 
         [DataMember(Name = "isMultiple")]
         public bool IsMultiple { get; set; }

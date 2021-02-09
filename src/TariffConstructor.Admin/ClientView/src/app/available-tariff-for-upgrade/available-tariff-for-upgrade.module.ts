@@ -12,12 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { AddAndChangeAvailableTariffForUpgradeComponent } from './add-and-change-available-tariff-for-upgrade/add-and-change-available-tariff-for-upgrade.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {TariffService} from '../shared/service/tariff/tariff.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
-
-
 
 @NgModule({
   declarations: [AvailableTariffForUpgradeTableComponent, AddAndChangeAvailableTariffForUpgradeComponent],

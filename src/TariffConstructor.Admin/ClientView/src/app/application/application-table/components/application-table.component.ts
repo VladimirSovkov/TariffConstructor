@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {MatTable} from '@angular/material/table';
-import {ApplicationSearchPattern} from '../../shared/model/application/application-search-pattern.model';
+import {ApplicationSearchPattern} from '../../../shared/model/application/application-search-pattern.model';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {SnackBarService} from '../../shared/service/snack-bar.service';
-import {SearchResult} from '../../shared/search-result.model';
-import {Application} from '../../shared/model/application/application.model';
-import {ApplicationApiService} from '../../shared/service/application/application-api.service';
+import {SnackBarService} from '../../../shared/service/snack-bar.service';
+import {SearchResult} from '../../../shared/search-result.model';
+import {Application} from '../../../shared/model/application/application.model';
+import {ApplicationApiService} from '../../../shared/service/application/application-api.service';
 
 @Component({
   selector: 'app-application-table',

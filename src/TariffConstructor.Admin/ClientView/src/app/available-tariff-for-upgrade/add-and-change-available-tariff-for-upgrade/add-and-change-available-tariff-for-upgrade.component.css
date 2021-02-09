@@ -1,0 +1,25 @@
+.title{
+  text-align: center;
+}
+
+form{
+  margin: 0 auto;
+  width: 750px;
+}
+
+.from-tariff-input{
+  width: 79%;
+}
+
+.to-tariff-input{
+  width: 90%;
+}
+
+.submit_button {
+  width: 100%;
+  text-align: center;
+}
+
+.back_button {
+  margin: 10px 0 10px 4%;
+}

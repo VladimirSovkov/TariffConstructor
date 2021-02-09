@@ -24,7 +24,7 @@ namespace TariffConstructor.AdminApi.Modules.ProductOptionModule
                     AccountingName = productOption.AccountingName,
                     NomenclatureId = productOption.NomenclatureId,
                     ProductId = productOption.ProductId,
-                    Product = productOption.Product.Map()
+                    ProductName = productOption.Product.Name,
                 };
             }
         }

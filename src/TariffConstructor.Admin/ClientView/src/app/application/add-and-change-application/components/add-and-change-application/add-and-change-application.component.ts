@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Application} from '../../shared/model/application/application.model';
+import {Application} from '../../../../shared/model/application/application.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {ApplicationApiService} from '../../shared/service/application/application-api.service';
-import {Setting} from '../../shared/model/setting/setting.model';
-import {SnackBarService} from '../../shared/service/snack-bar.service';
+import {ApplicationApiService} from '../../../../shared/service/application/application-api.service';
+import {Setting} from '../../../../shared/model/setting/setting.model';
+import {SnackBarService} from '../../../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-add-and-change-application',

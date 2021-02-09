@@ -14,8 +14,8 @@ import {SettingPresetTableComponent} from './setting-preset/setting-preset-table
 import {BillingSettingTableComponent} from './billing-setting/billing-setting-table/billing-setting-table.component';
 import {AddAndChangeSettingsPresetComponent} from './setting-preset/add-and-change-settings-preset/add-and-change-settings-preset.component';
 import {AddAndChangeBillingSettingComponent} from './billing-setting/add-and-change-billing-setting/add-and-change-billing-setting.component';
-import {ApplicationTableComponent} from './application/application-table/application-table.component';
-import {AddAndChangeApplicationComponent} from './application/add-and-change-application/add-and-change-application.component';
+import {ApplicationTableComponent} from './application/application-table/components/application-table.component';
+import {AddAndChangeApplicationComponent} from './application/add-and-change-application/components/add-and-change-application/add-and-change-application.component';
 import {TermsOfUseTableComponent} from './terms-of-use/terms-of-use-table/terms-of-use-table.component';
 import {AddAndChangeTermsOfUseComponent} from './terms-of-use/add-and-change-terms-of-use/add-and-change-terms-of-use.component';
 import {CurrencyTableComponent} from './currency/currency-table/currency-table.component';
@@ -56,8 +56,6 @@ const routes: Routes = [
   {path: 'billingSetting/change/:id', component: AddAndChangeBillingSettingComponent},
 
   {path: 'application', component: ApplicationTableComponent},
-  {path: 'application/add', component: AddAndChangeApplicationComponent},
-  {path: 'application/change/:id', component: AddAndChangeApplicationComponent},
 
   {path: 'termsOfUse', component: TermsOfUseTableComponent},
   {path: 'termsOfUse/add', component: AddAndChangeTermsOfUseComponent},

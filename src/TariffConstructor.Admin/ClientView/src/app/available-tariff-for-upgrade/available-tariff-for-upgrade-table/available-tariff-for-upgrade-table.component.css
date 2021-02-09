@@ -1,3 +1,15 @@
-table{
+.title{
+  text-align: center;
+  margin: 23px 0 0 0;
+}
+
+
+table {
   width: 100%;
+}
+
+.tool-bar{
+  width: 97%;
+  margin: 10px auto 10px auto;
+  align-items: baseline;
 }
