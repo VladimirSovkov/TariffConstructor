@@ -13,9 +13,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+import { ApplicationTablePageComponent } from './pages/application-table-page/application-table-page.component';
 
 @NgModule({
-  declarations: [ApplicationTableComponent],
+  declarations: [ ApplicationTablePageComponent, ApplicationTableComponent],
   imports: [
     CommonModule,
     ApplicationTableRoutingModule,

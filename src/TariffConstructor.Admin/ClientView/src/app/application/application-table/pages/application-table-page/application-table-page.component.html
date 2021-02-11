@@ -1,0 +1,9 @@
+<h2 class="title">Приложения</h2>
+<div class="tool-bar">
+  <button mat-button color="primary" class="btn-add-product" [routerLink]="['/application/add']">Добавить</button>
+  <mat-form-field class="input-filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+  </mat-form-field>
+</div>
+<app-application-list [applicationInput]="applications"></app-application-list>

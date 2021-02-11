@@ -38,7 +38,6 @@ const routes: Routes = [
   {path: 'product-option/add', component: AddProductOptionComponent},
   {path: 'product-option/change/:id', component: AddProductOptionComponent},
 
-
   {path: 'setting', component: SettingTableComponent},
   {path: 'setting/add', component: AddChangeSettingComponent},
   {path: 'setting/change/:id', component: AddChangeSettingComponent},
@@ -54,8 +53,6 @@ const routes: Routes = [
   {path: 'billingSetting', component: BillingSettingTableComponent},
   {path: 'billingSetting/add', component: AddAndChangeBillingSettingComponent},
   {path: 'billingSetting/change/:id', component: AddAndChangeBillingSettingComponent},
-
-  {path: 'application', component: ApplicationTableComponent},
 
   {path: 'termsOfUse', component: TermsOfUseTableComponent},
   {path: 'termsOfUse/add', component: AddAndChangeTermsOfUseComponent},

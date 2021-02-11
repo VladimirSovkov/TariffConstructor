@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {MatTable} from '@angular/material/table';
 import {ApplicationSearchPattern} from '../../../shared/model/application/application-search-pattern.model';
@@ -10,11 +10,12 @@ import {Application} from '../../../shared/model/application/application.model';
 import {ApplicationApiService} from '../../../shared/service/application/application-api.service';
 
 @Component({
-  selector: 'app-application-table',
+  selector: 'app-application-list',
   templateUrl: './application-table.component.html',
   styleUrls: ['./application-table.component.css']
 })
 export class ApplicationTableComponent implements OnInit {
+  @Input() public applicationInput: Application[];
   displayedColumns: string[] = ['publicId', 'name', 'action'];
   applications: Application[];
   searchPattern: ApplicationSearchPattern;
@@ -34,6 +35,7 @@ export class ApplicationTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
+    console.log('input application: ', this.applicationInput);
   }
 
   load(): void {
